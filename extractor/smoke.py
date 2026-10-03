@@ -143,13 +143,33 @@ def invariants(rules: list[RuleInternal], docs) -> list[dict]:
     return out
 
 
+def test_rule_map() -> list[dict]:
+    """Every dev/change_tests.json rule_id is mapped, to an exported or a manifest-attested id."""
+    spec = yaml.safe_load(config.TEST_RULE_MAP_PATH.read_text(encoding="utf-8"))["map"]
+    tests = json.loads(config.CHANGE_TESTS_PATH.read_text(encoding="utf-8"))
+    exported = {r["team_rule_id"] for r in json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]}
+    attested = ({r["team_rule_id"] for r in json.loads(config.ATTESTED_PATH.read_text(encoding="utf-8"))["rules"]}
+                if config.ATTESTED_PATH.exists() else set())
+    out = []
+    for tid in sorted({x for t in tests for x in [*t["rule_ids"], *t.get("conflict_with", [])]}):
+        e = spec.get(tid) or {}
+        if e.get("ours"):
+            ok, detail = e["ours"] in exported, f"-> {e['ours']} (rules.json)"
+        elif e.get("attested"):
+            ok, detail = e["attested"] in attested, f"-> {e['attested']} (attested, no text)"
+        else:
+            ok, detail = False, "not in data/test_rule_map.yaml"
+        out.append({"check": f"test rule {tid}", "result": OK if ok else FAIL, "detail": detail})
+    return out
+
+
 def run() -> dict:
     rules = [RuleInternal.model_validate(r)
              for r in json.loads(config.NORMALIZED_PATH.read_text(encoding="utf-8"))["rules"]]
     docs = load_documents()
     rows = load_manifest()
     return {"invariants": invariants(rules, docs), "citations": expected_citations(rules, docs, rows),
-            "behaviour": behaviour_checks(rules)}
+            "behaviour": behaviour_checks(rules), "test_rule_map": test_rule_map()}
 
 
 def render(res: dict) -> str:
@@ -169,6 +189,9 @@ def render(res: dict) -> str:
     lines += ["", " BEHAVIOUR"]
     for c in res["behaviour"]:
         lines.append(f"   [{c['result']}] {c['check']:<48} {c['detail'][:52]}")
-    n_fail = sum(c["result"] == FAIL for c in res["invariants"] + res["behaviour"])
+    lines += ["", " TEST RULE MAP (data/test_rule_map.yaml)"]
+    for c in res["test_rule_map"]:
+        lines.append(f"   [{c['result']}] {c['check']:<48} {c['detail'][:52]}")
+    n_fail = sum(c["result"] == FAIL for c in res["invariants"] + res["behaviour"] + res["test_rule_map"])
     lines += ["", f" RESULT: {'ALL CHECKS PASS' if not n_fail else f'{n_fail} CHECK(S) FAILED'}", "=" * w]
     return "\n".join(lines)

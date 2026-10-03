@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import date
 from pathlib import Path
 
@@ -11,7 +12,7 @@ from conftest import make_doc, make_rule
 
 from extractor import config, llm
 from extractor.models import LegalStage
-from extractor.normalize import normalize_rules
+from extractor.normalize import normalize_rules, upgrade_legacy_id
 
 ROOT = Path(__file__).resolve().parent.parent
 SNAPSHOT = ROOT / "snapshots" / "a-0.4.0"
@@ -27,8 +28,18 @@ def snapshot_mode(monkeypatch):
     llm._snapshot_index.cache_clear()
 
 
+def _upgrade_ids(record: dict) -> dict:
+    """A frozen a-0.4.0 record with its ids (team_rule_id, overrides, interaction) in the current style."""
+    s = json.dumps(record, ensure_ascii=False)
+    return json.loads(re.sub(r"\b[A-Z]{2,3}-[A-Z]{3,4}-[PFH]?\d{2}\b", lambda m: upgrade_legacy_id(m.group(0)), s))
+
+
+#: Module B normalization changes vs the frozen a-0.4.0 export (README, "Module B adjustments").
+LA_CO = {"LA-JUST-03", "LA-RENT-01", "LA-RENT-02", "LA-RENT-03", "LA-RENT-04"}
+
+
 @needs_snapshot
-def test_reproduce_from_snapshot_is_identical(tmp_path, snapshot_mode):
+def test_reproduce_from_snapshot_differs_only_by_documented_changes(tmp_path, snapshot_mode):
     from extractor.conflicts import detect_conflicts
     from extractor.corpus import load_documents
     from extractor.export import export_rules
@@ -39,10 +50,30 @@ def test_reproduce_from_snapshot_is_identical(tmp_path, snapshot_mode):
     results = extract_all(load_documents())
     assert not [r.doc_id for r in results if r.error]
     existing = json.loads((SNAPSHOT / "ids.json").read_text(encoding="utf-8"))
-    rules, _ = normalize_rules([x for r in results for x in r.rules], {d.doc_id: d for d in load_documents()}, existing)
-    detect_conflicts(rules)
-    out = export_rules(rules, date(2026, 10, 1), tmp_path / "rules.json")
-    assert out.read_bytes() == (SNAPSHOT / "rules.json").read_bytes()
+
+    def run():
+        rules, _ = normalize_rules([x for r in results for x in r.rules], {d.doc_id: d for d in load_documents()},
+                                   existing)
+        detect_conflicts(rules)
+        return export_rules(rules, date(2026, 10, 1), tmp_path / "rules.json").read_bytes()
+
+    first = run()
+    assert run() == first  # deterministic
+    now = {r["team_rule_id"]: r for r in json.loads(first)["rules"]}
+    snap = {r["team_rule_id"]: r for r in map(_upgrade_ids, json.loads((SNAPSHOT / "rules.json").read_text(
+        encoding="utf-8"))["rules"])}
+    assert set(now) == set(snap)
+    for rid, old in snap.items():
+        new = now[rid]
+        if rid in LA_CO:
+            cov_old, cov_new = old.pop("coverage_conditions"), new.pop("coverage_conditions")
+            assert cov_old.pop("year_built_max") == 1978 and "year_built_max" not in cov_new
+            assert cov_new.pop("certificate_of_occupancy_on_or_before") == "1978-10-01"
+            assert cov_new == cov_old
+        elif rid == "BRK-ALG-P1":
+            assert (old.pop("conflict_flag"), new.pop("conflict_flag")) == (False, True)
+            assert old.pop("conflict_note") is None and "§9" in new.pop("conflict_note")
+        assert new == old, rid
 
 
 @needs_snapshot
@@ -72,15 +103,15 @@ def test_incremental_fake_cambridge(tmp_path, monkeypatch, snapshot_mode):
                                   snapshot_dir=SNAPSHOT, as_of=date(2026, 10, 1))
     [r] = s["rules"]
     assert (r["change"], r["team_rule_id"], r["jurisdiction"], r["level"], r["category"]) == (
-        "new", "CAM-ALGO-01", "Cambridge, MA", "city", "algorithmic_rent_setting")
+        "new", "CAM-ALG-01", "Cambridge, MA", "city", "algorithmic_rent_setting")
     assert r["status"] == "not_yet_effective"
     assert r["effective_date"] == "2027-03-13" and r["effective_date_derived"]
     assert any(e["field"] == "units" and e["op"] == "<" and e["value"] == 6
                for e in r["coverage_conditions"]["exemption_conditions"])
-    snap = {x["team_rule_id"]: x for x in json.loads((SNAPSHOT / "rules.json").read_text(encoding="utf-8"))["rules"]}
-    now = {x["team_rule_id"]: x for x in json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]}
-    assert set(now) - set(snap) == {"CAM-ALGO-01"}
-    assert all(now[k] == v for k, v in snap.items())  # existing ids and records untouched
+    snap = {upgrade_legacy_id(x["team_rule_id"])
+            for x in json.loads((SNAPSHOT / "rules.json").read_text(encoding="utf-8"))["rules"]}
+    now = {x["team_rule_id"] for x in json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]}
+    assert now - snap == {"CAM-ALG-01"} and snap <= now  # existing ids kept; records untouched = only 1 change
     assert "incremental" in incremental.render(s).lower()
 
 
@@ -109,7 +140,7 @@ def test_stage_merge_most_advanced_wins_and_history_kept():
                     citation="Berkeley Mun. Code § 13.63.030", stage="enacted")
     out, _ = normalize_rules([bill, law], DOCS)
     [acc] = [r for r in out if r.disposition == "accepted"]
-    assert acc.stage == LegalStage.ENACTED and acc.team_rule_id == "BRK-ALGO-01"
+    assert acc.stage == LegalStage.ENACTED and acc.team_rule_id == "BRK-ALG-01"
     assert sorted((c.stage, c.source_doc_id) for c in acc.stage_history) == [("bill_pending", "D1"), ("enacted", "D2")]
 
 

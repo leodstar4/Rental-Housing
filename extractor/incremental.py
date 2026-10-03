@@ -11,6 +11,9 @@
               keeping the snapshot's team_rule_ids stable.
 5. conflicts  + 6. status/export (out/rules.json, schema-validated).
 
+Changes are reported against the snapshot normalized with the current code (baseline),
+so only the new document's effect shows up.
+
 Prints a readable summary (new/modified rules, status, effective date and whether it is
 derived, new conflicts, time per stage) and writes ``out/increment_<doc_id>.json``.
 """
@@ -28,7 +31,7 @@ from pathlib import Path
 from . import audit, config
 from .conflicts import detect_conflicts
 from .corpus import document_from_file, load_documents
-from .export import export_rules
+from .export import export_rules, to_rule_out
 from .extract import _validate, extract_document
 from .models import RuleInternal
 from .normalize import normalize_rules
@@ -156,8 +159,15 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
     t = stage("validate", t)
 
     docs = {d.doc_id: d for d in load_documents()}
-    docs[doc_id] = doc
     existing = json.loads((snapshot_dir / "ids.json").read_text(encoding="utf-8"))
+    # Baseline = the snapshot run through the CURRENT normalization (not the snapshot's frozen
+    # rules.json, which predates later normalization changes such as the id style), so the
+    # diff below shows only what the new document changed.
+    base_rules, _ = normalize_rules(_snapshot_rules(snapshot_dir), docs, existing)
+    base_conflicts = detect_conflicts(base_rules)
+    before = {r.team_rule_id: to_rule_out(r, as_of).model_dump(mode="json")
+              for r in base_rules if r.disposition == "accepted"}
+    docs[doc_id] = doc
     rules, rep = normalize_rules(_snapshot_rules(snapshot_dir) + out.rules, docs, existing)
     t = stage("normalize", t)
     conflicts = detect_conflicts(rules)
@@ -169,8 +179,7 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
     export_rules(rules, as_of)
     t = stage("status + export", t)
 
-    # ---- what changed vs the snapshot's official export -------------------------------
-    before = {r["team_rule_id"]: r for r in json.loads((snapshot_dir / "rules.json").read_text(encoding="utf-8"))["rules"]}
+    # ---- what changed vs the snapshot baseline ------------------------------------------
     after = {r["team_rule_id"]: r for r in json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]}
     by_id = {r.team_rule_id: r for r in rules if r.team_rule_id and r.disposition == "accepted"}
     touched = {rid for rid, r in by_id.items() if r.source_doc_id == doc_id
@@ -199,7 +208,7 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
                 "fields_changed": sorted(k for k in b if a is not None and a.get(k) != b.get(k)),
             })
         changed.append(entry)
-    old_conf = {_conflict_key(c) for c in json.loads((snapshot_dir / "conflicts.json").read_text(encoding="utf-8"))["conflicts"]}
+    old_conf = {_conflict_key(c) for c in base_conflicts}
     new_conflicts = [c for c in conflicts if _conflict_key(c) not in old_conf]
 
     summary = {

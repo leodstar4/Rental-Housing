@@ -1,0 +1,78 @@
+# dev/change_tests.json rule_ids -> our team_rule_ids.
+#
+#   ours:      id in out/rules.json (extracted from corpus text), or null if no rule was extracted
+#   attested:  id in out/rules_attested.json (manifest-attested, no text; see README
+#              "Responsible design"), built by extractor/attested.py from the fields below
+#   matched_by: how the equivalence was established
+#   attested_effective_date / attested_citation: values the organizers' challenge brief gives
+#              (team decision 2026-10-03); not verifiable in the corpus
+#
+# smoke-check verifies that every `ours` id exists in out/rules.json and every `attested`
+# id in out/rules_attested.json.
+
+source: "participant-final-no-hour16 3/dev/change_tests.json"
+
+map:
+  CA-ALG-01:
+    ours: CA-ALG-01
+    tests: [T1]
+    matched_by: "citation Cal. Bus. & Prof. Code § 16729 (AB 325, Cartwright Act amendment)"
+
+  HOB-ALG-01:
+    ours: null
+    attested: HOB-ALG-A1
+    tests: [T2, T3]
+    matched_by: "none: no corpus text describes a Hoboken algorithmic rent-setting ordinance"
+    note: >-
+      Hoboken's municipal code (D032-D034, ecode360) is check-terms/link-only. The only corpus
+      mention of Hoboken near algorithm wording is D069 (FAIR Act findings: Hoboken studio rents
+      rose 61 percent), which says nothing about a local ordinance.
+    attested_status: in_force
+    attested_effective_date: "2025-07"
+    attested_citation: "Hoboken Code ch. 158, Art. II"
+    status_basis: "Challenge brief p.3 (organizer-provided); text not in corpus"
+
+  JC-ALG-01:
+    ours: null
+    attested: JC-ALG-A1
+    tests: [T2, T3]
+    matched_by: "none: no corpus text describes the Jersey City ordinance"
+    note: >-
+      D036 (Jersey City landlord/tenant page) has no algorithm content; D035 (Hudson County
+      View, "council approves RealPage ban") and D037 (Morgan Lewis) are link-only.
+    attested_status: in_force
+    attested_effective_date: "2025-06"
+    attested_citation: "Jersey City Code § 218-12"
+    status_basis: "Challenge brief p.3 (organizer-provided); text not in corpus"
+
+  NJ-ALG-01:
+    ours: NJ-ALG-01
+    tests: [T3]
+    matched_by: "citation P.L.2026, c.43 (FAIR Act, D069)"
+
+  MA-ALG-P1:
+    ours: MA-ALG-P2
+    tests: [T4]
+    matched_by: "citation MA S.2983"
+    note: >-
+      The test does not say which bill is P1; we assume the order of the test title
+      ("S.2983 and H.5222"). Our P numbers follow citation order, so the numbers cross. T4
+      treats both bills together, so the affected sets do not depend on this choice.
+
+  MA-ALG-P2:
+    ours: MA-ALG-P1
+    tests: [T4]
+    matched_by: "citation MA H.5222 (see MA-ALG-P1 note)"
+
+  MA-RENT-P1:
+    ours: null
+    attested: MA-RENT-A1
+    tests: [T5]
+    matched_by: "none: the 2026 rent-control ballot question (IP 25-21) has no text in the corpus"
+    note: >-
+      Not equivalent to our MA-RENT-F1, which is H.3744 (a Boston home-rule petition for rent
+      stabilization, also failed). The ballot-question source D059 (WBUR) is link-only.
+    attested_status: failed
+    status_basis: >-
+      Participant guide §7 (T5: "rent-control ballot question (struck 2026-06-23)") and the
+      manifest D059 URL ("...rent-control-ballot-question-struck").

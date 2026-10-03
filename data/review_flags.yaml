@@ -1,0 +1,14 @@
+# Known open questions (participant guide §9) that the corpus text cannot settle.
+#
+# normalize.apply_review_flags sets conflict_flag = true and appends conflict_note on every
+# accepted/held rule whose fields equal all of `match` (jurisdiction, category, stage).
+# Only add entries backed by the participant guide or a corpus document (`source`).
+
+flags:
+  - id: berkeley-alg-effective-date
+    match:
+      jurisdiction: "Berkeley, CA"
+      category: algorithmic_rent_setting
+      stage: bill_pending
+    conflict_note: "Participant guide §9 reports published effective dates; corpus text (D001) shows first reading only"
+    source: "Participant guide §9 (Berkeley ch. 13.63: March 1, 2026 per the ordinance text, January 2026 per an August 2026 law-firm alert); D001 records only 'passed to print' on 2025-11-18"
