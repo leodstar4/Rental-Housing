@@ -1,0 +1,36 @@
+{
+  "doc_id": "D014",
+  "error": null,
+  "rules": [],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 0,
+    "match_types": {},
+    "dispositions": {},
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2254,
+      "output_tokens": 357,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "Boston Housing Stability Notification Act tenant FAQ (Sec. 10-11.7). The ordinance only requires landlords and foreclosing owners to give tenants a Notice of Tenants' Rights and Resources along with a notice to quit or non-renewal, and to file copies with the Office of Housing Stability. It does not limit which causes allow a landlord to end a tenancy, and the FAQ says violations do not halt evictions. It sets no rent caps, deposit, fee or screening limits, and has no algorithm rules. None of the six categories applies, so no rules were recorded."
+  }
+}

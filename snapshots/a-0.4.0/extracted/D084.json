@@ -1,0 +1,240 @@
+{
+  "doc_id": "D084",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D084#0",
+      "team_rule_id": null,
+      "jurisdiction": "Santa Ana, CA",
+      "level": "city",
+      "category": "rent_increase_limits",
+      "title": "Maximum allowable rent increase for September 1, 2026 through August 31, 2027",
+      "requirement": "For September 1, 2026 through August 31, 2027, the maximum allowable annual rent increase is 2.87 percent.",
+      "key_value": "2.87%",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [],
+        "notes": null
+      },
+      "coverage_text": null,
+      "exemptions": null,
+      "stage": "administrative",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2026-09-01",
+          "raw": "September 1, 2026",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D084",
+          "quoted_span": "for the period of September 1, 2026 through August 31, 2027",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": {
+        "value": "2027-08-31",
+        "raw": "August 31, 2027",
+        "derived": false,
+        "verified": true,
+        "source_doc_id": "D084",
+        "quoted_span": "for the period of September 1, 2026 through August 31, 2027",
+        "kind": null,
+        "kind_source": null,
+        "rule_applied": null
+      },
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Santa Ana Rent Stabilization and Just Cause Eviction Ordinance",
+      "citation_aliases": [
+        "Rent Stabilization and Just Cause Ordinance",
+        "the Ordinance"
+      ],
+      "source_doc_id": "D084",
+      "source_url": "https://santa-ana.gov/departments/rent-stabilization",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "2.87 percent is the maximum allowable rent increase for the period of September 1, 2026 through August 31, 2027.",
+      "quote_location": {
+        "raw_start": 525,
+        "raw_end": 637,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.85,
+      "confidence": 0.85,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D084#1",
+      "team_rule_id": null,
+      "jurisdiction": "Santa Ana, CA",
+      "level": "city",
+      "category": "rent_increase_limits",
+      "title": "Annual rent increase cap: lesser of 3% or 80% of CPI",
+      "requirement": "Landlords may raise rent only once a year by an amount that does not exceed the lesser of 3% of current rent or 80% of the change in the Consumer Price Index.",
+      "key_value": "lesser of 3% or 80% of CPI change",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [],
+        "notes": null
+      },
+      "coverage_text": null,
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Santa Ana Rent Stabilization and Just Cause Eviction Ordinance",
+      "citation_aliases": [
+        "Rent Stabilization and Just Cause Ordinance",
+        "the Ordinance"
+      ],
+      "source_doc_id": "D084",
+      "source_url": "https://santa-ana.gov/departments/rent-stabilization",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "The increase cannot be more than 3% of your current rent or 80% of the Consumer Price Index (CPI) change, whichever is less.",
+      "quote_location": {
+        "raw_start": 861,
+        "raw_end": 985,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.72,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D084#2",
+      "team_rule_id": null,
+      "jurisdiction": "Santa Ana, CA",
+      "level": "city",
+      "category": "just_cause_eviction",
+      "title": "Just cause eviction requirement",
+      "requirement": "Landlords must have a valid reason to evict a tenant, such as nonpayment of rent, breach of the lease, or owner move-in. Some evictions may require relocation assistance for moving costs.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [],
+        "notes": null
+      },
+      "coverage_text": null,
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Santa Ana Rent Stabilization and Just Cause Eviction Ordinance",
+      "citation_aliases": [
+        "Rent Stabilization and Just Cause Ordinance",
+        "the Ordinance"
+      ],
+      "source_doc_id": "D084",
+      "source_url": "https://santa-ana.gov/departments/rent-stabilization",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Your landlord must have a valid reason to evict you. This could be for not paying rent, breaking the lease, or if the landlord wants to move into the property themselves.",
+      "quote_location": {
+        "raw_start": 1027,
+        "raw_end": 1197,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.75,
+      "confidence": 0.675,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 3,
+    "match_types": {
+      "exact": 3
+    },
+    "dispositions": {
+      "accepted": 3
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 1677,
+      "output_tokens": 2232,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "This is the City of Santa Ana's official page about its own Rent Stabilization and Just Cause Eviction Ordinance. The page gives no code section numbers, so the citation is the ordinance's name. I did not record the $50 registration pass-through fee rule because it doesn't fit any of the categories."
+  }
+}

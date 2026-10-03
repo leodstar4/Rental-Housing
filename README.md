@@ -44,12 +44,24 @@ directly from the text.
 │   ├── clean.py               # drop nav/boilerplate (whole lines only); keep offset map
 │   ├── extract.py             # clean_text -> LLM -> RuleInternal[]
 │   ├── llm.py                 # structured output, retries, on-disk cache
-│   ├── validate.py            # quoted_span must occur in raw_text; JSON Schema check
-│   ├── normalize.py           # citations, dedup, stable IDs, conflict flags
+│   ├── validate.py            # quote cascade, date checks, dispositions, confidence
+│   ├── dates.py               # date formats + date-kind classification
+│   ├── normalize.py           # citations, citation resolution, defaults, merge, admin links, IDs, precedence
+│   ├── conflicts.py           # conflicts between documents -> out/conflicts.json
 │   ├── status.py              # derive status from stage + dates for --as-of
 │   ├── export.py              # RuleInternal -> RuleOut -> out/rules.json
+│   ├── snapshot.py            # freeze / load snapshots (reproduction without API)
+│   ├── incremental.py         # extract-doc: one new document on top of a snapshot
+│   ├── smoke.py               # smoke-check dashboard
 │   ├── audit.py               # append-only out/audit.jsonl
 │   └── models.py              # pydantic models (RuleInternal, RuleOut, ...)
+├── data/
+│   ├── citation_aliases.yaml       # law alias table (see "Citation aliases")
+│   └── jurisdiction_defaults.yaml  # calendar defaults (see "Status")
+├── prompts/                   # extract_system.md (PROMPT_VERSION), quote_retry.md
+├── snapshots/a-0.4.0/         # frozen official extraction (see "Reproducing from the snapshot")
+├── corpus/new/                # documents added with extract-doc (created on demand)
+├── tests/                     # offline pytest suite, fixtures, expected_citations.yaml
 ├── participant-final-no-hour16 3/   # starter pack (corpus, schema, templates)
 ├── requirements.txt
 ├── .env.example
@@ -83,6 +95,8 @@ Settings live in `extractor/config.py` and are overridable via environment varia
 | `STARTER_DIR`        | `participant-final-no-hour16 3`  | Location of the starter pack             |
 | `OUT_DIR`            | `out/`                           | Output directory                         |
 | `CACHE_DIR`          | `.cache/`                        | On-disk extraction cache                 |
+| `QUOTE_RETRY_EFFORT` | `medium`                         | Effort for the single quote-retry call   |
+| `DATE_CLASSIFIER_MODEL` | `claude-haiku-4-5`            | Small model for ambiguous date kinds     |
 
 The API key is read **only** from `ANTHROPIC_API_KEY`; it is never written to config
 objects, cache entries, or the audit log.
@@ -92,18 +106,92 @@ objects, cache entries, or the audit log.
 ## Commands
 
 ```bash
-# Offline sanity checks — no API calls
+# Reproduce out/rules.json from the frozen snapshot — no API key needed (~5 s)
+python -m extractor.cli reproduce                      # = extract-all --from-snapshot + normalize + export
+
+# Dashboard: pipeline invariants, expected citations, T1/T3/T4/T5 — no API calls
 python -m extractor.cli smoke-check
 
-# Extract a single document and print its rules (debugging)
-python -m extractor.cli extract-doc "participant-final-no-hour16 3/corpus/text/D022.txt"
+# Incremental mode (hour 16): add ONE new document (.txt/.pdf/.html) on top of the snapshot
+python -m extractor.cli extract-doc path/to/new_ordinance.pdf --jurisdiction "Cambridge, MA"
 
-# Extract all loadable documents (results cached in .cache/)
+# Full re-extraction (needs ANTHROPIC_API_KEY; results cached in .cache/), then freeze it
 python -m extractor.cli extract-all
-
-# Compute status for a query date and write schema-valid out/rules.json
+python -m extractor.cli normalize
 python -m extractor.cli export --as-of 2026-10-01
+python -m extractor.cli snapshot --name a-0.5.0
 ```
+
+## Reproducing from the snapshot (no API key)
+
+The official extraction is frozen in **`snapshots/a-0.4.0/`** (versioned in git):
+
+| File | Content |
+|---|---|
+| `MANIFEST.json` | prompt version + sha256 + fingerprint, model (`claude-opus-5-5`), effort (`high`), creation date, cost, token counts, per-document text sha256 |
+| `extract_system.md` | the frozen extraction prompt |
+| `llm/<doc_id>.json` | raw model output per document (`record_rules` tool input + usage) |
+| `aux_cache/` | quote-retry and date-kind answers used by validation |
+| `extracted/<doc_id>.json` | validated rules per document |
+| `ids.json` | uid → `team_rule_id` of the official run (keeps ids stable) |
+| `rules.json`, `conflicts.json` | official export (as of 2026-10-01) |
+
+`python -m extractor.cli reproduce` (or `extract-all --from-snapshot snapshots/a-0.4.0`
+followed by `normalize --ids-from snapshots/a-0.4.0/ids.json` and `export`) serves every
+document from `llm/`, re-runs validation, normalization, conflicts and status locally, and
+writes `out/rules.json` — byte-identical to `snapshots/a-0.4.0/rules.json`. In snapshot mode
+the API client is disabled (`config.OFFLINE`); a document missing from the snapshot is an
+error, never a silent API call.
+
+## Incremental mode — `extract-doc`
+
+```bash
+python -m extractor.cli extract-doc tests/fixtures/fake_cambridge_ordinance.txt --jurisdiction "Cambridge, MA"
+```
+
+1. **ingest** — `.txt`, `.pdf` (pypdf) or `.html` → text, saved to `corpus/new/<doc_id>.txt`
+   (corpus format, SOURCE/RETRIEVED header) with `<doc_id>.meta.json` (sha256 of the
+   original file, retrieval date, jurisdiction hint).
+2. **extract** — only this document, with the frozen prompt (aborts if
+   `prompts/extract_system.md` differs from the snapshot's).
+3. **validate → normalize → conflicts → status/export** — on snapshot rules + the new
+   ones; the new rules merge with same-law rules, and existing `team_rule_id`s never change
+   (new rules get the next free number in their cell).
+
+It prints a video-friendly summary (new/modified rules, status as of 2026-10-01,
+effective date and whether it was derived, new conflicts, seconds per stage) and writes
+`out/increment_<doc_id>.json` for Module C. Rehearsal with the fictitious Cambridge
+ordinance (`tests/fixtures/`): CAM-ALGO-01, city, `algorithmic_rent_setting`,
+`not_yet_effective`, effective 2027-03-13 derived from "180 days after its adoption"
+(adopted 2026-09-14), exemption `units < 6`; ~17 s, of which ~16 s is the LLM call.
+To undo an incremental run: delete `corpus/new/<doc_id>.*` and run `reproduce`.
+
+## Smoke check
+
+`python -m extractor.cli smoke-check` reads the current `out/` artifacts (run `reproduce`
+first) and prints a dashboard (also saved to `out/smoke_check.json`):
+
+* **Pipeline**: corpus loads and cleaning keeps raw lines verbatim; `rules.json` is
+  schema-valid; every exported rule has a citation and a verified quote.
+* **Expected citations** (`tests/expected_citations.yaml`, measurement only — never read
+  by extraction): found / found as held / absent because the source is link-only (pattern
+  absent from every loadable text and the jurisdiction has link-only sources) / absent
+  without explanation (text present but not extracted).
+* **Behaviour**: T1 (AB 325 not yet effective 2025-12-31, in force 2026-01-02), T3 (FAIR Act
+  not yet effective 2026-10-01, in force 2027-07-02), T4 (S.2983 and H.5222 pending), T5 (no
+  MA, Boston or Cambridge `rent_increase_limits` rule in force).
+
+## Cost of Module A
+
+| Run | USD |
+|---|---:|
+| Prompt iterations on 4 documents (a-0.2.0, a-0.3.0, schema probes) | ≈ 0.62 |
+| Full corpus a-0.3.0 (54 documents) | 3.63 |
+| Full corpus a-0.4.0 — **official snapshot** (`MANIFEST.json`: extraction 3.86 + date classifier 0.01) | 3.87 |
+| Incremental rehearsal (1 document) | 0.07 |
+| **Total Module A** | **≈ 8.2** |
+
+Reproducing from the snapshot, normalization, export and smoke-check cost nothing.
 
 ---
 
@@ -113,8 +201,9 @@ python -m extractor.cli export --as-of 2026-10-01
 corpus.py    manifest + text/*.txt -> Document (header split; link-only/failed rows skipped)
 clean.py     drop nav/boilerplate *whole lines only*; keep clean->raw offset map
 extract.py   clean_text -> LLM (llm.py: structured output, retries, cache) -> RuleInternal[]
-validate.py  quoted_span must occur in raw_text; JSON Schema check
-normalize.py citations, dedup, stable IDs, conflict flags
+validate.py  quoted_span must occur in raw_text; dates verified by value and classified by kind
+normalize.py citation aliases, citation resolution, calendar defaults, merge, admin links, IDs, precedence
+conflicts.py conflicts between documents (dates, values, preemption, values marked pending)
 status.py    status computed from stage + dates for --as-of (never extracted)
 export.py    RuleInternal -> RuleOut -> out/rules.json (jsonschema-validated)
 audit.py     out/audit.jsonl, append-only
@@ -131,9 +220,10 @@ audit.py     out/audit.jsonl, append-only
 
 ### Caching
 
-`.cache/` is keyed by `sha256(document text)` + `PROMPT_VERSION` + model + effort.
-Bump `PROMPT_VERSION` in `config.py` whenever the prompt changes — a bump invalidates
-cached extractions.
+`.cache/` is keyed by `sha256(document text)` + `PROMPT_VERSION` + a hash of the prompt and
+tool schema + model + effort. `PROMPT_VERSION` is declared on the first line of
+`prompts/extract_system.md`; bump it whenever the prompt changes. Quote retries and date-kind
+classifications are cached too, so re-validating from cache costs nothing.
 
 ---
 
@@ -152,3 +242,142 @@ See `extractor/models.py` for the full schema.
 
 This project was built for the MIT Rental Housing Law Navigator challenge. It is provided
 for research and informational purposes only and does **not** constitute legal advice.
+
+## Validation (`validate.py`)
+
+Every candidate's `quoted_span` is checked against the source document's **raw** text:
+
+| Step | `match_type` | How |
+|---|---|---|
+| a | `exact` | literal substring |
+| b | `normalized` | whitespace/line breaks, curly quotes, dashes, NBSP folded; span replaced by the literal raw fragment |
+| c | `fuzzy` | rapidfuzz `partial_ratio` ≥ 95 (spans ≥ 20 chars); span replaced by the aligned raw fragment |
+| d | `retry` | ONE LLM call (`prompts/quote_retry.md`) asks for a literal quote; a–c re-run |
+| e | — | `rejected` / `citation_unverified` → `out/rejected.json` + audit; never exported |
+
+Date quotes (`effective_dates`, `enacted_date`, `sunset_date`) run a–c. An unverified
+date is dropped (not the rule). A non-derived date's **value** must appear in its quote in
+any common format ("October 6, 2025", "Oct. 6, 2025", "10/06/2025", "3/01/26", "6-24-2023").
+A `derived` date also needs a verified `enacted_date` (its base).
+
+Each date gets a **kind** (`dates.py`): `effective` (general entry into force), `operative`
+(calculation/base date, e.g. "rent increases occurring on or after March 15, 2019"),
+`amendment` (effective date of an amendment, e.g. a statute history note "(Amended by
+Stats. …) Effective January 1, 2026."), or `enacted`. Rules on the wording decide first;
+only ambiguous dates go to a small, configurable model (`DATE_CLASSIFIER_MODEL`, cached).
+Date conflicts and status only use `effective` dates.
+
+Dispositions: `accepted` (exported) · `held` (kept internally for conflicts and
+interactions, not exported: `no_citation`, `administrative_unlinked`) · `rejected`
+(`citation_unverified`, `schema_invalid`) · `merged` (folded into another rule:
+`duplicate_merged`, `administrative_linked`).
+
+### Final confidence
+
+```
+confidence = model confidence
+           × match factor      exact 1.0 · normalized 0.97 · fuzzy 0.85 · retry 0.8
+           × 0.8               if is_secondary_source
+           × 0.9               if stage = enacted and no verified (or derived) date of kind effective
+           × 0.85              if >1 distinct verified dates of kind effective (also conflict_flag = true)
+           × 0.9               if the citation was resolved from another rule (normalize.py)
+capped at 0.5                  if stage = unknown (also conflict_flag = true, note "stage unclear")
+```
+
+## Normalization (`normalize.py`, no LLM)
+
+1. **Citations** are put in schema style (`Cal. Civ. Code § 1950.6`, `§ ` with a space,
+   `LAMC 165.03` → `L.A. Mun. Code § 165.03`) and law names are mapped through
+   `data/citation_aliases.yaml`. A **state bill** citation (`MA H.3744`, `CA AB 325`) is always
+   state jurisdiction/level, even when the bill concerns one city (a home-rule petition for
+   Boston is still MA law); the correction is noted in `validation_errors`.
+2. **Missing citations**: a `held`/`no_citation` rule takes the citation of an accepted rule
+   of the *same law and jurisdiction*. If the held rule names its law (aliases), only those
+   names and its title are matched; otherwise its text must name exactly one law ("applies
+   to RSO and JCO units" stays held). The citation is **law-level** when the alias table
+   knows the law (SF "Rent Ordinance" matched via § 37.10C → `S.F. Admin. Code ch. 37`), not
+   the source's section. `citation_resolved_from = <team_rule_id>`, confidence × 0.9.
+3. **Calendar defaults** from `data/jurisdiction_defaults.yaml` (see Status).
+4. **Merge**: same jurisdiction, category and base citation (without subsection) → one
+   rule, unless coverage thresholds, key value or effective dates differ. `requirement`
+   summarizes the members; every literal quote is kept in `evidence`. The same law seen at
+   different **stages** (e.g. a bill page saying pending and the adopted text) merges too:
+   the most advanced verified stage wins (enacted > administrative > failed > pending >
+   unknown) and every document's claim is kept in `stage_history`.
+5. **Administrative figures** (annual allowable increases, relocation amounts) are folded
+   into the enacted rule of the same jurisdiction and category, preferring the same law, as
+   `key_value_details`. It stays `held` / `administrative_unlinked` when it names a law
+   (citation, or an alias such as "Resident Protections Ordinance") that has no enacted rule
+   here, when there is no enacted rule to attach to, or when it names no law and several
+   candidate rules exist without a clear title match (similarity ≥ 60 and 10 points above the
+   runner-up). On export, `key_value` shows the legal value plus every figure in force on
+   `--as-of`.
+6. **IDs**: `{JUR}-{CAT}-{NN}`, `P` = pending bill, `F` = failed bill, `H` = held (internal),
+   e.g. `CA-RENT-01`, `MA-ALGO-P01`. Deterministic across runs.
+7. **Precedence**: a state rule whose interaction says it yields to stricter local law (e.g.
+   Civ. Code § 1947.12 vs local rent control) or preempts it gets the local `team_rule_id`s in
+   `overrides`, and each local rule gets the state id; the direction is written in `interaction`.
+
+### Citation aliases (`data/citation_aliases.yaml`)
+
+Each entry maps the names a jurisdiction's documents use for one law to a canonical,
+law-level citation: `canonical`, `names` (exact names/abbreviations), `section_pattern` (regex
+on section citations, e.g. `^S\.F\. Admin\. Code § 37\.` → `S.F. Admin. Code ch. 37`) and
+`source` (the user decision or corpus document that justifies it). Entries are
+jurisdiction-scoped ("Rent Ordinance" means different laws in SF and Berkeley). The
+`formatting` list holds the generic style rewrites. Only add entries backed by the corpus or
+an explicit decision.
+
+## Conflicts (`conflicts.py`)
+
+Flags both rules (`conflict_flag`, `conflict_note`) and writes `out/conflicts.json`:
+
+| Type | When |
+|---|---|
+| `effective_date` | same jurisdiction, category and law; different documents; different effective dates for the same provision |
+| `key_value` | same jurisdiction, category and law; different documents; same coverage; different figures |
+| `preemption` | a state rule says it preempts/prohibits local rules → every local rule of that category in the state (held ones too) |
+| `value_pending` | the text marks a date or figure as pending, not published or "to be determined" |
+
+`preemption_no_local_rule` records (informational, nothing flagged) list state preemption
+clauses with no local rule of that category in the corpus.
+
+## Status (`status.py`)
+
+| Stage | Status on `--as-of` |
+|---|---|
+| `bill_pending` | `pending` |
+| `bill_failed` | `failed` |
+| `enacted` / `administrative` / `unknown` | `pending` if enacted after as_of; `failed` if its sunset date ≤ as_of (exported with `conflict_note` "expired on <sunset_date>"); `not_yet_effective` if every effective date > as_of; else `in_force` |
+
+**Calendar defaults** (`data/jurisdiction_defaults.yaml`): only California is configured. A
+CA statute that is enacted, has a verified `enacted_date` and no effective date in its text
+gets January 1 of the following year (Cal. Const. art. IV, § 8(c)), unless the text contains
+urgency-statute language. The date is stored as derived with `rule_applied:
+CA-const-art-IV-8c`. NJ and MA have no defaults by design.
+
+Outputs: `out/extracted/<doc_id>.json` (per document, validated), `out/rules_internal.json`
+(accepted + held, pre-normalization), `out/rejected.json`, `out/validation_report.json`
+(per document and global counts), `out/rules_normalized.json` (every rule after
+normalization, all dispositions), `out/conflicts.json`, `out/rules.json` (export),
+`out/audit.jsonl` (append-only).
+
+## Preguntas abiertas no resolubles con el corpus
+
+Questions the participant guide raises whose answer depends on sources that are **not in
+the supplied text** (manifest rows with `capture = link-only` or `check-terms`). The system
+never fills them from outside knowledge; it records what the corpus supports and leaves the
+gap visible.
+
+| Question | What the corpus has | Missing source (no text) | How the system handles it |
+|---|---|---|---|
+| **Berkeley ch. 13.63 — two published effective dates** (March 1, 2026 per the ordinance; January 2026 per an Aug 2026 law-firm alert) | D001: Ordinance No. 7,992-N.S. amending ch. 13.63, recorded only as "passed to print" on November 18, 2025 (first reading). No effective date, no adoption/second-reading record. No other Berkeley document mentions 13.63. | D002 (Morgan Lewis alert, link-only) | The rule is extracted with stage `bill_pending` → status `pending`, no effective date. With one date-less source, no date conflict can be raised. |
+| **Los Angeles RSO new formula — two effective dates** (2026-02-02 per LAHD; 2026-01-24 per a landlord association) | D041 and D042 (LAHD) both state February 2, 2026. | The landlord-association statement is not in the corpus; D044 (AAGLA, link-only) is about deposit interest; LAMC text D038 is check-terms. | RSO rules carry the single verified date 2026-02-02; no conflict is flagged because only one source is readable. |
+| **Hoboken and Jersey City algorithmic rent-setting ordinances** (T2 boundary, T3 preemption by the NJ FAIR Act) | D036 (Jersey City landlord/tenant page) has no algorithm content. | Hoboken code D032–D034 (ecode360, check-terms); Jersey City D035 (news) and D037 (Morgan Lewis), link-only; D060 (Day Pitney on the FAIR Act), link-only. | No local NJ `algorithmic_rent_setting` rule exists. The FAIR Act's "municipalities are prohibited from enacting ordinances…" clause is recorded in `out/conflicts.json` as `preemption_no_local_rule` (informational) instead of a conflict pair. |
+| **Massachusetts bills S.2983 and H.5222** (T4: who would be affected) | D045, D046, D047: bill status/history pages (titles, committee actions, dates). D011: H.3744 status page. | The bill texts themselves (no bill-text document in the manifest); D059 (WBUR on the struck ballot question), link-only. | Bills are recorded with stage `bill_pending` (status `pending`), `key_value` null and coverage "not described"; their scope can only be stated at jurisdiction level (MA statewide). H.3744 is `failed`. No MA or Boston/Cambridge rent cap exists (T5 empty), consistent with M.G.L. c. 40P. |
+
+## Tests
+
+```bash
+python -m pytest -q        # offline; the API client is never built
+```

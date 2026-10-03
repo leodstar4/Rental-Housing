@@ -1,0 +1,20 @@
+{
+ "tool_input": {
+  "rules": [],
+  "notes": "M.G.L. c. 186, § 31 requires a notice to quit for nonpayment of rent to come with an informational form (rental assistance, court rules, eviction restrictions, plus a required statement). It also bars courts from accepting summary process filings without proof that the form was delivered. This is a procedure for giving notice. It does not limit the reasons a landlord may use to end or not renew a tenancy. It also does not cover rent increases, security deposits, application fees, tenant screening, or algorithmic rent setting. So no rule in the defined categories was recorded."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "64cdce24c8310962260a1b28fdb0a2a39816a5dc8b6860ef5ac5cde48b55e211",
+ "usage": {
+  "input_tokens": 836,
+  "output_tokens": 338,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:42:57.189287+00:00"
+}

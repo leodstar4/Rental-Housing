@@ -1,0 +1,36 @@
+{
+  "doc_id": "D013",
+  "error": null,
+  "rules": [],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 0,
+    "match_types": {},
+    "dispositions": {},
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2494,
+      "output_tokens": 412,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is a Boston.gov page about the Housing Stability Notification Act (Sec. 10-11.7). The Act says landlords must give tenants a Notice of Tenants' Rights and Resources with any notice to quit or non-renewal. Landlords must also send a copy of the notice to the City. Penalties are a warning for a 1st offense and a fine of $300 per day for later offenses. These are notice and reporting rules only. The page does not limit the reasons a landlord may use to end or not renew a tenancy. It also says a violation does not stop the eviction. The page does not set rent limits, security deposit limits, application fee limits, screening limits or algorithm limits, so none of the six categories apply."
+  }
+}

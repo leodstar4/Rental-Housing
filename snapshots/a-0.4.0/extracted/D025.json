@@ -1,0 +1,498 @@
+{
+  "doc_id": "D025",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D025#0",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "security_deposits",
+      "title": "General security deposit cap of one month's rent",
+      "requirement": "A landlord may not demand or receive security, however labeled, greater than one month's rent, in addition to first month's rent. Exceptions: small landlords who qualify (two-month cap), an advance payment of at least six months' rent on a lease of six months or longer, and fees the tenant agrees to pay for requested alterations.",
+      "key_value": "1 month's rent",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property used as the tenant's dwelling"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Small landlords (a natural person or an LLC whose members are all natural persons, owning no more than two residential rental properties with no more than four rental units in total) may instead collect up to two months' rent, unless the tenant is a service member",
+            "field": "owner_type",
+            "op": "in",
+            "value": [
+              "natural person",
+              "LLC with all natural-person members"
+            ]
+          },
+          {
+            "condition": "Does not apply to security collected or demanded before July 1, 2024",
+            "field": "other",
+            "op": "==",
+            "value": "security collected or demanded before July 1, 2024"
+          }
+        ],
+        "notes": "An advance payment of at least six months' rent is allowed if the lease term is six months or longer. Agreed fees for alterations the tenant requests are not prohibited."
+      },
+      "coverage_text": "Security for rental agreements for residential property used as the tenant's dwelling.",
+      "exemptions": "Qualifying small landlords may collect up to 2 months' rent (paragraph (5)). An advance payment of at least 6 months' rent is allowed on leases of 6 months or longer. Mutually agreed fees for alterations the tenant requests are allowed. Does not apply to security collected or demanded before July 1, 2024.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2024-07-01",
+          "raw": "shall not apply to a security collected or demanded by the landlord before July 1, 2024",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D025",
+          "quoted_span": "(6) This subdivision shall not apply to a security collected or demanded by the landlord before July 1, 2024.",
+          "kind": "effective",
+          "kind_source": "llm",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Paragraph (5) creates a higher cap for small landlords, except when the tenant is a service member.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.5",
+      "citation_aliases": [
+        "Civil Code - CIV 1950.5"
+      ],
+      "source_doc_id": "D025",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(c) (1) Except as provided in paragraph (2), (3), or (5), a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+      "quote_location": {
+        "raw_start": 2542,
+        "raw_end": 2822,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.9,
+      "confidence": 0.873,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D025#1",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "security_deposits",
+      "title": "Small landlord security deposit cap of two months' rent",
+      "requirement": "A landlord who is a natural person, or an LLC whose members are all natural persons, and who owns no more than two residential rental properties with no more than four rental units in total may collect up to two months' rent as security. This higher cap does not apply when the prospective tenant is a service member, and the landlord may not refuse to rent to a service member because of this limit.",
+      "key_value": "2 months' rent",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property used as the tenant's dwelling"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Does not apply if the prospective tenant is a service member",
+            "field": "other",
+            "op": "==",
+            "value": "prospective tenant is a service member"
+          }
+        ],
+        "notes": "The landlord must be a natural person (including a settlor or beneficiary of a family trust) or an LLC whose members are all natural persons. The landlord must own no more than two residential rental properties with no more than four dwelling units offered for rent in total."
+      },
+      "coverage_text": "Landlords who are natural persons (including family trust settlors and beneficiaries) or LLCs whose members are all natural persons, and who own no more than two residential rental properties with no more than four rental units in total.",
+      "exemptions": "Not available if the prospective tenant is a service member. Does not apply to security collected before July 1, 2024.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2024-07-01",
+          "raw": "shall not apply to a security collected or demanded by the landlord before July 1, 2024",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D025",
+          "quoted_span": "(6) This subdivision shall not apply to a security collected or demanded by the landlord before July 1, 2024.",
+          "kind": "operative",
+          "kind_source": "llm",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Exception to the one-month cap in paragraph (1).",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.5",
+      "citation_aliases": [
+        "Civil Code - CIV 1950.5"
+      ],
+      "source_doc_id": "D025",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(5) (A) Notwithstanding paragraph (1), a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to two months’ rent, in addition to any rent for the first month paid on or before initial occupancy if the landlord meets both of the following requirements:",
+      "quote_location": {
+        "raw_start": 4299,
+        "raw_end": 4617,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.88,
+      "confidence": 0.768,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D025#2",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "security_deposits",
+      "title": "Higher security charged to service members: disclosure and return",
+      "requirement": "If a landlord charges a service member a higher-than-standard security because of credit or housing history, the landlord must give a written statement of the amount and the reason. The extra amount must be returned after no more than six months if the tenant is not behind on rent, and the return date must be stated in the lease.",
+      "key_value": "Return extra security after no more than 6 months",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property used as the tenant's dwelling"
+        ],
+        "exemption_conditions": [],
+        "notes": "Applies only to tenants who are service members, as defined in Military and Veterans Code Section 400."
+      },
+      "coverage_text": "Service members who rent residential property they will live in.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2025-04-01",
+          "raw": "On or after April 1, 2025",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D025",
+          "quoted_span": "(4) On or after April 1, 2025, if a landlord or its agent charges a service member",
+          "kind": "effective",
+          "kind_source": "llm",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.5",
+      "citation_aliases": [
+        "Civil Code - CIV 1950.5"
+      ],
+      "source_doc_id": "D025",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(4) On or after April 1, 2025, if a landlord or its agent charges a service member who rents residential property in which the service member will reside a higher than standard or advertised security pursuant to paragraph (1) due to the credit history, credit score, housing history, or other factor related to the tenant, the landlord shall provide the tenant with a written statement, on or before the date the lease is signed, of the amount of the higher security and an explanation why the higher security amount is being charged.",
+      "quote_location": {
+        "raw_start": 3364,
+        "raw_end": 3898,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.85,
+      "confidence": 0.825,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D025#3",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "security_deposits",
+      "title": "Move-in photographs of unit",
+      "requirement": "For tenancies that begin on or after July 1, 2025, the landlord must photograph the unit immediately before, or at the start of, the tenancy.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property used as the tenant's dwelling"
+        ],
+        "exemption_conditions": [],
+        "notes": "Applies only to tenancies that begin on or after July 1, 2025."
+      },
+      "coverage_text": "Residential tenancies that begin on or after July 1, 2025.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2025-07-01",
+          "raw": "For tenancies that begin on or after July 1, 2025",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D025",
+          "quoted_span": "(g) (1) For tenancies that begin on or after July 1, 2025",
+          "kind": "operative",
+          "kind_source": "llm",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.5",
+      "citation_aliases": [
+        "Civil Code - CIV 1950.5"
+      ],
+      "source_doc_id": "D025",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(g) (1) For tenancies that begin on or after July 1, 2025, the landlord shall take photographs of the unit immediately before, or at the",
+      "quote_location": {
+        "raw_start": 11594,
+        "raw_end": 11730,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.698,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D025#4",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "security_deposits",
+      "title": "Move-out and post-repair photographs of unit",
+      "requirement": "The landlord must photograph the unit within a reasonable time after it is returned and before any repairs or cleanings that will be deducted from the deposit. The landlord must also photograph the unit again after those repairs or cleanings are completed.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property used as the tenant's dwelling"
+        ],
+        "exemption_conditions": [],
+        "notes": null
+      },
+      "coverage_text": "Residential tenancies where the landlord makes deductions from the security deposit.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2025-04-01",
+          "raw": "Beginning April 1, 2025",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D025",
+          "quoted_span": "(2) Beginning April 1, 2025, the landlord shall take photographs of the unit",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.5",
+      "citation_aliases": [
+        "Civil Code - CIV 1950.5"
+      ],
+      "source_doc_id": "D025",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(2) Beginning April 1, 2025, the landlord shall take photographs of the unit within a reasonable time after the possession of the unit is returned to the landlord, but prior to any repairs or cleanings for which the landlord will make a deduction from or claim against the security deposit pursuant to this section, and shall also take photographs of the unit within a reasonable time after such repairs or cleanings are completed.",
+      "quote_location": {
+        "raw_start": 11758,
+        "raw_end": 12189,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.776,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D025#5",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "security_deposits",
+      "title": "Return of security deposit, itemized statement and permitted deductions",
+      "requirement": "Within 21 calendar days after the tenant moves out, the landlord must return the remaining security with an itemized statement. If the tenant paid electronically, the return must be electronic, and supporting documents and photos must be included when deductions exceed $125. Deductions are limited to reasonable amounts for unpaid rent, damage beyond ordinary wear and tear, cleaning, and restoring property; deposits cannot be called nonrefundable; and bad-faith retention can lead to damages of up to twice the deposit.",
+      "key_value": "21 calendar days",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property used as the tenant's dwelling"
+        ],
+        "exemption_conditions": [],
+        "notes": "Documentation requirements do not apply if deductions total $125 or less, or if the tenant signs a valid waiver, unless the tenant asks for documentation within 14 days. The initial inspection requirements do not apply to terminations under CCP § 1161(2)-(4)."
+      },
+      "coverage_text": "Security for rental agreements for residential property used as the tenant's dwelling.",
+      "exemptions": "Supporting documents are not required if deductions for repairs and cleaning total $125 or less, or if the tenant validly waived them. The tenant can still request the documents within 14 days.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2026-01-01",
+          "raw": "Effective January 1, 2026.",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D025",
+          "quoted_span": "Effective January 1, 2026.",
+          "kind": "amendment",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.5",
+      "citation_aliases": [
+        "Civil Code - CIV 1950.5",
+        "AB 414",
+        "Stats. 2025, Ch. 340"
+      ],
+      "source_doc_id": "D025",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(h) (1) No later than 21 calendar days after the tenant has vacated the premises, but not earlier than the time that either the landlord or the tenant provides a notice to terminate the tenancy under Section 1946 or 1946.1, Section 1161 of the Code of Civil Procedure, or not earlier than 60 calendar days prior to\nthe expiration of a fixed-term lease, the landlord shall furnish the tenant, a copy of an itemized statement indicating the basis for, and the amount of, any security received and the disposition of the security, and shall return any remaining portion of the security to the tenant as follows:",
+      "quote_location": {
+        "raw_start": 12190,
+        "raw_end": 12798,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.698,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 6,
+    "match_types": {
+      "normalized": 6
+    },
+    "dispositions": {
+      "accepted": 6
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 8647,
+      "output_tokens": 8039,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is the official text of Cal. Civ. Code § 1950.5, as amended by Stats. 2025, Ch. 340 (AB 414), effective January 1, 2026. The rules are split by key value and effective date. The deposit caps use the July 1, 2024 applicability date from (c)(6); the photograph and service-member rules use their own dates."
+  }
+}

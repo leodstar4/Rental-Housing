@@ -1,0 +1,340 @@
+{
+  "doc_id": "D009",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D009#0",
+      "team_rule_id": null,
+      "jurisdiction": "Berkeley, CA",
+      "level": "city",
+      "category": "rent_increase_limits",
+      "title": "Berkeley Rent Stabilization Ordinance – rent control coverage",
+      "requirement": "Berkeley's Rent Stabilization and Eviction for Just Cause Ordinance applies rent control to fully covered units, such as most multifamily units built before 1980, single-family homes with tenancies that began before 1996, and rooming houses. New construction, newer single-family tenancies, most condos, and certain subsidized units are only partially covered and are not subject to rent control.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": "1980-06-30",
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Single-family home with a tenancy that began on or after January 1, 1996 (no rent control)",
+            "field": "other",
+            "op": "==",
+            "value": "single-family home with tenancy beginning on or after 1996-01-01"
+          },
+          {
+            "condition": "Most condominiums (no rent control)",
+            "field": "use_type",
+            "op": "==",
+            "value": "condominium"
+          },
+          {
+            "condition": "Units with Section 202 or Section 811 subsidies, or with Rental Supplement Program / Section 8 Loan Management Set Aside / Project-based Section 8 subsidies in a project with a HUD-insured or HUD-held mortgage",
+            "field": "other",
+            "op": "in",
+            "value": [
+              "Section 202",
+              "Section 811",
+              "Rental Supplement Program with HUD mortgage",
+              "Section 8 Loan Management Set Aside with HUD mortgage",
+              "Project-based Section 8 with HUD mortgage"
+            ]
+          },
+          {
+            "condition": "Golden Duplex: duplex owner-occupied on December 31, 1979, with an owner currently living in one unit",
+            "field": "other",
+            "op": "==",
+            "value": "Golden Duplex"
+          },
+          {
+            "condition": "Owner shares a kitchen or bath with the tenant and lived on the property when the tenancy started",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Tenancies started after Nov 7, 2018 on properties where one unit is an ADU and either unit is owner-occupied",
+            "field": "other",
+            "op": "==",
+            "value": "ADU property, owner-occupied, tenancy after 2018-11-07"
+          },
+          {
+            "condition": "University rental units such as dormitories",
+            "field": "use_type",
+            "op": "==",
+            "value": "university housing"
+          },
+          {
+            "condition": "Nonprofit cooperative",
+            "field": "owner_type",
+            "op": "==",
+            "value": "nonprofit cooperative"
+          }
+        ],
+        "notes": "Fully covered: most units in multifamily properties built before 1980; single-family homes with tenancies that began before 1996; rooming houses (single-family homes with five or more rooms rented individually under separate leases). New construction built and given a Certificate of Occupancy after June 1980 is not subject to rent control. Fully covered categories include units with Housing Choice Voucher, Shelter Plus Care, VASH, LIHTC, HOME, and other listed subsidies."
+      },
+      "coverage_text": "Fully covered (rent control applies): most multifamily units built before 1980, single-family homes with tenancies that began before 1996, and rooming houses with five or more individually rented rooms, including units with the listed subsidies (Section 8 vouchers, LIHTC, etc.).",
+      "exemptions": "Partially covered, with no rent control: new construction with a Certificate of Occupancy after June 1980; single-family homes with tenancies beginning on or after Jan 1, 1996; most condominiums; Section 202/811 units; units with HUD-mortgage project subsidies. Fully exempt: Golden Duplexes, units where the owner shares a kitchen or bath, owner-occupied ADU properties with tenancies after Nov 7, 2018, university housing, and nonprofit cooperatives.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": null,
+      "citation_aliases": [
+        "Berkeley’s Rent Stabilization and Eviction for Just Cause Ordinance"
+      ],
+      "source_doc_id": "D009",
+      "source_url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Most units in multifamily properties built before 1980** Fully Covered Yes Yes Yes Yes",
+      "quote_location": {
+        "raw_start": 507,
+        "raw_end": 593,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.7,
+      "confidence": 0.63,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "held",
+      "disposition_reason": "no_citation"
+    },
+    {
+      "uid": "D009#1",
+      "team_rule_id": null,
+      "jurisdiction": "Berkeley, CA",
+      "level": "city",
+      "category": "just_cause_eviction",
+      "title": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance – just cause coverage",
+      "requirement": "Fully and partially covered units under Berkeley's ordinance are subject to just cause for eviction protections. Only exempt units are excluded.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Golden Duplex: duplex owner-occupied on December 31, 1979, with an owner currently living in one unit",
+            "field": "other",
+            "op": "==",
+            "value": "Golden Duplex"
+          },
+          {
+            "condition": "Owner shares a kitchen or bath with the tenant and lived on the property when the tenancy started",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Tenancies started after Nov 7, 2018 on properties where one unit is an ADU and either unit is owner-occupied",
+            "field": "other",
+            "op": "==",
+            "value": "ADU property, owner-occupied, tenancy after 2018-11-07"
+          },
+          {
+            "condition": "University rental units such as dormitories",
+            "field": "use_type",
+            "op": "==",
+            "value": "university housing"
+          },
+          {
+            "condition": "Nonprofit cooperative",
+            "field": "owner_type",
+            "op": "==",
+            "value": "nonprofit cooperative"
+          }
+        ],
+        "notes": "Just cause applies to both fully covered and partially covered units, including new construction, post-1996 single-family tenancies, condos, and subsidized units."
+      },
+      "coverage_text": "All fully and partially covered rental units in Berkeley, including new construction, single-family homes, condominiums, and subsidized units.",
+      "exemptions": "Golden Duplexes; units where the owner shares a kitchen or bath and lived on the property when the tenancy started; tenancies started after Nov 7, 2018 on owner-occupied properties with an ADU; university housing such as dormitories; nonprofit cooperatives.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": null,
+      "citation_aliases": [
+        "Berkeley’s Rent Stabilization and Eviction for Just Cause Ordinance"
+      ],
+      "source_doc_id": "D009",
+      "source_url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Most units in multifamily properties built before 1980** Fully Covered Yes Yes Yes Yes",
+      "quote_location": {
+        "raw_start": 507,
+        "raw_end": 593,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.7,
+      "confidence": 0.63,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "held",
+      "disposition_reason": "no_citation"
+    },
+    {
+      "uid": "D009#2",
+      "team_rule_id": null,
+      "jurisdiction": "Berkeley, CA",
+      "level": "city",
+      "category": "security_deposits",
+      "title": "Berkeley ordinance – security deposit interest coverage",
+      "requirement": "Under Berkeley's ordinance, fully and partially covered units are subject to the security deposit interest requirement. Exempt units are not.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Golden Duplex",
+            "field": "other",
+            "op": "==",
+            "value": "Golden Duplex"
+          },
+          {
+            "condition": "Owner shares a kitchen or bath with the tenant and lived on the property when the tenancy started",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Tenancies started after Nov 7, 2018 on owner-occupied ADU properties",
+            "field": "other",
+            "op": "==",
+            "value": "ADU property, owner-occupied, tenancy after 2018-11-07"
+          },
+          {
+            "condition": "University rental units such as dormitories",
+            "field": "use_type",
+            "op": "==",
+            "value": "university housing"
+          },
+          {
+            "condition": "Nonprofit cooperative",
+            "field": "owner_type",
+            "op": "==",
+            "value": "nonprofit cooperative"
+          }
+        ],
+        "notes": "The document does not state the interest rate."
+      },
+      "coverage_text": "Fully and partially covered rental units in Berkeley.",
+      "exemptions": "The same exempt categories as for just cause.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": null,
+      "citation_aliases": [
+        "Berkeley’s Rent Stabilization and Eviction for Just Cause Ordinance"
+      ],
+      "source_doc_id": "D009",
+      "source_url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Most units in multifamily properties built before 1980** Fully Covered Yes Yes Yes Yes",
+      "quote_location": {
+        "raw_start": 507,
+        "raw_end": 593,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.45,
+      "confidence": 0.405,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "held",
+      "disposition_reason": "no_citation"
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 3,
+    "match_types": {
+      "exact": 3
+    },
+    "dispositions": {
+      "held": 3
+    },
+    "reasons": {
+      "no_citation": 3
+    },
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 1278,
+      "output_tokens": 4459,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "This is a Berkeley Rent Board guide to coverage under the city's Rent Stabilization and Eviction for Just Cause Ordinance. It does not give a section citation or any dates. The CO date of 1980-06-30 was inferred from the phrase 'Certificate of Occupancy after June 1980'."
+  }
+}

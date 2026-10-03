@@ -1,0 +1,207 @@
+{
+  "doc_id": "D024",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D024#0",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "rent_increase_limits",
+      "title": "Statewide rent cap (Tenant Protection Act rent increase limits)",
+      "requirement": "Owners of covered residential property may not raise rent over any 12-month period by more than 5% plus the percentage change in cost of living, or 10%, whichever is lower, measured from the lowest rent charged in the prior 12 months. For a tenant who stays, rent may go up in no more than two steps in a 12-month period. Owners may set the starting rent freely on a new tenancy (vacancy decontrol).",
+      "key_value": "5% + CPI, max 10%",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": 15,
+        "property_types_covered": [
+          "residential real property"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Housing deed- or regulatory-restricted as affordable housing for very low, low, or moderate income persons, or subject to an affordable housing subsidy agreement",
+            "field": "use_type",
+            "op": "in",
+            "value": [
+              "deed-restricted affordable housing",
+              "subsidized affordable housing"
+            ]
+          },
+          {
+            "condition": "Dormitories owned and operated by an institution of higher education or a K-12 school",
+            "field": "use_type",
+            "op": "in",
+            "value": [
+              "dormitory"
+            ]
+          },
+          {
+            "condition": "Housing subject to local rent or price control under Chapter 2.7 that restricts annual increases to less than subdivision (a)",
+            "field": "other",
+            "op": "==",
+            "value": "subject to stricter local rent control"
+          },
+          {
+            "condition": "Housing issued a certificate of occupancy within the previous 15 years, unless it is a mobilehome",
+            "field": "other",
+            "op": "<",
+            "value": "certificate of occupancy issued within previous 15 years (except mobilehomes)"
+          },
+          {
+            "condition": "Residential property alienable separate from any other dwelling unit (including mobilehome) where owner is not a REIT, corporation, LLC with a corporate member, or mobilehome park management, and tenants received the required written exemption notice",
+            "field": "owner_type",
+            "op": "in",
+            "value": [
+              "individual or entity other than REIT, corporation, LLC with corporate member, or mobilehome park management (separately alienable unit, with notice)"
+            ]
+          },
+          {
+            "condition": "Two-unit property in a single structure where the owner occupied one unit as principal residence at the beginning of the tenancy and continues in occupancy, and neither unit is an ADU or JADU",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Homeowner of a mobilehome, as defined in Section 798.9",
+            "field": "other",
+            "op": "==",
+            "value": "mobilehome homeowner"
+          }
+        ],
+        "notes": "Initial rent on a new tenancy where no prior tenant remains is not limited. For mobilehome tenancies the section applies to increases on or after February 18, 2021. Housing with a certificate of occupancy issued within the previous 15 years is exempt (rolling cutoff), unless it is a mobilehome."
+      },
+      "coverage_text": "Applies to owners of residential real property (any dwelling or unit intended for human habitation, including mobilehome park units) for rent increases on or after March 15, 2019 (on or after February 18, 2021 for mobilehome tenancies). Initial rent on a new tenancy is not limited. Tenants may not sublease for more than the allowable rent.",
+      "exemptions": "Exempt: deed-restricted or subsidized affordable housing; dorms of higher education institutions or K-12 schools; housing under stricter local rent control; housing with a certificate of occupancy issued within the previous 15 years (unless a mobilehome); separately alienable units (e.g., single-family homes, condos) not owned by a REIT, corporation, LLC with a corporate member, or mobilehome park management, provided the required written notice is given; owner-occupied duplexes where neither unit is an ADU/JADU; mobilehome homeowners.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2019-03-15",
+          "raw": "on or after March 15, 2019",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D024",
+          "quoted_span": "This section shall apply to all rent increases subject to subdivision (a) occurring on or after March 15, 2019, except as provided in subdivision (i).",
+          "kind": "operative",
+          "kind_source": "rule",
+          "rule_applied": null
+        },
+        {
+          "value": "2021-02-18",
+          "raw": "on or after February 18, 2021 (mobilehome tenancies)",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D024",
+          "quoted_span": "only to rent increases for a tenancy in a mobilehome subject to subdivision (a) occurring on or after February 18, 2021.",
+          "kind": "operative",
+          "kind_source": "rule",
+          "rule_applied": null
+        },
+        {
+          "value": "2024-04-01",
+          "raw": "operative on April 1, 2024",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D024",
+          "quoted_span": "This section shall become operative on April 1, 2024.",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        },
+        {
+          "value": "2024-01-01",
+          "raw": "Effective January 1, 2024",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D024",
+          "quoted_span": "Effective January 1, 2024.",
+          "kind": "amendment",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": {
+        "value": "2030-01-01",
+        "raw": "until January 1, 2030, and as of that date is repealed",
+        "derived": false,
+        "verified": true,
+        "source_doc_id": "D024",
+        "quoted_span": "This section shall remain in effect until January 1, 2030, and as of that date is repealed.",
+        "kind": null,
+        "kind_source": null,
+        "rule_applied": null
+      },
+      "overrides": [],
+      "interaction": "Does not apply to housing under local rent control (consistent with Civ. Code Ch. 2.7, § 1954.50 et seq.) that restricts annual increases to less than this section's cap. It does not expand or limit local governments' authority to regulate rents under Chapter 2.7. Waivers are void.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1947.12",
+      "citation_aliases": [
+        "SB 567",
+        "Stats. 2023, Ch. 290"
+      ],
+      "source_doc_id": "D024",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Subject to subdivision (b), an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, of the lowest gross rental rate charged for that dwelling or unit at any time during the 12 months prior to the effective date of the increase.",
+      "quote_location": {
+        "raw_start": 1116,
+        "raw_end": 1537,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.9,
+      "confidence": 0.9,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 5273,
+      "output_tokens": 3449,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "One rent_increase_limits rule for Cal. Civ. Code § 1947.12 (as repealed and added by SB 567, Stats. 2023, Ch. 290). Every date the text gives is recorded: applicability from March 15, 2019 and from February 18, 2021 for mobilehomes, effective January 1, 2024, and operative April 1, 2024. The section is repealed as of January 1, 2030. The text gives no full enactment date."
+  }
+}

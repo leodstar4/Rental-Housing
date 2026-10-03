@@ -1,0 +1,166 @@
+{
+  "doc_id": "D016",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D016#0",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "screening_restrictions",
+      "title": "FEHA source-of-income protections in tenant selection",
+      "requirement": "Housing providers may not refuse to rent, or apply different terms, based on how a tenant will pay rent (source of income). This includes Section 8 vouchers and other rental assistance. Providers must also comply with assistance program requirements and may not advertise a preference such as \"No Section 8.\"",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [
+          {
+            "condition": "An owner who occupies the home and rents to one additional person may exclude applicants based on protected characteristics, but still may not publish discriminatory statements, notices, or advertisements.",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          }
+        ],
+        "notes": "Owner-occupant exemption applies only when renting to one additional person."
+      },
+      "coverage_text": "Covers most housing providers and housing-related service providers in California, including landlords, tenant screening companies, and property managers, for most housing accommodations.",
+      "exemptions": "An owner who occupies the home and rents to one additional person may exclude applicants based on protected characteristics. The owner still may not make discriminatory statements or advertisements.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "California Fair Employment and Housing Act",
+      "citation_aliases": [
+        "FEHA",
+        "Fair Employment and Housing Act"
+      ],
+      "source_doc_id": "D016",
+      "source_url": "https://calcivilrights.ca.gov/housing/",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "California law protects tenants from discrimination based on how a tenant will be paying rent (“source of income”).",
+      "quote_location": {
+        "raw_start": 20495,
+        "raw_end": 20610,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.6,
+      "confidence": 0.54,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    },
+    {
+      "uid": "D016#1",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "screening_restrictions",
+      "title": "FEHA criminal history limits in tenant screening",
+      "requirement": "Housing providers may not consider arrests that did not lead to a conviction, sealed or expunged records, or juvenile justice records, and may not impose blanket bans on people with criminal histories. A denial based on a conviction must be directly related to tenancy and safety, considering the nature, severity, and age of the offense.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [],
+        "notes": null
+      },
+      "coverage_text": "Covers housing providers in California, including landlords and tenant screening companies, when screening applicants.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "California Fair Employment and Housing Act",
+      "citation_aliases": [
+        "FEHA",
+        "Fair Employment and Housing Act"
+      ],
+      "source_doc_id": "D016",
+      "source_url": "https://calcivilrights.ca.gov/housing/",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Housing  providers cannot consider some types of criminal history including arrests that did not lead to a conviction, records that are sealed or expunged, or records or matters processed in the juvenile justice system. Housing providers are also prohibited from having “blanket bans” of all people with a criminal history.",
+      "quote_location": {
+        "raw_start": 21786,
+        "raw_end": 22109,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.6,
+      "confidence": 0.54,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 2,
+    "match_types": {
+      "exact": 2
+    },
+    "dispositions": {
+      "accepted": 2
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 8072,
+      "output_tokens": 2310,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "CRD guidance page on FEHA. Most of the page covers general anti-discrimination rules, which were not recorded. I extracted the specific screening restrictions on source of income and criminal history. The page names no code section, so the citation is FEHA by name, and it gives no dates."
+  }
+}

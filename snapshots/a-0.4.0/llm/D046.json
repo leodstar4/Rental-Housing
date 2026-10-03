@@ -1,0 +1,54 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "MA",
+    "level": "state",
+    "category": "algorithmic_rent_setting",
+    "title": "An Act prohibiting algorithmic rent setting (S.2983)",
+    "requirement": "Pending Senate bill that would prohibit algorithmic rent setting. The status page does not describe the bill's specific provisions.",
+    "key_value": null,
+    "citation": "MA S.2983",
+    "citation_aliases": [
+     "Senate, No. 2983"
+    ],
+    "quoted_span": "An Act prohibiting algorithmic rent setting",
+    "stage": "bill_pending",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": null
+    },
+    "coverage_text": null,
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.8
+   }
+  ],
+  "notes": "This is a bill status page. S.2983 is a new draft of S994 and S1016. On 3/12/2026 the Joint Committee on Housing reported it favorably and referred it to Senate Ways and Means. The page does not describe what the bill contains, so only the title, stage and citation are recorded."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "9e54237911aeb241095b4394aa3e1f23d03b9bd58f9c71984fe52e0a1146a418",
+ "usage": {
+  "input_tokens": 626,
+  "output_tokens": 875,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:42:26.337913+00:00"
+}

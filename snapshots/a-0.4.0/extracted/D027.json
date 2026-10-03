@@ -1,0 +1,114 @@
+{
+  "doc_id": "D027",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D027#0",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "screening_restrictions",
+      "title": "Source of income discrimination and credit history alternatives for subsidized applicants",
+      "requirement": "Housing owners may not discriminate against applicants or tenants because of source of income, including housing vouchers such as Section 8 and VASH. When there is a government rent subsidy, owners may not use an income standard that ignores the tenant's share of the rent, and may not use credit history unless they give the applicant the option of providing other verifiable evidence of ability to pay, a reasonable time to provide it, and reasonable consideration of it.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "housing accommodation"
+        ],
+        "exemption_conditions": [],
+        "notes": "The income-standard and credit-history limits in subdivision (o) apply only when there is a government rent subsidy. 'Source of income' means lawful, verifiable income paid to a tenant, to a tenant's representative, or to the landlord on the tenant's behalf. It includes public assistance and housing subsidies such as Section 8 vouchers and HUD-VASH vouchers."
+      },
+      "coverage_text": "Owners of any housing accommodation in California. The rules on income standards and credit history in subdivision (o) apply when a government rent subsidy is involved.",
+      "exemptions": "A written or oral inquiry about the level or source of income is not source-of-income discrimination. Subdivision (o) does not limit an owner's ability to ask for information to verify employment, request landlord references, or verify identity.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2024-01-01",
+          "raw": "Effective January 1, 2024.",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D027",
+          "quoted_span": "(Amended by Stats. 2023, Ch. 776, Sec. 1.   (SB 267)   Effective January 1, 2024.)",
+          "kind": "amendment",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Gov. Code § 12955",
+      "citation_aliases": [
+        "SB 267",
+        "Stats. 2023, Ch. 776"
+      ],
+      "source_doc_id": "D027",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12955",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(a) For the owner of any housing accommodation to discriminate against or harass any person because of the race, color, religion, sex, gender, gender identity, gender expression, sexual orientation, marital status, national origin, ancestry, familial status, source of income, disability, veteran or military status, or genetic information of that person.",
+      "quote_location": {
+        "raw_start": 1292,
+        "raw_end": 1647,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.698,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "normalized": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 3369,
+      "output_tokens": 1737,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The general anti-discrimination prohibitions in § 12955 were not recorded as separate rules. Only the parts that limit tenant screening were captured: source of income, and the rules on income standards and credit history for subsidized applicants. The effective date of January 1, 2024 comes from the SB 267 amendment note."
+  }
+}

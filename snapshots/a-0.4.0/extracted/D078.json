@@ -1,0 +1,99 @@
+{
+  "doc_id": "D078",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D078#0",
+      "team_rule_id": null,
+      "jurisdiction": "San Francisco, CA",
+      "level": "city",
+      "category": "screening_restrictions",
+      "title": "Fair Chance Ordinance – arrest and conviction history in affordable housing decisions",
+      "requirement": "San Francisco's Fair Chance Ordinance protects residents with arrest or conviction history in affordable housing decisions. The page does not describe the specific limits.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "affordable housing"
+        ],
+        "exemption_conditions": [],
+        "notes": "Protects residents with arrest or conviction history; the page gives no other coverage details."
+      },
+      "coverage_text": "Affordable housing decisions about residents with arrest or conviction history in San Francisco.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Fair Chance Ordinance",
+      "citation_aliases": [],
+      "source_doc_id": "D078",
+      "source_url": "https://sf-hrc.org/fair-chance-ordinance",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "San Francisco's Fair Chance Ordinance protects residents with arrest or conviction history in affordable housing decisions.",
+      "quote_location": {
+        "raw_start": 5032,
+        "raw_end": 5155,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.55,
+      "confidence": 0.495,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2646,
+      "output_tokens": 1076,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "This is the Human Rights Commission landing page. Only one line describes a rental-housing rule: the Fair Chance Ordinance, which protects people with arrest or conviction history in affordable housing decisions. The page gives no section citation, dates, or specific limits. Everything else on the page is events, reports, and general anti-discrimination content, so none of it was recorded."
+  }
+}

@@ -1,0 +1,111 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "San Francisco, CA",
+    "level": "city",
+    "category": "just_cause_eviction",
+    "title": "Relocation payments for owner/relative move-in, demolition/removal, temporary capital improvement, or substantial rehabilitation evictions (3/01/26 – 2/28/27)",
+    "requirement": "For eviction notices served from 3/01/26 to 2/28/27 for owner/relative move-in, demolition or permanent removal of a unit, temporary capital improvement work, or substantial rehabilitation, the landlord must pay $8,245 per tenant, up to $24,733 per unit. The landlord must also pay $5,497 more for each elderly (60 or older) or disabled tenant, or household with minor children.",
+    "key_value": "$8,245 per tenant, max $24,733 per unit, plus $5,497 per elderly/disabled tenant or household with minor children",
+    "citation": "S.F. Admin. Code § 37.9C",
+    "citation_aliases": [
+     "Rent Ordinance Section 37.9C"
+    ],
+    "quoted_span": "PLUS Additional Amount Due for Each Elderly (60 years or older) or Disabled Tenant or Household with Minor Child(ren)\n3/01/26 – 2/28/27\n$8,245.00\n$24,733.00\n$5,497.00",
+    "stage": "administrative",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2026-03-01",
+      "raw": "3/01/26 – 2/28/27",
+      "derived": false,
+      "quoted_span": "3/01/26 – 2/28/27"
+     }
+    ],
+    "sunset_date": {
+     "value": "2027-02-28",
+     "raw": "3/01/26 – 2/28/27",
+     "derived": false,
+     "quoted_span": "3/01/26 – 2/28/27"
+    },
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": "Applies based on the date the eviction notice is served (3/01/26 – 2/28/27). Covers evictions for owner/relative move-in, demolition/permanent removal from housing use, temporary capital improvement work, or substantial rehabilitation. The additional amount applies to each elderly (60+) or disabled tenant, or household with minor children."
+    },
+    "coverage_text": "Tenants evicted for owner/relative move-in, demolition/permanent removal of the unit from housing use, temporary capital improvement work, or substantial rehabilitation, where the eviction notice is served between 3/01/26 and 2/28/27.",
+    "exemptions": "Relocation payments for temporary capital improvement evictions lasting less than 20 days are governed by California Civil Code Section 1947.9, not Rent Ordinance Section 37.9C.",
+    "interaction": "For temporary capital improvement evictions lasting less than 20 days, California Civil Code Section 1947.9 applies instead of Rent Ordinance Section 37.9C.",
+    "is_secondary_source": false,
+    "confidence": 0.7
+   },
+   {
+    "jurisdiction": "San Francisco, CA",
+    "level": "city",
+    "category": "just_cause_eviction",
+    "title": "Relocation payments for Ellis Act evictions (3/01/26 – 2/28/27)",
+    "requirement": "For Ellis Act eviction notices served from 3/01/26 to 2/28/27, the landlord must pay $11,110.05 per tenant, up to $33,330.13 per unit. The landlord must also pay $7,443.90 more for each elderly (62 or older) or disabled tenant.",
+    "key_value": "$11,110.05 per tenant, max $33,330.13 per unit, plus $7,443.90 per elderly/disabled tenant",
+    "citation": null,
+    "citation_aliases": [
+     "Ellis Act"
+    ],
+    "quoted_span": "PLUS Additional Amount Due for Each Elderly (62 years or older) or Disabled Tenant\n3/01/26 – 2/28/27\n$11,110.05\n$33,330.13\n$7,443.90",
+    "stage": "administrative",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2026-03-01",
+      "raw": "3/01/26 – 2/28/27",
+      "derived": false,
+      "quoted_span": "3/01/26 – 2/28/27\n$11,110.05"
+     }
+    ],
+    "sunset_date": {
+     "value": "2027-02-28",
+     "raw": "3/01/26 – 2/28/27",
+     "derived": false,
+     "quoted_span": "3/01/26 – 2/28/27\n$11,110.05"
+    },
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": "Applies to Ellis Act evictions based on the date the eviction notice is served (3/01/26 – 2/28/27). The additional amount applies to each elderly (62+) or disabled tenant."
+    },
+    "coverage_text": "Tenants evicted under the Ellis Act where the eviction notice is served between 3/01/26 and 2/28/27.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.65
+   }
+  ],
+  "notes": "The document is the Rent Board's archive table of relocation payment amounts, set by date of service of the eviction notice. Only the most recent period (3/01/26 – 2/28/27), which is current as of retrieval, was recorded for each of the two tables. Earlier periods back to 2006 are historical values from the same tables. The tables have no full sentences, so the quoted spans are the literal table rows. Citation § 37.9C comes from the footnote's mention of 'Rent Ordinance Section 37.9C'. The Ellis Act table names no section."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "9da13c7038ae878fd61d19ca6557e08aa23d77ec839130e16e3cc83f31424bcb",
+ "usage": {
+  "input_tokens": 2242,
+  "output_tokens": 3599,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:44:36.550895+00:00"
+}

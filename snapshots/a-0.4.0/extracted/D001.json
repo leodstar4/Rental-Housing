@@ -1,0 +1,126 @@
+{
+  "doc_id": "D001",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D001#0",
+      "team_rule_id": null,
+      "jurisdiction": "Berkeley, CA",
+      "level": "city",
+      "category": "algorithmic_rent_setting",
+      "title": "Prohibition on the sale or use of coordinated pricing algorithms to set rents or manage occupancy levels",
+      "requirement": "No one may sell, license, or otherwise provide Berkeley landlords a coordinated pricing algorithm that sets or recommends rents or occupancy levels for residential units in Berkeley. Landlords may not use such an algorithm to set rents or occupancy levels. Each month and each unit counts as a separate violation, with civil penalties of up to $1,000 per violation.",
+      "key_value": "Prohibited; civil penalties up to $1,000 per violation",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential dwelling units"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Products or processes that publish aggregated, anonymous rental data without recommending rents, fees, occupancy rates or other lease terms are not coordinated pricing algorithms",
+            "field": "other",
+            "op": "==",
+            "value": "aggregated anonymous reports without recommendations"
+          },
+          {
+            "condition": "Products used to set rent or income limits under affordable housing guidelines of a local, state, or federal government or other political subdivision are excluded",
+            "field": "other",
+            "op": "==",
+            "value": "affordable housing rent/income limit products"
+          },
+          {
+            "condition": "Products or processes used for market research for project financing, appraisals, or research, testing, or training for software development are excluded",
+            "field": "other",
+            "op": "in",
+            "value": [
+              "market research for project financing",
+              "appraisal",
+              "software development research/testing/training"
+            ]
+          }
+        ],
+        "notes": "Applies to coordinated pricing algorithms that use nonpublic Competitor Data less than 90 days old to recommend rents, fees, occupancy rates, or other lease terms for City of Berkeley landlords."
+      },
+      "coverage_text": "Sellers, licensors, or providers of coordinated pricing algorithms to Berkeley landlords, and landlords using these algorithms to set rents or occupancy levels for residential dwelling units in Berkeley. A coordinated pricing algorithm is one that uses nonpublic competitor data less than 90 days old to recommend rents, fees, occupancy rates, or other lease terms.",
+      "exemptions": "These are excluded from the definition: products that publish aggregated, anonymous rental data without making recommendations; products used to set rent or income limits under government affordable housing guidelines; and products or processes used for market research for project financing, appraisals, or research, testing, or training for software development, as long as competitor data is not an input when a recommendation is calculated.",
+      "stage": "bill_pending",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "The ordinance does not regulate the amount of rent a landlord may charge. Remedies under § 13.63.040: the City Attorney may sue for damages, injunctive relief, restitution, and civil penalties of up to $1,000 per violation. Aggrieved tenants may sue over violations of subsection B, and lease clauses that block a prevailing tenant from recovering attorney's fees are unenforceable for these claims.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Berkeley Mun. Code § 13.63.030",
+      "citation_aliases": [
+        "Ordinance No. 7,992-N.S.",
+        "Chapter 13.63",
+        "BMC 13.63"
+      ],
+      "source_doc_id": "D001",
+      "source_url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf",
+      "retrieved_at": "2026-10-01T22:44:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "A. It shall be unlawful to sell, license, or otherwise provide to City of Berkeley \nlandlords any coordinated pricing algorithm that sets or recommends rents or occupancy \nlevels that may be achieved for residential dwelling units in the City of Berkeley.",
+      "quote_location": {
+        "raw_start": 4686,
+        "raw_end": 4941,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.75,
+      "confidence": 0.75,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 3102,
+      "output_tokens": 2253,
+      "cache_creation_input_tokens": 6076,
+      "cache_read_input_tokens": 0,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document records only that the ordinance was 'passed to print' (first reading) at the November 18, 2025 Council meeting. It does not say the ordinance was finally adopted or when it takes effect, so stage = bill_pending, enacted_date is null, and effective_dates is empty."
+  }
+}

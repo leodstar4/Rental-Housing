@@ -1,0 +1,36 @@
+{
+  "doc_id": "D053",
+  "error": null,
+  "rules": [],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 0,
+    "match_types": {},
+    "dispositions": {},
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 1127,
+      "output_tokens": 578,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "M.G.L. c. 186, § 18 is an anti-retaliation statute. It makes landlords liable for reprisals against tenants who report code violations, pursue legal action or join tenant unions. If a landlord sends a termination notice (other than for nonpayment), a rent increase or a substantial change in terms within six months of protected activity, the law presumes it was a reprisal. It also voids any lease clause that waives these protections. None of this fits the strict categories. It does not list permitted causes for ending or not renewing a tenancy, so it is not just_cause_eviction. It does not cap or set a formula for rent increases, so it is not rent_increase_limits. It does not cover security deposits, application fees, screening criteria or algorithmic rent setting. No rules recorded."
+  }
+}

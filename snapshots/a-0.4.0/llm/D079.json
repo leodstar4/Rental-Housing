@@ -1,0 +1,111 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "San Francisco, CA",
+    "level": "city",
+    "category": "just_cause_eviction",
+    "title": "Rent Ordinance just cause eviction requirement (17 just causes)",
+    "requirement": "A landlord may evict a tenant from a unit covered by the Rent Ordinance only for one of 17 listed just cause reasons, and that reason must be the dominant motive; mere lease expiration or change in ownership is not just cause. Just cause is also required to remove housing services such as parking, storage, or laundry, except for temporary removal for mandatory soft-story seismic retrofit work in compliance with Section 37.2(r).",
+    "key_value": "17 just cause reasons",
+    "citation": "S.F. Admin. Code § 37.9",
+    "citation_aliases": [
+     "Ordinance Section 37.9(a)",
+     "Rent Ordinance"
+    ],
+    "quoted_span": "In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a \"just cause\" reason that is the dominant motive for pursuing the eviction.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to rental units covered by the Rent Ordinance, including some tenancies exempt from rent increase limits: new units with first Certificate of Occupancy after June 13, 1979, Costa-Hawkins-eligible tenancies, and some tenancies with rent regulated by another government agency."
+    },
+    "coverage_text": "Rental units covered by the San Francisco Rent Ordinance, including some tenancies exempt from the rent increase limitations (newly constructed units first obtaining a Certificate of Occupancy after June 13, 1979, tenancies eligible for rent increases under Costa-Hawkins, and some tenancies where rent is regulated by another government agency).",
+    "exemptions": "Not stated in the document beyond limited exceptions within causes (e.g., illegal-use cause excludes mere occupancy of an unwarranted unit or a single cured short-term rental violation).",
+    "interaction": "Ellis Act withdrawal (state law) is one of the listed just causes; temporary removal of housing services allowed for soft-story seismic retrofit under Ordinance Section 37.2(r).",
+    "is_secondary_source": false,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "San Francisco, CA",
+    "level": "city",
+    "category": "rent_increase_limits",
+    "title": "Rent Ordinance rent increase limitations – exempt tenancies",
+    "requirement": "The Rent Ordinance imposes rent increase limitations, but certain tenancies are exempt from them, including newly constructed units that first obtained a Certificate of Occupancy after June 13, 1979, Costa-Hawkins-eligible tenancies, and some tenancies with rent regulated by another government agency.",
+    "key_value": null,
+    "citation": null,
+    "citation_aliases": [
+     "Rent Ordinance"
+    ],
+    "quoted_span": "Some tenancies that are exempt from the rent increase limitations of the Ordinance are still subject to the eviction provisions of the Ordinance, and tenants in these categories can only be evicted for one of the “just cause” reasons listed in the Ordinance.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": "1979-06-13",
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Newly constructed rental units that first obtained a Certificate of Occupancy after June 13, 1979",
+       "field": "co_date",
+       "op": ">",
+       "value": "1979-06-13"
+      },
+      {
+       "condition": "Tenancies eligible for a rent increase under the Costa-Hawkins Rental Housing Act",
+       "field": "other",
+       "op": "==",
+       "value": "Costa-Hawkins eligible tenancy"
+      },
+      {
+       "condition": "Some tenancies where the rent is regulated by another government agency",
+       "field": "other",
+       "op": "==",
+       "value": "rent regulated by another government agency"
+      }
+     ],
+     "notes": null
+    },
+    "coverage_text": "Rental units covered by the Rent Ordinance's rent increase limitations.",
+    "exemptions": "Exempt from rent increase limitations: new units first obtaining a Certificate of Occupancy after June 13, 1979; tenancies eligible for rent increases under Costa-Hawkins; some tenancies with rent regulated by another government agency.",
+    "interaction": "Costa-Hawkins Rental Housing Act (state) allows rent increases for eligible tenancies, exempting them from the Ordinance's limits.",
+    "is_secondary_source": false,
+    "confidence": 0.65
+   }
+  ],
+  "notes": "The document is an SF Rent Board guide summarizing the Rent Ordinance. The just cause rule cites Ordinance Section 37.9(a). The rent increase limitation is recorded only because the guide says who is exempt from it; it gives no amount and no section."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "945b78ccd8235239893e198e5a6ea69e862756339c804f1f3cd6fffb6369080c",
+ "usage": {
+  "input_tokens": 1885,
+  "output_tokens": 2814,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:44:12.735593+00:00"
+}

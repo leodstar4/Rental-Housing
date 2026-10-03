@@ -1,0 +1,52 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "MA",
+    "level": "state",
+    "category": "algorithmic_rent_setting",
+    "title": "An Act relative to preventing algorithmic rent fixing in the rental housing market (H.5222)",
+    "requirement": "Pending Massachusetts bill on preventing algorithmic rent fixing in the rental housing market. The status page does not describe what the bill would actually do.",
+    "key_value": null,
+    "citation": "MA H.5222",
+    "citation_aliases": [],
+    "quoted_span": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
+    "stage": "bill_pending",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": "Status page only; coverage not described."
+    },
+    "coverage_text": "Rental housing market (per title); no coverage details in document.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.8
+   }
+  ],
+  "notes": "Bill status page. H.5222 is a new draft of H1564, reported favorably by the Joint Committee on Housing on 3/12/2026 and referred to House Ways and Means. Its substantive content is not described."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "50811f2b353529a830541b08a8874f0b61f2a5b194814b552efe7797efaf37b8",
+ "usage": {
+  "input_tokens": 424,
+  "output_tokens": 864,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:42:17.151686+00:00"
+}

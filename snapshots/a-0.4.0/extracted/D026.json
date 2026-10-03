@@ -1,0 +1,114 @@
+{
+  "doc_id": "D026",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D026#0",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "application_screening_fees",
+      "title": "Application screening fee cap and conditions",
+      "requirement": "Landlords may charge an application screening fee of no more than their actual out-of-pocket costs, capped at $30 per applicant (adjustable annually by CPI since January 1, 1998). They may not charge it when no unit is or will soon be available, and may charge it only if they offer either a first-come screening process or a refund to applicants who are not selected. Landlords must also give an itemized receipt, refund any unused portion, and give the applicant a copy of the credit report within seven days.",
+      "key_value": "$30 per applicant, CPI-adjusted annually",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental"
+        ],
+        "exemption_conditions": [],
+        "notes": "Applies to owners of residential rental property and their agents, and to applicants, including guarantors and cosigners."
+      },
+      "coverage_text": "Owners of residential rental property (landlords) and their agents who receive requests to rent residential property from applicants, including guarantors and cosigners.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2026-01-01",
+          "raw": "Effective January 1, 2026",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D026",
+          "quoted_span": "(Amended by Stats. 2025, Ch. 67, Sec. 29.   (AB 1170)   Effective January 1, 2026.)",
+          "kind": "amendment",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Applies notwithstanding Civ. Code § 1950.5. The screening fee is not an 'advance fee' under Bus. & Prof. Code § 10026 and is not 'security' under § 1950.5. The section does not prevent landlords from accepting reusable screening reports under § 1950.1, and it does not preempt rules on deposits and fees under federal or state housing assistance programs.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Civ. Code § 1950.6",
+      "citation_aliases": [
+        "AB 1170",
+        "Stats. 2025, Ch. 67"
+      ],
+      "source_doc_id": "D026",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.",
+      "quote_location": {
+        "raw_start": 2168,
+        "raw_end": 2319,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.93,
+      "confidence": 0.837,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2224,
+      "output_tokens": 1230,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is the official text of Cal. Civ. Code § 1950.6, as amended by AB 1170 (Stats. 2025, Ch. 67). It contains one application screening fee rule."
+  }
+}

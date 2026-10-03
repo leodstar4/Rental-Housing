@@ -1,0 +1,114 @@
+{
+  "doc_id": "D010",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D010#0",
+      "team_rule_id": null,
+      "jurisdiction": "Boston, MA",
+      "level": "city",
+      "category": "screening_restrictions",
+      "title": "Boston Fair Chance Tenant Selection Policy – criminal history and credit screening limits",
+      "requirement": "Covered housing providers may not apply blanket denials based on arrests or convictions. They must review applicants case by case and may not consider arrests that did not lead to conviction, convictions that were sealed or expunged, juvenile records, or convictions more than 5 years old. They also may not use credit scores to approve or deny applicants, may use credit history only when there is no rental history, and may not reject an applicant just for lacking credit history.",
+      "key_value": "Convictions older than 5 years may not be considered",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "housing receiving DND funding and/or land",
+          "income restricted units created under the BPDA Inclusionary Development Policy",
+          "housing under the Office of Fair Housing and Equity Affirmative Marketing Program"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Criminal history limits do not apply where there is a direct relationship between a conviction and the housing sought, or an unreasonable risk of substantial harm to the safety of others",
+            "field": "other",
+            "op": "==",
+            "value": "direct relationship or unreasonable risk of substantial harm"
+          },
+          {
+            "condition": "Guidance does not apply to current criminal behavior",
+            "field": "other",
+            "op": "==",
+            "value": "current criminal behavior"
+          }
+        ],
+        "notes": "Applies only to housing providers receiving DND funding/land or having BPDA Inclusionary Development Policy income-restricted units. Also applies to the Office of Fair Housing and Equity Affirmative Marketing Program."
+      },
+      "coverage_text": "Applies to housing providers that receive Department of Neighborhood Development funding and/or land, or that have income-restricted units created under the BPDA Inclusionary Development Policy. Also applies to the Office of Fair Housing and Equity Affirmative Marketing Program.",
+      "exemptions": "The criminal history limits do not apply where a conviction is directly related to the housing sought or poses an unreasonable risk of substantial harm to others. They also do not apply to current criminal behavior. Where a federal or state criminal history requirement conflicts with this policy, the federal or state law controls.",
+      "stage": "administrative",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Where federal or state law imposes a conflicting criminal history requirement, the federal or state law preempts this policy.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Boston Fair Chance Tenant Selection Policy",
+      "citation_aliases": [],
+      "source_doc_id": "D010",
+      "source_url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing",
+      "retrieved_at": "2026-10-01T22:44:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Housing providers receiving Department of Neighborhood Development (DND) funding and/or \nland, or that have income restricted units created under the Boston Planning and Development \nAgency (BPDA) Inclusionary Development Policy will not impose a blanket policy that denies \nhousing to anyone with arrests and or convictions.",
+      "quote_location": {
+        "raw_start": 236,
+        "raw_end": 561,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.75,
+      "confidence": 0.75,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2344,
+      "output_tokens": 2404,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is Boston DND's Fair Chance Tenant Selection Policy (dated February 2017). It is an agency policy that applies to funded or inclusionary housing, so it is recorded as administrative. The criminal history and credit restrictions are combined into one rule because they come from the same policy and cover the same housing. The document gives no exact effective or adoption date; 'February 2017' appears only in the page header."
+  }
+}

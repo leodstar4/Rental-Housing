@@ -1,0 +1,121 @@
+{
+  "doc_id": "D068",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D068#0",
+      "team_rule_id": null,
+      "jurisdiction": "NJ",
+      "level": "state",
+      "category": "screening_restrictions",
+      "title": "NJ LAD prohibition on source-of-lawful-income housing discrimination",
+      "requirement": "Landlords may not discriminate in housing based on the source of lawful income or source of lawful rent payment a tenant uses. For example, a landlord cannot deny a Section 8 voucher holder an apartment based solely on that source of income.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [
+          {
+            "condition": "Rental of a single apartment or flat in a two-family dwelling where the other unit is occupied by the owner as his/her residence at the time of rental",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Rental of a room or rooms by the owner or occupant of a one-family dwelling occupied by him/her as his/her residence at the time of rental",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Preference given to persons of the same religion by a religious organization in the sale, lease or rental of real property",
+            "field": "owner_type",
+            "op": "in",
+            "value": [
+              "religious organization"
+            ]
+          }
+        ],
+        "notes": "Applies to the sale or rental of all property, including open land, for business or residential purposes. The owner-occupied exemptions cover a two-family dwelling (one unit rented) or room rentals in a one-family dwelling."
+      },
+      "coverage_text": "The LAD applies to the sale or rental of all property, including open land, whether used for business or residential purposes, subject to the listed exceptions.",
+      "exemptions": "Exempt: rental of one apartment in a two-family dwelling when the owner lives in the other unit; rental of rooms in a one-family dwelling occupied by the owner or occupant as a residence; and a religious organization's preference for persons of the same religion.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "New Jersey Law Against Discrimination",
+      "citation_aliases": [
+        "LAD",
+        "NJ Law Against Discrimination"
+      ],
+      "source_doc_id": "D068",
+      "source_url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "The LAD also prohibits housing discrimination  based\non the source of lawful income or source of lawful rent\nor mortgage payment a tenant or purchaser uses.",
+      "quote_location": {
+        "raw_start": 3414,
+        "raw_end": 3570,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.75,
+      "confidence": 0.675,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2512,
+      "output_tokens": 1762,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "This is a Division on Civil Rights brochure about the NJ Law Against Discrimination. Only the source-of-lawful-income provision was recorded, under screening_restrictions. The general protected-class prohibitions and the service-animal fee and modification rules are general anti-discrimination provisions, so they were not recorded. The text gives no section citation for the source-of-income provision."
+  }
+}

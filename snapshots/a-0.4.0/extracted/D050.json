@@ -1,0 +1,36 @@
+{
+  "doc_id": "D050",
+  "error": null,
+  "rules": [],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 0,
+    "match_types": {},
+    "dispositions": {},
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 595,
+      "output_tokens": 782,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "M.G.L. c. 186, § 11 sets the procedure for ending a written lease when rent is not paid. The landlord must give 14 days' written notice to quit. The tenant can cure by paying all rent due, with interest and costs, on or before the day the answer is due. If the late rent was caused by a delayed government payment, the court must continue the hearing for at least 7 days. This is a notice and cure procedure, not a just-cause limit: it does not restrict termination to a list of allowed reasons. It also does not set rent increase limits, deposit rules, application fees, screening limits or algorithmic rent rules. No rules recorded."
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "doc_id": "D022",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D022#0",
+      "team_rule_id": null,
+      "jurisdiction": "CA",
+      "level": "state",
+      "category": "algorithmic_rent_setting",
+      "title": "Cartwright Act: prohibition on use or distribution of common pricing algorithms (AB 325)",
+      "requirement": "It is unlawful to use or distribute a common pricing algorithm as part of a contract, trust combination, or conspiracy to restrain trade. It is also unlawful to use or distribute one while coercing another person to set or adopt a price or commercial term recommended by the algorithm for the same or similar products or services in California.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [
+          {
+            "condition": "\"Person\" does not include the end consumer of a product or service.",
+            "field": "owner_type",
+            "op": "in",
+            "value": [
+              "end consumer"
+            ]
+          }
+        ],
+        "notes": "General antitrust rule not limited to rental housing; applies to any products or services. 'Common pricing algorithm' means any methodology, including computer, software, or other technology, used by two or more persons that uses competitor data to recommend, align, stabilize, set, or otherwise influence a price or commercial term (including level of service, availability, output)."
+      },
+      "coverage_text": "Applies to any person (as defined in B&P Code § 16702) who uses or distributes a common pricing algorithm for products or services in California; not specific to rental housing.",
+      "exemptions": "The end consumer of a product or service is not a 'person' under the section.",
+      "stage": "enacted",
+      "enacted_date": {
+        "value": "2025-10-06",
+        "raw": "Approved by Governor October 06, 2025",
+        "derived": false,
+        "verified": true,
+        "source_doc_id": "D022",
+        "quoted_span": "October 06, 2025.",
+        "kind": "enacted",
+        "kind_source": "rule",
+        "rule_applied": null
+      },
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Part of the Cartwright Act; nothing in the section impairs or limits the applicability of antitrust laws. Companion § 16756.1 relaxes pleading standards for Cartwright Act complaints (plausibility; no need to allege facts excluding independent action).",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "Cal. Bus. & Prof. Code § 16729",
+      "citation_aliases": [
+        "AB 325",
+        "Assembly Bill No. 325",
+        "Chapter 338",
+        "Cartwright Act"
+      ],
+      "source_doc_id": "D022",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325",
+      "retrieved_at": "2026-10-01T22:35:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(a) It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.",
+      "quote_location": {
+        "raw_start": 3660,
+        "raw_end": 3878,
+        "match_type": "normalized",
+        "score": null
+      },
+      "model_confidence": 0.75,
+      "confidence": 0.655,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "normalized": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 2015,
+      "output_tokens": 1505,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "AB 325 (Chapter 338, 2025) is a general antitrust law covering all products and services, recorded as algorithmic_rent_setting because it bans common pricing algorithms, which can be used to set rents. Section 16756.1 (pleading standard) falls outside the categories, so it was not recorded. The text gives no effective date."
+  }
+}
