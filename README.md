@@ -459,6 +459,52 @@ holds state, county (informational), city = incorporated place in rules.json for
 `source` (census / dataset_fallback, certainty low). The geocoder's place wins over the
 dataset city; every disagreement is listed in `discrepancies`.
 
+## Module B — coverage (three-valued)
+
+```bash
+python -m resolver.cli compile    # -> data/compiled_exemptions.json + data/compiled_exemptions_review.md
+python -m resolver.cli coverage --as-of 2026-10-01   # -> out/coverage.json + summary
+```
+
+**Compiling** (`resolver/compile_exemptions.py`, once per rule): coverage scalars and
+structured exemptions are translated by code into predicates over the building facts
+(`resolver/predicates.py`: units, year_built, co_date, building_age, use flags, use_class,
+owner_type, owner_occupied, `missing` leaves). Free text — `field: other` exemptions, the
+`exemptions` text, coverage notes, property types, and the building conditions inside
+owner-occupied / owner-type exemptions ("owner-occupied two- or three-family dwellings") — goes
+to a small model (`COMPILE_MODEL`, default `claude-haiku-4-5`, prompt
+`prompts/compile_exemptions.md`) through tool use; answers are validated (grammar, one result
+per item, no negated or always-true exemption) and retried with the rejection reason. Every
+item gets a scope: `building` (evaluated), `unit_or_tenancy` (caveat: tenant, unit, product or
+transaction), `other_law` (depends on another law's coverage; deferred to precedence, B3),
+`duplicate` (free text restating a structured exemption), or `review` (free-text coverage
+conditions and exemptions that restate the rule's own scope — the small model read inclusive
+examples and exemption qualifiers as restrictions, so these are shown for review, never
+evaluated). Deterministic scope hints (`SCOPE_HINTS`) correct the model on recurring cases. The
+raw answers are versioned in `data/compiled_exemptions.json`; reproducing reassembles them with
+no API call (cost of a full compile ≈ $0.42).
+
+**Evaluating** (`resolver/coverage.py`): Kleene T/F/U. Rules match by jurisdiction stack (state
+rule → same state, city rule → same city). Units are intervals; the certificate-of-occupancy
+date is the interval of the building's year (a cutoff inside it → unknown); the rolling
+building-age cutoff likewise; owner facts are always U unless another term decides.
+`coverage` = not_covered (a condition is F) / exempt (an exemption is T) / covered / unknown,
+with `reasons` (condition, value used, fact source, result), `missing_facts`, caveats, deferred
+other-law items and `confidence_coverage` (×0.9 unit range or fallback city, ×0.8
+certificate-date proxy, ×0.9 special-status presumption).
+
+**Special-status presumption** (team decision B2, `PRESUME_SPECIAL_STATUS=true` by default):
+exemptions and conditions that need a recorded or documented status — deed or regulatory
+affordability restriction, HUD subsidy (Section 8/202/811…), nonprofit cooperative, government or
+university owner, institutional or care use, single-sex designation, condo / co-op / fee-simple
+conversion — are marked `special_status` at compile time (regex `SPECIAL_STATUS` OR a one-call
+LLM classification stored in `special_status_llm`). At evaluation their unknown status leaves
+are presumed false unless a use flag in the data shows the status (Boston A/125 → section8,
+A/118 → elderly, NJ "CO-OP" / "AFFORDABL"), and the result carries "presumed: no evidence of
+<status> in assessor data". Generic owner type (natural person vs entity), owner occupancy,
+cutoff-year and missing units / year built are never presumed. `data/compile_overrides.yaml`
+holds reviewer scope decisions (MA-RENT-01's exemptions → `other_law`).
+
 ## Tests
 
 ```bash

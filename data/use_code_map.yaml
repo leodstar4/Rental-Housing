@@ -61,6 +61,29 @@ unit_ranges:
     units: [9, null]
     basis: "use_description '>8-UNIT-APT'"
 
+# Every sample row is an apartment-building parcel class (5+ units, or Boston "A/" apartment
+# classes, or SF TIC/flats buildings). This sets use_class = apartment_building and makes
+# single_family / condo false (a condominium is classed per unit, not as a building).
+apartment_class:
+  use_class: apartment_building
+  false_flags: [single_family, condo]
+  basis: "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+
+# Datasets whose use codes distinguish a flag: there, a flag that does not match is false
+# (elsewhere it is unknown).
+flag_domains:
+  "Boston Property Assessment FY2026":
+    flags: [section8, elderly, luxury]
+    basis: "Boston apartment codes separate subsidized (A/125), elderly (A/118) and luxury (A/120) buildings"
+  "DataSF wv5m-vpq2 (2025 roll)":
+    flags: [tic, mixed_use]
+    basis: "SF codes separate TIC buildings (TIC) and flat-and-store buildings (FS5)"
+  "Cambridge Property Database FY2026 (waa7-ibdu)":
+    flags: [mixed_use]
+    basis: "Cambridge descriptions mark mixed-use apartment buildings (MXD)"
+
+all_flags: [section8, coop, affordable, tic, elderly, mixed_use, luxury, single_family, condo]
+
 flags:
   - flag: section8
     dataset: "Boston Property Assessment FY2026"

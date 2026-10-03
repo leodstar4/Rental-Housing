@@ -9,8 +9,11 @@
 * ``year_built``: integer or unknown.
 * ``co_year_approx``: year_built standing in for the certificate-of-occupancy date, which the
   data does not have (guide §4.1); always marked approximate.
-* ``use_flags``: section8, coop, affordable, tic, elderly, mixed_use, luxury
-  (``data/use_code_map.yaml``).
+* ``use_flags``: section8, coop, affordable, tic, elderly, mixed_use, luxury, single_family,
+  condo — each true / false / null (``data/use_code_map.yaml``: matches, ``flag_domains`` and
+  the apartment-building class).
+* ``use_class``: apartment_building for every row (assessor class), so hotel, dormitory,
+  care-facility... exemptions are refuted.
 * ``owner_type`` / ``owner_occupied``: always unknown (no owner data in the sample).
 """
 
@@ -107,8 +110,16 @@ def units_fact(a: Address, warnings: list[dict]) -> dict:
 
 
 def use_flags(a: Address) -> dict:
-    out: dict = {}
-    for e in use_code_map()["flags"]:
+    """Every flag of ``all_flags``: true (matched), false (the dataset's codes distinguish it, or
+    the apartment-building class rules it out) or null (unknown)."""
+    m = use_code_map()
+    out: dict = {f: {"value": None, "source": None, "basis": "the use code does not say"} for f in m["all_flags"]}
+    domain = m["flag_domains"].get(a.source_dataset)
+    for f in domain["flags"] if domain else []:
+        out[f] = {"value": False, "source": "use_code", "basis": domain["basis"]}
+    for f in m["apartment_class"]["false_flags"]:
+        out[f] = {"value": False, "source": "use_code", "basis": m["apartment_class"]["basis"]}
+    for e in m["flags"]:
         if _matches(e, a):
             out[e["flag"]] = {"value": True, "source": "use_code" if "use_code" in e else "use_description",
                               "basis": e["basis"]}
@@ -131,6 +142,8 @@ def building_facts(a: Address, warnings: list[dict]) -> dict:
                                      "(guide §4.1): a cutoff falling inside this year is unknown"} if year
                            else {"value": None, "certainty": "unknown", "basis": "no year_built"}),
         "use_flags": use_flags(a),
+        "use_class": {"value": use_code_map()["apartment_class"]["use_class"], "certainty": "inferred",
+                      "basis": use_code_map()["apartment_class"]["basis"]},
         "owner_type": unknown_owner,
         "owner_occupied": unknown_owner,
     }
@@ -158,7 +171,7 @@ def summary(data: dict) -> list[dict]:
     rows = []
     for city, fs in sorted(by.items(), key=lambda kv: (kv[0][-2:], kv[0])):
         c = Counter(f["units"]["certainty"] for f in fs)
-        flags = Counter(k for f in fs for k in f["use_flags"])
+        flags = Counter(k for f in fs for k, v in f["use_flags"].items() if v["value"])
         rows.append({"city": city, "n": len(fs), **{k: c.get(k, 0) for k in ("exact", "parsed", "range", "unknown")},
                      "year_built": sum(1 for f in fs if f["year_built"]["value"]), "flags": dict(flags)})
     return rows

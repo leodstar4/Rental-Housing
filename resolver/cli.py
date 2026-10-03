@@ -56,5 +56,62 @@ def geocode(refresh: bool = typer.Option(False, help="Query the Census Geocoder 
         typer.echo("  " + json.dumps(d, ensure_ascii=False))
 
 
+@app.command("compile")
+def compile_cmd(refresh: bool = typer.Option(False, help="Ignore data/compiled_exemptions.json and .cache/compile.")) -> None:
+    """Coverage conditions + exemptions -> predicates (data/compiled_exemptions.json + review table)."""
+    from extractor import config
+
+    from .compile_exemptions import COMPILED_PATH, compile_all
+    from .predicates import render
+
+    data = compile_all(refresh=refresh, log=typer.echo)
+    review = config.DATA_DIR / "compiled_exemptions_review.md"
+    lines = ["# Compiled coverage conditions and exemptions (review)", "",
+             f"Model `{data['model']}`, prompt `{data['prompt_version']}`. Conditions are ANDed (rule covers the "
+             "building), exemptions ORed (rule does not apply). Scope `building` is evaluated; "
+             "`unit_or_tenancy` is a caveat; `other_law` is deferred to precedence (B3).", "",
+             "| rule | kind | scope | origin | original text | predicate | irreducible |", "|---|---|---|---|---|---|---|"]
+    counts: Counter = Counter()
+    for rid, c in data["rules"].items():
+        for e in c["conditions"] + c["exemptions"]:
+            counts[(e["kind"], e["scope"], e.get("irreducible", False))] += 1
+            txt = (e["text"] or "").replace("|", "/").replace("\n", " ")
+            lines.append(f"| {rid} | {e['kind']} | {e['scope']} | {e['origin']} | {txt} | "
+                         f"`{render(e['predicate']).replace('|', '/')}` | {'**yes**' if e.get('irreducible') else ''} |")
+    review.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+    typer.echo(f"{len(data['rules'])} rules -> {COMPILED_PATH}; review table -> {review}")
+    for (kind, scope, irr), n in sorted(counts.items()):
+        typer.echo(f"  {kind:10} {scope:16} {'irreducible' if irr else '':12} {n}")
+
+
+@app.command("coverage")
+def coverage_cmd(as_of: str = typer.Option("2026-10-01", help="Query date (ISO).")) -> None:
+    """Kleene coverage of every rule at every address -> out/coverage.json (coverage only; no status)."""
+    from datetime import date
+
+    from .coverage import COVERAGE_PATH, load_inputs, run_all, summarize
+
+    data = run_all(date.fromisoformat(as_of))
+    facts = load_inputs()[2]
+    s = summarize(data, facts)
+    n = sum(len(v) for v in data["results"].values())
+    typer.echo(f"{n} (address, rule) pairs as of {as_of} -> {COVERAGE_PATH}\n")
+    cols = ("covered", "unknown", "not_covered", "exempt")
+    typer.echo(f"{'city':20} {'pairs':>5}  " + "  ".join(f"{c:>13}" for c in cols))
+    for city in sorted(s["by_city"], key=lambda c: (c[-2:], c)):
+        c = s["by_city"][city]
+        t = sum(c.values())
+        typer.echo(f"{city:20} {t:5d}  " + "  ".join(f"{_pct(c[k], t):>13}" for k in cols))
+    typer.echo("\n10 most frequent missing facts (unknown pairs they appear in):")
+    for f, k in s["top_missing"].most_common(10):
+        typer.echo(f"  {k:5d}  {f}")
+    typer.echo("\nfacts behind more than 30% of a city's unknowns:")
+    for city in sorted(s["missing_by_city"], key=lambda c: (c[-2:], c)):
+        unk = s["by_city"][city]["unknown"]
+        for f, k in s["missing_by_city"][city].most_common():
+            if unk and k / unk > 0.30:
+                typer.echo(f"  {city:20} {f:45} {k:4d}/{unk} ({100 * k / unk:.0f}%)")
+
+
 if __name__ == "__main__":
     app()
