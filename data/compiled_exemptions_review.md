@@ -65,6 +65,7 @@ Model `claude-haiku-4-5`, prompt `cx-0.4.0`. Conditions are ANDed (rule covers t
 | CA-DEP-05 | exemption | unit_or_tenancy | llm | Supporting documents are not required if deductions for repairs and cleaning total $125 or less | `MISSING[whether deductions for repairs and cleaning total $125 or less]` | **yes** |
 | CA-DEP-05 | exemption | unit_or_tenancy | llm | Supporting documents are not required if the tenant validly waived them | `MISSING[whether the tenant validly waived supporting documents]` | **yes** |
 | CA-DEP-06 | condition | building | llm | residential rental property used as the tenant's dwelling | `TRUE` |  |
+| CA-DEP-06 | condition | building | human_review | The landlord must own no more than two residential rental properties with no more than four dwelling units offered for rent in total. | `units <= 4` |  |
 | CA-DEP-06 | exemption | unit_or_tenancy | llm | Does not apply if the prospective tenant is a service member | `MISSING[whether the prospective tenant is a service member]` | **yes** |
 | CA-DEP-06 | exemption | unit_or_tenancy | llm | Does not apply to security collected before July 1, 2024 | `MISSING[date the security deposit was collected]` | **yes** |
 | CA-FEE-01 | condition | building | llm | residential rental | `TRUE` |  |

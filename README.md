@@ -427,6 +427,17 @@ manifest's link-only rows and `dev/change_tests.json`:
   meet the schema's quoted-span requirement), and Module B/C use them **only** for affected
   address sets and conflict flags — never to state a requirement, a figure or a date.
 
+**Human review.** Every manual correction to the compiled coverage is an entry of
+`data/human_review.yaml`, and nothing else in the code or data changes a rule by hand. Each entry
+has an id (HR-NNN), the rule, the action (`set_scope` or `add_item`), a `quoted_span`, the
+reason, the reviewer (a role, not a name) and the date. The compiler refuses an entry whose
+quoted span is not found verbatim in the rule's exported text, and records the ids applied
+(`human_review_applied` in `data/compiled_exemptions.json`); each corrected item carries a
+"human review HR-NNN" note that reaches `lookups_full.json`. Current entries: HR-001
+(MA-RENT-01 exemptions → other_law) and HR-002 (CA-DEP-06 limited to ≤ 4 units).
+`tests/test_human_review.py` runs the hour-16 flow (extract-doc of a new ordinance → compile →
+coverage) with an empty register to show a new document never needs an entry.
+
 **Building facts are never guessed.** Owner type and owner occupancy are always unknown;
 `year_built` stands in for the certificate-of-occupancy date only as a flagged approximation;
 unit counts inferred from use codes are ranges, and every inference names its basis in
@@ -502,8 +513,34 @@ LLM classification stored in `special_status_llm`). At evaluation their unknown 
 are presumed false unless a use flag in the data shows the status (Boston A/125 → section8,
 A/118 → elderly, NJ "CO-OP" / "AFFORDABL"), and the result carries "presumed: no evidence of
 <status> in assessor data". Generic owner type (natural person vs entity), owner occupancy,
-cutoff-year and missing units / year built are never presumed. `data/compile_overrides.yaml`
-holds reviewer scope decisions (MA-RENT-01's exemptions → `other_law`).
+cutoff-year and missing units / year built are never presumed. Manual corrections live only
+in the human review register (see Responsible design → Human review).
+
+## Module B — lookups (results per address)
+
+```bash
+python -m resolver.cli lookup --as-of 2026-10-01                    # all 500 -> out/lookups.json + out/lookups_full.json
+python -m resolver.cli lookup --as-of 2026-10-01 --address A0016    # readable summary by category (demo)
+```
+
+`resolver/results.py` combines the rule's status at the query date (Module A `status.py`) with
+its coverage: failed or not_covered/exempt → omitted (reason kept in `lookups_full.json`);
+pending → `pending`; not yet effective → `not_yet_effective`; in force → `applies` / `unknown`.
+Precedence: a rule that yields to a covered, in-force rule of the address (Module A
+"[Yields to]" / "[Takes precedence over]", or a B2 `other_law` exemption resolved through
+`data/other_law_map.yaml`) becomes `superseded`, naming the rule that governs; if that rule is
+only unknown, both are reported with "may yield to". Rules defined only as "for units covered by
+<law>" (LA-RENT-05, LA-JUST-04/05) follow that law's coverage-defining rules. Preemption the
+other way (FAIR Act vs Hoboken/Jersey City bans, NJ-RENT-03 vs JC-RENT-01) is never superseded:
+both carry `conflict_flag` and a review note. `conflict_flag` means a legal conflict only (the
+rule's own Module A flag, or a preemption conflict at the address); a combined confidence (rule ×
+coverage × geocoding, fallback ×0.85) below 0.5 sets `needs_review` in `lookups_full.json`
+instead. When a rule prevails over R it also prevails over the other in-force rules with R's
+base citation and category (e.g. every Cal. Civ. Code § 1946.2 rule under SF's just cause).
+Explanations are deterministic: requirement, why (facts used, governing rule, effective date,
+"pending bill, not law", or the missing fact), presumptions/notes, then source, retrieval date,
+as-of date and "Not legal advice." `lookups.json` holds only rules.json ids (validated);
+manifest-attested rules appear only in `lookups_full.json`.
 
 ## Tests
 

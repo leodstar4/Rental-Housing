@@ -113,5 +113,78 @@ def coverage_cmd(as_of: str = typer.Option("2026-10-01", help="Query date (ISO).
                 typer.echo(f"  {city:20} {f:45} {k:4d}/{unk} ({100 * k / unk:.0f}%)")
 
 
+def render_address(d: dict, facts: dict, as_of: str) -> str:
+    from .results import CATEGORY_LABEL
+
+    j, f = d["jurisdiction"], facts
+    u = f["units"]
+    units = ("unknown" if not u["range"] else f"{u['range'][0]}" if u["range"][0] == u["range"][1]
+             else f"{u['range'][0]}+" if u["range"][1] is None else f"{u['range'][0]}-{u['range'][1]}")
+    lines = [f"{d['address_id']}  ·  {j['city'] or '(no city)'} / {j['state']}  ·  geocode {j['match_quality']} "
+             f"({j['source']})  ·  built {f['year_built']['value'] or 'unknown'}  ·  units {units} "
+             f"({u['certainty']})  ·  as of {as_of}", "Not legal advice."]
+    by: dict[str, list] = {}
+    for r in d["results"]:
+        by.setdefault(r["category"], []).append(r)
+    for cat, label in CATEGORY_LABEL.items():
+        if cat not in by:
+            continue
+        lines.append(f"\n  {label}")
+        for r in by[cat]:
+            extra = (f" by {r['superseded_by']}" if r["superseded_by"] else "") + (
+                f" (eff. {r['effective_date']})" if r["result"] == "not_yet_effective" else "") + (
+                "  [attested, lookups_full only]" if r["attested"] else "")
+            flag = "  ⚑" if r["conflict_flag"] else ""
+            lines.append(f"    {r['team_rule_id']:12} {r['result']:17}{extra}{flag}   conf {r['confidence']:.2f}")
+            lines.append(f"      {r['explanation'].split(' Source:')[0][:300]}")
+    return "\n".join(lines)
+
+
+@app.command("lookup")
+def lookup_cmd(as_of: str = typer.Option("2026-10-01", help="Query date (ISO)."),
+               address: list[str] = typer.Option(None, help="Address id(s) to print (repeatable).")) -> None:
+    """Results for all 500 addresses -> out/lookups.json + out/lookups_full.json; prints a summary."""
+    from datetime import date
+
+    from .results import FULL_PATH, LOOKUPS_PATH, run
+
+    out = run(date.fromisoformat(as_of))
+    full, eng = out["full"], out["engine"]
+    if address:
+        for a in address:
+            typer.echo(render_address(full[a], eng.facts[a], as_of) + "\n")
+        return
+    typer.echo(f"500 addresses -> {LOOKUPS_PATH} (rules.json only) and {FULL_PATH} (+ attested, details)\n")
+    cols = ("applies", "unknown", "superseded", "not_yet_effective", "pending")
+    typer.echo(f"{'city':20} {'results':>7}  " + "  ".join(f"{c:>17}" for c in cols) + "  flagged addr")
+    by: dict[str, Counter] = {}
+    flagged: dict[str, set] = {}
+    for aid, d in full.items():
+        city = eng.facts[aid]["dataset_city"]
+        c = by.setdefault(city, Counter())
+        for r in d["results"]:
+            if not r["attested"]:
+                c[r["result"]] += 1
+                if r["conflict_flag"]:
+                    flagged.setdefault(city, set()).add(aid)
+    for city in sorted(by, key=lambda c: (c[-2:], c)):
+        c, t = by[city], sum(by[city].values())
+        typer.echo(f"{city:20} {t:7d}  " + "  ".join(f"{_pct(c[k], t):>17}" for k in cols)
+                   + f"  {len(flagged.get(city, ())):5d}")
+    per_rule, review = Counter(), Counter()
+    for d in full.values():
+        for r in d["results"]:
+            if r["conflict_flag"]:
+                per_rule[r["team_rule_id"] + (" (attested)" if r["attested"] else "")] += 1
+            if r["needs_review"] and not r["attested"]:
+                review[r["team_rule_id"]] += 1
+    typer.echo(f"\naddresses with at least one conflict_flag: {len(set().union(*flagged.values()))} / 500")
+    typer.echo(f"results with conflict_flag (legal conflict only): {sum(per_rule.values())}")
+    for rid, n in sorted(per_rule.items()):
+        typer.echo(f"  {rid:24} {n:4d}")
+    typer.echo(f"results with needs_review (combined confidence < 0.5, lookups_full only): {sum(review.values())} "
+               f"in {len(review)} rules")
+
+
 if __name__ == "__main__":
     app()

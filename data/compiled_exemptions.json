@@ -1796,6 +1796,20 @@
       "const": true
      },
      "irreducible": false
+    },
+    {
+     "source": "human_review:HR-002",
+     "kind": "condition",
+     "origin": "human_review",
+     "scope": "building",
+     "text": "The landlord must own no more than two residential rental properties with no more than four dwelling units offered for rent in total.",
+     "predicate": {
+      "fact": "units",
+      "op": "<=",
+      "value": 4
+     },
+     "irreducible": false,
+     "note": "human review HR-002 (project team (B3 decision; proposed by the coding assistant in the SF self-check), 2026-10-03): The small-landlord two-months rule is limited to landlords with no more than four units in total; the compiler returned no item for it. A building's units are a lower bound of the landlord's total, so a building with more than four units refutes it. Same restriction as CA-DEP-02 (units_max 4, same law)."
     }
    ],
    "exemptions": [
@@ -4571,7 +4585,7 @@
      },
      "structured": "units < 10",
      "irreducible": false,
-     "note": "reviewer override: Team decision B2 (2026-10-03): M.G.L. c. 40P bars local rent control; its \"exemptions\" (owners of fewer than ten units, fair market rent above $400) describe when a permitted local regulation may not apply, which only matters in a municipality that accepted chapter 40P. They depend on another law, not on the building."
+     "note": "human review HR-001 (project team (B2 decision), 2026-10-03): M.G.L. c. 40P bars local rent control; these limits describe when a permitted local regulation may not apply, which only matters in a municipality that accepted chapter 40P. They depend on another law, not on the building."
     },
     {
      "source": "exemption_conditions[1]",
@@ -4583,7 +4597,7 @@
       "missing": "fair market rent"
      },
      "irreducible": true,
-     "note": "reviewer override: Team decision B2 (2026-10-03): M.G.L. c. 40P bars local rent control; its \"exemptions\" (owners of fewer than ten units, fair market rent above $400) describe when a permitted local regulation may not apply, which only matters in a municipality that accepted chapter 40P. They depend on another law, not on the building."
+     "note": "human review HR-001 (project team (B2 decision), 2026-10-03): M.G.L. c. 40P bars local rent control; these limits describe when a permitted local regulation may not apply, which only matters in a municipality that accepted chapter 40P. They depend on another law, not on the building."
     }
    ],
    "llm": {
@@ -7361,5 +7375,9 @@
    "special_status": false,
    "status": "Property type, not special status"
   }
- }
+ },
+ "human_review_applied": [
+  "HR-001",
+  "HR-002"
+ ]
 }

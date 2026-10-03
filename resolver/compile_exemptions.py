@@ -41,7 +41,7 @@ from .predicates import FACTS, PREDICATE_SCHEMA_DEFS, PredicateError, render, va
 COMPILE_MODEL = os.getenv("COMPILE_MODEL", "claude-haiku-4-5")
 PROMPT_PATH = config.PROMPTS_DIR / "compile_exemptions.md"
 COMPILED_PATH: Path = config.DATA_DIR / "compiled_exemptions.json"
-OVERRIDES_PATH: Path = config.DATA_DIR / "compile_overrides.yaml"
+REVIEW_PATH: Path = config.DATA_DIR / "human_review.yaml"
 CACHE_SUBDIR = "compile"
 TOOL = "record_items"
 WORKERS = 4
@@ -332,7 +332,7 @@ SPECIAL_STATUS = re.compile(
     r"Shelter Plus|VASH|LIHTC|cooperative|co-?op\b|single[- ]sex|one sex|fee simple|convert\w* to condo|"
     r"institution|hospital|care facilit|long-term care|extended care|residential care|religious facilit|"
     r"dormitor|fraternity|sorority|homeless|transitional|treatment cent|detention|correctional|"
-    r"government|public housing|HACLA|universit|elderly|age-restricted", re.I)
+    r"government|public housing|housing authority|HACLA|universit|elderly|age-restricted", re.I)
 
 
 def special_by_code(entry: dict) -> bool:
@@ -395,17 +395,48 @@ def classify_special(texts: list[str], *, use_cache: bool = True) -> dict[str, d
     raise llm.ExtractionLLMError("no valid record_special call")
 
 
+REVIEW_FIELDS = {"id", "rule_id", "action", "kind", "quoted_span", "reason", "reviewer", "date"}
+
+
 @functools.lru_cache(maxsize=1)
-def overrides_table() -> list[dict]:
-    return yaml.safe_load(OVERRIDES_PATH.read_text(encoding="utf-8"))["overrides"]
+def review_register() -> list[dict]:
+    return yaml.safe_load(REVIEW_PATH.read_text(encoding="utf-8"))["reviews"]
 
 
-def apply_overrides(compiled: dict) -> None:
-    for o in overrides_table():
-        c = compiled.get(o["rule_id"])
-        for e in (c or {}).get(o["kind"] + "s", []):
-            if e["scope"] != o["scope"]:
-                e.update(scope=o["scope"], note=f"reviewer override: {' '.join(o['reason'].split())}")
+def rule_texts(rule: dict) -> list[str]:
+    cov = rule.get("coverage_conditions") or {}
+    cov = cov if isinstance(cov, dict) else {"notes": cov}
+    return [t for t in (cov.get("notes"), cov.get("text"), rule.get("exemptions"),
+                        *(e.get("condition") for e in cov.get("exemption_conditions") or [])) if t]
+
+
+def apply_reviews(compiled: dict, rules: dict[str, dict], register: list[dict] | None = None) -> list[str]:
+    """Apply data/human_review.yaml; returns the ids applied. Entries for rules not present are
+    skipped (e.g. a new document only adds rules, it never needs an entry)."""
+    applied = []
+    for o in review_register() if register is None else register:
+        missing = REVIEW_FIELDS - set(o)
+        if missing:
+            raise ValueError(f"human review {o.get('id')}: missing {sorted(missing)}")
+        c, rule = compiled.get(o["rule_id"]), rules.get(o["rule_id"])
+        if c is None or rule is None:
+            continue
+        if not any(o["quoted_span"] in t for t in rule_texts(rule)):
+            raise ValueError(f"human review {o['id']}: quoted_span not found verbatim in {o['rule_id']}")
+        note = f"human review {o['id']} ({o['reviewer']}, {o['date']}): {' '.join(o['reason'].split())}"
+        if o["action"] == "add_item":
+            validate(o["predicate"])
+            c[o["kind"] + "s"].append({"source": f"human_review:{o['id']}", "kind": o["kind"], "origin": "human_review",
+                                       "scope": "building", "text": o["quoted_span"], "predicate": o["predicate"],
+                                       "irreducible": False, "note": note})
+        elif o["action"] == "set_scope":
+            for e in c.get(o["kind"] + "s", []):
+                if e["scope"] != o["scope"]:
+                    e.update(scope=o["scope"], note=note)
+        else:
+            raise ValueError(f"human review {o['id']}: unknown action {o['action']!r}")
+        applied.append(o["id"])
+    return applied
 
 
 def mark_special(compiled: dict, llm_labels: dict[str, dict]) -> None:
@@ -532,11 +563,14 @@ def load_rules() -> list[dict]:
     return rules
 
 
-def compile_all(*, refresh: bool = False, log=print) -> dict:
+def compile_all(*, refresh: bool = False, log=print, write: bool = True, register: list[dict] | None = None,
+                rules: list[dict] | None = None) -> dict:
     """Compile every rule. A rule whose input and prompt are unchanged reuses the raw LLM answer
-    stored in data/compiled_exemptions.json (no API call); assembly always re-runs."""
+    stored in data/compiled_exemptions.json (no API call); assembly always re-runs. ``write=False``
+    returns the result without touching the snapshot (incremental runs); ``register`` replaces the
+    human-review register (tests)."""
     snap = json.loads(COMPILED_PATH.read_text(encoding="utf-8"))["rules"] if COMPILED_PATH.exists() and not refresh else {}
-    rules = load_rules()
+    rules = load_rules() if rules is None else rules
     version, _ = prompt()
 
     def reusable(r: dict) -> bool:
@@ -570,7 +604,7 @@ def compile_all(*, refresh: bool = False, log=print) -> dict:
             compiled[rid] = assemble(r, snap[rid]["llm"])
         else:
             compiled[rid] = assemble(r, None)
-    apply_overrides(compiled)
+    reviews = apply_reviews(compiled, {r["team_rule_id"]: r for r in rules}, register)
     # special-status labels from the LLM: reuse the snapshot's when it has every candidate text
     stored = (json.loads(COMPILED_PATH.read_text(encoding="utf-8")).get("special_status_llm", {})
               if COMPILED_PATH.exists() and not refresh else {})
@@ -579,10 +613,16 @@ def compile_all(*, refresh: bool = False, log=print) -> dict:
         labels = {t: stored[t] for t in cands}
     else:
         log(f"classifying {len(cands)} items for special status with {COMPILE_MODEL}...")
-        labels = classify_special(cands, use_cache=not refresh)
+        try:
+            labels = classify_special(cands, use_cache=not refresh)
+        except llm.ExtractionLLMError as e:  # offline: code regex only for the new texts
+            log(f"  special-status classification unavailable ({e}); regex only for new items")
+            labels = {t: stored[t] for t in cands if t in stored}
     mark_special(compiled, labels)
-    data = {"model": COMPILE_MODEL, "prompt_version": version, "rules": compiled, "special_status_llm": labels}
-    COMPILED_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
+    data = {"model": COMPILE_MODEL, "prompt_version": version, "rules": compiled, "special_status_llm": labels,
+            "human_review_applied": reviews}
+    if write:
+        COMPILED_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     if todo:
         calls = sum(1 for o in outs.values() if "error" not in o and not o.get("cached"))
         log(f"  {calls} API call(s), {len(todo) - calls} from .cache/compile; tokens in={usage.input_tokens} "
