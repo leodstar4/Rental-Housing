@@ -1,6 +1,6 @@
 {
   "snapshot": "a-0.4.0",
-  "created_at": "2026-10-03T21:02:20+00:00",
+  "created_at": "2026-10-03T21:07:36+00:00",
   "prompt_version": "a-0.4.0",
   "prompt_sha256": "0e8a650611fe7b84693b29f4bb32b350a43bee1e3d16b1cc67d2a6522020a0bb",
   "prompt_fingerprint": "de4378e508dd8397",
@@ -25,8 +25,8 @@
     "candidates": 103
   },
   "files_sha256": {
-    "rules.json": "380789efba7c4ce9cb32545dbe6c73fb621ab3ecc2df3233dcaea0c15e870695",
-    "ids.json": "0264a1970ceeb832da027450787eed2737577b52f013e0f8b150d3a059812c6b"
+    "rules.json": "632b46990235f99b0256ae94808fa2dd9a4c4ce9db15ee9d866fbb6683fc2468",
+    "ids.json": "36b5ce2b9aad7f6d9f0bfdb8461ac0c43482b80bec85c1a49bc86c13b561e5dd"
   },
   "documents": {
     "D001": {

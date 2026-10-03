@@ -1,0 +1,6 @@
+# Byte-exact files: hashes (text_sha256, prompt_sha256) and byte-identical reproduction
+# depend on them, so git must never convert their line endings.
+participant-final-no-hour16[[:space:]]3/** -text
+snapshots/** -text
+tests/fixtures/** -text
+prompts/*.md -text

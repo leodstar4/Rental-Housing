@@ -48,7 +48,7 @@ def append(event: AuditEvent, path: Path | None = None) -> None:
     line = json.dumps(record, ensure_ascii=False, default=str, sort_keys=True)
     with _LOCK:
         path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "a", encoding="utf-8") as f:
+        with open(path, "a", encoding="utf-8", newline="\n") as f:
             f.write(line + "\n")
             f.flush()
             os.fsync(f.fileno())

@@ -108,7 +108,7 @@ def export_rules(rules: list[RuleInternal], as_of: date, path: Path | None = Non
     if errors:
         raise ValueError("schema validation failed:\n" + "\n".join(errors))
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps({"rules": data}, ensure_ascii=False, indent=2), encoding="utf-8")
+    path.write_text(json.dumps({"rules": data}, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
     return path
 
 

@@ -181,7 +181,7 @@ def cache_put(key: str, result: LLMResult, cache_dir: Path | None = None) -> Non
     d = asdict(result)
     d["created_at"] = datetime.now(timezone.utc).isoformat()
     tmp = cache_dir / f"{key}.{os.getpid()}.{random.randrange(1 << 30)}.tmp"
-    tmp.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     os.replace(tmp, cache_dir / f"{key}.json")
 
 
@@ -402,7 +402,7 @@ def retry_quote(
     quote = msg.parsed_output.quoted_span
     config.CACHE_DIR.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(f".{os.getpid()}.tmp")
-    tmp.write_text(json.dumps({"quoted_span": quote, "usage": asdict(usage)}, ensure_ascii=False), encoding="utf-8")
+    tmp.write_text(json.dumps({"quoted_span": quote, "usage": asdict(usage)}, ensure_ascii=False), encoding="utf-8", newline="\n")
     os.replace(tmp, path)
     return quote, usage
 
@@ -455,6 +455,6 @@ def classify_date_kind(*, quote: str, raw: str | None, context: str, rule_title:
         return None, usage
     config.CACHE_DIR.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(f".{os.getpid()}.tmp")
-    tmp.write_text(json.dumps({"kind": kind, "model": model, "usage": asdict(usage)}), encoding="utf-8")
+    tmp.write_text(json.dumps({"kind": kind, "model": model, "usage": asdict(usage)}), encoding="utf-8", newline="\n")
     os.replace(tmp, path)
     return kind, usage

@@ -29,7 +29,13 @@ from .corpus import load_documents
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    """sha256 of a file with line endings normalized to LF (robust to git CRLF checkouts)."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
+def _copy_lf(src: Path, dst: Path) -> None:
+    """Copy a text/JSON artifact with LF line endings (byte-identical across platforms)."""
+    dst.write_bytes(Path(src).read_bytes().replace(b"\r\n", b"\n"))
 
 
 def load_manifest(snapshot_dir: Path) -> dict:
@@ -52,7 +58,7 @@ def create_snapshot(name: str, *, as_of: str | None = None) -> Path:
         if not src.exists():
             missing.append(d.doc_id)
             continue
-        shutil.copyfile(src, dst / "llm" / f"{d.doc_id}.json")
+        _copy_lf(src, dst / "llm" / f"{d.doc_id}.json")
         u = json.loads(src.read_text(encoding="utf-8"))["usage"]
         usage = usage + llm.LLMUsage(**{**u, "cached": False})
         documents[d.doc_id] = {"text_sha256": d.text_sha256, "llm_file": f"llm/{d.doc_id}.json",
@@ -63,13 +69,13 @@ def create_snapshot(name: str, *, as_of: str | None = None) -> Path:
 
     aux_usage = llm.LLMUsage()
     for f in sorted(config.CACHE_DIR.glob("datekind-*.json")) + sorted(config.CACHE_DIR.glob("quote-*.json")):
-        shutil.copyfile(f, dst / "aux_cache" / f.name)
+        _copy_lf(f, dst / "aux_cache" / f.name)
         u = json.loads(f.read_text(encoding="utf-8")).get("usage")
         if u and f.name.startswith("datekind-"):
             aux_usage = aux_usage + llm.LLMUsage(**{**u, "cached": False})
 
     for f in sorted((config.OUT_DIR / "extracted").glob("D*.json")):
-        shutil.copyfile(f, dst / "extracted" / f.name)
+        _copy_lf(f, dst / "extracted" / f.name)
     normalized = json.loads(config.NORMALIZED_PATH.read_text(encoding="utf-8"))["rules"]
     by_uid = {r["uid"]: r for r in normalized}
 
@@ -80,10 +86,10 @@ def create_snapshot(name: str, *, as_of: str | None = None) -> Path:
         return r.get("team_rule_id") if r else None
 
     ids = {r["uid"]: final_id(r["uid"]) for r in normalized if final_id(r["uid"])}
-    (dst / "ids.json").write_text(json.dumps(ids, indent=1, sort_keys=True), encoding="utf-8")
-    shutil.copyfile(config.RULES_PATH, dst / "rules.json")
-    shutil.copyfile(config.CONFLICTS_PATH, dst / "conflicts.json")
-    shutil.copyfile(config.EXTRACT_PROMPT_PATH, dst / "extract_system.md")
+    (dst / "ids.json").write_text(json.dumps(ids, indent=1, sort_keys=True), encoding="utf-8", newline="\n")
+    _copy_lf(config.RULES_PATH, dst / "rules.json")
+    _copy_lf(config.CONFLICTS_PATH, dst / "conflicts.json")
+    _copy_lf(config.EXTRACT_PROMPT_PATH, dst / "extract_system.md")
 
     extraction_usd = llm.estimate_cost(usage, config.EXTRACT_MODEL) or 0.0
     classifier_usd = llm.estimate_cost(aux_usage, config.DATE_CLASSIFIER_MODEL) or 0.0
@@ -107,7 +113,7 @@ def create_snapshot(name: str, *, as_of: str | None = None) -> Path:
         "files_sha256": {"rules.json": _sha(dst / "rules.json"), "ids.json": _sha(dst / "ids.json")},
         "documents": documents,
     }
-    (dst / "MANIFEST.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    (dst / "MANIFEST.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8", newline="\n")
     return dst
 
 

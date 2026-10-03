@@ -106,7 +106,7 @@ def ingest(path: Path, jurisdiction: str | None) -> tuple[str, Path, dict]:
     meta = {"doc_id": doc_id, "original_file": str(path), "original_sha256": sha,
             "retrieved_at": retrieved.isoformat(timespec="seconds"), "jurisdiction_hint": jurisdiction,
             "text_file": _rel(text_path)}
-    (config.NEW_DOCS_DIR / f"{doc_id}.meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    (config.NEW_DOCS_DIR / f"{doc_id}.meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8", newline="\n")
     return doc_id, text_path, meta
 
 
@@ -152,7 +152,7 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
     new_dir.mkdir(parents=True, exist_ok=True)
     (new_dir / f"{doc_id}.json").write_text(json.dumps(
         {"doc_id": doc_id, "rules": [r.model_dump(mode="json") for r in out.rules],
-         "validation": out.validation.to_dict()}, ensure_ascii=False, indent=2), encoding="utf-8")
+         "validation": out.validation.to_dict()}, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
     t = stage("validate", t)
 
     docs = {d.doc_id: d for d in load_documents()}
@@ -163,9 +163,9 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
     conflicts = detect_conflicts(rules)
     t = stage("conflicts", t)
     config.NORMALIZED_PATH.write_text(json.dumps({"rules": [r.model_dump(mode="json") for r in rules]},
-                                                 ensure_ascii=False, indent=2), encoding="utf-8")
+                                                 ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
     config.CONFLICTS_PATH.write_text(json.dumps({"conflicts": conflicts}, ensure_ascii=False, indent=2),
-                                     encoding="utf-8")
+                                     encoding="utf-8", newline="\n")
     export_rules(rules, as_of)
     t = stage("status + export", t)
 
@@ -211,7 +211,7 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
         "llm_usage": {k: v for k, v in vars(out.result.usage).items()} if out.result else None,
     }
     (config.OUT_DIR / f"increment_{doc_id}.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2),
-                                                            encoding="utf-8")
+                                                            encoding="utf-8", newline="\n")
     audit.append(audit.AuditEvent("increment", run_id, doc_id, data={
         "snapshot": manifest["snapshot"], "rules_changed": [c["team_rule_id"] for c in changed],
         "new_conflicts": len(new_conflicts), "timings_s": timings}))

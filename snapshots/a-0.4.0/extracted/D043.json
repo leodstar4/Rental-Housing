@@ -66,6 +66,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "accepted",
       "disposition_reason": null
     },
@@ -133,6 +134,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "accepted",
       "disposition_reason": null
     },
@@ -231,6 +233,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "accepted",
       "disposition_reason": null
     },
@@ -313,6 +316,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "accepted",
       "disposition_reason": null
     },
@@ -374,6 +378,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "accepted",
       "disposition_reason": null
     },
@@ -459,6 +464,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "held",
       "disposition_reason": "no_citation"
     },
@@ -542,6 +548,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "held",
       "disposition_reason": "no_citation"
     },
@@ -607,6 +614,7 @@
       "key_value_details": [],
       "merged_uids": [],
       "merged_into": null,
+      "stage_history": [],
       "disposition": "accepted",
       "disposition_reason": null
     }

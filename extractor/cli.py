@@ -41,8 +41,7 @@ def _save_and_report(results: list) -> None:
             },
         }
         (EXTRACTED_DIR / f"{r.doc_id}.json").write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
-        )
+            json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
         if r.error:
             typer.echo(f"{r.doc_id:5} ERROR: {r.error}")
             continue
@@ -98,7 +97,7 @@ def _rebuild_run_artifacts() -> None:
     for path, data in [(config.OUT_DIR / "rules_internal.json", {"rules": internal}),
                        (config.REJECTED_PATH, {"rejected": rejected}),
                        (config.VALIDATION_REPORT_PATH, report)]:
-        path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
     g = report["global"]
     typer.echo(f"\nALL DOCS: candidates={g['candidates']} match_types={g['match_types']} "
                f"dispositions={g['dispositions']} reasons={g['reasons']} quote_retries={g['quote_retries']} "
@@ -195,9 +194,9 @@ def normalize(
 
     config.NORMALIZED_PATH.write_text(
         json.dumps({"rules": [r.model_dump(mode="json") for r in rules]}, ensure_ascii=False, indent=2),
-        encoding="utf-8")
+        encoding="utf-8", newline="\n")
     config.CONFLICTS_PATH.write_text(json.dumps({"conflicts": conflicts}, ensure_ascii=False, indent=2),
-                                     encoding="utf-8")
+                                     encoding="utf-8", newline="\n")
     run_id = audit.new_run_id()
     audit.append(audit.AuditEvent("normalize", run_id, data={
         "dispositions": dict(Counter(r.disposition for r in rules)),
@@ -259,7 +258,7 @@ def smoke_check() -> None:
         raise typer.Exit(1)
     res = run()
     typer.echo(render(res))
-    (config.OUT_DIR / "smoke_check.json").write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
+    (config.OUT_DIR / "smoke_check.json").write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":
