@@ -1,0 +1,345 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "Los Angeles, CA",
+    "level": "city",
+    "category": "just_cause_eviction",
+    "title": "Los Angeles Just Cause Ordinance – just cause required for terminations, relocation for no-fault evictions",
+    "requirement": "Landlords may terminate a covered tenancy only for listed at-fault reasons (non-payment, uncured lease violation, nuisance/damage, illegal use, refusal to renew a similar agreement, denial of access, unapproved subtenant) or listed no-fault reasons (owner/family move-in, required resident manager, demolition/removal/conversion, government order, HUD sale, residential hotel conversion, conversion to affordable housing). No-fault evictions may require relocation assistance.",
+    "key_value": null,
+    "citation": "Just Cause Ordinance",
+    "citation_aliases": [
+     "JCO",
+     "Just Cause For Eviction Ordinance"
+    ],
+    "quoted_span": "It prohibits terminations of tenancies without just cause and requires relocation assistance for no-fault evictions.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Units regulated by the City's Rent Stabilization Ordinance (RSO) are not covered by the JCO",
+       "field": "other",
+       "op": "==",
+       "value": "subject to RSO"
+      },
+      {
+       "condition": "Transient hotels, licensed care facilities, fraternity or sorority houses, owner's roommate, certain cooperatives, some non-profit homeless facilities or short-term substance abuse treatment centers, and some HACLA or government-owned properties are excepted",
+       "field": "use_type",
+       "op": "in",
+       "value": [
+        "transient hotel",
+        "licensed care facility",
+        "fraternity or sorority house",
+        "owner's roommate",
+        "cooperative (certain circumstances)",
+        "non-profit homeless facility",
+        "short-term substance abuse treatment center",
+        "HACLA or government-owned property"
+       ]
+      }
+     ],
+     "notes": "Applies to a tenancy only once the tenant has lived in the unit at least six months or the original lease expired, whichever comes first. Can apply to buildings newer than October 1, 1978 and to a property containing only one single-family dwelling."
+    },
+    "coverage_text": "Most residential properties in the City of Los Angeles not regulated by the RSO, including buildings newer than October 1, 1978 and single-family dwellings; applies once the tenant has lived in the unit at least six months or the original lease expired, whichever comes first.",
+    "exemptions": "Transient hotels, licensed care facilities, fraternity or sorority houses, owner's roommate, cooperatives under certain circumstances, some non-profit facilities for the homeless or short-term substance abuse treatment centers, some HACLA or government-owned properties; RSO units are covered by the RSO instead.",
+    "interaction": "Covers properties not regulated by the City's RSO. Single-family homes/condos exempt from state AB 1482 remain subject to the JCO.",
+    "is_secondary_source": false,
+    "confidence": 0.8
+   },
+   {
+    "jurisdiction": "Los Angeles, CA",
+    "level": "city",
+    "category": "just_cause_eviction",
+    "title": "Los Angeles – no eviction for non-payment below Fair Market Rent threshold",
+    "requirement": "Landlords may not evict a tenant for falling behind in rent unless the tenant owes more than one month's Fair Market Rent (FMR) for the unit's bedroom size.",
+    "key_value": "Arrears must exceed Fair Market Rent (FMR) for unit size",
+    "citation": null,
+    "citation_aliases": [],
+    "quoted_span": "Effective March 27, 2023, landlords may not evict a tenant who falls behind in rent unless the tenant owes an amount higher than the Fair Market Rent (FMR).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2023-03-27",
+      "raw": "Effective March 27, 2023",
+      "derived": false,
+      "quoted_span": "Effective March 27, 2023, landlords may not evict a tenant who falls behind in rent"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "RSO rental units",
+      "JCO rental units"
+     ],
+     "exemption_conditions": [],
+     "notes": "FMR threshold depends on the bedroom size of the rental unit."
+    },
+    "coverage_text": "Applies to all RSO & JCO rental units in the City of Los Angeles.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.75
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "rent_increase_limits",
+    "title": "AB 1482 (California Tenant Protection Act of 2019) annual rent increase cap",
+    "requirement": "Annual rent increases on covered units are limited to 5% plus the regional change in cost of living, or 10%, whichever is lower.",
+    "key_value": "5% + CPI, max 10%",
+    "citation": "Cal. Civ. Code § 1947.12",
+    "citation_aliases": [
+     "AB 1482",
+     "AB1482",
+     "California Tenant Protection Act of 2019"
+    ],
+    "quoted_span": "A\nnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": 15,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Units constructed within the last 15 years (rolling)",
+       "field": "other",
+       "op": "==",
+       "value": "constructed within last 15 years"
+      },
+      {
+       "condition": "Units restricted by deed, regulatory restriction or recorded document limiting affordability to low or moderate-income households",
+       "field": "other",
+       "op": "==",
+       "value": "deed-restricted affordable housing"
+      },
+      {
+       "condition": "Certain dormitories",
+       "field": "use_type",
+       "op": "in",
+       "value": [
+        "dormitory"
+       ]
+      },
+      {
+       "condition": "Two-unit property where the second unit was occupied by an owner for the entire tenancy",
+       "field": "owner_occupied",
+       "op": "==",
+       "value": true
+      },
+      {
+       "condition": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, where the landlord gave written notice of exemption",
+       "field": "owner_type",
+       "op": "in",
+       "value": [
+        "not real estate trust",
+        "not corporation",
+        "not LLC with corporate member"
+       ]
+      },
+      {
+       "condition": "Units already subject to the City's RSO",
+       "field": "other",
+       "op": "==",
+       "value": "subject to Los Angeles RSO"
+      }
+     ],
+     "notes": "Single-family exemption requires written notice per Civil Code 1947.12(d)(5)(B)(i); does not apply where there is more than one dwelling unit on the lot or a second unit that cannot be sold separately (e.g., in-law unit)."
+    },
+    "coverage_text": "Buildings older than 15 years (rolling basis), not otherwise exempt.",
+    "exemptions": "Units built within last 15 years; deed-restricted affordable units; certain dormitories; owner-occupied two-unit properties; single-family homes/condos not owned by REIT, corporation or LLC with corporate member where landlord gave written notice; units subject to the City's RSO.",
+    "interaction": "Does not apply to units subject to the Los Angeles RSO; the JCO does not regulate rent increases.",
+    "is_secondary_source": true,
+    "confidence": 0.8
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "rent_increase_limits",
+    "title": "AB 1482 maximum allowable increase Aug 1, 2024 – Jul 31, 2025 (Los Angeles region)",
+    "requirement": "For units subject to AB 1482 in the Los Angeles area, the maximum allowable annual rent increase from August 1, 2024 to July 31, 2025 is 8.9%.",
+    "key_value": "8.9%",
+    "citation": "Cal. Civ. Code § 1947.12",
+    "citation_aliases": [
+     "AB 1482",
+     "AB1482",
+     "California Tenant Protection Act of 2019"
+    ],
+    "quoted_span": "Effective August 1, 2024 to July 31, 2025, the maximum allowable increase is\n8.9%",
+    "stage": "administrative",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2024-08-01",
+      "raw": "Effective August 1, 2024",
+      "derived": false,
+      "quoted_span": "Effective August 1, 2024 to July 31, 2025"
+     }
+    ],
+    "sunset_date": {
+     "value": "2025-07-31",
+     "raw": "to July 31, 2025",
+     "derived": false,
+     "quoted_span": "Effective August 1, 2024 to July 31, 2025"
+    },
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": 15,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to units subject to AB 1482 in the City of Los Angeles."
+    },
+    "coverage_text": "Units subject to AB 1482 in Los Angeles.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": true,
+    "confidence": 0.6
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "rent_increase_limits",
+    "title": "AB 1482 maximum allowable increase Aug 1, 2023 – Jul 31, 2024 (Los Angeles region)",
+    "requirement": "For units subject to AB 1482 in the Los Angeles area, the maximum annual rent increase from August 1, 2023 to July 31, 2024 was 8.8%.",
+    "key_value": "8.8%",
+    "citation": "Cal. Civ. Code § 1947.12",
+    "citation_aliases": [
+     "AB 1482",
+     "AB1482",
+     "California Tenant Protection Act of 2019"
+    ],
+    "quoted_span": "Previously, from August 1, 2023 to July 31, 2024 the maximum annual increase for units subject to AB 1482 was 8.8%",
+    "stage": "administrative",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2023-08-01",
+      "raw": "from August 1, 2023",
+      "derived": false,
+      "quoted_span": "from August 1, 2023 to July 31, 2024"
+     }
+    ],
+    "sunset_date": {
+     "value": "2024-07-31",
+     "raw": "to July 31, 2024",
+     "derived": false,
+     "quoted_span": "from August 1, 2023 to July 31, 2024"
+    },
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": 15,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to units subject to AB 1482 in the City of Los Angeles."
+    },
+    "coverage_text": "Units subject to AB 1482 in Los Angeles.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": true,
+    "confidence": 0.6
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "just_cause_eviction",
+    "title": "AB 1482 just cause limitations – single-family home/condo exemption",
+    "requirement": "State law imposes 'just cause' limitations on tenancies; single-family homes and condominiums not owned by a REIT, corporation, or LLC with a corporate member are exempt if the landlord notified the tenant in writing.",
+    "key_value": null,
+    "citation": "Cal. Civ. Code § 1946.2",
+    "citation_aliases": [
+     "AB 1482",
+     "California Tenant Protection Act of 2019"
+    ],
+    "quoted_span": "The landlord notified the tenant\nin writing\nthat the tenancy is not subject to the “just cause” and rent increase limitations as specifically described in Civil Code Sections 1946.2(e)(8)(B)(i) and 1947.12(d)(5)(B)(i).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant",
+       "field": "owner_type",
+       "op": "in",
+       "value": [
+        "not real estate trust",
+        "not corporation",
+        "not LLC with corporate member"
+       ]
+      }
+     ],
+     "notes": "Single-family exemption does not apply where there is more than one dwelling unit on the lot or an inseparable second unit."
+    },
+    "coverage_text": "Residential tenancies under state law; document describes only the single-family/condo exemption.",
+    "exemptions": "Single-family homes and condominiums not owned by a REIT, corporation, or LLC with corporate member, with written notice; exempt from state law but not from the Los Angeles JCO.",
+    "interaction": "Properties exempt from state law may still be covered by the Los Angeles JCO.",
+    "is_secondary_source": true,
+    "confidence": 0.45
+   }
+  ],
+  "notes": "LAHD guidance page. The JCO is cited only by name; the page gives no code section. The rule on non-payment of rent below Fair Market Rent names no ordinance. Registration, right-to-counsel and notice-posting duties, and the requirement to file eviction notices, fall outside the extraction categories, so they were not recorded."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "0bb834966e1d84428c673448e673cea85b00b8e34e9b6b7fc6d06451ce742b40",
+ "usage": {
+  "input_tokens": 2691,
+  "output_tokens": 7498,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:42:32.367534+00:00"
+}

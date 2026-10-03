@@ -1,0 +1,100 @@
+{
+  "doc_id": "D049",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D049#0",
+      "team_rule_id": null,
+      "jurisdiction": "MA",
+      "level": "state",
+      "category": "screening_restrictions",
+      "title": "Prohibition on discrimination against public assistance and housing subsidy recipients (source of income)",
+      "requirement": "Anyone furnishing rental accommodations may not discriminate against a person because they receive public assistance or federal, state, or local housing subsidies such as rental assistance, or because of any requirement of those programs. Advertisements for covered housing also may not indicate a preference, limitation, or discrimination based on public assistance recipiency.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "rental accommodations"
+        ],
+        "exemption_conditions": [],
+        "notes": "Subsection 10 applies to any person furnishing credit, services or rental accommodations. The related advertising ban in subsection 7B covers multiple dwelling, contiguously located, publicly assisted or other covered housing accommodations, 'except where otherwise legally permitted'."
+      },
+      "coverage_text": "Any person furnishing rental accommodations, as well as credit or services. Protects recipients of federal, state, or local public assistance, including medical assistance, and tenants receiving federal, state, or local housing subsidies, including rental assistance or rental supplements.",
+      "exemptions": "Subsection 10 states no exemptions. The 7B advertising ban does not apply where something is otherwise legally permitted.",
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "M.G.L. c. 151B, § 4",
+      "citation_aliases": [],
+      "source_doc_id": "D049",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "10. For any person furnishing credit, services or rental accommodations to discriminate against any individual who is a recipient of federal, state, or local public assistance, including medical assistance, or who is a tenant receiving federal, state, or local housing subsidies, including rental assistance or rental supplements, because the individual is such a recipient, or because of any requirement of such public assistance, rental assistance, or housing subsidy program.",
+      "quote_location": {
+        "raw_start": 37265,
+        "raw_end": 37743,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.75,
+      "confidence": 0.675,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 16063,
+      "output_tokens": 1521,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is M.G.L. c. 151B, § 4, which mostly covers employment and general anti-discrimination rules. Only one rule was recorded: subsection 10, with the related advertising ban in 7B, which bars discrimination based on public assistance or housing subsidy status (source of income). The criminal-record limits in subsections 9 and 9 1/2 apply only to employment, so they were not recorded. General housing discrimination bans (subsections 6, 7, 7A, 11, 18) were not recorded because they do not specifically limit tenant screening by criminal history or source of income."
+  }
+}

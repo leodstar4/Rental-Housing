@@ -1,0 +1,134 @@
+{
+  "doc_id": "D076",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D076#0",
+      "team_rule_id": null,
+      "jurisdiction": "San Diego, CA",
+      "level": "city",
+      "category": "algorithmic_rent_setting",
+      "title": "Prohibition of Anti-Competitive Automated Rent Price-Fixing Ordinance (proposed SDMC Division 11)",
+      "requirement": "Prohibits any person from selling, licensing, or otherwise providing an algorithmic device that uses nonpublic competitor data to recommend rental rates or occupancy levels to a landlord, and prohibits landlords from using such a device to set rents or occupancy levels for residential rental property. Each month and each property counts as a separate violation; tenants may sue for injunctive relief, damages, or civil penalties of up to $1,000 per violation, plus attorney's fees.",
+      "key_value": "Ban on sale/licensing/use; civil penalties up to $1,000 per violation",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Software or product that publishes reports on rental rates or occupancy levels from aggregated historical nonpublic competitor data more than 90 days old, or from public information, and does not recommend rates or occupancy levels for future leases or renewals, is not an algorithmic device.",
+            "field": "other",
+            "op": "in",
+            "value": [
+              "aggregated reporting software using data more than 90 days old or public information, without recommendations"
+            ]
+          },
+          {
+            "condition": "Software or product used to establish rental rates or income limits in accordance with local, state, or federal affordable housing program guidelines is not an algorithmic device.",
+            "field": "other",
+            "op": "in",
+            "value": [
+              "affordable housing program rent/income limit software"
+            ]
+          }
+        ],
+        "notes": "Applies to persons selling/licensing/providing algorithmic devices to landlords, and to landlords using them for residential rental property in the City of San Diego."
+      },
+      "coverage_text": "Applies to any person who sells, licenses, or provides algorithmic devices to landlords, and to landlords who use such devices to set rental rates or occupancy levels for residential rental property in the City of San Diego.",
+      "exemptions": "Excluded from the definition of algorithmic device: (a) software publishing reports from aggregated historical nonpublic competitor data more than 90 days old or from public information that does not recommend rates or occupancy levels for future leases or renewals; (b) software used to establish rental rates or income limits under local, state, or federal affordable housing program guidelines.",
+      "stage": "bill_pending",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": null,
+          "raw": "on the thirtieth day from and after its final passage",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D076",
+          "quoted_span": "This Ordinance will take effect and be in force on the thirtieth day from\nand after its final passage.",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "The remedies are cumulative and are in addition to any other remedies at law, statute, or ordinance.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "San Diego Mun. Code § 98.1103",
+      "citation_aliases": [
+        "O-2025-107",
+        "Prohibition of Anti-Competitive Automated Rent Price-Fixing Ordinance",
+        "San Diego Municipal Code Chapter 9, Article 8, Division 11",
+        "San Diego Mun. Code § 98.1104"
+      ],
+      "source_doc_id": "D076",
+      "source_url": "https://sandiego.gov/sites/default/files/2025-04/automated-rent-price-fixing-prohibition-ordinance-materials.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "(a) It is unlawful for a person to sell, license, or otherwise provide an\nalgorithmic device to a landlord.\n(b) It is unlawful for a landlord to use an algorithmic device to set rental rates\nor occupancy levels for residential rental property.",
+      "quote_location": {
+        "raw_start": 15362,
+        "raw_end": 15605,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.8,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 8862,
+      "output_tokens": 1932,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is a February 27, 2025 staff report with a proposed ordinance (O-2025-107). The final passage date and ordinance number are blank, so it is recorded as bill_pending. The ordinance takes effect 30 days after final passage, but that date cannot be calculated because the final passage date is not in the document."
+  }
+}

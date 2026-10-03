@@ -1,0 +1,58 @@
+# Citations the challenge brief gives as examples per category (list supplied by the team;
+# the repo's brief PDF, "...v5-participant-no-scoring-no-hour16.pdf", does not contain it).
+#
+# MEASUREMENT ONLY: smoke-check reads this file to score coverage. It is never read by the
+# extraction pipeline and never fed to the model.
+#
+# Fields: id, label, jurisdiction, category (null = any), patterns (Python regex, case-
+# insensitive, matched against citation, citation_aliases and evidence citations of every
+# rule), note. Absence is explained from evidence, not from this file: smoke-check searches
+# the loadable corpus text for the patterns and the manifest for link-only sources.
+
+citations:
+  - {id: ca-1947-12, label: "Cal. Civ. Code § 1947.12", jurisdiction: "CA", category: rent_increase_limits,
+     patterns: ['1947\.12', 'AB ?1482']}
+  - {id: sf-ch37, label: "S.F. Admin. Code ch. 37", jurisdiction: "San Francisco, CA", category: rent_increase_limits,
+     patterns: ['S\.F\. Admin\. Code (ch\. 37|§ 37\.)', 'Rent Ordinance']}
+  - {id: la-rso, label: "LA RSO (L.A. Mun. Code ch. XV)", jurisdiction: "Los Angeles, CA", category: rent_increase_limits,
+     patterns: ['L\.A\. Mun\. Code ch\. XV', 'Rent Stabilization Ordinance', '\bRSO\b']}
+  - {id: ma-40p, label: "M.G.L. c. 40P", jurisdiction: "MA", category: rent_increase_limits,
+     patterns: ['c\. ?40P', 'Chapter 40P']}
+  - {id: ca-1946-2, label: "Cal. Civ. Code § 1946.2", jurisdiction: "CA", category: just_cause_eviction,
+     patterns: ['1946\.2']}
+  - {id: nj-2a-18-61-1, label: "N.J.S.A. 2A:18-61.1", jurisdiction: "NJ", category: just_cause_eviction,
+     patterns: ['2A:18-61\.1\b', 'Anti-Eviction Act']}
+  - {id: ca-1950-5, label: "Cal. Civ. Code § 1950.5", jurisdiction: "CA", category: security_deposits,
+     patterns: ['1950\.5']}
+  - {id: nj-46-8-21-2, label: "N.J.S.A. 46:8-21.2", jurisdiction: "NJ", category: security_deposits,
+     patterns: ['46:8-21\.2']}
+  - {id: ma-186-15b, label: "M.G.L. c. 186, § 15B", jurisdiction: "MA", category: null,
+     patterns: ['c\. ?186, ?§ ?15B']}
+  - {id: ca-1950-6, label: "Cal. Civ. Code § 1950.6", jurisdiction: "CA", category: application_screening_fees,
+     patterns: ['1950\.6']}
+  - {id: nj-pl2025-405, label: "P.L.2025, c.405", jurisdiction: "NJ", category: application_screening_fees,
+     patterns: ['P\.L\. ?2025, ?c\. ?405', '46:8-18\.1', 'A4899']}
+  - {id: ma-112-87ddd, label: "M.G.L. c. 112, § 87DDD½", jurisdiction: "MA", category: application_screening_fees,
+     patterns: ['87DDD']}
+  - {id: nj-fair-chance, label: "NJ Fair Chance in Housing Act (P.L.2021, c.110)", jurisdiction: "NJ",
+     category: screening_restrictions, patterns: ['P\.L\. ?2021, ?c\. ?110', 'Fair Chance in Housing', '46:8-5[2-9]']}
+  - {id: ca-feha-sb329, label: "FEHA / SB 329 (source of income)", jurisdiction: "CA", category: screening_restrictions,
+     patterns: ['Fair Employment and Housing', '\bFEHA\b', 'SB ?329', '12955']}
+  - {id: ca-ab325, label: "AB 325 (Cal. Bus. & Prof. Code § 16729)", jurisdiction: "CA", category: algorithmic_rent_setting,
+     patterns: ['AB ?325', '16729']}
+  - {id: sf-37-10c, label: "S.F. Admin. Code § 37.10C", jurisdiction: "San Francisco, CA", category: algorithmic_rent_setting,
+     patterns: ['37\.10C']}
+  - {id: sd-98-1101, label: "San Diego Mun. Code §§ 98.1101-98.1104", jurisdiction: "San Diego, CA",
+     category: algorithmic_rent_setting, patterns: ['98\.110[1-4]']}
+  - {id: brk-13-63, label: "Berkeley Mun. Code ch. 13.63", jurisdiction: "Berkeley, CA", category: algorithmic_rent_setting,
+     patterns: ['13\.63']}
+  - {id: sna-ns-3090, label: "Santa Ana Ordinance NS-3090", jurisdiction: "Santa Ana, CA", category: null,
+     patterns: ['NS-?3090'], note: "jurisdiction inferred from Santa Ana's NS- ordinance numbering; not in corpus text"}
+  - {id: hob-218-12, label: "Hoboken Code § 218-12", jurisdiction: "Hoboken, NJ", category: null,
+     patterns: ['218-12'], note: "jurisdiction inferred (Hoboken code, ecode360); not in corpus text"}
+  - {id: nwk-ch158, label: "Newark Code ch. 158", jurisdiction: "Newark, NJ", category: null,
+     patterns: ['ch(apter|\.)? ?158\b'], note: "jurisdiction inferred (Newark code, ecode360); not in corpus text"}
+  - {id: nj-fair-act, label: "P.L.2026, c.43 (NJ FAIR Act)", jurisdiction: "NJ", category: algorithmic_rent_setting,
+     patterns: ['P\.L\. ?2026, ?c\. ?43\b', 'FAIR Act']}
+  - {id: ma-s2983-h5222, label: "MA S.2983 / H.5222", jurisdiction: "MA", category: algorithmic_rent_setting,
+     patterns: ['S\.2983', 'H\.5222']}

@@ -1,0 +1,110 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "Los Angeles, CA",
+    "level": "city",
+    "category": "rent_increase_limits",
+    "title": "RSO annual allowable rent increase for July 1, 2025 – June 30, 2026",
+    "requirement": "For rental units subject to the Los Angeles Rent Stabilization Ordinance, the annual allowable rent increase is 3% for the period July 1, 2025 through June 30, 2026.",
+    "key_value": "3%",
+    "citation": "Los Angeles Rent Stabilization Ordinance",
+    "citation_aliases": [
+     "RSO"
+    ],
+    "quoted_span": "Annual rent increases for rental units subject to the City of Los Angeles Rent Stabilization Ordinance (RSO), effective\nJuly 1, 2025, through June 30, 2026\nis\n3%\n.",
+    "stage": "administrative",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2025-07-01",
+      "raw": "July 1, 2025",
+      "derived": false,
+      "quoted_span": "July 1, 2025, through June 30, 2026"
+     }
+    ],
+    "sunset_date": {
+     "value": "2026-06-30",
+     "raw": "June 30, 2026",
+     "derived": false,
+     "quoted_span": "July 1, 2025, through June 30, 2026"
+    },
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies only to rental units subject to the City of Los Angeles RSO; non-RSO properties should contact the Housing Department."
+    },
+    "coverage_text": "Rental units subject to the City of Los Angeles Rent Stabilization Ordinance (RSO).",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "Los Angeles, CA",
+    "level": "city",
+    "category": "rent_increase_limits",
+    "title": "RSO: no additional percentage increase for utilities",
+    "requirement": "Beginning February 2, 2026, landlords of RSO units may no longer add any additional percentage rent increase for utilities on top of the annual allowable increase.",
+    "key_value": "No additional utility percentage increase",
+    "citation": "Los Angeles Rent Stabilization Ordinance",
+    "citation_aliases": [
+     "RSO"
+    ],
+    "quoted_span": "Beginning February 2, 2026, a landlord can no longer include any additional percentage increase for utilities.",
+    "stage": "unknown",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2026-02-02",
+      "raw": "February 2, 2026",
+      "derived": false,
+      "quoted_span": "Beginning February 2, 2026"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to rental units subject to the City of Los Angeles RSO."
+    },
+    "coverage_text": "Rental units subject to the City of Los Angeles Rent Stabilization Ordinance (RSO).",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.7
+   }
+  ],
+  "notes": "LAHD page. I left out the state 30-day notice requirement because it is a notice rule, not a cap, and the page doesn't name the law. I also left out the SCEP/RSO fee pass-throughs ($2.83 and $1.61 per month) because they are allowed fee surcharges, not limits on rent increases."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "92c996711308af210e499185db3252f59965795c3120a5485a52551cb6c8ca22",
+ "usage": {
+  "input_tokens": 1295,
+  "output_tokens": 2259,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:42:02.212708+00:00"
+}

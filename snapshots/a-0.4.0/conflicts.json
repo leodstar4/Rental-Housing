@@ -1,0 +1,56 @@
+{
+  "conflicts": [
+    {
+      "type": "key_value",
+      "rule_ids": [
+        "CA-FEE-01",
+        "CA-FEE-02"
+      ],
+      "jurisdiction": "CA",
+      "category": "application_screening_fees",
+      "detail": "D026: '$30 per applicant, CPI-adjusted annually' vs D005: '$68.96 (2026 maximum)'",
+      "source_doc_ids": [
+        "D005",
+        "D026"
+      ]
+    },
+    {
+      "type": "preemption_no_local_rule",
+      "rule_ids": [
+        "MA-RENT-01"
+      ],
+      "jurisdiction": "MA",
+      "category": "rent_increase_limits",
+      "detail": "state rule preempts/prohibits local rules, but no local rule of this category in this state was extracted from the corpus",
+      "source_doc_ids": [
+        "D048"
+      ]
+    },
+    {
+      "type": "preemption_no_local_rule",
+      "rule_ids": [
+        "NJ-ALGO-01"
+      ],
+      "jurisdiction": "NJ",
+      "category": "algorithmic_rent_setting",
+      "detail": "state rule preempts/prohibits local rules, but no local rule of this category in this state was extracted from the corpus",
+      "source_doc_ids": [
+        "D069"
+      ]
+    },
+    {
+      "type": "preemption",
+      "rule_ids": [
+        "NJ-RENT-03",
+        "JC-RENT-01"
+      ],
+      "jurisdiction": "NJ",
+      "category": "rent_increase_limits",
+      "detail": "NJ-RENT-03 interaction: State law preempts application of local rent control ordinances to newly constructed multiple dwellings for 30 years. [Preempts: JC-RENT-01]",
+      "source_doc_ids": [
+        "D036",
+        "D067"
+      ]
+    }
+  ]
+}

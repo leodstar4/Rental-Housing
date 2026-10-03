@@ -9,10 +9,18 @@ Secrets and full document text are never logged.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import datetime
+import json
+import os
+import secrets
+import threading
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from . import config
+
+_LOCK = threading.Lock()  # extraction runs in a thread pool
 
 
 @dataclass(frozen=True)
@@ -29,14 +37,36 @@ class AuditEvent:
 
 def new_run_id() -> str:
     """Sortable unique id for this pipeline run (UTC timestamp + random suffix)."""
-    raise NotImplementedError
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + secrets.token_hex(3)
 
 
 def append(event: AuditEvent, path: Path | None = None) -> None:
     """Append one JSON line (open with ``"a"``, flush + fsync)."""
-    raise NotImplementedError
+    path = path or config.AUDIT_PATH
+    record = asdict(event)
+    record["ts"] = (event.ts or datetime.now(timezone.utc)).isoformat()
+    line = json.dumps(record, ensure_ascii=False, default=str, sort_keys=True)
+    with _LOCK:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "a", encoding="utf-8", newline="\n") as f:
+            f.write(line + "\n")
+            f.flush()
+            os.fsync(f.fileno())
 
 
 def read_events(path: Path | None = None, run_id: str | None = None) -> list[AuditEvent]:
     """Read back events, optionally for one run (for the demo / smoke-check)."""
-    raise NotImplementedError
+    path = path or config.AUDIT_PATH
+    if not path.exists():
+        return []
+    events: list[AuditEvent] = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            if run_id and d.get("run_id") != run_id:
+                continue
+            d["ts"] = datetime.fromisoformat(d["ts"]) if d.get("ts") else None
+            events.append(AuditEvent(**d))
+    return events

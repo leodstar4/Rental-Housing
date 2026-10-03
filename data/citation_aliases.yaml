@@ -1,0 +1,91 @@
+# Citation alias table used by extractor/normalize.py.
+#
+# Each law entry maps the different ways documents refer to ONE law onto a canonical,
+# law-level citation. It is used to:
+#   * canonicalize `citation` (a bare name such as "Rent Ordinance" becomes the code chapter);
+#   * compute the "law key" of a rule (citation, citation_aliases and section numbers
+#     matching `section_pattern` all resolve to `canonical`), used to link administrative
+#     figures, resolve missing citations, and detect conflicts within the same law.
+#
+# Fields:
+#   jurisdiction     only applied to rules of this jurisdiction
+#   canonical        canonical law-level citation (schema style, "§ " with a space)
+#   names            names/abbreviations (case-insensitive, whole-string match after trimming)
+#   section_pattern  regex (Python, case-insensitive) on a canonical section citation
+#   source           why this mapping is believed correct (user decision or corpus document)
+#
+# Only add entries backed by the corpus or by an explicit decision; never by memory.
+
+laws:
+  - id: sf-rent-ordinance
+    jurisdiction: "San Francisco, CA"
+    canonical: "S.F. Admin. Code ch. 37"
+    names: ["Rent Ordinance", "San Francisco Rent Ordinance", "SF Rent Ordinance", "S.F. Rent Ordinance"]
+    section_pattern: '^S\.F\. Admin\. Code § 37\.'
+    source: >-
+      User decision (prompt 4: "Rent Ordinance" de SF = "S.F. Admin. Code ch. 37"). Corpus: D079 cites
+      Rent Ordinance § 37.9, D081 § 37.10C, D082/D083 "Rent Ordinance Section 37.9C".
+
+  - id: la-rso
+    jurisdiction: "Los Angeles, CA"
+    canonical: "L.A. Mun. Code ch. XV"
+    names: ["RSO", "Rent Stabilization Ordinance", "Rent Stabilization Ordinance (RSO)",
+            "Los Angeles Rent Stabilization Ordinance", "City of Los Angeles Rent Stabilization Ordinance"]
+    section_pattern: '^L\.A\. Mun\. Code § 151\.'
+    source: >-
+      User decision (prompt 4: "RSO" de LA = "L.A. Mun. Code ch. XV"). Corpus: D043 cites RSO provisions
+      as LAMC 151.09, 151.22-151.28, 151.30.
+
+  - id: berkeley-rent-ordinance
+    jurisdiction: "Berkeley, CA"
+    canonical: "Berkeley Mun. Code ch. 13.76"
+    names: ["Rent Ordinance", "Berkeley Rent Ordinance", "Berkeley's Rent Ordinance",
+            "Berkeley Rent Stabilization and Good Cause for Eviction Ordinance",
+            "Rent Stabilization and Eviction for Good Cause Ordinance"]
+    section_pattern: '^Berkeley Mun\. Code § 13\.76'
+    source: >-
+      Corpus: D008 (Rent Board AGA notice) grounds the Rent Ordinance's annual adjustment formula in
+      "Berkeley Municipal Code section 13.76.110A".
+
+  - id: jersey-city-rent-control
+    jurisdiction: "Jersey City, NJ"
+    canonical: "Jersey City Mun. Code ch. 260"
+    names: ["Rent Control Ordinance", "Jersey City Rent Control Ordinance",
+            "Jersey City Rent Control Ordinance - Chapter 260"]
+    section_pattern: '^Jersey City Mun\. Code § 260-'
+    source: "Corpus: D036 names the Rent Control Ordinance as Chapter 260."
+
+  - id: nj-lad
+    jurisdiction: "NJ"
+    canonical: "N.J.S.A. 10:5-12"
+    names: ["New Jersey Law Against Discrimination", "NJ Law Against Discrimination",
+            "Law Against Discrimination", "LAD"]
+    section_pattern: '^N\.J\.S\.A\. 10:5-'
+    source: "Corpus: D067 cites the Law Against Discrimination as N.J.S.A. 10:5-12."
+
+  - id: santa-ana-rso-jco
+    jurisdiction: "Santa Ana, CA"
+    canonical: "Santa Ana Rent Stabilization and Just Cause Eviction Ordinance"
+    names: ["Rent Stabilization and Just Cause Ordinance", "Rent Stabilization and Just Cause Eviction Ordinance"]
+    source: >-
+      Corpus: D084 (city page) names the combined ordinance; the corpus has no Santa Ana code
+      section number, so the canonical citation stays the ordinance name.
+
+# Generic formatting rules (applied to every citation, any jurisdiction), in order.
+# pattern -> replacement, Python regex, case-insensitive.
+formatting:
+  - ['^California Civil Code(?: Section)?\s*', 'Cal. Civ. Code § ']
+  - ['^Cal(?:ifornia|\.)? Civil Code(?: Section)?\s*', 'Cal. Civ. Code § ']
+  - ['^California Government Code(?: Section)?\s*', 'Cal. Gov. Code § ']
+  - ['^(?:California )?Business and Professions Code(?: Section)?\s*', 'Cal. Bus. & Prof. Code § ']
+  - ['^Cal\. (Civ|Gov|Bus\. & Prof\.) Code §?\s*(?=\d)', 'Cal. \1 Code § ']
+  - ['§§\s*', '§§ ']
+  - ['§(?=[^\s§])', '§ ']
+  - ['^LAMC(?: [Ss]ection| §)?\s*(?=\d)', 'L.A. Mun. Code § ']
+  - ['^S\.D\. Mun\. Code', 'San Diego Mun. Code']
+  - ['^S\.F\. Admin(?:istrative)? Code(?: [Ss]ection| §)?\s*(?=\d)', 'S.F. Admin. Code § ']
+  - ['^(.+?) Municipal Code(?: [Ss]ection| §)?\s*(?=\d)', '\1 Mun. Code § ']
+  - ['^(.+?) Municipal Code Chapter\s*', '\1 Mun. Code ch. ']
+  - ['\b(Mun\. Code|Admin\. Code) Ch\.\s*', '\1 ch. ']
+  - ['^P\.L\.\s+(\d{4})', 'P.L.\1']
+  - ['\s{2,}', ' ']

@@ -1,0 +1,141 @@
+{
+  "doc_id": "D066",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D066#0",
+      "team_rule_id": null,
+      "jurisdiction": "NJ",
+      "level": "state",
+      "category": "application_screening_fees",
+      "title": "Residential rental property application fee not to exceed $50",
+      "requirement": "A landlord or its agent may not require an application or similar fee above $50 to apply to lease or sublease a residential rental property. Starting January 1 of the year after enactment, the cap is adjusted each year for CPI increases. Violations carry penalties of up to $500, $750 and $1,000.",
+      "key_value": "$50 (annually CPI-adjusted)",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental property for dwelling purposes"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Dwelling unit located in a one-family or two-family dwelling offered for rent",
+            "field": "units",
+            "op": "<=",
+            "value": 2
+          },
+          {
+            "condition": "Licensee of the New Jersey Real Estate Commission, unless the licensee is the landlord of the residential rental property",
+            "field": "owner_type",
+            "op": "==",
+            "value": "New Jersey Real Estate Commission licensee (non-landlord)"
+          }
+        ],
+        "notes": "Applies to fees for applying to lease or sublease a residential rental property for dwelling purposes."
+      },
+      "coverage_text": "Landlords and their agents who charge application or similar fees to apply to lease or sublease residential rental property for dwelling purposes.",
+      "exemptions": "Does not apply to (1) a dwelling unit in a one-family or two-family dwelling offered for rent, or (2) a licensee of the New Jersey Real Estate Commission, unless the licensee is the landlord of the property.",
+      "stage": "enacted",
+      "enacted_date": {
+        "value": "2026-01-20",
+        "raw": "Approved January 20, 2026.",
+        "derived": false,
+        "verified": true,
+        "source_doc_id": "D066",
+        "quoted_span": "Approved January 20, 2026.",
+        "kind": "enacted",
+        "kind_source": "rule",
+        "rule_applied": null
+      },
+      "effective_dates": [
+        {
+          "value": "2026-05-01",
+          "raw": "the first day of the fourth month next following the date of enactment",
+          "derived": true,
+          "verified": true,
+          "source_doc_id": "D066",
+          "quoted_span": "This act shall take effect on the first day of the\nfourth month next following the date of enactment",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "N.J.S.A. 46:8-18.1",
+      "citation_aliases": [
+        "P.L.2025, c.405",
+        "P.L. 2025, c.405",
+        "A4899",
+        "Chapter 405",
+        "C.46:8-18.1"
+      ],
+      "source_doc_id": "D066",
+      "source_url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "1. a. A landlord, or\nagent thereof, shall not require an application or other similar fee to apply\nto lease or sublease a residential rental property for dwelling purposes, which\nexceeds $50.",
+      "quote_location": {
+        "raw_start": 333,
+        "raw_end": 524,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.92,
+      "confidence": 0.92,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 1651,
+      "output_tokens": 1755,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "One rule recorded. The effective date (May 1, 2026) was calculated from 'first day of the fourth month next following the date of enactment' and the approval date of January 20, 2026. The CPI adjustment of the cap (subsection d) is part of the same rule."
+  }
+}

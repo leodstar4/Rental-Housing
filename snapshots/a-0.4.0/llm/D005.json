@@ -1,0 +1,126 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "application_screening_fees",
+    "title": "State limits on tenant screening fees (Civil Code 1950.6)",
+    "requirement": "Landlords may charge a capped screening fee only to get information such as a credit report. They must give a copy of the credit report, a receipt with itemized costs, and a refund of any unused part of the fee. They must accept a reusable screening report if the tenant provides one. They may not charge a fee when no unit is available, and must refund applicants who are not selected unless they use a first-qualified-applicant policy and do not charge applicants they do not consider.",
+    "key_value": "$68.96 (2026 maximum)",
+    "citation": "Cal. Civ. Code § 1950.6",
+    "citation_aliases": [
+     "California Civil Code Section 1950.6"
+    ],
+    "quoted_span": "The landlord cannot charge a prospective tenant a screening fee if no rental unit is actually available. The landlord must also return a screening fee to any applicant not selected, or have a policy under which they: (1) review applications in the order received and the first qualified applicant gets the unit, and (2) do not charge a screening fee to any applicant not considered.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": "The page gives the maximum screening fee for 2026 as $68.96."
+    },
+    "coverage_text": "Prospective tenants who are charged screening fees by landlords.",
+    "exemptions": null,
+    "interaction": "Berkeley BMC 13.78.010 requires owners to disclose the maximum fee cap under Civil Code 1950.6(b).",
+    "is_secondary_source": true,
+    "confidence": 0.75
+   },
+   {
+    "jurisdiction": "Berkeley, CA",
+    "level": "city",
+    "category": "application_screening_fees",
+    "title": "Required tenant screening fee rights disclosure",
+    "requirement": "An owner who charges an applicant a fee for a credit report or to process an application must give a clear and conspicuous Tenant Screening Fee Rights Statement before receiving the fee. The owner must also state the maximum fee allowed under Civil Code 1950.6(b). This can go in the rental application or in a separate disclosure.",
+    "key_value": null,
+    "citation": "Berkeley Mun. Code § 13.78.010",
+    "citation_aliases": [
+     "BMC 13.78.010",
+     "Chapter 13.78"
+    ],
+    "quoted_span": "When an owner or the owner’s agent gets a request to rent residential property in Berkeley from an applicant and the owner charges a fee to purchase a consumer credit report and to validate, review, or otherwise process an application, the owner must provide, either in the rental application or in a separate disclosure before receiving the fee, a clear and conspicuous tenant screening fee rights statement and a statement of the maximum fee cap permitted under",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": null
+    },
+    "coverage_text": "Owners or their agents renting residential property in Berkeley who charge applicants screening or application fees.",
+    "exemptions": null,
+    "interaction": "Refers to the state fee cap in Cal. Civ. Code § 1950.6(b). Under BMC 13.78.018, Chapter 13.78 applies to all residential rental agreements regardless of contrary lease terms, and those terms cannot be enforced.",
+    "is_secondary_source": false,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "Berkeley, CA",
+    "level": "city",
+    "category": "application_screening_fees",
+    "title": "Ban on non-refundable fees for existing tenancies",
+    "requirement": "Owners may not charge existing tenants a non-refundable fee to renew a tenancy, in whole or in part. This includes fees tied to a roommate leaving or to requests to add or replace a roommate.",
+    "key_value": null,
+    "citation": "Berkeley Mun. Code § 13.78.016",
+    "citation_aliases": [
+     "BMC 13.78.016",
+     "Chapter 13.78"
+    ],
+    "quoted_span": "An owner of residential rental property (or the owner’s agent) cannot charge a non-refundable fee to any existing tenant for the purpose of renewing a tenancy, in whole or in part, including any fee associated with the departure of a roommate or to request to add or replace a roommate in a pre-existing household.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to existing tenants and pre-existing households."
+    },
+    "coverage_text": "Owners of residential rental property in Berkeley, and their agents, in dealings with existing tenants.",
+    "exemptions": null,
+    "interaction": "Under BMC 13.78.018, Chapter 13.78 applies to all residential rental agreements regardless of contrary lease terms, and those terms cannot be enforced.",
+    "is_secondary_source": false,
+    "confidence": 0.85
+   }
+  ],
+  "notes": "BMC 13.78.018 (applicability to existing agreements) is not recorded as its own rule. It is described in the interaction field of the Chapter 13.78 rules. The 2026 screening fee maximum ($68.96) is recorded as the key_value for the state Civil Code 1950.6 rule."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "755e6c75e1ee4a00a8f5f8be0326f3558ac84c83948f8afb5c410ba64a367b7d",
+ "usage": {
+  "input_tokens": 1199,
+  "output_tokens": 3270,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:40:09.439813+00:00"
+}

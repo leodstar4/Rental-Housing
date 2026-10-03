@@ -1,0 +1,32 @@
+# Calendar defaults applied by extractor/normalize.py when an ENACTED rule has a verified
+# enacted_date but no effective date of kind "effective" in its source text.
+#
+# A default never overrides a date stated in the text, and it is recorded on the rule as a
+# derived effective date (`derived: true`, `kind_source: default`, `rule_applied: <id>`),
+# so status.py and the audit trail show where the date came from.
+#
+# Only California is configured. NJ and MA have no default on purpose (decision: do not add
+# them unless requested); their statutes state their own effective dates ("This act shall
+# take effect ...").
+
+defaults:
+  - id: CA-const-art-IV-8c
+    jurisdiction: "CA"
+    level: state
+    stage: enacted
+    effective: january_1_next_year      # January 1 of the year after enacted_date
+    skip_if_text_matches:                # urgency statutes take effect immediately
+      - 'urgency statute'
+      - 'take effect immediately'
+      - 'necessary for the immediate preservation of the public peace, health, or safety'
+    description: >-
+      (c)(1) a regular-session statute takes effect on January 1 next following a 90-day period
+      from enactment; (c)(2) a bill passed before the Legislature's interim joint recess and in the
+      Governor's possession after that date takes effect on January 1 next following enactment
+      (the usual fall signing period); (c)(3) urgency statutes take effect immediately.
+      Default applied: January 1 of the year after enacted_date.
+    source: "Cal. Const. art. IV, § 8(c)(1)-(3)"
+    caveat: >-
+      Exact for bills signed in the fall signing period under (c)(2), which covers the corpus
+      (AB 325, approved October 6, 2025). A statute enacted under (c)(1) less than 90 days before
+      January 1 would take effect a year later; that case is not detected.

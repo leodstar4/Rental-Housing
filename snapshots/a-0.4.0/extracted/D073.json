@@ -1,0 +1,216 @@
+{
+  "doc_id": "D073",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D073#0",
+      "team_rule_id": null,
+      "jurisdiction": "San Diego, CA",
+      "level": "city",
+      "category": "just_cause_eviction",
+      "title": "San Diego Residential Tenant Protections – just cause for termination of tenancy",
+      "requirement": "Landlords may not terminate a tenancy without just cause. Just cause is either an enumerated at-fault reason (e.g., nonpayment, material lease breach, nuisance, criminal activity) or a good-faith no-fault reason (owner move-in, withdrawal from the rental market, a government order, or demolition/substantial remodel). For a no-fault termination, the landlord must give notice and pay relocation assistance of 2 months' actual rent (3 months for seniors or disabled tenants), either as a direct payment or as a rent waiver.",
+      "key_value": "Just cause required; no-fault relocation assistance = 2 months' rent (3 months for seniors/disabled)",
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": 15,
+        "property_types_covered": [
+          "residential rental property"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Transient and tourist hotel occupancy; short-term residential occupancy",
+            "field": "use_type",
+            "op": "in",
+            "value": [
+              "transient/tourist hotel",
+              "short-term residential occupancy"
+            ]
+          },
+          {
+            "condition": "Deed- or agreement-restricted affordable housing, or subsidized affordable housing (Section 8 is not exempt)",
+            "field": "use_type",
+            "op": "in",
+            "value": [
+              "deed-restricted affordable housing",
+              "subsidized affordable housing"
+            ]
+          },
+          {
+            "condition": "Mobilehomes subject to the Mobilehome Residency Law",
+            "field": "use_type",
+            "op": "==",
+            "value": "mobilehome subject to Mobilehome Residency Law"
+          },
+          {
+            "condition": "Nonprofit hospital, religious facility, extended care facility, licensed residential care facility for the elderly, adult residential facility, nonprofit transitional housing",
+            "field": "use_type",
+            "op": "in",
+            "value": [
+              "nonprofit hospital",
+              "religious facility",
+              "extended care facility",
+              "residential care facility for the elderly",
+              "adult residential facility",
+              "non-profit transitional housing"
+            ]
+          },
+          {
+            "condition": "Dormitories owned and operated by an institution of higher education or a K-12 institution",
+            "field": "use_type",
+            "op": "==",
+            "value": "dormitory"
+          },
+          {
+            "condition": "Tenant shares bathroom or kitchen facilities with a landlord who maintains their principal residence at the property",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Single-family residence occupied by the landlord as principal residence (renting no more than two bedrooms, two ADUs or two JADUs), including a mobilehome",
+            "field": "owner_occupied",
+            "op": "==",
+            "value": true
+          },
+          {
+            "condition": "Property with two dwelling units in a single structure where the landlord occupies one unit as principal residence from the start of the tenancy and continues to live there",
+            "field": "units",
+            "op": "==",
+            "value": 2
+          },
+          {
+            "condition": "Housing issued a certificate of occupancy within the previous 15 years, unless it is a mobilehome",
+            "field": "other",
+            "op": "==",
+            "value": "certificate of occupancy within previous 15 years (not mobilehome)"
+          },
+          {
+            "condition": "Separately alienable residential rental property whose landlord is not a REIT, a corporation, an LLC with at least one corporate member, or mobilehome park management, and where tenants received the required written exemption notice",
+            "field": "owner_type",
+            "op": "in",
+            "value": [
+              "natural person",
+              "other non-corporate owner"
+            ]
+          }
+        ],
+        "notes": "Exemption for a separately alienable unit requires written notice using prescribed language; for tenancies commenced or renewed on or after January 1, 2024, that notice must be in the lease. The 15-year certificate-of-occupancy exemption does not apply to mobilehomes. A tenancy means occupancy for more than 30 days and excludes fixed-term leases of 3 months or less."
+      },
+      "coverage_text": "Applies to residential rental property in San Diego (any dwelling or unit intended for human habitation, including units in mobilehome parks) for tenancies of more than 30 days. Fixed-term leases of three months or less are excluded.",
+      "exemptions": "Exempt: transient/tourist hotels; short-term residential occupancy; deed- or agreement-restricted or subsidized affordable housing (Section 8 is not exempt); mobilehomes under the Mobilehome Residency Law; nonprofit hospitals, religious facilities, extended care and residential care facilities, and nonprofit transitional housing; school/college dormitories; units where the tenant shares a kitchen or bathroom with a resident landlord; owner-occupied single-family homes (up to two bedrooms, ADUs or JADUs rented); owner-occupied duplexes; housing with a certificate of occupancy issued within the previous 15 years (except mobilehomes); and separately alienable units not owned by a REIT, a corporation, an LLC with a corporate member, or mobilehome park management, if the required notice was given.",
+      "stage": "enacted",
+      "enacted_date": {
+        "value": "2023-05-25",
+        "raw": "added 5-25-2023",
+        "derived": false,
+        "verified": true,
+        "source_doc_id": "D073",
+        "quoted_span": "added 5-25-2023 by",
+        "kind": "enacted",
+        "kind_source": "rule",
+        "rule_applied": null
+      },
+      "effective_dates": [
+        {
+          "value": "2023-06-24",
+          "raw": "effective 6-24-2023",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D073",
+          "quoted_span": "O-21647 N.S.; effective 6-24-2023.",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        },
+        {
+          "value": "2024-03-28",
+          "raw": "Amended 2-27-2024 by O-21769 N.S.; effective 3-28-2024",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D073",
+          "quoted_span": "(Amended 2-27-2024 by O-21769 N.S.; effective 3-28-2024.)",
+          "kind": "amendment",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Requires just cause consistent with Cal. Civ. Code § 1946.2. The rights it gives are in addition to state and federal law. Relocation assistance is credited against relocation assistance required by other federal, state or local law and is in addition to the return of deposits.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "S.D. Mun. Code § 98.0704",
+      "citation_aliases": [
+        "O-21647 N.S.",
+        "O-21769 N.S.",
+        "Chapter 9, Article 8, Division 7 of the San Diego Municipal Code",
+        "Residential Tenant Protections",
+        "S.D. Mun. Code § 98.0706"
+      ],
+      "source_doc_id": "D073",
+      "source_url": "https://docs.sandiego.gov/municode/municodechapter09/ch09art08division07.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "A landlord shall not terminate a tenancy without just cause.",
+      "quote_location": {
+        "raw_start": 10138,
+        "raw_end": 10198,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.85,
+      "confidence": 0.85,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 14047,
+      "output_tokens": 3490,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document covers San Diego Municipal Code Ch. 9, Art. 8, Div. 7 (Residential Tenant Protections). I recorded one just-cause rule, which includes the no-fault relocation assistance in § 98.0706. The required notice text mentions state rent caps (Cal. Civ. Code § 1947.12), but that is not a city rule, so I did not record it. The document has no rules on security deposit amounts, application fees, screening or algorithmic rent-setting."
+  }
+}

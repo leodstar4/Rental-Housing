@@ -1,0 +1,421 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Security deposit cap of 1.5 months' rent",
+    "requirement": "A landlord may not collect a security deposit of more than one and one-half times one month's rent, and any yearly increase in the deposit may not exceed 10% of the current deposit. Prepaid rent, including last month's rent, and pet deposits count toward the cap.",
+    "key_value": "1.5 months' rent; annual increase max 10%",
+    "citation": "N.J.S.A. 46:8-21.2",
+    "citation_aliases": [
+     "Security Deposit Law"
+    ],
+    "quoted_span": "The maximum-security deposit to be collected by the landlord cannot be more than \none and one-half times one month’s rent ( N.J.S.A. 46:8-21.2 ).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental",
+      "mobile homes"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Owner-occupied two- or three-family dwellings are exempt (unless the tenant opts in by written request)",
+       "field": "owner_occupied",
+       "op": "==",
+       "value": true
+      },
+      {
+       "condition": "Owner-occupied dwellings with three or fewer units",
+       "field": "units",
+       "op": "<=",
+       "value": 3
+      }
+     ],
+     "notes": "A tenant in an owner-occupied two- or three-family dwelling may make the law applicable 30 days after sending the landlord a written request."
+    },
+    "coverage_text": "Applies to most residential rental properties, including mobile homes.",
+    "exemptions": "Owner-occupied two- or three-family dwellings, unless the tenant makes the law applicable by written request (effective 30 days later).",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Return of security deposit within 30 days of tenancy termination",
+    "requirement": "Within 30 days after a tenancy ends, the landlord must return the deposit plus interest, less itemized deductions sent by registered or certified mail; if tenants are displaced by fire, flood, condemnation or evacuation, the deposit must be returned within five business days. Wrongful withholding exposes the landlord to double damages.",
+    "key_value": "30 days; 5 business days if displaced",
+    "citation": "N.J.S.A. 46:8-21.1",
+    "citation_aliases": [
+     "Security Deposit Law"
+    ],
+    "quoted_span": "Within 30 days after the termination of a tenancy, a landlord must return the security \ndeposit, plus interest earned less deductions, to the tenant ( N.J.S.A. 46:8-21.1).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental",
+      "mobile homes"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Owner-occupied two- or three-family dwellings are exempt from the Security Deposit Law unless the tenant opts in",
+       "field": "owner_occupied",
+       "op": "==",
+       "value": true
+      }
+     ],
+     "notes": "If tenant breaks lease without cause, the 30 days start when unit is re-rented or the lease expires, whichever first."
+    },
+    "coverage_text": "Applies to most residential rental properties covered by the Security Deposit Law.",
+    "exemptions": "Owner-occupied two- or three-family dwellings unless the tenant opts in.",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.8
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Security deposit return after domestic violence lease termination",
+    "requirement": "When a tenant terminates a lease under the Safe Housing Act, the landlord must make the security deposit plus interest available within 15 business days and notify the tenant in writing within three business days of where and when to pick it up.",
+    "key_value": "15 business days",
+    "citation": "N.J.S.A. 46:8-9.6",
+    "citation_aliases": [
+     "Safe Housing Act",
+     "N.J.S.A. 46:8-9.4 et seq."
+    ],
+    "quoted_span": "Within 15 business days after the lease  is terminated, the landlord shall make available \nthe return of the tenant’s security deposit, plus any interest earned, to the tenant or the tenant’s \nagent.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Does not apply to transient or seasonal rentals",
+       "field": "use_type",
+       "op": "in",
+       "value": [
+        "transient rental",
+        "seasonal rental"
+       ]
+      }
+     ],
+     "notes": "Applies to tenants terminating leases early as victims of domestic violence."
+    },
+    "coverage_text": "Tenants who terminate a lease early under the Safe Housing Act as domestic violence victims.",
+    "exemptions": "Transient or seasonal rentals.",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.65
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "just_cause_eviction",
+    "title": "Anti-Eviction Act good cause requirement",
+    "requirement": "A residential landlord may not evict a tenant or refuse to renew a written or oral lease without one of the statutory good causes (e.g., nonpayment, disorderly conduct, damage, rule violations, unconscionable-increase refusal, retirement from residential use, condo conversion, owner occupancy in small buildings, drug or assault convictions).",
+    "key_value": null,
+    "citation": "N.J.S.A. 2A:18-61.1",
+    "citation_aliases": [
+     "Anti-Eviction Act",
+     "N.J.S.A. 2A:18-61.1 to 61.12",
+     "Anti-Eviction Statute"
+    ],
+    "quoted_span": "No residential landlord may evict or fail to renew a \nlease, whether it is a written or an oral lease without good cause.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental",
+      "single-family homes",
+      "mobile homes",
+      "mobile home park land",
+      "apartments",
+      "rooming and boarding homes"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Two- or three-unit owner-occupied premises with two or fewer rental units may be exempt",
+       "field": "owner_occupied",
+       "op": "==",
+       "value": true
+      },
+      {
+       "condition": "Owner-occupied premises with three or fewer units",
+       "field": "units",
+       "op": "<=",
+       "value": 3
+      },
+      {
+       "condition": "Hotel, motel, or guest house rented to transient guests or seasonal tenants (unless occupant has no alternate residence and lives there continually)",
+       "field": "use_type",
+       "op": "in",
+       "value": [
+        "hotel",
+        "motel",
+        "guest house",
+        "transient",
+        "seasonal"
+       ]
+      },
+      {
+       "condition": "Unit held in trust for a developmentally disabled immediate family member who permanently occupies it",
+       "field": "other",
+       "op": "==",
+       "value": "unit held in trust for developmentally disabled family member"
+      }
+     ],
+     "notes": "Hotel and motel guests are covered if they have no alternate residence and reside there continually."
+    },
+    "coverage_text": "Most residential rental properties, including single-family homes, mobile homes and mobile home park land, apartment buildings and complexes, and rooming and boarding homes.",
+    "exemptions": "Two- or three-unit owner-occupied premises with two or fewer rental units; transient hotel/motel/guest house guests and seasonal tenants; units held in trust for a developmentally disabled immediate family member who permanently occupies the unit.",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "just_cause_eviction",
+    "title": "Senior citizen and disabled protected tenancy in conversions",
+    "requirement": "Eligible senior citizens, permanently disabled tenants and certain disabled veterans in buildings being converted to condominium, cooperative or fee simple ownership may be protected from eviction for 40 years if their income meets the statutory limit.",
+    "key_value": "40 years protection",
+    "citation": "N.J.S.A. 2A:18-61.28",
+    "citation_aliases": [
+     "Senior Citizens and Disabled Protected Tenancy Act",
+     "N.J.S.A. 2A:18-61.22 to -61.39"
+    ],
+    "quoted_span": "Tenants may be protected from eviction for 40 years \nif their family income is not more than three (3) times the average per person income in their \ncounty or $50,000.00, whichever  is greater (N.J.S.A. 2A:18-61.28).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "buildings converted to condominium, cooperative or fee simple ownership"
+     ],
+     "exemption_conditions": [],
+     "notes": "Tenant must be 62+ before conversion recording, permanently disabled, or a qualifying disabled veteran, have lived in the building at least one year before conversion recording, and have family income not more than 3x county per capita income or $50,000, whichever is greater."
+    },
+    "coverage_text": "Qualifying senior citizens, disabled tenants and disabled veterans living in buildings being converted for at least one year before the conversion recording date, subject to income limits.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.55
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "rent_increase_limits",
+    "title": "Rent increases must not be unconscionable",
+    "requirement": "A rent increase must not be unconscionable and must comply with any municipal rent ordinance; a tenant can be evicted for not paying an increase only after a valid notice to quit and notice of rent increase. The state itself sets no rent control cap.",
+    "key_value": "not unconscionable",
+    "citation": "N.J.S.A. 2A:18-61.1",
+    "citation_aliases": [
+     "Anti-Eviction Act"
+    ],
+    "quoted_span": "The increase in rent must not be \nunconscionable; it must not be so unreasonable as to shock the conscience of a fair and honest \nperson and must comply with any municipal ordinances governing rent increases.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies in context of eviction for nonpayment of rent increase under the Anti-Eviction Act."
+    },
+    "coverage_text": "Residential tenancies covered by the Anti-Eviction Act.",
+    "exemptions": null,
+    "interaction": "Increases must also comply with municipal rent control ordinances where they exist.",
+    "is_secondary_source": false,
+    "confidence": 0.7
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "rent_increase_limits",
+    "title": "No rent increases to cover conversion costs",
+    "requirement": "When a building is converted to condominium, cooperative or fee simple ownership, rents may not be increased to cover costs resulting solely from the conversion; this applies to all tenants in the building.",
+    "key_value": null,
+    "citation": "N.J.S.A. 2A:18-61.31",
+    "citation_aliases": [],
+    "quoted_span": "If a building is converted to a condominium or cooperative form of ownership, or to fee \nsimple ownership of units, rents may not be increased to cover cos ts resulting solely from the \nconversion (N.J.S.A. 2A:18-61.31).",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "buildings converted to condominium, cooperative or fee simple ownership"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to all tenants in the building regardless of protected tenancy eligibility; increases for new services or amenities are allowed."
+    },
+    "coverage_text": "All tenants in buildings converted to condominium, cooperative, or fee simple ownership.",
+    "exemptions": "Increases to cover new services or amenities are not prohibited.",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.7
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "rent_increase_limits",
+    "title": "New construction exempt from local rent control for 30 years",
+    "requirement": "Newly constructed multiple dwellings are exempt from any local rent control ordinance for 30 years following completion of construction.",
+    "key_value": "30-year exemption",
+    "citation": "N.J.S.A. 2A:42-84.5",
+    "citation_aliases": [
+     "Newly Constructed Multiple Dwellings Law"
+    ],
+    "quoted_span": "Under the Newly Constructed Multiple Dwellings Law ( N.J.S.A. 2A:42 -84.5), newly \nconstructed multiple dwellings shall be exempt from any local rent control ordinances for a period \nof 30 years following completion of construction of the building.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "newly constructed multiple dwellings"
+     ],
+     "exemption_conditions": [],
+     "notes": "Exemption lasts 30 years from completion of construction."
+    },
+    "coverage_text": "Newly constructed multiple dwellings, for 30 years after completion of construction.",
+    "exemptions": null,
+    "interaction": "State law preempts application of local rent control ordinances to newly constructed multiple dwellings for 30 years.",
+    "is_secondary_source": false,
+    "confidence": 0.6
+   },
+   {
+    "jurisdiction": "NJ",
+    "level": "state",
+    "category": "screening_restrictions",
+    "title": "LAD ban on source of lawful income discrimination",
+    "requirement": "Landlords may not refuse to rent or discriminate in renting housing based on, among other characteristics, the applicant's source of lawful income.",
+    "key_value": "source of lawful income",
+    "citation": "N.J.S.A. 10:5-12",
+    "citation_aliases": [
+     "New Jersey Law Against Discrimination",
+     "LAD"
+    ],
+    "quoted_span": "The New Jersey Law Against Discrimination (LAD), \nN.J.S.A. 10:5-12(g) to -(h), prohibits discrimination when selling or renting property and requires \nequal treatment in the sale or rental of housing regardless of race, creed, color, national origin, \nancestry, sex, marital status, civil union status, domestic partnership status, familial status, \naffectional or sexual orientation, gender  identity or expression, mental and physical disability, \nnationality, or source of lawful income.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [
+      {
+       "condition": "Two-family owner-occupied dwellings",
+       "field": "owner_occupied",
+       "op": "==",
+       "value": true
+      },
+      {
+       "condition": "Rooms in an owner- or resident-occupied single home; residences exclusively for one sex",
+       "field": "use_type",
+       "op": "in",
+       "value": [
+        "room in owner-occupied single home",
+        "single-sex residence"
+       ]
+      }
+     ],
+     "notes": "Exemptions per N.J.S.A. 10:5-5(n); age-restricted housing exemption pertains to familial status."
+    },
+    "coverage_text": "All landlord-tenant relationships, with listed exceptions.",
+    "exemptions": "Two-family owner-occupied dwellings, rooms in an owner- or resident-occupied single home, and residences planned exclusively for one sex; age-restricted housing as to familial status.",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.55
+   }
+  ],
+  "notes": "The document is the NJ DCA Truth in Renting guide. I took rules only from the content it describes. The guide says New Jersey has no state rent control. It also says landlords may charge for credit reports and reasonable application fees, but cites no state law setting a cap, so I did not record that as an application_screening_fees rule. It contains no rules on algorithmic rent setting."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "18270e48581b893e956522846162f5df17bc3c0da8638d63415ba36cae4c3bc9",
+ "usage": {
+  "input_tokens": 57792,
+  "output_tokens": 10263,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:44:32.192813+00:00"
+}

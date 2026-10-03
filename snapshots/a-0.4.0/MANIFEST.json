@@ -1,0 +1,357 @@
+{
+  "snapshot": "a-0.4.0",
+  "created_at": "2026-10-03T21:07:36+00:00",
+  "prompt_version": "a-0.4.0",
+  "prompt_sha256": "0e8a650611fe7b84693b29f4bb32b350a43bee1e3d16b1cc67d2a6522020a0bb",
+  "prompt_fingerprint": "de4378e508dd8397",
+  "model": "claude-opus-5-5",
+  "effort": "high",
+  "date_classifier_model": "claude-haiku-4-5",
+  "as_of": "2026-10-01",
+  "cost_usd": {
+    "extraction": 3.8585,
+    "date_classifier": 0.0086,
+    "total": 3.8671
+  },
+  "tokens": {
+    "input_tokens": 231645,
+    "output_tokens": 141857,
+    "cache_creation_input_tokens": 6076,
+    "cache_read_input_tokens": 322028
+  },
+  "counts": {
+    "documents": 54,
+    "exported_rules": 66,
+    "candidates": 103
+  },
+  "files_sha256": {
+    "rules.json": "632b46990235f99b0256ae94808fa2dd9a4c4ce9db15ee9d866fbb6683fc2468",
+    "ids.json": "36b5ce2b9aad7f6d9f0bfdb8461ac0c43482b80bec85c1a49bc86c13b561e5dd"
+  },
+  "documents": {
+    "D001": {
+      "text_sha256": "f89a1563dce4e84f48dbde53da6e5e7fbb7dfaf88af12243735685fbfc288274",
+      "llm_file": "llm/D001.json",
+      "source_url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf",
+      "retrieved_at": "2026-10-01T22:44:00+00:00"
+    },
+    "D003": {
+      "text_sha256": "6fa297f511219e72e83ead29bdaff436be29c2f30b714b2a674b477e09013a60",
+      "llm_file": "llm/D003.json",
+      "source_url": "https://rentboard.berkeleyca.gov/Fair_Chance",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D004": {
+      "text_sha256": "b7e786aa64ece248199cfdfeb8bd8e3c3b9e7b16105381f790eb06a25d74474b",
+      "llm_file": "llm/D004.json",
+      "source_url": "https://rentboard.berkeleyca.gov/elected-rent-board/news/2026-adjustments-relocation-assistance-payments",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D005": {
+      "text_sha256": "1ec0e4ecfc15c086f7162e0c1062e614cfc866e53b3f11a7c9cb64e8f53345dc",
+      "llm_file": "llm/D005.json",
+      "source_url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D006": {
+      "text_sha256": "a60118bd85a49598d478ad48774621034b98730af7fa5e0e779ee94798ebe3e6",
+      "llm_file": "llm/D006.json",
+      "source_url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D007": {
+      "text_sha256": "7d7dbbe214ecbfdb24682b00ea03adec1042fcdc31515d59f9528331716010ee",
+      "llm_file": "llm/D007.json",
+      "source_url": "https://rentboard.berkeleyca.gov/rights-responsibilities/security-deposits",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D008": {
+      "text_sha256": "3f2aa252406e19da1d06c4ebc24fba5fcff9bc1e8ccf1d9c9fa344e33e0df7af",
+      "llm_file": "llm/D008.json",
+      "source_url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/AGA%20Public%20Notice.pdf",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D009": {
+      "text_sha256": "14a340ac6c60b8f95f789993307f60ed7611d0f34837e1e3ccb1f42af05ea006",
+      "llm_file": "llm/D009.json",
+      "source_url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D010": {
+      "text_sha256": "788895840ecdc568a0f1d18edf64e31903e5016e385b484e71aaee79d2fa89f6",
+      "llm_file": "llm/D010.json",
+      "source_url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing",
+      "retrieved_at": "2026-10-01T22:44:00+00:00"
+    },
+    "D011": {
+      "text_sha256": "4d58b2a5d39ef77943d25b9e80340ac091466d305eddb3940eb32fcf88edd76c",
+      "llm_file": "llm/D011.json",
+      "source_url": "https://malegislature.gov/Bills/193/H3744",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D012": {
+      "text_sha256": "a627822fa944d706c0a09c13df6561139d10e0f011fd6be4c50db01e7dc57293",
+      "llm_file": "llm/D012.json",
+      "source_url": "https://www.boston.gov/departments/fair-housing-and-equity/boston-fair-housing-regulations",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D013": {
+      "text_sha256": "f38fc32a86969a73ca39c949495b168638a24089fd7fc0f9b47eba0dd33bd71d",
+      "llm_file": "llm/D013.json",
+      "source_url": "https://www.boston.gov/housing-stability-notification-act",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D014": {
+      "text_sha256": "665d405627ec3ba91fcc70766bc8efd646867bee3a04acff0135cb2ff2ccba72",
+      "llm_file": "llm/D014.json",
+      "source_url": "https://www.boston.gov/sites/default/files/file/2020/11/Housing%20Stability%20Notification%20Act%20Tenant%20FAQs.pdf",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D016": {
+      "text_sha256": "970d4bf7937f521aa964e72bedfa85873db32bcd6046dbebfacdbc38b1585061",
+      "llm_file": "llm/D016.json",
+      "source_url": "https://calcivilrights.ca.gov/housing/",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D022": {
+      "text_sha256": "d42cb41f876285d69e316e253d18a1366d88dc84057179774e7055ead39bd631",
+      "llm_file": "llm/D022.json",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D023": {
+      "text_sha256": "951d02c68939d507b8cc69a56b5ac4248797bb9c4b0c637038eadb349c7e9cd8",
+      "llm_file": "llm/D023.json",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D024": {
+      "text_sha256": "f1b24beea9b24d000e86ca162d8c229ec70696784f795b743bec6038ea3924f4",
+      "llm_file": "llm/D024.json",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D025": {
+      "text_sha256": "029ef33cc0b833e4a497734cb67502f928635b4e4563f1af91b0269cce663733",
+      "llm_file": "llm/D025.json",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D026": {
+      "text_sha256": "1e8f62037e1c18964c9da43a6cf135b557729bdac56b5188f518a47c8eacd606",
+      "llm_file": "llm/D026.json",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D027": {
+      "text_sha256": "4b1b7adc8c87f8c4a726604853fdeea010f48ddb24ec653ef391c97e5e40b0fb",
+      "llm_file": "llm/D027.json",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12955",
+      "retrieved_at": "2026-10-01T22:35:00+00:00"
+    },
+    "D029": {
+      "text_sha256": "f37817a8482b0a81787508768d5c3d35e5279cd0f5d5d3c3a7f43c5b68ecc016",
+      "llm_file": "llm/D029.json",
+      "source_url": "https://www.cambridgema.gov/departments/humanrightscommission",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D031": {
+      "text_sha256": "689074b99010ea1cff9c0383bd82a163542e45d06f763a7837f84bb6aad68c49",
+      "llm_file": "llm/D031.json",
+      "source_url": "https://www.cambridgema.gov/tenantrights",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D036": {
+      "text_sha256": "c05a11bc052b46e55eb0cb86b2e7c889526c75c9231ad7a2245108712b833a28",
+      "llm_file": "llm/D036.json",
+      "source_url": "https://www.jerseycitynj.gov/landlordtenant",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D039": {
+      "text_sha256": "a778f2bc625c9b6b8835a944eb484722eafa35234e685e0e0348e68c7d4cd069",
+      "llm_file": "llm/D039.json",
+      "source_url": "https://cityclerk.lacity.org/onlinedocs/2024/24-1031_misc_9-03-24.pdf",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D040": {
+      "text_sha256": "bad226702b0949f0cba39f48f2c546f510512724ad66096ec222ee4d5d78d441",
+      "llm_file": "llm/D040.json",
+      "source_url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D041": {
+      "text_sha256": "7ba394a23a0541cefd9287c325f22c8e39a5e1700204e5f970d700b0311bf226",
+      "llm_file": "llm/D041.json",
+      "source_url": "https://housing.lacity.gov/residents/rso-overview",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D042": {
+      "text_sha256": "95c03e7481305754e61087139fb3d913a09bf48f1da78d4daedff0f0dcbf44f5",
+      "llm_file": "llm/D042.json",
+      "source_url": "https://housing.lacity.gov/rso-rent-increase-calculator",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D043": {
+      "text_sha256": "d5f3d4949f7c91bef9fe3de4a454612dc6aa296ce02dc690013c9ccbb55cce10",
+      "llm_file": "llm/D043.json",
+      "source_url": "https://housing.lacity.gov/wp-content/uploads/2026/08/Relocation-Assistance-Bulletins-A-and-B-Combined.pdf",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D045": {
+      "text_sha256": "a264fbe6536cb466fb212ca6e6369adb5d41f0023e3b99cfb28e820377efa6d2",
+      "llm_file": "llm/D045.json",
+      "source_url": "https://malegislature.gov/Bills/194/H5222",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D046": {
+      "text_sha256": "4234de431d885b3b78471746482b56784f6f39b51c525a6e0d541d8eeb3d7296",
+      "llm_file": "llm/D046.json",
+      "source_url": "https://malegislature.gov/Bills/194/S2983",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D047": {
+      "text_sha256": "4234de431d885b3b78471746482b56784f6f39b51c525a6e0d541d8eeb3d7296",
+      "llm_file": "llm/D047.json",
+      "source_url": "https://malegislature.gov/Bills/194/S2983/BillHistory",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D048": {
+      "text_sha256": "b66acf571495358f5cbd390ca07009c4ba5359e44d3ae561ce4d8501b2693a82",
+      "llm_file": "llm/D048.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4",
+      "retrieved_at": "2026-10-01T22:36:00+00:00"
+    },
+    "D049": {
+      "text_sha256": "93cf618da8fcf14b49ce3aea88cdd1cfce27b2f6ac964fbf9f7f4f014d2834b0",
+      "llm_file": "llm/D049.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D050": {
+      "text_sha256": "e15b49b63767d346a4bf35436100e342ec0a9dabfa036f9efebf7b51e9793966",
+      "llm_file": "llm/D050.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D051": {
+      "text_sha256": "29df64d171e2811d9b276a443abc66b82090971afbbb9e786575cf8b6033dbd1",
+      "llm_file": "llm/D051.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D052": {
+      "text_sha256": "5cc03c40a0282e249d930dd29c48b549a8249a93c051764f5b6cea915937215e",
+      "llm_file": "llm/D052.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D053": {
+      "text_sha256": "d5eca5de1449b5c3c5a4d2db2512c61fa632d89032360be0603ecbc80657dda3",
+      "llm_file": "llm/D053.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section18",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D057": {
+      "text_sha256": "f704f9707c7f52e649c8a8f281021cf1f02e38b1998f525ccb1bed15ba7c11d2",
+      "llm_file": "llm/D057.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2",
+      "retrieved_at": "2026-10-01T22:56:00+00:00"
+    },
+    "D058": {
+      "text_sha256": "80a0a75992f78ba662f081b70c22af0def0e96475934f3818d6d37c56120a12d",
+      "llm_file": "llm/D058.json",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section31",
+      "retrieved_at": "2026-10-01T22:54:00+00:00"
+    },
+    "D065": {
+      "text_sha256": "177e9575775ffd8b86bc6dbc6fdaa586c26476df7d3e8a038156d2a349b8e495",
+      "llm_file": "llm/D065.json",
+      "source_url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D066": {
+      "text_sha256": "9dc19b37e66ba0faef9b281ff4c433934b74106caef126172df95859576ded47",
+      "llm_file": "llm/D066.json",
+      "source_url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D067": {
+      "text_sha256": "8c58600f7cb7b5c6207f4c2f45cc10a6020bc29ccf2d9669deca70f67b7f82fa",
+      "llm_file": "llm/D067.json",
+      "source_url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D068": {
+      "text_sha256": "3600d1ab00214a32fa08ab1a0ac663403eb8027a4ece43c3f7b01026b7845ddb",
+      "llm_file": "llm/D068.json",
+      "source_url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D069": {
+      "text_sha256": "15389a12d31abf65107fee4d68fe7e718aeff6f6abe49f50b151e97966c6f6cd",
+      "llm_file": "llm/D069.json",
+      "source_url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM",
+      "retrieved_at": "2026-10-01T22:56:00+00:00"
+    },
+    "D073": {
+      "text_sha256": "c724fe9293768351da0dd4dbc33af91a61ece0f1530aaa449a806d3ef503d115",
+      "llm_file": "llm/D073.json",
+      "source_url": "https://docs.sandiego.gov/municode/municodechapter09/ch09art08division07.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D076": {
+      "text_sha256": "4b40eade4290b9908358b99113cff5b84946806215a12c0dea3efb500955b14f",
+      "llm_file": "llm/D076.json",
+      "source_url": "https://sandiego.gov/sites/default/files/2025-04/automated-rent-price-fixing-prohibition-ordinance-materials.pdf",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D078": {
+      "text_sha256": "c07afe588658a1df18ba37f7968de0848e84256c34d2005ac75dd810820cf578",
+      "llm_file": "llm/D078.json",
+      "source_url": "https://sf-hrc.org/fair-chance-ordinance",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D079": {
+      "text_sha256": "85d17c8b06f71c36fb9c7a8c4d5d3051872f56d22d9ac39efc32e838cc0e2d7a",
+      "llm_file": "llm/D079.json",
+      "source_url": "https://sf.gov/information/overview-just-cause-evictions",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D080": {
+      "text_sha256": "018d6bb8e8c9a4525c2497547e4a6d0f2a0bee4acad1416a66173a2abf34352e",
+      "llm_file": "llm/D080.json",
+      "source_url": "https://www.sf.gov/news--annual-rent-increase-3126-22827-announced",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D081": {
+      "text_sha256": "5070e03c8ebbccd14dc96c1b7aade6b575689d0ba64d1c5b1ec8b246aad99704",
+      "llm_file": "llm/D081.json",
+      "source_url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D082": {
+      "text_sha256": "b8abd1f1ebc89ee2403029858d7b5573eeb65dfe2dd1e64d3f6cbc7dc8071487",
+      "llm_file": "llm/D082.json",
+      "source_url": "https://www.sf.gov/reports--archive-relocation-rates",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D083": {
+      "text_sha256": "aaf1216a55be226fc3752dfd2388f4d17488a9be7e20aaa15d4685b921c63487",
+      "llm_file": "llm/D083.json",
+      "source_url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D084": {
+      "text_sha256": "e66c93701dc71cb40df8d02ee7a3cd179f06868feff2418b8fd6f12b22e9cb62",
+      "llm_file": "llm/D084.json",
+      "source_url": "https://santa-ana.gov/departments/rent-stabilization",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    },
+    "D085": {
+      "text_sha256": "35e583e8aa13ca6d90716faf7a05e38b6d90dfc9c9feb06337db7fcbdf12da3c",
+      "llm_file": "llm/D085.json",
+      "source_url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19",
+      "retrieved_at": "2026-10-01T22:37:00+00:00"
+    }
+  }
+}

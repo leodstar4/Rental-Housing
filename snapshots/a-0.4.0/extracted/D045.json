@@ -1,0 +1,98 @@
+{
+  "doc_id": "D045",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D045#0",
+      "team_rule_id": null,
+      "jurisdiction": "MA",
+      "level": "state",
+      "category": "algorithmic_rent_setting",
+      "title": "An Act relative to preventing algorithmic rent fixing in the rental housing market (H.5222)",
+      "requirement": "Pending Massachusetts bill on preventing algorithmic rent fixing in the rental housing market. The status page does not describe what the bill would actually do.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [],
+        "notes": "Status page only; coverage not described."
+      },
+      "coverage_text": "Rental housing market (per title); no coverage details in document.",
+      "exemptions": null,
+      "stage": "bill_pending",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "MA H.5222",
+      "citation_aliases": [],
+      "source_doc_id": "D045",
+      "source_url": "https://malegislature.gov/Bills/194/H5222",
+      "retrieved_at": "2026-10-01T22:36:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
+      "quote_location": {
+        "raw_start": 109,
+        "raw_end": 191,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.8,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 424,
+      "output_tokens": 864,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "Bill status page. H.5222 is a new draft of H1564, reported favorably by the Joint Committee on Housing on 3/12/2026 and referred to House Ways and Means. Its substantive content is not described."
+  }
+}

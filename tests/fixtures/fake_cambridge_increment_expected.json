@@ -1,0 +1,87 @@
+{
+  "doc_id": "NEW-fake_cambridge_ordinance",
+  "as_of": "2026-10-01",
+  "snapshot": "a-0.4.0",
+  "prompt_version": "a-0.4.0",
+  "ingest": {
+    "doc_id": "NEW-fake_cambridge_ordinance",
+    "original_file": "tests\\fixtures\\fake_cambridge_ordinance.txt",
+    "original_sha256": "b96b8e693b07316e3a73ab732a5478cd8f8a87a020b76a0b00899147a0bc4e37",
+    "retrieved_at": "2026-10-03T21:02:57+00:00",
+    "jurisdiction_hint": "Cambridge, MA",
+    "text_file": "corpus/new/NEW-fake_cambridge_ordinance.txt"
+  },
+  "candidates": 1,
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "rules": [
+    {
+      "team_rule_id": "CAM-ALGO-01",
+      "change": "new",
+      "jurisdiction": "Cambridge, MA",
+      "level": "city",
+      "category": "algorithmic_rent_setting",
+      "title": "Prohibition on Algorithmic Rent-Setting Software",
+      "citation": "Cambridge Mun. Code § 8.72.030",
+      "status": "not_yet_effective",
+      "effective_date": "2027-03-13",
+      "effective_date_derived": true,
+      "effective_date_basis": "one hundred eighty (180) days after its adoption",
+      "key_value": "Prohibited in buildings with 6+ rental units; fine up to $1,000 per violation",
+      "coverage_conditions": {
+        "units_min": 6,
+        "property_types_covered": [
+          "residential rental"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Buildings containing fewer than six residential rental units are exempt.",
+            "field": "units",
+            "op": "<",
+            "value": 6
+          },
+          {
+            "condition": "Units owned or operated by the Cambridge Housing Authority are exempt.",
+            "field": "owner_type",
+            "op": "in",
+            "value": [
+              "Cambridge Housing Authority"
+            ]
+          }
+        ],
+        "notes": "Subsection (b) bars any person from selling, licensing, or providing such software to a landlord for setting rents on residential rental units in the City, without referring to covered buildings.",
+        "text": "Landlords (owners, lessors, sublessors, and their agents) of residential rental units in covered buildings, meaning buildings in Cambridge with six or more residential rental units. Also covers any person who provides algorithmic rent-setting software to landlords for units in the City."
+      },
+      "quoted_span": "(a) No landlord shall use algorithmic rent-setting software to set, recommend, or adjust\nthe rent or occupancy level of any residential rental unit in a covered building.",
+      "confidence": 0.85,
+      "fields_changed": []
+    }
+  ],
+  "new_conflicts": [],
+  "timings_s": {
+    "ingest": 0.03,
+    "extract (LLM)": 16.18,
+    "validate": 0.0,
+    "normalize": 0.4,
+    "conflicts": 0.07,
+    "status + export": 0.15
+  },
+  "total_s": 16.83,
+  "llm_usage": {
+    "input_tokens": 1209,
+    "output_tokens": 1676,
+    "cache_creation_input_tokens": 6076,
+    "cache_read_input_tokens": 0,
+    "cached": false
+  }
+}

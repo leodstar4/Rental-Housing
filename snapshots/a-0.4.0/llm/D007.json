@@ -1,0 +1,296 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "AB 12 security deposit cap of one month's rent",
+    "requirement": "Starting July 1, 2024, most landlords may charge a security deposit of no more than one month's rent for both furnished and unfurnished units. Last month's rent counts toward the deposit; first month's rent does not.",
+    "key_value": "1 month's rent",
+    "citation": "CA AB 12",
+    "citation_aliases": [
+     "Assembly Bill 12"
+    ],
+    "quoted_span": "Starting July 1, 2024, many landlords may only charge one month's rent for unfurnished and furnished units",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2024-07-01",
+      "raw": "July 1, 2024",
+      "derived": false,
+      "quoted_span": "Starting July 1, 2024, many landlords may only charge one month's rent"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Landlords who own only two rental properties with no more than four residential units total, held by a natural person, family trust, or LLC whose members are all natural persons, may charge up to two months' rent",
+       "field": "owner_type",
+       "op": "in",
+       "value": [
+        "natural person",
+        "family trust",
+        "LLC with all natural-person members"
+       ]
+      }
+     ],
+     "notes": "Small-landlord exception requires ownership of only two rental properties with no more than four residential units total."
+    },
+    "coverage_text": "Applies to furnished and unfurnished residential rental units starting July 1, 2024.",
+    "exemptions": "Small landlords (only two rental properties, no more than four units total, held by a natural person, family trust, or LLC with all natural-person members) may charge up to two months' rent.",
+    "interaction": "Replaced the earlier limits of two months' rent (unfurnished) and three months' rent (furnished) that applied before July 1, 2024.",
+    "is_secondary_source": true,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "AB 12 small landlord exception: two months' rent",
+    "requirement": "Landlords who own only two rental properties with no more than four residential units total, and who are natural persons, family trusts, or LLCs whose members are all natural persons, may charge up to two months' rent as a security deposit.",
+    "key_value": "2 months' rent",
+    "citation": "CA AB 12",
+    "citation_aliases": [
+     "Assembly Bill 12"
+    ],
+    "quoted_span": "Starting July 1, 2024, landlords who own only two rental properties with no more than four residential units total can charge up to two months' rent for furnished and unfurnished units if ownership is held by a natural person, family trust, or limited liability company (LLC) where all members are natural persons",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2024-07-01",
+      "raw": "July 1, 2024",
+      "derived": false,
+      "quoted_span": "Starting July 1, 2024, landlords who own only two rental properties"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": 4,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Landlord must own only two rental properties, and ownership must be held by a natural person, family trust, or LLC where all members are natural persons."
+    },
+    "coverage_text": "Landlords owning only two rental properties with no more than four residential units total, held by a natural person, family trust, or LLC with all natural-person members.",
+    "exemptions": null,
+    "interaction": "Exception to the general one-month cap under AB 12.",
+    "is_secondary_source": true,
+    "confidence": 0.85
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Security deposit return, permitted deductions, and walk-through inspection",
+    "requirement": "Landlords must return the deposit or any remaining portion within 21 days after the tenant vacates, along with an itemized statement and supporting documents for any deductions. Deductions are limited to rent default, damage beyond normal wear and tear, cleaning, and (if the lease allows) restoring personal property. Landlords must also offer a move-out walk-through inspection during the last two weeks of the tenancy.",
+    "key_value": "21 days",
+    "citation": null,
+    "citation_aliases": [],
+    "quoted_span": "All or any remaining portion of a security deposit must be returned\nwithin 21 days\nafter the tenant/s leave the unit vacant.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": "Cleaning deductions apply to tenancies beginning after January 1, 2003."
+    },
+    "coverage_text": "Residential tenancies under California state law.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": true,
+    "confidence": 0.7
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Proof of completed repairs for deposit deductions",
+    "requirement": "Starting January 1, 2025, landlords must provide proof that the repairs they deducted for were completed.",
+    "key_value": null,
+    "citation": null,
+    "citation_aliases": [],
+    "quoted_span": "Starting January 1, 2025, landlords must provide proof that necessary repairs were completed.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2025-01-01",
+      "raw": "January 1, 2025",
+      "derived": false,
+      "quoted_span": "Starting January 1, 2025, landlords must provide proof"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": null
+    },
+    "coverage_text": "Landlords making security deposit deductions for repairs.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": true,
+    "confidence": 0.6
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Move-out photographs before deposit deductions",
+    "requirement": "Starting April 1, 2025, landlords must photograph the unit after regaining possession and before repairs or cleaning they plan to deduct for. They must give the tenant these photos and a written explanation of the costs along with the itemized statement.",
+    "key_value": null,
+    "citation": null,
+    "citation_aliases": [],
+    "quoted_span": "Starting April 1, 2025, landlords must take photographs of a unit after regaining possession, but before any repairs or cleaning for which the landlord intends to make a deduction from the security deposit.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2025-04-01",
+      "raw": "April 1, 2025",
+      "derived": false,
+      "quoted_span": "Starting April 1, 2025, landlords must take photographs"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": null
+    },
+    "coverage_text": "Landlords who intend to deduct repair or cleaning costs from a security deposit.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": true,
+    "confidence": 0.6
+   },
+   {
+    "jurisdiction": "CA",
+    "level": "state",
+    "category": "security_deposits",
+    "title": "Move-in photographs at start of tenancy",
+    "requirement": "For tenancies that begin on or after July 1, 2025, landlords must photograph the unit immediately before or at the start of the tenancy to document its condition.",
+    "key_value": null,
+    "citation": null,
+    "citation_aliases": [],
+    "quoted_span": "For tenancies that begin on or after July 1, 2025, a landlord must photograph the unit immediately before or at the start of a new tenancy to document the condition of the unit.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [
+     {
+      "value": "2025-07-01",
+      "raw": "July 1, 2025",
+      "derived": false,
+      "quoted_span": "For tenancies that begin on or after July 1, 2025"
+     }
+    ],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [],
+     "exemption_conditions": [],
+     "notes": "Applies to tenancies beginning on or after July 1, 2025."
+    },
+    "coverage_text": "New tenancies beginning on or after July 1, 2025.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": true,
+    "confidence": 0.6
+   },
+   {
+    "jurisdiction": "Berkeley, CA",
+    "level": "city",
+    "category": "security_deposits",
+    "title": "Berkeley security deposit interest requirement",
+    "requirement": "For units fully or partially covered by Berkeley's Rent Ordinance, landlords must pay tenants interest on their security deposit at the end of each year. If the tenant moves out before the end of the year, the landlord must pay a prorated amount.",
+    "key_value": null,
+    "citation": "Berkeley Rent Ordinance",
+    "citation_aliases": [
+     "Berkeley's Rent Ordinance"
+    ],
+    "quoted_span": "For tenancies in units fully or partially covered by Berkeley's Rent Ordinance, landlords must pay tenants interest on their security deposit at the end of each year and a prorated amount if the tenant moves out before the end of the year.",
+    "stage": "enacted",
+    "enacted_date": null,
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [],
+     "notes": "Applies to units fully or partially covered by the Berkeley Rent Ordinance."
+    },
+    "coverage_text": "Tenancies in units fully or partially covered by Berkeley's Rent Ordinance.",
+    "exemptions": null,
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.8
+   }
+  ],
+  "notes": "This is a Berkeley Rent Board guidance page. It describes California state security deposit law (AB 12 and other state requirements) and the Berkeley Rent Ordinance's deposit interest rule. The page only names AB 12 for the deposit caps, so the other state rules have a null citation."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "a81c89bc3faf44f2571229660c261ab0406ae6399893046c37153122408523c9",
+ "usage": {
+  "input_tokens": 1576,
+  "output_tokens": 5162,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:40:40.359654+00:00"
+}

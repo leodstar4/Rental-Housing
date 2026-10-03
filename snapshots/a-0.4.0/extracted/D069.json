@@ -1,0 +1,147 @@
+{
+  "doc_id": "D069",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D069#0",
+      "team_rule_id": null,
+      "jurisdiction": "NJ",
+      "level": "state",
+      "category": "algorithmic_rent_setting",
+      "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+      "requirement": "Rental property owners may not pay for or use the services of a coordinator (algorithmic revenue management software or device performing a coordinating function), and no person may perform a coordinating function, facilitate anticompetitive agreements among rental property owners, or engage in or facilitate parallel pricing coordination. Violations are violations of the New Jersey Antitrust Act.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential dwelling unit"
+        ],
+        "exemption_conditions": [
+          {
+            "condition": "Residential dwelling unit does not include inpatient medical care, licensed long-term care, or detention or correctional facilities",
+            "field": "use_type",
+            "op": "in",
+            "value": [
+              "inpatient medical care",
+              "licensed long-term care",
+              "detention or correctional facilities"
+            ]
+          },
+          {
+            "condition": "Coordinator does not include a government entity setting or limiting rents through affordability controls in accordance with law",
+            "field": "owner_type",
+            "op": "==",
+            "value": "government entity applying affordability controls"
+          }
+        ],
+        "notes": "Applies to rental property owners (owning one or more rental residential dwelling units), coordinators, and any person performing a coordinating function. Algorithmic device excludes non-AI spreadsheets requiring human analysis and databases that only query unprocessed data."
+      },
+      "coverage_text": "Applies to rental property owners of residential dwelling units (houses, apartments, accessory units or other units intended as a primary residence in NJ), their agents, coordinators, and any person performing a coordinating function or parallel pricing coordination.",
+      "exemptions": "Residential dwelling units exclude inpatient medical care, licensed long-term care, and detention/correctional facilities. Coordinating function excludes use of competitively sensitive information solely for research/statistical analysis/testing not used to set prices; free public rent estimates; real estate brokerage databases available on equal terms that do not set/recommend prices or collect sensitive info for that purpose; and government entities setting rents through affordability controls. Algorithmic device excludes non-AI spreadsheets requiring human analysis and databases that only query unprocessed data.",
+      "stage": "enacted",
+      "enacted_date": {
+        "value": "2026-07-20",
+        "raw": "approved July 20, 2026",
+        "derived": false,
+        "verified": true,
+        "source_doc_id": "D069",
+        "quoted_span": "approved July 20, 2026",
+        "kind": "enacted",
+        "kind_source": "rule",
+        "rule_applied": null
+      },
+      "effective_dates": [
+        {
+          "value": "2027-07-01",
+          "raw": "the first day of the twelfth month next following the date of enactment",
+          "derived": true,
+          "verified": true,
+          "source_doc_id": "D069",
+          "quoted_span": "This act shall take effect on the first day of\nthe twelfth month next following the date of enactment.",
+          "kind": "effective",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Violations are violations of the New Jersey Antitrust Act (C.56:9-1 et seq.), with sections 6-17 of that act applicable; the act is in addition to existing antitrust law. Municipalities are prohibited from enacting ordinances that conflict with the act (except ordinances explicitly authorized or required by other law).",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "P.L.2026, c.43",
+      "citation_aliases": [
+        "FAIR Act",
+        "Forbidding the Algorithmic Inflation of Rent (FAIR) Act",
+        "A3497",
+        "Assembly, No. 3497",
+        "C.56:9-20 to 56:9-26",
+        "P.L. 2026, c.043",
+        "Chapter 43"
+      ],
+      "source_doc_id": "D069",
+      "source_url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM",
+      "retrieved_at": "2026-10-01T22:56:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "It\nshall be unlawful and a violation of the “New Jersey Antitrust Act,” P.L.1970,\nc.73 (C.56:9-1 et seq.) for:",
+      "quote_location": {
+        "raw_start": 7982,
+        "raw_end": 8092,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.9,
+      "confidence": 0.9,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 3642,
+      "output_tokens": 2228,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "Effective date derived: approved July 20, 2026; first day of the twelfth month next following enactment = July 1, 2027."
+  }
+}

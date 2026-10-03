@@ -1,0 +1,103 @@
+{
+ "tool_input": {
+  "rules": [
+   {
+    "jurisdiction": "Berkeley, CA",
+    "level": "city",
+    "category": "screening_restrictions",
+    "title": "Ronald V. Dellums Fair Chance Access to Housing Ordinance – criminal history screening ban",
+    "requirement": "Berkeley rental housing providers may not ask about or use criminal history or criminal background checks in advertising, applications, tenant selection, or decision-making. This includes refusing to rent, ending a tenancy, or charging a higher deposit or rent based on criminal history. A landlord who takes action based on criminal history must give the applicant or tenant written notice and a chance to respond.",
+    "key_value": null,
+    "citation": "Berkeley Mun. Code ch. 13.106",
+    "citation_aliases": [
+     "BMC 13.106",
+     "Fair Chance Access to Housing Ordinance",
+     "Ronald V. Dellums Fair Chance Access to Housing Ordinance"
+    ],
+    "quoted_span": "The Fair Chance Access to Housing Ordinance prohibits rental housing providers in Berkeley from asking about and using criminal history and/or criminal background checks in their rental housing advertising, applications, tenant selection process, or decision-making.",
+    "stage": "enacted",
+    "enacted_date": {
+     "value": "2020-04-14",
+     "raw": "April 14, 2020",
+     "derived": false,
+     "quoted_span": "On April 14, 2020, Berkeley City Council passed the Fair Chance Access to Housing Ordinance (BMC 13.106)."
+    },
+    "effective_dates": [],
+    "sunset_date": null,
+    "coverage": {
+     "units_min": null,
+     "units_max": null,
+     "year_built_min": null,
+     "year_built_max": null,
+     "certificate_of_occupancy_on_or_before": null,
+     "building_age_min_years": null,
+     "property_types_covered": [
+      "residential rental"
+     ],
+     "exemption_conditions": [
+      {
+       "condition": "Owner-occupied properties of 1-3 units where an owner of record lives in one of the units as their primary residence",
+       "field": "owner_occupied",
+       "op": "==",
+       "value": true
+      },
+      {
+       "condition": "Owner-occupied exemption applies only to properties with between 1 and 3 units",
+       "field": "units",
+       "op": "<=",
+       "value": 3
+      },
+      {
+       "condition": "Lifetime sex offenders",
+       "field": "other",
+       "op": "==",
+       "value": "lifetime sex offender"
+      },
+      {
+       "condition": "Limited exemptions for public housing/Section 8 properties",
+       "field": "use_type",
+       "op": "in",
+       "value": [
+        "public housing",
+        "Section 8"
+       ]
+      },
+      {
+       "condition": "Units under a rental agreement allowing owners to move back to their home in accordance with BMC 13.76.130 A.9",
+       "field": "other",
+       "op": "==",
+       "value": "owner move-back rental agreement per BMC 13.76.130 A.9"
+      },
+      {
+       "condition": "Units occupied by existing tenant(s) seeking to sublet or add/replace roommates",
+       "field": "other",
+       "op": "==",
+       "value": "existing tenant subletting or adding/replacing roommates"
+      }
+     ],
+     "notes": "The owner-occupied exemption needs both conditions: 1-3 units and owner residence. The public housing/Section 8 exemptions are limited; see the Ordinance for details."
+    },
+    "coverage_text": "Rental housing providers in Berkeley, for current and prospective tenants.",
+    "exemptions": "Lifetime sex offenders; limited exemptions for public housing/Section 8 properties; owner-occupied properties of 1-3 units where an owner of record lives in one unit as their primary residence; units under a rental agreement allowing owners to move back per BMC 13.76.130 A.9; units occupied by existing tenants seeking to sublet or add/replace roommates.",
+    "interaction": null,
+    "is_secondary_source": false,
+    "confidence": 0.88
+   }
+  ],
+  "notes": "This is the Berkeley Rent Board page summarizing the Berkeley ordinance. The page gives the City Council passage date but no effective date. Violations carry fines of $1,000 to $10,000 per violation; these are listed in the source but are not a separate rule."
+ },
+ "model": "claude-opus-5-5",
+ "served_model": "claude-opus-5-5",
+ "prompt_version": "a-0.4.0",
+ "cache_key": "b5a607684b6c17b11453bf1e3e2e8761e7cdc69ee02492dd8feb8c7b37c687f9",
+ "usage": {
+  "input_tokens": 2058,
+  "output_tokens": 2007,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 6076,
+  "cached": false
+ },
+ "stop_reason": "tool_use",
+ "attempts": 1,
+ "created_at": "2026-10-03T20:39:59.110625+00:00"
+}

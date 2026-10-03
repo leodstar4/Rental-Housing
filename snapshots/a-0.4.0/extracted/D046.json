@@ -1,0 +1,100 @@
+{
+  "doc_id": "D046",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D046#0",
+      "team_rule_id": null,
+      "jurisdiction": "MA",
+      "level": "state",
+      "category": "algorithmic_rent_setting",
+      "title": "An Act prohibiting algorithmic rent setting (S.2983)",
+      "requirement": "Pending Senate bill that would prohibit algorithmic rent setting. The status page does not describe the bill's specific provisions.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [],
+        "exemption_conditions": [],
+        "notes": null
+      },
+      "coverage_text": null,
+      "exemptions": null,
+      "stage": "bill_pending",
+      "enacted_date": null,
+      "effective_dates": [],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": null,
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "MA S.2983",
+      "citation_aliases": [
+        "Senate, No. 2983"
+      ],
+      "source_doc_id": "D046",
+      "source_url": "https://malegislature.gov/Bills/194/S2983",
+      "retrieved_at": "2026-10-01T22:36:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "An Act prohibiting algorithmic rent setting",
+      "quote_location": {
+        "raw_start": 109,
+        "raw_end": 152,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.8,
+      "confidence": 0.8,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 626,
+      "output_tokens": 875,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "This is a bill status page. S.2983 is a new draft of S994 and S1016. On 3/12/2026 the Joint Committee on Housing reported it favorably and referred it to Senate Ways and Means. The page does not describe what the bill contains, so only the title, stage and citation are recorded."
+  }
+}

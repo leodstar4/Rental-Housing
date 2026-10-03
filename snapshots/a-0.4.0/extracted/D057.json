@@ -1,0 +1,115 @@
+{
+  "doc_id": "D057",
+  "error": null,
+  "rules": [
+    {
+      "uid": "D057#0",
+      "team_rule_id": null,
+      "jurisdiction": "MA",
+      "level": "state",
+      "category": "application_screening_fees",
+      "title": "Broker fee paid only by the party that engaged the broker",
+      "requirement": "Only a licensed broker or salesperson may charge a fee to find rental housing for prospective tenants. Any broker fee may be paid only by the party (landlord or tenant) who originally hired the broker and signed a contract with them.",
+      "key_value": null,
+      "coverage": {
+        "units_min": null,
+        "units_max": null,
+        "year_built_min": null,
+        "year_built_max": null,
+        "certificate_of_occupancy_on_or_before": null,
+        "building_age_min_years": null,
+        "property_types_covered": [
+          "residential rental"
+        ],
+        "exemption_conditions": [],
+        "notes": "Applies to fees for finding dwelling accommodations or tenants through licensed brokers/salespersons."
+      },
+      "coverage_text": "Applies to fees charged by people in the business of finding rental homes for prospective tenants, or tenants for landlords.",
+      "exemptions": null,
+      "stage": "enacted",
+      "enacted_date": null,
+      "effective_dates": [
+        {
+          "value": "2025-08-01",
+          "raw": "effective August 1, 2025",
+          "derived": false,
+          "verified": true,
+          "source_doc_id": "D057",
+          "quoted_span": "Text of section as amended by 2025, 9, Sec. 43 effective August 1, 2025.",
+          "kind": "amendment",
+          "kind_source": "rule",
+          "rule_applied": null
+        }
+      ],
+      "sunset_date": null,
+      "overrides": [],
+      "interaction": "Replaces the earlier text of the section, which was effective until August 1, 2025 and only required a broker or salesman license.",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "citation": "M.G.L. c. 112, § 87DDD1/2",
+      "citation_aliases": [
+        "2025, 9, Sec. 43",
+        "Section 87DDD.5"
+      ],
+      "source_doc_id": "D057",
+      "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2",
+      "retrieved_at": "2026-10-01T22:56:00+00:00",
+      "is_secondary_source": false,
+      "quoted_span": "Any fee shall only be paid by the party, lessor or tenant who originally engaged and entered into a contract with the licensed broker or salesperson.",
+      "quote_location": {
+        "raw_start": 1597,
+        "raw_end": 1746,
+        "match_type": "exact",
+        "score": null
+      },
+      "model_confidence": 0.55,
+      "confidence": 0.495,
+      "model": "claude-opus-5-5",
+      "prompt_version": "a-0.4.0",
+      "validation_errors": [],
+      "citation_resolved_from": null,
+      "evidence": [],
+      "key_value_details": [],
+      "merged_uids": [],
+      "merged_into": null,
+      "stage_history": [],
+      "disposition": "accepted",
+      "disposition_reason": null
+    }
+  ],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 1,
+    "match_types": {
+      "exact": 1
+    },
+    "dispositions": {
+      "accepted": 1
+    },
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 782,
+      "output_tokens": 1231,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The section regulates broker fees. I classified it as application_screening_fees because it limits upfront charges to tenants. The earlier version, in effect until August 1, 2025, only required a license and is not recorded as a separate fee rule."
+  }
+}

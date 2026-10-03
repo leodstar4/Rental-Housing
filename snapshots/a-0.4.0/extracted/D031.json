@@ -1,0 +1,36 @@
+{
+  "doc_id": "D031",
+  "error": null,
+  "rules": [],
+  "schema_rejected": [],
+  "validation": {
+    "candidates": 0,
+    "match_types": {},
+    "dispositions": {},
+    "reasons": {},
+    "quote_retries": 0,
+    "dates_dropped": 0
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "served_model": "claude-opus-5-5",
+    "prompt_version": "a-0.4.0",
+    "attempts": 1,
+    "cache_hit": true,
+    "usage": {
+      "input_tokens": 1981,
+      "output_tokens": 366,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 6076,
+      "cached": true
+    },
+    "retry_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cached": false
+    },
+    "notes": "The document is an FAQ page about the Cambridge Tenants Rights and Resources Notification Ordinance (Chapter 8.71 of the Cambridge Municipal Code). The ordinance only requires landlords to give tenants an informational guide at the start of a tenancy and when an eviction begins, with a fine of $300 per day for violations. It sets no rent increase limits and no just-cause eviction grounds; the page says it 'does not prevent a landlord from initiating an eviction action if otherwise allowed by law'. It also has no rules on security deposits, application or screening fees, screening restrictions, or algorithmic rent setting. None of the in-scope categories apply."
+  }
+}
