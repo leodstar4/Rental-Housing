@@ -179,7 +179,9 @@ first) and prints a dashboard (also saved to `out/smoke_check.json`):
   without explanation (text present but not extracted).
 * **Behaviour**: T1 (AB 325 not yet effective 2025-12-31, in force 2026-01-02), T3 (FAIR Act
   not yet effective 2026-10-01, in force 2027-07-02), T4 (S.2983 and H.5222 pending), T5 (no
-  MA, Boston or Cambridge `rent_increase_limits` rule in force).
+  MA, Boston or Cambridge rent **cap** in force: a rule fails only if it has a `key_value` and
+  is not a prohibition/preemption of local rent control — M.G.L. c. 40P is still reported, with
+  the note "c. 40P bars local rent control → no local cap").
 
 ## Cost of Module A
 
