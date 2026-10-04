@@ -96,7 +96,13 @@ def change_title(test: dict, rules: list[dict], lang: str) -> str:
         return f"Proyectos de ley pendientes: {labels}"
     if kind == "negative":
         return f"No se convirtió en ley: {labels}"
+    if kind == "new_document":
+        return f"Documento nuevo ({test.get('original_file')}): {labels}"
     return f"{TYPE_LABEL.get(kind, ('', 'Cambio'))[1]}: {labels}"
+
+
+STATUS_ES = {"in_force": "vigente", "not_yet_effective": "aún no vigente", "pending": "pendiente",
+             "failed": "no vigente"}
 
 
 def change_notes_es(test: dict, entry: dict, rules: list[dict], addresses: dict, city_of: dict[str, str]) -> str:
@@ -134,4 +140,11 @@ def change_notes_es(test: dict, entry: dict, rules: list[dict], addresses: dict,
                 f"está vacío ({len(affected)}). La pregunta de boleta sobre control de rentas ({rule['team_rule_id']}, "
                 f"IP 25-21) consta como {status} (anulada el {long_date('2026-06-23', 'es')}); la ley M.G.L. c. 40P "
                 "prohíbe el control de rentas local y no es un tope.")
+    if kind == "new_document":
+        parts = [f"Regla nueva {r['team_rule_id']} ({STATE_ES.get(r['jurisdiction'], r['jurisdiction'])}, "
+                 f"{CATEGORY_ES.get(r['category'], r['category'])}) del documento {test.get('doc_id')}: "
+                 f"{STATUS_ES.get(r.get('status'), r.get('status'))} al {long_date(test.get('as_of_before'), 'es')}, "
+                 f"entra en vigor el {long_date(r.get('effective_date'), 'es')}" for r in rules]
+        return ("; ".join(parts) + f". A partir del {long_date(test.get('as_of_after'), 'es')} cubre "
+                f"{len(affected)} direcciones ({where}).")
     return f"{TYPE_LABEL.get(kind, ('', 'Cambio'))[1]}: {len(affected)} direcciones afectadas ({where})."

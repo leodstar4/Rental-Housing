@@ -60,27 +60,11 @@ def geocode(refresh: bool = typer.Option(False, help="Query the Census Geocoder 
 @app.command("compile")
 def compile_cmd(refresh: bool = typer.Option(False, help="Ignore data/compiled_exemptions.json and .cache/compile.")) -> None:
     """Coverage conditions + exemptions -> predicates (data/compiled_exemptions.json + review table)."""
-    from extractor import config
-
-    from .compile_exemptions import COMPILED_PATH, compile_all
-    from .predicates import render
+    from .compile_exemptions import COMPILED_PATH, REVIEW_TABLE_PATH, compile_all, write_review_table
 
     data = compile_all(refresh=refresh, log=typer.echo)
-    review = config.DATA_DIR / "compiled_exemptions_review.md"
-    lines = ["# Compiled coverage conditions and exemptions (review)", "",
-             f"Model `{data['model']}`, prompt `{data['prompt_version']}`. Conditions are ANDed (rule covers the "
-             "building), exemptions ORed (rule does not apply). Scope `building` is evaluated; "
-             "`unit_or_tenancy` is a caveat; `other_law` is deferred to precedence (B3).", "",
-             "| rule | kind | scope | origin | original text | predicate | irreducible |", "|---|---|---|---|---|---|---|"]
-    counts: Counter = Counter()
-    for rid, c in data["rules"].items():
-        for e in c["conditions"] + c["exemptions"]:
-            counts[(e["kind"], e["scope"], e.get("irreducible", False))] += 1
-            txt = (e["text"] or "").replace("|", "/").replace("\n", " ")
-            lines.append(f"| {rid} | {e['kind']} | {e['scope']} | {e['origin']} | {txt} | "
-                         f"`{render(e['predicate']).replace('|', '/')}` | {'**yes**' if e.get('irreducible') else ''} |")
-    review.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-    typer.echo(f"{len(data['rules'])} rules -> {COMPILED_PATH}; review table -> {review}")
+    counts = write_review_table(data)
+    typer.echo(f"{len(data['rules'])} rules -> {COMPILED_PATH}; review table -> {REVIEW_TABLE_PATH}")
     for (kind, scope, irr), n in sorted(counts.items()):
         typer.echo(f"  {kind:10} {scope:16} {'irreducible' if irr else '':12} {n}")
 
@@ -198,13 +182,13 @@ def changes_cmd(new_doc: Path = typer.Option(None, exists=True, dir_okay=False,
 
     if new_doc:
         out = ch.new_doc(new_doc, jurisdiction, log=typer.echo)
-        typer.echo(f"\nT6 · {out['doc_id']} · new rules: {', '.join(out['new_rule_ids']) or 'none'}")
-        for rid, v in out["rules"].items():
-            typer.echo(f"  {rid}: {v['status_now']} on {config_default()}, effective {v['effective_date']}")
-            for d, x in v["by_date"].items():
-                typer.echo(f"    as of {d}: {len(x['affected_address_ids'])} affected {x['by_city']} results {x['results']}")
-        typer.echo(f"  notes: {out['entry']['notes']}")
-        typer.echo(f"  timings: {out['timings_s']}  total {out['total_s']} s  -> {ch.CHANGES_PATH} (T6)")
+        typer.echo(f"\n{out['test_id'] or 'no entry'} · {out['doc_id']} · new rules: "
+                   f"{', '.join(out['meta']['new_rule_ids']) or 'none'} (kept in corpus/new/)")
+        if out["entry"]:
+            typer.echo(f"  affected {len(out['entry']['affected_address_ids'])}, conflict-flagged "
+                       f"{len(out['entry']['conflict_flag_address_ids'])}\n  notes: {out['entry']['notes']}")
+        typer.echo(f"  timings: {out['timings_s']}  total {out['total_s']} s  -> {ch.CHANGES_PATH}")
+        typer.echo("  full runbook (summary, checks, plain language, static, report, commit): python scripts/hour16.py")
         return
     t0 = time.perf_counter()
     changes, full, tl = ch.run_all_tests()
@@ -214,12 +198,6 @@ def changes_cmd(new_doc: Path = typer.Option(None, exists=True, dir_okay=False,
         typer.echo(f"{tid}: affected {len(e['affected_address_ids'])}, conflict-flagged "
                    f"{len(e['conflict_flag_address_ids'])}\n    {e['notes']}")
     typer.echo("\n" + ch.render(ch.verify(changes, tl), time.perf_counter() - t0))
-
-
-def config_default() -> str:
-    from extractor import config
-
-    return config.DEFAULT_AS_OF.isoformat()
 
 
 if __name__ == "__main__":

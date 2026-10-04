@@ -592,6 +592,30 @@ def partial_reuse(rule: dict, snap_entry: dict | None) -> tuple[list[dict], list
     return reused, new
 
 
+REVIEW_TABLE_PATH: Path = config.DATA_DIR / "compiled_exemptions_review.md"
+
+
+def write_review_table(data: dict) -> dict:
+    """data/compiled_exemptions_review.md: every compiled item (text, predicate, scope) for review;
+    returns counts per (kind, scope, irreducible)."""
+    from collections import Counter
+
+    lines = ["# Compiled coverage conditions and exemptions (review)", "",
+             f"Model `{data['model']}`, prompt `{data['prompt_version']}`. Conditions are ANDed (rule covers the "
+             "building), exemptions ORed (rule does not apply). Scope `building` is evaluated; "
+             "`unit_or_tenancy` is a caveat; `other_law` is deferred to precedence (B3).", "",
+             "| rule | kind | scope | origin | original text | predicate | irreducible |", "|---|---|---|---|---|---|---|"]
+    counts: Counter = Counter()
+    for rid, c in data["rules"].items():
+        for e in c["conditions"] + c["exemptions"]:
+            counts[(e["kind"], e["scope"], e.get("irreducible", False))] += 1
+            txt = (e["text"] or "").replace("|", "/").replace("\n", " ")
+            lines.append(f"| {rid} | {e['kind']} | {e['scope']} | {e['origin']} | {txt} | "
+                         f"`{render(e['predicate']).replace('|', '/')}` | {'**yes**' if e.get('irreducible') else ''} |")
+    REVIEW_TABLE_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+    return counts
+
+
 def load_rules() -> list[dict]:
     rules = json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]
     if config.ATTESTED_PATH.exists():

@@ -218,7 +218,7 @@ def change_texts(tid: str, lang: str) -> dict:
     """type, type_label, title and notes of a change test in the requested language."""
     s = store()
     entry, full = s.changes[tid], s.changes_full.get(tid, {})
-    test = full.get("test") or {"test_id": tid, "type": "new_document" if tid == "T6" else None, "title": tid}
+    test = full.get("test") or {"test_id": tid, "type": None, "title": tid}
     rules = [s.by_id[r] for r in full.get("our_rule_ids") or [] if r in s.by_id]
     if lang == "es":
         city_of = {a: f["dataset_city"] for a, f in s.facts.items()}

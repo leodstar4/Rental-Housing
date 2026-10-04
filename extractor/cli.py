@@ -197,10 +197,17 @@ def normalize(
     from .models import RuleInternal
     from .normalize import CAT_CODES, JUR_CODES, normalize_rules
 
+    from .incremental import increments
+
     rules = []
     for f in sorted(EXTRACTED_DIR.glob("D*.json")):
         rules += [RuleInternal.model_validate(r) for r in json.loads(f.read_text(encoding="utf-8"))["rules"]]
     docs = {d.doc_id: d for d in load_documents()}
+    # hour-16 documents kept in corpus/new/ (validated rules frozen there): replayed, no API call
+    for inc in increments():
+        rules += inc["rules"]
+        docs[inc["doc"].doc_id] = inc["doc"]
+        typer.echo(f"[increment] {inc['doc'].doc_id}: {len(inc['rules'])} validated rule(s) from corpus/new/")
     existing = json.loads(ids_from.read_text(encoding="utf-8")) if ids_from else None
     rules, rep = normalize_rules(rules, docs, existing)
     conflicts = detect_conflicts(rules)

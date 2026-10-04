@@ -7,3 +7,4 @@ prompts/*.md -text
 # Module B generated data (raw Census responses, versioned outputs): keep LF as written.
 data/geocode_raw/** -text
 data/*.json -text
+corpus/new/** -text

@@ -167,11 +167,21 @@ def notes(t: dict, rids: list[str], tl: Timeline, affected: list[str], flagged: 
 
 
 def run_all_tests(tl: Timeline | None = None) -> tuple[dict, dict, Timeline]:
+    """T1-T5 from dev/change_tests.json, then one entry (T6, T7, ...) per hour-16 document kept
+    in corpus/new/ — so `changes` (and the Render build) always reports them."""
+    from extractor.incremental import increments
+
     tl = tl or Timeline()
     tests, ours = load_tests()
     changes, full = {}, {}
     for t in tests:
         changes[t["test_id"]], full[t["test_id"]] = run_test(t, ours, tl)
+    n = 6
+    for inc in increments():
+        if inc["meta"].get("new_rule_ids"):
+            tid = f"T{n}"
+            changes[tid], full[tid] = doc_test(tid, inc["meta"], tl)
+            n += 1
     return changes, full, tl
 
 
@@ -243,54 +253,68 @@ def render(checks: list[dict], seconds: float) -> str:
 # --------------------------------------------------------------------------- #
 
 
+def doc_test(tid: str, meta: dict, tl: Timeline) -> tuple[dict, dict]:
+    """Entry for an hour-16 document: each new rule's result at the default query date and the day
+    after its effective date; affected = addresses where it applies / is unknown / not yet
+    effective / pending on the later date."""
+    eng = tl.engine(config.DEFAULT_AS_OF)
+    rids = meta["new_rule_ids"]
+    rules = {r["team_rule_id"]: r for r in eng.rules}
+    after = max([date.fromisoformat(rules[r]["effective_date"][:10]) + timedelta(days=1)
+                 for r in rids if rules.get(r, {}).get("effective_date")] or [config.DEFAULT_AS_OF])
+    before = config.DEFAULT_AS_OF
+    addresses, affected, flagged = {}, [], []
+    for aid in tl.addresses:
+        d = diff(tl, aid, rids, before, after)
+        if any(x["before"] != "not_in_stack" or x["after"] != "not_in_stack" for x in d.values()):
+            addresses[aid] = d
+        if any(x["after"] in ACTIVE | {"pending"} for x in d.values()):
+            affected.append(aid)
+            if any(tl.result(after, aid, r)["conflict_flag"] for r in rids):
+                flagged.append(aid)
+    cities = Counter(eng.facts[a]["dataset_city"] for a in affected)
+    where = ", ".join(f"{c} {n}" for c, n in sorted(cities.items())) or "none"
+    parts = []
+    for rid in rids:
+        r = rules.get(rid, {})
+        parts.append(f"New rule {rid} ({r.get('jurisdiction')}, {r.get('category')}) from {meta['doc_id']}: "
+                     f"{r.get('status')} on {before}, effective {r.get('effective_date')}")
+    notes = "; ".join(parts) + f". From {after} it covers {len(affected)} addresses ({where})."
+    test = {"test_id": tid, "type": "new_document", "title": f"New document {meta['original_file']}: {', '.join(rids)}",
+            "doc_id": meta["doc_id"], "original_file": meta["original_file"], "original_sha256": meta["original_sha256"],
+            "retrieved_at": meta["retrieved_at"], "rule_ids": rids, "as_of_before": before.isoformat(),
+            "as_of_after": after.isoformat()}
+    return ({"affected_address_ids": affected, "conflict_flag_address_ids": flagged, "notes": notes},
+            {"test": test, "our_rule_ids": rids, "addresses": addresses})
+
+
 def new_doc(path: Path, jurisdiction: str | None, *, log=print) -> dict:
-    """extract-doc (Module A) -> compile new rules (snapshot not written) -> affected addresses."""
+    """Hour 16, KEPT: extract-doc (Module A) -> persist the increment in corpus/new/ -> compile the
+    coverage of the new rules into data/compiled_exemptions.json -> change tests with the T6 entry."""
     from extractor import incremental
     from extractor.cli import DEFAULT_SNAPSHOT
     from extractor.snapshot import activate
 
-    from .compile_exemptions import compile_all, load_rules
+    from .compile_exemptions import compile_all
 
     t0 = time.perf_counter()
     timings = {}
     summary = incremental.run_increment(path, jurisdiction=jurisdiction, snapshot_dir=DEFAULT_SNAPSHOT,
                                         as_of=config.DEFAULT_AS_OF)
-    timings["extract-doc (Module A)"] = round(time.perf_counter() - t0, 1)
+    timings["extract + validate + normalize (Module A)"] = round(time.perf_counter() - t0, 1)
     activate(DEFAULT_SNAPSHOT, offline=False)  # back to the frozen run for everything else
+    meta = incremental.persist_increment(summary)
+    from extractor.cli import attest
+    attest()
     t = time.perf_counter()
-    new = [r for r in summary["rules"] if r["change"] == "new"]
-    rules = load_rules()
-    compiled = compile_all(write=False, rules=rules, log=log)["rules"]
+    compiled = compile_all(log=log)
     timings["compile coverage"] = round(time.perf_counter() - t, 1)
     t = time.perf_counter()
-    tl = Timeline(rules=rules, compiled=compiled)
-    out = {"doc_id": summary["doc_id"], "new_rule_ids": [r["team_rule_id"] for r in new], "rules": {}}
-    for r in new:
-        rid = r["team_rule_id"]
-        dates = [config.DEFAULT_AS_OF]
-        if r.get("effective_date"):
-            dates.append(date.fromisoformat(r["effective_date"]) + timedelta(days=1))
-        per = {}
-        for d in dates:
-            res = {a: tl.result(d, a, rid) for a in tl.addresses}
-            hit = sorted(a for a, v in res.items() if v["result"] in ACTIVE | {"pending"})
-            per[d.isoformat()] = {"affected_address_ids": hit,
-                                  "results": dict(Counter(v["result"] for a, v in res.items() if a in hit)),
-                                  "by_city": dict(Counter(tl.engine(d).facts[a]["dataset_city"] for a in hit)),
-                                  "conflict_flag_address_ids": [a for a in hit if res[a]["conflict_flag"]]}
-        out["rules"][rid] = {"status_now": r["status"], "effective_date": r.get("effective_date"),
-                             "coverage_conditions": r.get("coverage_conditions"), "by_date": per}
-    timings["affected addresses"] = round(time.perf_counter() - t, 1)
-    last = {rid: v["by_date"][max(v["by_date"])] for rid, v in out["rules"].items()}
-    entry = {"affected_address_ids": sorted({a for v in last.values() for a in v["affected_address_ids"]}),
-             "conflict_flag_address_ids": sorted({a for v in last.values() for a in v["conflict_flag_address_ids"]}),
-             "notes": " ".join(
-                 f"New rule {rid} from {out['doc_id']}: {v['status_now']} on {config.DEFAULT_AS_OF}, effective "
-                 f"{v['effective_date']}; after that it covers {len(last[rid]['affected_address_ids'])} addresses "
-                 f"({', '.join(f'{c} {n}' for c, n in last[rid]['by_city'].items()) or 'none'})."
-                 for rid, v in out["rules"].items()) or f"No new rule from {out['doc_id']}."}
-    changes = json.loads(CHANGES_PATH.read_text(encoding="utf-8")) if CHANGES_PATH.exists() else {}
-    changes["T6"] = entry
-    write(changes)
-    out.update(entry=entry, timings_s=timings, total_s=round(time.perf_counter() - t0, 1))
-    return out
+    changes, full, tl = run_all_tests()
+    write(changes, full)
+    timings["change tests (T1-T6)"] = round(time.perf_counter() - t, 1)
+    tid = next((k for k, v in full.items() if (v.get("test") or {}).get("doc_id") == meta["doc_id"]), None)
+    return {"doc_id": meta["doc_id"], "meta": meta, "increment": summary, "test_id": tid,
+            "entry": changes.get(tid), "full": full.get(tid), "compiled": {r: compiled["rules"].get(r)
+                                                                       for r in meta["new_rule_ids"]},
+            "timeline": tl, "timings_s": timings, "total_s": round(time.perf_counter() - t0, 1)}

@@ -69,6 +69,18 @@ class _HTMLText(html.parser.HTMLParser):
             self.parts.append(data)
 
 
+def _docx_text(path: Path) -> str:
+    """Paragraph text of a .docx (word/document.xml), one paragraph per line; no extra dependency."""
+    import xml.etree.ElementTree as ET
+    import zipfile
+
+    ns = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+    with zipfile.ZipFile(path) as z:
+        root = ET.fromstring(z.read("word/document.xml"))
+    paras = ["".join(t.text or "" for t in p.iter(f"{{{ns['w']}}}t")) for p in root.iter(f"{{{ns['w']}}}p")]
+    return "\n".join(p for p in paras if p.strip()) + "\n"
+
+
 def read_text(path: Path) -> str:
     """Plain text of a .txt, .html/.htm or .pdf file."""
     suffix = path.suffix.lower()
@@ -76,6 +88,8 @@ def read_text(path: Path) -> str:
         from pypdf import PdfReader
 
         return "\n".join((p.extract_text() or "") for p in PdfReader(str(path)).pages)
+    if suffix == ".docx":
+        return _docx_text(path)
     raw = path.read_text(encoding="utf-8", errors="replace")
     if suffix in (".html", ".htm"):
         parser = _HTMLText()
@@ -84,7 +98,7 @@ def read_text(path: Path) -> str:
         return re.sub(r"\n\s*\n+", "\n", text).strip() + "\n"
     if suffix in (".txt", ".md", ""):
         return raw
-    raise ValueError(f"unsupported file type {suffix!r} (use .txt, .pdf or .html)")
+    raise ValueError(f"unsupported file type {suffix!r} (use .txt, .pdf, .html or .docx)")
 
 
 def _rel(path: Path) -> str:
@@ -95,20 +109,26 @@ def _rel(path: Path) -> str:
 
 
 def ingest(path: Path, jurisdiction: str | None) -> tuple[str, Path, dict]:
-    """Copy the document into corpus/new/ in corpus format; return (doc_id, text_path, meta)."""
+    """Copy the document into corpus/new/: the original file byte for byte
+    (``<doc_id>.source<ext>``, sha256 checked) and its text in corpus format (``<doc_id>.txt``,
+    what extraction and quote verification read); return (doc_id, text_path, meta)."""
     blob = path.read_bytes()
     sha = hashlib.sha256(blob).hexdigest()
     slug = re.sub(r"[^A-Za-z0-9]+", "_", path.stem).strip("_")[:40]
     doc_id = f"NEW-{slug}"
     retrieved = datetime.now(timezone.utc)
     config.NEW_DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    source_copy = config.NEW_DOCS_DIR / f"{doc_id}.source{path.suffix.lower()}"
+    source_copy.write_bytes(blob)
+    if hashlib.sha256(source_copy.read_bytes()).hexdigest() != sha:
+        raise RuntimeError(f"copy of {path} does not match its sha256")
     text_path = config.NEW_DOCS_DIR / f"{doc_id}.txt"
     body = read_text(path)
     text_path.write_text(f"SOURCE: file://corpus/new/{path.name}\nRETRIEVED: {retrieved:%Y-%m-%d %H:%M} UTC\n\n{body}",
                          encoding="utf-8", newline="\n")
-    meta = {"doc_id": doc_id, "original_file": str(path), "original_sha256": sha,
-            "retrieved_at": retrieved.isoformat(timespec="seconds"), "jurisdiction_hint": jurisdiction,
-            "text_file": _rel(text_path)}
+    meta = {"doc_id": doc_id, "original_file": path.name, "original_sha256": sha,
+            "source_copy": _rel(source_copy), "retrieved_at": retrieved.isoformat(timespec="seconds"),
+            "jurisdiction_hint": jurisdiction, "text_file": _rel(text_path)}
     (config.NEW_DOCS_DIR / f"{doc_id}.meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8", newline="\n")
     return doc_id, text_path, meta
 
@@ -125,12 +145,47 @@ def _snapshot_rules(snapshot_dir: Path) -> list[RuleInternal]:
     return rules
 
 
+def increments(exclude: str | None = None) -> list[dict]:
+    """Persisted hour-16 documents (corpus/new/<doc_id>.meta.json + .extracted.json): their
+    Document, validated rules and meta. Replayed by `normalize` / `reproduce` with no API call."""
+    out = []
+    for m in sorted(config.NEW_DOCS_DIR.glob("*.meta.json")) if config.NEW_DOCS_DIR.exists() else []:
+        meta = json.loads(m.read_text(encoding="utf-8"))
+        doc_id = meta["doc_id"]
+        ext = config.NEW_DOCS_DIR / f"{doc_id}.extracted.json"
+        if doc_id == exclude or not ext.exists():
+            continue
+        doc = document_from_file(config.NEW_DOCS_DIR / f"{doc_id}.txt", doc_id=doc_id,
+                                 jurisdictions=[meta["jurisdiction_hint"]] if meta.get("jurisdiction_hint") else [],
+                                 source_type="user-supplied (incremental)", sha256=meta["original_sha256"])
+        rules = [RuleInternal.model_validate(r) for r in json.loads(ext.read_text(encoding="utf-8"))["rules"]]
+        out.append({"doc": doc, "rules": rules, "meta": meta})
+    return out
+
+
+def persist_increment(summary: dict) -> dict:
+    """Keep an increment: its validated rules (corpus/new/<doc_id>.extracted.json) and the new
+    rule ids in its meta, so `reproduce` replays it and Module C reports it as a T6 entry."""
+    doc_id = summary["doc_id"]
+    src = config.OUT_DIR / "extracted_new" / f"{doc_id}.json"
+    (config.NEW_DOCS_DIR / f"{doc_id}.extracted.json").write_bytes(src.read_bytes().replace(b"\r\n", b"\n"))
+    meta_path = config.NEW_DOCS_DIR / f"{doc_id}.meta.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta.update(new_rule_ids=[r["team_rule_id"] for r in summary["rules"] if r["change"] == "new"],
+                modified_rule_ids=[r["team_rule_id"] for r in summary["rules"] if r["change"] == "modified"],
+                prompt_version=summary.get("prompt_version"), as_of=summary.get("as_of"))
+    meta_path.write_text(json.dumps(meta, indent=2), encoding="utf-8", newline="\n")
+    return meta
+
+
 def _conflict_key(c: dict) -> tuple:
     return (c["type"], tuple(sorted(c["rule_ids"])))
 
 
 def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, as_of: date,
-                  use_cache: bool = True) -> dict:
+                  use_cache: bool = True, ingested: tuple[str, Path, dict] | None = None) -> dict:
+    """``ingested``: the result of ``ingest(path, jurisdiction)`` when the caller already copied the
+    document (scripts/hour16.py times that step on its own)."""
     timings: dict[str, float] = {}
     run_id = audit.new_run_id()
 
@@ -141,7 +196,7 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
     t = time.perf_counter()
     manifest = activate(snapshot_dir, offline=False)
     check_frozen_prompt(snapshot_dir)
-    doc_id, text_path, meta = ingest(path, jurisdiction)
+    doc_id, text_path, meta = ingested or ingest(path, jurisdiction)
     doc = document_from_file(text_path, doc_id=doc_id, jurisdictions=[jurisdiction] if jurisdiction else [],
                              source_type="user-supplied (incremental)", sha256=meta["original_sha256"])
     t = stage("ingest", t)
@@ -159,16 +214,19 @@ def run_increment(path: Path, *, jurisdiction: str | None, snapshot_dir: Path, a
     t = stage("validate", t)
 
     docs = {d.doc_id: d for d in load_documents()}
+    prior = increments(exclude=doc_id)  # documents kept from earlier hour-16 runs
+    docs.update({p["doc"].doc_id: p["doc"] for p in prior})
+    prior_rules = [r for p in prior for r in p["rules"]]
     existing = json.loads((snapshot_dir / "ids.json").read_text(encoding="utf-8"))
-    # Baseline = the snapshot run through the CURRENT normalization (not the snapshot's frozen
-    # rules.json, which predates later normalization changes such as the id style), so the
-    # diff below shows only what the new document changed.
-    base_rules, _ = normalize_rules(_snapshot_rules(snapshot_dir), docs, existing)
+    # Baseline = the snapshot (+ earlier increments) run through the CURRENT normalization (not
+    # the snapshot's frozen rules.json, which predates later normalization changes such as the
+    # id style), so the diff below shows only what the new document changed.
+    base_rules, _ = normalize_rules(_snapshot_rules(snapshot_dir) + prior_rules, docs, existing)
     base_conflicts = detect_conflicts(base_rules)
     before = {r.team_rule_id: to_rule_out(r, as_of).model_dump(mode="json")
               for r in base_rules if r.disposition == "accepted"}
     docs[doc_id] = doc
-    rules, rep = normalize_rules(_snapshot_rules(snapshot_dir) + out.rules, docs, existing)
+    rules, rep = normalize_rules(_snapshot_rules(snapshot_dir) + prior_rules + out.rules, docs, existing)
     t = stage("normalize", t)
     conflicts = detect_conflicts(rules)
     t = stage("conflicts", t)

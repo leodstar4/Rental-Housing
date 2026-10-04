@@ -44,7 +44,7 @@ cases affect the answer.
 18. [Module B — building facts and jurisdictions](#module-b--building-facts-and-jurisdictions)
 19. [Module B — coverage (three-valued)](#module-b--coverage-three-valued)
 20. [Module B — lookups](#module-b--lookups-results-per-address)
-21. [Module C — change tracking](#module-c--change-tracking)
+21. [Module C — change tracking](#module-c--change-tracking) · [Hour 16 runbook](#hour-16-runbook)
 22. [API and plain language](#api-fastapi-and-plain-language)
 23. [Responsible design](#responsible-design)
 24. [Known limitations and design decisions](#known-limitations-and-design-decisions)
@@ -206,7 +206,8 @@ python -m resolver.cli compile [--refresh]        # data/compiled_exemptions.jso
 python -m resolver.cli coverage --as-of 2026-10-01
 python -m resolver.cli lookup --as-of 2026-10-01 [--address A0016]
 python -m resolver.cli changes                    # T1-T5
-python -m resolver.cli changes --new-doc path/to/ordinance.txt --jurisdiction "Cambridge, MA"   # T6
+python -m resolver.cli changes --new-doc path/to/ordinance.txt --jurisdiction "Cambridge, MA"   # T6 (kept)
+python scripts/hour16.py path/to/ordinance.pdf --jurisdiction "Cambridge, MA" [--dry-run]     # full hour-16 runbook
 
 # --- API ------------------------------------------------------------------------------------
 python -m api.plain_language [--only RULE_ID]     # data/plain_language.json
@@ -269,6 +270,7 @@ python -m api.export_static                       # static/ backup
 │   ├── building_facts.json · jurisdictions.json · geocode_raw/    # Module B data (versioned)
 │   ├── compiled_exemptions.json · compiled_exemptions_review.md   # compiled coverage + review table
 │   └── plain_language.json        # tenant summaries EN/ES
+├── scripts/hour16.py · hour16.ps1 # hour-16 runbook (one command, --dry-run to rehearse)
 ├── docs/API.md                    # API contract with real responses
 ├── snapshots/a-0.4.0/             # frozen official extraction (versioned in git)
 ├── corpus/new/                    # documents added with extract-doc (created on demand)
@@ -835,13 +837,48 @@ Affected = the rule's result changes between the two dates (as_of: T1, T3); is a
 `conflict_flag`. The dashboard checks the expected counts (T1 250 CA, T2 40 / 50 / 0, T3 140 NJ
 with 90 flagged, T4 110 pending, T5 empty and IP 25-21 failed).
 
-`--new-doc` runs extract-doc (Module A), compiles the new rules in memory (the versioned compile
-snapshot is not written), and reports each new rule's affected addresses at the default query
-date and the day after its effective date as entry `T6`. Rehearsal with
-`tests/fixtures/fake_cambridge_ordinance.txt`: CAM-ALG-01 not_yet_effective on 2026-10-01, applies
-from 2027-03-14 at 45 Cambridge addresses (the 5 with fewer than 6 units are not covered), none
-elsewhere; ≈ 30 s (extract-doc ≈ 17 s, compile ≈ 11 s). To undo: delete
-`corpus/new/<doc_id>.*`, then `python -m extractor.cli reproduce` and `python -m resolver.cli changes`.
+`--new-doc` runs extract-doc (Module A) and **keeps** the result: the increment is stored in
+`corpus/new/` (original file byte for byte, its text, `meta.json` with sha256 / retrieval date /
+new rule ids, and the validated rules in `<doc_id>.extracted.json`), its coverage is compiled
+into `data/compiled_exemptions.json`, and the change tests are rewritten with a `T6` entry (each
+new rule's result at the default query date and the day after its effective date). `reproduce`
+and `changes` replay kept increments with no API call, so the Render build shows T6 too. To
+undo: delete `corpus/new/<doc_id>.*`, then run `python -m extractor.cli reproduce`,
+`python -m resolver.cli compile` and `python -m resolver.cli changes`.
+
+## Hour 16 runbook
+
+One command, end to end (needs `ANTHROPIC_API_KEY` in `.env`):
+
+```bash
+python scripts/hour16.py path/to/new_document.pdf --jurisdiction "Cambridge, MA" --dry-run   # rehearse in a temp copy
+python scripts/hour16.py path/to/new_document.pdf --jurisdiction "Cambridge, MA"             # real run: keep, commit, push
+.\scripts\hour16.ps1 path\to\new_document.pdf -Jurisdiction "Cambridge, MA" [-DryRun] [-NoGit]  # Windows wrapper
+```
+
+Accepts `.txt`, `.pdf`, `.html` and `.docx`. Each step prints what it did and its time:
+
+| Step | What |
+|---|---|
+| a | copy the file unchanged to `corpus/new/` (sha256, retrieval date) and its text in corpus format |
+| b | extraction (Opus, frozen prompt) + validation + normalization; increment kept; coverage compiled; change tests with T6 |
+| c | summary: new rules, jurisdiction, category, effective date (derived or stated), status on 2026-10-01, affected addresses by city, exemptions applied, new conflicts |
+| d | checks: affected addresses inside the rule's jurisdiction · `effective_date` set · literal quote verified · smoke-check and the T1–T5 dashboard green |
+| e | regenerate `out/lookups.json`, `out/changes.json`, plain language (new rules only) and `static/`; check that the API shows T6 (`/changes`, `/changes/T6` en/es) and that `/lookup` of an affected address after the effective date shows the new rule as `applies` |
+| f | `out/hour16_report.md` (source, timings, cost, results, checks); copied to `docs/hour16_report.md` on a real run |
+| g | real run only: `git add` the kept artifacts, commit "T6: hour-16 ordinance", push → Render redeploys |
+
+**What to review before publishing:** every check in step d is green (a red line is reported,
+never fixed by hand — fix it through the human review register if needed); the new rule's
+jurisdiction, category and effective date match the document; the affected count by city makes
+sense for its coverage (e.g. the unit threshold); and after the push, `GET /changes?lang=es` on
+the deployed service lists the new entry.
+
+Rehearsals (`--dry-run`, fictitious Cambridge ordinance, `tests/fixtures/`): `.txt` 16.6 s wall
+clock (extraction from cache); `.pdf` 42.6 s (Opus extraction 20.6 s, $0.08; compiler $0.005).
+Both: CAM-ALG-01, `not_yet_effective` on 2026-10-01, effective 2027-03-13 (derived from "180
+days after its adoption"), `applies` from 2027-03-14 at 45 Cambridge addresses (the 5 with fewer
+than 6 units are not covered), none elsewhere; all checks pass.
 
 ## API (FastAPI) and plain language
 
@@ -1007,7 +1044,7 @@ normalization, export, smoke-check, lookups, change tests and every API route co
 ## Tests
 
 ```bash
-python -m pytest -q        # 173 tests, offline; the API client is never built, no Census calls
+python -m pytest -q        # 179 tests, offline; the API client is never built, no Census calls
 ```
 
 Covers, for Module A: quote cascade (curly quotes, line breaks, fuzzy, paraphrase → retry or
