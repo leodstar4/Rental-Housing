@@ -1,0 +1,1154 @@
+{
+ "model": "claude-haiku-4-5",
+ "prompt_version": "pl-0.2.0",
+ "es_version": "es-0.2.0",
+ "fields_used": [
+  "requirement",
+  "key_value",
+  "coverage_text",
+  "exemptions",
+  "effective_date"
+ ],
+ "glossary": "data/glossary_es.yaml",
+ "rules": {
+  "BRK-ALG-P1": {
+   "input_sha256": "73a59eeb1e9d64085e3e06e9128646400287e9af0fbce38c724247c2f4ecd991",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "This is a proposal, not yet law. It would forbid landlords in Berkeley from using an algorithm (a computer tool) that uses secret competitor rental data to set or suggest rent prices. Sellers and providers of such tools would also be forbidden.",
+    "who_it_covers": "Landlords in Berkeley who rent residential units, and companies that sell or provide pricing algorithms to them.",
+    "what_you_can_do": "If this law passes, ask your landlord in writing how they set your rent to make sure they are not using a prohibited algorithm."
+   },
+   "es": {
+    "what_it_means": "Esta es una propuesta, no es ley todavía. Prohibiría a los arrendadores en Berkeley usar un algoritmo (una herramienta de computadora) que usa datos secretos de competidores para fijar o sugerir precios de renta. Las empresas que venden o proporcionan estas herramientas también estarían prohibidas.",
+    "who_it_covers": "Los arrendadores en Berkeley que alquilan unidades residenciales, y las empresas que venden o proporcionan algoritmos de precios a ellos.",
+    "what_you_can_do": "Si esta ley se aprueba, pregúntele a su arrendador por escrito cómo fija el precio de su renta para asegurarse de que no está usando un algoritmo prohibido."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-DEP-01": {
+   "input_sha256": "65a20bef8a63b3a16f701c2dd914216f0d58db5846d9c5dd3aeaf0629568852f",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "In Berkeley, landlords must pay tenants interest on their security deposit each year. If you move out before the year ends, your landlord must pay you a prorated amount of interest.",
+    "who_it_covers": "Tenants in units that are fully or partially covered by Berkeley's Rent Ordinance.",
+    "what_you_can_do": "Keep a copy of your lease and move-out date. At the end of each year (or when you move out), ask your landlord in writing for the interest payment on your security deposit."
+   },
+   "es": {
+    "what_it_means": "En Berkeley, los propietarios deben pagar intereses a los inquilinos sobre su depósito de garantía cada año. Si usted se muda antes de que termine el año, su propietario debe pagarle una cantidad prorrateada de intereses.",
+    "who_it_covers": "Inquilinos en unidades que están total o parcialmente cubiertas por la Ordenanza de Arrendamiento de Berkeley.",
+    "what_you_can_do": "Conserve una copia de su contrato de arrendamiento y su fecha de mudanza. Al final de cada año (o cuando usted se mude), solicite por escrito a su propietario el pago de intereses sobre su depósito de garantía."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-FEE-01": {
+   "input_sha256": "d0830e02fc21346fa12a6959670c27944bf2c533fdf12e0e27176d7e41a91936",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "A landlord who charges you a fee to check your credit report or process your rental application must give you a clear written statement about tenant screening fee rights before you pay. The statement must include the maximum fee the landlord can charge.",
+    "who_it_covers": "Applicants for residential rental housing in Berkeley when the landlord or agent charges screening or application fees.",
+    "what_you_can_do": "Ask your landlord to show you the Tenant Screening Fee Rights Statement in writing before you pay any application or screening fee."
+   },
+   "es": {
+    "what_it_means": "Un propietario que le cobra una cuota para verificar su informe de crédito o procesar su solicitud de alquiler debe darle una declaración clara y escrita sobre los derechos de cuotas de evaluación de inquilinos antes de que pague. La declaración debe incluir la cuota máxima que el propietario puede cobrar.",
+    "who_it_covers": "Solicitantes de vivienda de alquiler residencial en Berkeley cuando el propietario o agente cobra cuotas de evaluación o solicitud.",
+    "what_you_can_do": "Pídale al propietario que le muestre la Declaración de Derechos de Cuota de Evaluación de Inquilinos por escrito antes de que pague cualquier cuota de solicitud o evaluación."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-FEE-02": {
+   "input_sha256": "d28cfc7d1d69739c09b8a42696d2b1b02841128f20ed2b8c11afa804bdd251d0",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords in Berkeley cannot charge you a fee to renew your lease. This includes fees if a roommate leaves or if you want to add or replace a roommate.",
+    "who_it_covers": "Tenants renting residential property in Berkeley from owners or their agents.",
+    "what_you_can_do": "If your landlord tries to charge you a renewal fee, contact the City of Berkeley's housing department or rent board."
+   },
+   "es": {
+    "what_it_means": "Los propietarios en Berkeley no pueden cobrarle una cuota para renovar su contrato de arrendamiento. Esto incluye cuotas si un compañero de cuarto se va o si desea agregar o reemplazar un compañero de cuarto.",
+    "who_it_covers": "Inquilinos que alquilan propiedad residencial en Berkeley de propietarios o sus agentes.",
+    "what_you_can_do": "Si su propietario intenta cobrarle una cuota de renovación, comuníquese con el departamento de vivienda o la Junta de Arrendamiento de la Ciudad de Berkeley."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-JUST-01": {
+   "input_sha256": "280281426fab45af8d291e50172bf8b83cecd683afbe09c0955ab45e792f2aa2",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Your landlord can only evict you for just cause. For nonpayment, you can only be evicted if you owe at least one month's rent. Your landlord cannot evict you just for refusing to sign a new lease that is basically the same as your old one.",
+    "who_it_covers": "Tenants in fully or partially covered rental units in Berkeley, California, including government-owned or government-subsidized units.",
+    "what_you_can_do": "If your landlord tries to evict you, ask to see the just-cause reason in writing and check that it is one of the allowed reasons under Berkeley law. If you receive a termination notice, you can contact the Berkeley Rent Board to verify that it was filed properly."
+   },
+   "es": {
+    "what_it_means": "Su arrendador solo puede desalojarlo por causa justa. Por falta de pago, usted solo puede ser desalojado si debe al menos un mes de renta. Su arrendador no puede desalojarlo solo por no firmar un nuevo contrato de arrendamiento que sea básicamente igual al anterior.",
+    "who_it_covers": "Inquilinos en unidades de alquiler completamente o parcialmente cubiertas en Berkeley, California, incluyendo unidades propiedad del gobierno o subsidiadas por el gobierno.",
+    "what_you_can_do": "Si su arrendador intenta desalojarlo, pídale que le muestre la causa justa por escrito y verifique que sea una de las razones permitidas según la ley de Berkeley. Si recibe un aviso de terminación, puede contactar a la Junta de Arrendamiento de Berkeley para verificar que se presentó correctamente."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-RENT-01": {
+   "input_sha256": "2a79a8f20b02a624e8adb94acf4fb0fd3cb0adcbcc69ff0b13aafc3a56445488",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Berkeley has a rent control law for certain apartments and homes. It controls how much rent can go up each year on covered units. Most apartments built before 1980, older homes rented out before 1996, and some rooming houses are covered by this law.",
+    "who_it_covers": "Most multifamily units built before 1980, single-family homes where tenancies began before 1996, and rooming houses with five or more individually rented rooms.",
+    "what_you_can_do": "Ask your landlord if your unit is covered by Berkeley's rent control. If it is, contact the Berkeley Rent Stabilization Board to learn about your rights."
+   },
+   "es": {
+    "what_it_means": "Berkeley tiene una ley de control de arrendamientos para ciertos apartamentos y casas. Controla cuánto puede subir la renta cada año en las unidades cubiertas. La mayoría de los apartamentos construidos antes de 1980, las casas antiguas alquiladas antes de 1996, y algunas casas de huéspedes están cubiertos por esta ley.",
+    "who_it_covers": "La mayoría de las unidades multifamiliares construidas antes de 1980, las casas unifamiliares donde los arrendamientos comenzaron antes de 1996, y las casas de huéspedes con cinco o más habitaciones alquiladas individualmente.",
+    "what_you_can_do": "Pregúntele a su arrendador si su unidad está cubierta por el control de arrendamientos de Berkeley. Si lo está, comuníquese con la Junta de Estabilización de Arrendamientos de Berkeley para aprender sobre sus derechos."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-RENT-02": {
+   "input_sha256": "b4ccf36501dc9898c76e6da4af706209c2c3059560a27d8031229fc731452873",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "In Berkeley, landlords can raise rent each year by a maximum of 5% for covered units, based on a formula from the Rent Board. Some landlords who saved up extra rent increases from past years may raise rent higher to reach a legal limit.",
+    "who_it_covers": "Fully covered rental units in Berkeley that have a rent ceiling, including some government-owned or government-subsidized units.",
+    "what_you_can_do": "Ask the Berkeley Rent Board or check the official regulations to find out if your unit is fully covered and what the current allowed rent increase is."
+   },
+   "es": {
+    "what_it_means": "En Berkeley, los arrendadores pueden aumentar la renta cada año un máximo de 5% para unidades cubiertas, basado en una fórmula de la Junta de Arrendamiento. Algunos arrendadores que guardaron aumentos de renta extra de años anteriores pueden aumentar la renta más para llegar a un límite legal.",
+    "who_it_covers": "Unidades de alquiler completamente cubiertas en Berkeley que tienen un límite de renta, incluyendo algunas unidades de propiedad gubernamental o subsidiadas por el gobierno.",
+    "what_you_can_do": "Comuníquese con la Junta de Arrendamiento de Berkeley o revise las regulaciones oficiales para saber si su unidad está completamente cubierta y cuál es el aumento de renta permitido actualmente."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "BRK-SCRN-01": {
+   "input_sha256": "ba152973310a0a50196c67bd13749d1f24845b5f5c593943fcf43474ffb08701",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "In Berkeley, landlords cannot ask about your criminal history or use criminal background checks when deciding whether to rent to you. They cannot refuse to rent to you, end your tenancy, charge you more money, or charge a higher deposit because of criminal history.",
+    "who_it_covers": "Tenants and people applying to rent housing in Berkeley, with some exceptions for certain types of properties and situations.",
+    "what_you_can_do": "If a landlord asks about your criminal history or makes a decision against you based on criminal history, ask for written notice explaining their reason and give your response in writing to your local housing authority."
+   },
+   "es": {
+    "what_it_means": "En Berkeley, los propietarios no pueden preguntarle sobre su historial criminal ni usar búsquedas de antecedentes penales cuando deciden si rentarle. No pueden negarse a rentarle, terminar su contrato de arrendamiento, cobrar más dinero ni cobrar un depósito más alto por su historial criminal.",
+    "who_it_covers": "Inquilinos y personas que solicitan arrendar vivienda en Berkeley, con algunas excepciones para ciertos tipos de propiedades y situaciones.",
+    "what_you_can_do": "Si un propietario le pregunta sobre su historial criminal o toma una decisión en su contra basada en el historial criminal, solicite una notificación escrita explicando su razón y proporcione su respuesta por escrito a su autoridad local de vivienda."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-ALG-01": {
+   "input_sha256": "ba6d5e3c1ea70d4edd66752f06a417a3e3a7bb12bab411174aa321db70c7c3d7",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Starting January 1, 2026, it will be illegal to use or share a pricing algorithm to fix prices or force others to use recommended prices in California. This applies to businesses and organizations, not individual consumers.",
+    "who_it_covers": "The rule does not specifically cover rental housing. It applies to any business or organization in California that uses pricing algorithms for products or services.",
+    "what_you_can_do": "If you think a landlord is using an illegal pricing algorithm to set your rent unfairly, contact your local housing authority or rent board for guidance."
+   },
+   "es": {
+    "what_it_means": "A partir del 1 de enero de 2026, será ilegal usar o compartir un algoritmo de precios para fijar precios u obligar a otros a usar precios recomendados en California. Esto se aplica a empresas y organizaciones, no a consumidores individuales.",
+    "who_it_covers": "La regla no cubre específicamente viviendas de alquiler. Se aplica a cualquier empresa u organización en California que use algoritmos de precios para productos o servicios.",
+    "what_you_can_do": "Si usted cree que un arrendador está usando un algoritmo de precios ilegal para fijar injustamente su alquiler, comuníquese con su autoridad de vivienda local o Junta de Arrendamiento para obtener orientación."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-DEP-01": {
+   "input_sha256": "cb5d80e38c7fc7212f2aeaffcac59c91bee0ed07be4b8118c4847113791f4056",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Starting July 1, 2024, most landlords can charge a security deposit of no more than one month's rent. Your last month's rent counts toward the deposit, but your first month's rent does not.",
+    "who_it_covers": "Furnished and unfurnished rental units in California. Small landlords with only two rental properties and no more than four units total may charge up to two months' rent instead.",
+    "what_you_can_do": "Ask your landlord in writing how much the security deposit is and get a clear explanation of what it covers."
+   },
+   "es": {
+    "what_it_means": "A partir del 1 de julio de 2024, la mayoría de los arrendadores pueden cobrar un depósito de garantía de no más de un mes de alquiler. El alquiler del último mes cuenta para el depósito, pero el alquiler del primer mes no.",
+    "who_it_covers": "Unidades de alquiler amuebladas y sin amueblar en California. Los arrendadores pequeños con solo dos propiedades de alquiler y no más de cuatro unidades en total pueden cobrar hasta dos meses de alquiler en su lugar.",
+    "what_you_can_do": "Pregúntele a su arrendador por escrito cuánto es el depósito de garantía y obtenga una explicación clara de qué cubre."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-DEP-02": {
+   "input_sha256": "af605332da7a73e797836b6a123731aac6ef30e814b0c73b371045aacf3a8c80",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Small landlords who own only two rental properties with no more than four residential units total can charge up to two months' rent as a security deposit. This rule applies to natural persons, family trusts, or LLCs where all members are natural persons.",
+    "who_it_covers": "Landlords who are natural persons, family trusts, or LLCs whose members are all natural persons, and who own only two rental properties with no more than four residential units total.",
+    "what_you_can_do": "If your landlord owns only two rental properties with no more than four units total, ask for an itemized receipt for your security deposit and keep a copy of all payment records and receipts."
+   },
+   "es": {
+    "what_it_means": "Los propietarios pequeños que poseen solo dos propiedades de alquiler con no más de cuatro unidades residenciales en total pueden cobrar hasta dos meses de alquiler como depósito de garantía. Esta regla se aplica a personas naturales, fideicomisos familiares o sociedades limitadas donde todos los miembros son personas naturales.",
+    "who_it_covers": "Propietarios que son personas naturales, fideicomisos familiares o sociedades limitadas cuyos miembros son todos personas naturales, y que poseen solo dos propiedades de alquiler con no más de cuatro unidades en total.",
+    "what_you_can_do": "Si su propietario posee solo dos propiedades de alquiler con no más de cuatro unidades en total, solicite un recibo detallado de su depósito de garantía y guarde una copia de todos los registros de pago y recibos."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-DEP-03": {
+   "input_sha256": "4a068fb9fc6eeb3bb379bbce70e7d5ccd7d39a6ae0b1636e675159c348057173",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Your landlord can only keep one month's rent as a security deposit. Your landlord must photograph your rental unit right when you move in, starting July 1, 2025.",
+    "who_it_covers": "Tenants in residential rental homes and apartments in California.",
+    "what_you_can_do": "Ask your landlord in writing how much security deposit they are charging and get a receipt for what you pay."
+   },
+   "es": {
+    "what_it_means": "Su arrendador solo puede quedarse con el alquiler de un mes como depósito de garantía. Su arrendador debe fotografiar su unidad de alquiler cuando usted se mude, a partir del 1 de julio de 2025.",
+    "who_it_covers": "Inquilinos en casas y apartamentos de alquiler residencial en California.",
+    "what_you_can_do": "Pídale a su arrendador por escrito cuánto depósito de garantía está cobrando y obtenga un recibo por lo que usted paga."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-DEP-04": {
+   "input_sha256": "8a497ed782919a807b6cf8095db6f452c582f1b16c1cbf7b67fa285681f96a91",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "If a landlord charges a service member extra money for a security deposit because of credit or housing history, the landlord must give a written statement explaining the amount and reason. The extra amount must be returned after no more than six months if the tenant is not behind on rent. The landlord must photograph the unit before and after any repairs or cleanings that will be deducted from the deposit.",
+    "who_it_covers": "Service members who rent residential property they will live in.",
+    "what_you_can_do": "Ask your landlord for a written statement if they charge an extra security deposit, and keep a record of when the extra amount should be returned."
+   },
+   "es": {
+    "what_it_means": "Si un propietario cobra dinero extra a un militar por el depósito de garantía por razones de crédito o historial de vivienda, el propietario debe dar una declaración escrita explicando la cantidad y la razón. El dinero extra debe ser devuelto después de no más de seis meses si el inquilino no está atrasado en la renta. El propietario debe fotografiar la unidad antes y después de cualquier reparación o limpieza que se deduzca del depósito.",
+    "who_it_covers": "Militares que alquilan una propiedad residencial donde vivirán.",
+    "what_you_can_do": "Pida a su propietario una declaración escrita si cobra un depósito de garantía extra, y guarde un registro de cuándo debe ser devuelto el dinero extra."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-DEP-05": {
+   "input_sha256": "2a6fa67c403eb2598c24477def3ec2677922ff2e78c2d5082918b8e28c1c8879",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Your landlord must return your security deposit within 21 calendar days after you move out. The landlord must send you an itemized statement showing what money was kept and why. If you paid the deposit electronically, the return must also be electronic. If deductions are more than $125, the landlord must include supporting documents and photos.",
+    "who_it_covers": "Tenants who paid a security deposit for a residential rental property where they live.",
+    "what_you_can_do": "Keep records of your move-out date and the condition of your rental. If you do not receive your deposit within 21 days with an itemized statement, contact your local housing authority or tenant rights organization."
+   },
+   "es": {
+    "what_it_means": "Su propietario debe devolver su depósito de garantía dentro de 21 días calendario después de que se mude. El propietario debe enviarle un estado de cuenta detallado que muestre qué dinero se quedó y por qué. Si pagó el depósito de garantía electrónicamente, la devolución también debe ser electrónica. Si las deducciones son más de $125, el propietario debe incluir documentos de apoyo y fotos.",
+    "who_it_covers": "Inquilinos que pagaron un depósito de garantía para una propiedad de alquiler residencial donde viven.",
+    "what_you_can_do": "Guarde registros de la fecha en que se mudó y del estado de su alquiler. Si no recibe su depósito de garantía dentro de 21 días con un estado de cuenta detallado, comuníquese con su autoridad local de vivienda u organización de derechos de los inquilinos."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-DEP-06": {
+   "input_sha256": "76925b1f65bad3d72012037b088d9259389ec79cd1883b98fd80523a1e3e860f",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "In California, some small landlords can collect up to two months' rent as a security deposit. This rule does not apply if you are a service member.",
+    "who_it_covers": "Landlords who are natural persons or small LLCs with no more than two rental properties and no more than four rental units total.",
+    "what_you_can_do": "If your landlord asks you for a security deposit, ask your landlord in writing how much they are collecting and keep a copy of the receipt."
+   },
+   "es": {
+    "what_it_means": "Regla de CA sobre depósitos de garantía. Texto oficial (en inglés): A landlord who is a natural person, or an LLC whose members are all natural persons, and who owns no more than two residential rental properties with no more than four rental units in total may collect up to two…",
+    "who_it_covers": "Viviendas de alquiler cubiertas por esta regla en CA.",
+    "what_you_can_do": "Pida un recibo por escrito de su depósito y guárdelo."
+   },
+   "es_version": "es-0.2.0",
+   "es_method": "template",
+   "es_problems": [
+    "es uses tú forms ['pide']; use usted"
+   ]
+  },
+  "CA-FEE-01": {
+   "input_sha256": "8468521d92245d06c2600f03e7592bbf46fadfe9be29a4d6b4088e7cae7762e1",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Landlords can charge you a fee to screen your rental application, but only up to $30 per person (this amount changes each year). They must give you an itemized receipt, refund any money they don't use, and show you a copy of your credit report within seven days.",
+    "who_it_covers": "Renters, guarantors, and cosigners who apply to rent residential property in California.",
+    "what_you_can_do": "Ask your landlord for an itemized receipt of any application fee and request a copy of your credit report within seven days of applying."
+   },
+   "es": {
+    "what_it_means": "Los propietarios pueden cobrarle una cuota de solicitud para revisar su solicitud de alquiler, pero solo hasta $30 por persona (esta cantidad cambia cada año). Deben darle un recibo detallado, devolverle el dinero que no utilicen, y mostrarle una copia de su reporte de crédito dentro de siete días.",
+    "who_it_covers": "Inquilinos, garantes y codeudores que solicitan alquilar una propiedad residencial en California.",
+    "what_you_can_do": "Solicite a su propietario un recibo detallado de cualquier cuota de solicitud y pida una copia de su reporte de crédito dentro de siete días de presentar su solicitud."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-FEE-02": {
+   "input_sha256": "d414b85575db7e12b878bd7ed75e6b01613acde8ee9dc615704f8f6ffbc8fd14",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Landlords can charge a screening fee up to $68.96 (2026 maximum) to get information like a credit report. They must give you a copy of the report, a receipt showing what they charged for, and refund any money they did not use. Landlords must accept a reusable screening report if you provide one.",
+    "who_it_covers": "People who apply to rent a home and are charged a screening fee by a landlord.",
+    "what_you_can_do": "Ask your landlord in writing for a copy of your credit report, an itemized receipt, and a refund of any unused fee money. If you have a screening report from another application, offer it to the landlord."
+   },
+   "es": {
+    "what_it_means": "Los propietarios pueden cobrar una cuota de evaluación de hasta $68.96 (máximo en 2026) para obtener información como un informe de crédito. Deben darle una copia del informe, un recibo que muestre lo que cobraron, y devolver el dinero que no utilizaron. Los propietarios deben aceptar un informe de evaluación reutilizable si usted lo proporciona.",
+    "who_it_covers": "Personas que solicitan alquilar un lugar y el propietario les cobra una cuota de evaluación.",
+    "what_you_can_do": "Pida a su propietario por escrito una copia de su informe de crédito, un recibo detallado, y la devolución del dinero de la cuota que no se utilizó. Si usted tiene un informe de evaluación de otra solicitud, ofrézcalo al propietario."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-JUST-02": {
+   "input_sha256": "07f6d7b061dff8edd2aa73daf06e218db0fdc5f338e3ed0ed117119a65671bc4",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "After you have lived in your rental home for 12 months, your landlord can only end your tenancy for a valid reason. The landlord must tell you the reason in writing. If the reason is not your fault, the landlord must pay you one month's rent or let you skip your final month's rent.",
+    "who_it_covers": "Tenants who have lived continuously and lawfully in residential units (including mobilehomes) for 12 months or longer.",
+    "what_you_can_do": "Keep records of when you moved in and ask your landlord for the reason in writing if they try to end your tenancy."
+   },
+   "es": {
+    "what_it_means": "Después de haber vivido en su hogar de alquiler durante 12 meses, su arrendador solo puede terminar su contrato de arrendamiento por una razón válida. El arrendador debe decirle la razón por escrito. Si la razón no es su culpa, el arrendador debe pagarle un mes de alquiler o permitirle saltarse su último mes de alquiler.",
+    "who_it_covers": "Inquilinos que han vivido continua y legalmente en unidades residenciales (incluidas casas móviles) durante 12 meses o más.",
+    "what_you_can_do": "Guarde registros de cuándo se mudó y solicítele a su arrendador que le proporcione la razón por escrito si intenta terminar su arrendamiento."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-JUST-03": {
+   "input_sha256": "b55d5e0dec9e67b7dba71073a751c6808ea8a314f12af53c7ecb7e93034a97ea",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "If your home is demolished so a new building can be built, your landlord must pay relocation benefits. These benefits must match what the state requires for public agencies to pay.",
+    "who_it_covers": "Lower-income households (80% AMI or below) whose rental units are demolished for new construction.",
+    "what_you_can_do": "Ask your landlord in writing what relocation benefits they will provide if your unit is demolished."
+   },
+   "es": {
+    "what_it_means": "Si su unidad de alquiler es demolida para construir un edificio nuevo, el arrendador debe pagar asistencia de reubicación. Esta asistencia debe corresponder a lo que el estado requiere que paguen las agencias públicas.",
+    "who_it_covers": "Hogares de ingresos bajos (80% AMI o menos) cuyas unidades de alquiler son demolidas para nueva construcción.",
+    "what_you_can_do": "Pregunte a su arrendador por escrito qué asistencia de reubicación le proporcionará si su unidad es demolida."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-RENT-01": {
+   "input_sha256": "9fe2a6babdf121516f47d4d1e75874eead1b57b72a9264f77eb5aac1f74bc6cf",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Your landlord cannot raise your rent more than 5% plus the cost of living increase, or 10%, whichever is lower, in any 12-month period. When you first move in, your landlord can set any starting rent. Rent can only go up in up to two steps in a 12-month period if you stay.",
+    "who_it_covers": "Tenants in residential units (apartments, houses, mobilehomes) in California, except for certain new buildings, subsidized housing, school dorms, and some single-family homes.",
+    "what_you_can_do": "Keep track of what rent you paid in the prior 12 months and ask your landlord in writing to show how they calculated any rent increase to make sure it follows the 5% plus cost of living limit."
+   },
+   "es": {
+    "what_it_means": "Su arrendador no puede subir la renta más del 5% más el aumento del costo de vida, o 10%, lo que sea menor, en cualquier período de 12 meses. Cuando usted se muda por primera vez, su arrendador puede fijar cualquier renta inicial. La renta solo puede subir en hasta dos pasos en un período de 12 meses si usted se queda.",
+    "who_it_covers": "Inquilinos en unidades residenciales (apartamentos, casas, casas móviles) en California, excepto ciertos edificios nuevos, viviendas subsidiadas, dormitorios escolares y algunas casas unifamiliares.",
+    "what_you_can_do": "Mantenga un registro de lo que pagó de renta en los 12 meses anteriores y pídale a su arrendador por escrito que le muestre cómo calculó cualquier aumento de renta para asegurarse de que sigue el límite del 5% más el costo de vida."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-SCRN-01": {
+   "input_sha256": "f79515a22440311ca635a2d079ed21dbd45449ab690c8ab6bac0642ec65686c8",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords cannot refuse to rent to you because you use a housing voucher like Section 8 or VASH. If you get government help to pay rent, landlords cannot require an income level that ignores what you pay yourself, and they must consider other proof of ability to pay, not just credit history.",
+    "who_it_covers": "All housing owners in California.",
+    "what_you_can_do": "If a landlord refuses to rent to you because of your income source or voucher, or treats you unfairly about credit history when you have government rent help, contact your local housing department or fair housing agency."
+   },
+   "es": {
+    "what_it_means": "Los propietarios no pueden rechazarle porque use un cupón de vivienda como Sección 8 o VASH. Si recibe ayuda del gobierno para pagar la renta, los propietarios no pueden exigir un nivel de ingresos que ignore lo que usted paga, y deben considerar otra prueba de capacidad de pago, no solo el historial de crédito.",
+    "who_it_covers": "Todos los propietarios de viviendas en California.",
+    "what_you_can_do": "Si un propietario se niega a rentarle vivienda por su fuente de ingresos o cupón, o le trata injustamente por el historial de crédito cuando tiene ayuda del gobierno para pagar la renta, comuníquese con su departamento de vivienda local o agencia de vivienda justa."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CA-SCRN-02": {
+   "input_sha256": "221af36a22c8395071a001c3eda27fd80e8b153a24bad56d25b29dd913bd1fde",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords cannot say no to tenants or charge different prices based on how they pay rent, including Section 8 vouchers. Landlords cannot refuse to rent to people just because they were arrested, have sealed records, or have a criminal history. If a landlord denies someone because of a conviction, the offense must be directly related to being a safe tenant.",
+    "who_it_covers": "Landlords, property managers, and screening companies in California that handle most rental housing.",
+    "what_you_can_do": "If a landlord rejects you because of your income source, past arrests, sealed records, or conviction, contact your local housing department or civil rights agency to file a complaint."
+   },
+   "es": {
+    "what_it_means": "Los propietarios no pueden rechazar a los inquilinos ni cobrar precios diferentes por cómo pagan la renta, incluyendo los vales de la Sección 8. Los propietarios no pueden rechazar a las personas solo porque fueron arrestadas, tengan antecedentes sellados o un historial criminal. Si un propietario rechaza a alguien porque fue condenado, el delito debe estar directamente relacionado con ser un inquilino seguro.",
+    "who_it_covers": "Propietarios, administradores de propiedades y compañías de investigación de antecedentes en California que manejan la mayoría de viviendas de alquiler.",
+    "what_you_can_do": "Si un propietario lo rechaza por su fuente de ingresos, arrestos pasados, antecedentes sellados o una condena, comuníquese con su departamento de vivienda local o agencia de derechos civiles para presentar una queja."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "CAM-SCRN-01": {
+   "input_sha256": "3156b8413396c2aed5e462aa981148c74cc4bac25cc83bbcc01fd2a1075c1381",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords and rental agents cannot refuse to rent to you because of where your money comes from, like Section 8 or public benefits. They can use fair rules like checking if you can pay rent, but must apply these rules the same way to everyone.",
+    "who_it_covers": "People looking to rent apartments in Cambridge, including those using Section 8 or public benefits to pay rent. Owner-occupied 2-family dwellings are exempt.",
+    "what_you_can_do": "If you believe you were denied housing because of your source of income, contact the Cambridge housing department or a local fair housing organization."
+   },
+   "es": {
+    "what_it_means": "Los arrendadores y agentes de alquiler no pueden rechazarle porque su dinero viene de un lugar específico, como Sección 8 o beneficios públicos. Pueden usar reglas justas como verificar si puede pagar la renta, pero deben aplicar estas reglas de la misma manera a todos.",
+    "who_it_covers": "Personas que buscan alquilar apartamentos en Cambridge, incluyendo aquellas que usan Sección 8 o beneficios públicos para pagar la renta. Las casas de dos unidades ocupadas por el propietario están exentas.",
+    "what_you_can_do": "Si considera que le negaron vivienda por su fuente de ingresos, contacte al departamento de vivienda de Cambridge o a una organización local de vivienda justa."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "JC-RENT-01": {
+   "input_sha256": "8efacb140b80a8e5166601ec00200fa2c7fc8958b521a28ef0dfcf0ae007ff2b",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Jersey City has a rent control law that limits rent increases. Buildings with 1 to 4 units are not covered by this law.",
+    "who_it_covers": "Rental buildings in Jersey City with 5 or more units.",
+    "what_you_can_do": "If you rent in a building with 5 or more units in Jersey City, ask your landlord or local housing department about rent increase limits in writing."
+   },
+   "es": {
+    "what_it_means": "Jersey City tiene una ley de control de arrendamientos que limita los aumentos de renta. Los edificios con 1 a 4 unidades no están cubiertos por esta ley.",
+    "who_it_covers": "Edificios de alquiler en Jersey City con 5 o más unidades.",
+    "what_you_can_do": "Si usted alquila en un edificio con 5 o más unidades en Jersey City, pregúntele a su arrendador o al departamento de vivienda local sobre los límites de aumento de renta por escrito."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-JUST-01": {
+   "input_sha256": "df33b003a1a2f7bdad1caf2623aeabf4a18585100ea0b3de8dae6d0f4489ab2a",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Your landlord can end your tenancy only for specific reasons. These include your fault (like not paying rent or breaking the lease) or the landlord's reasons (like moving in themselves or tearing down the building). If it's the landlord's reason, you may get money to help you move.",
+    "who_it_covers": "Most rental homes in Los Angeles that are not under RSO rules, including newer buildings and single-family homes, once you have lived there at least six months or your first lease ends.",
+    "what_you_can_do": "Ask your landlord in writing what reason they have if they try to end your tenancy, and find out if you qualify for relocation assistance."
+   },
+   "es": {
+    "what_it_means": "Su arrendador solo puede terminar su contrato de arrendamiento por razones específicas. Estas incluyen su culpa (como no pagar la renta o romper el contrato de arrendamiento) o razones del arrendador (como mudarse a la propiedad o demoler el edificio). Si es por razón del arrendador, puede recibir dinero para ayudarle a mudarse.",
+    "who_it_covers": "La mayoría de las casas de alquiler en Los Ángeles que no están bajo las reglas de RSO, incluyendo edificios más nuevos y casas unifamiliares, una vez que ha vivido allí al menos seis meses o su primer contrato de arrendamiento termina.",
+    "what_you_can_do": "Pida a su arrendador por escrito qué razón tiene si intenta terminar su contrato de arrendamiento, y averigüe si califica para asistencia de reubicación."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-JUST-02": {
+   "input_sha256": "c913426c7b380ead7b458b8f02880470cc21798411688b3d936097c75ab9c47c",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords cannot evict you for unpaid rent unless you owe more than one month's Fair Market Rent for your apartment size. This rule protects tenants from losing their home for small or temporary rent debts.",
+    "who_it_covers": "This rule covers all RSO and JCO rental units in the City of Los Angeles.",
+    "what_you_can_do": "If your landlord threatens to evict you for owing rent, keep records of your payments and contact your local rent board or housing department to find out the Fair Market Rent for your unit size."
+   },
+   "es": {
+    "what_it_means": "Los propietarios no pueden desalojarlo por falta de pago de renta a menos que deba más de un mes de Renta de Mercado Justo para el tamaño de su apartamento. Esta regla protege a los inquilinos de perder su hogar por deudas de renta pequeñas o temporales.",
+    "who_it_covers": "Esta regla cubre todos los unidades de alquiler RSO y JCO en la ciudad de Los Ángeles.",
+    "what_you_can_do": "Si su propietario amenaza con desalojarlo por falta de pago de renta, guarde registros de sus pagos y comuníquese con su Junta de Arrendamiento local o departamento de vivienda para saber cuál es la Renta de Mercado Justo para el tamaño de su unidad."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-JUST-03": {
+   "input_sha256": "510559bd7328eaf8070f3558170d1554eb5e767e9cf2459867092c33a1ed1ab4",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Your landlord can only end your RSO tenancy for specific reasons, like if you do not pay rent, break the lease, cause damage, use the unit illegally, or refuse to sign a similar new agreement. Your landlord can also end your tenancy without stating a reason, but only for things like moving in themselves, owning the building as manager, demolishing the building, following a government order, or converting to affordable housing. No-fault evictions require your landlord to give you relocation assistance.",
+    "who_it_covers": "Tenants in rental units covered by the Los Angeles RSO (Rent Stabilization Ordinance).",
+    "what_you_can_do": "Keep a copy of any termination notice your landlord gives you. Ask your landlord whether the eviction is for-cause or no-fault, and request relocation assistance if it is no-fault. Contact the Los Angeles Housing Department if you have questions about your rights."
+   },
+   "es": {
+    "what_it_means": "Su arrendador solo puede terminar su tenencia RSO por razones específicas, como si usted no paga la renta, incumple el contrato de arrendamiento, causa daño, usa la unidad ilegalmente, o se niega a firmar un nuevo acuerdo similar. Su arrendador también puede terminar su tenencia sin dar una razón, pero solo por cosas como mudarse a la unidad él mismo, ser el gerente del edificio, demoler el edificio, seguir una orden del gobierno, o convertir a vivienda asequible. Los desalojos sin causa requieren que su arrendador le dé asistencia de reubicación.",
+    "who_it_covers": "Inquilinos en unidades de alquiler cubiertas por el RSO de Los Ángeles (Ordenanza de Estabilización de Arrendamientos).",
+    "what_you_can_do": "Guarde una copia de cualquier aviso de terminación que su arrendador le dé. Pregúntele a su arrendador si el desalojo es por incumplimiento o sin causa, y solicite asistencia de reubicación si es sin causa. Comuníquese con el Departamento de Vivienda de Los Ángeles si tiene preguntas sobre sus derechos."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-JUST-04": {
+   "input_sha256": "7cb6c141d327fb754da6e516f9f20cfc7efecda5231b8e2b469b15b1dfeefbc2",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "If your landlord wants to evict you from a rent-controlled apartment in Los Angeles for reasons like needing the unit for themselves, tearing down the building, or a government order, they must first file a Declaration of Intent to Evict with the city housing department. They must also give you relocation assistance money. Your landlord must file a copy of the eviction notice with the city within 3 days of giving it to you.",
+    "who_it_covers": "Tenants in apartments covered by the Los Angeles Rent Stabilization Ordinance.",
+    "what_you_can_do": "If your landlord serves you with an eviction notice, ask them to show you proof that they filed the Declaration of Intent to Evict and their notice with the Los Angeles Housing and Community Investment Department (LAHD). Keep copies of all notices you receive."
+   },
+   "es": {
+    "what_it_means": "Si su arrendador quiere desalojarlo de un departamento controlado por renta en Los Ángeles por razones como necesitar la unidad para sí mismo, derribar el edificio, o una orden del gobierno, primero debe presentar una Declaración de Intención de Desalojo con el departamento de vivienda de la ciudad. También debe darle dinero de asistencia de reubicación. Su arrendador debe presentar una copia del aviso de desalojo con la ciudad dentro de 3 días de dárselo.",
+    "who_it_covers": "Inquilinos en apartamentos cubiertos por la Ordenanza de Estabilización de Arrendamientos de Los Ángeles.",
+    "what_you_can_do": "Si su arrendador le entrega un aviso de desalojo, pídale que le muestre prueba de que presentó la Declaración de Intención de Desalojo y su aviso ante el Departamento de Vivienda e Inversión Comunitaria de Los Ángeles (LAHD). Guarde copias de todos los avisos que reciba."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-JUST-05": {
+   "input_sha256": "bda21d0cd52dd420103631924accb6dba07d54807c536fb063c716682e229743",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Landlords cannot end your lease without a good reason. If they must end it for certain reasons like owner move-in or demolition, they must file paperwork with the city and pay you relocation assistance money.",
+    "who_it_covers": "Renters in Los Angeles units covered by the Just Cause Ordinance.",
+    "what_you_can_do": "Ask your landlord for relocation assistance in writing if they serve you a no-fault termination notice."
+   },
+   "es": {
+    "what_it_means": "Los arrendadores no pueden terminar su contrato de arrendamiento sin una razón válida. Si deben terminarlo por ciertas razones como mudanza del propietario o demolición, deben presentar documentos a la ciudad y pagarle asistencia de reubicación.",
+    "who_it_covers": "Inquilinos en unidades de Los Ángeles cubiertas por la Ordenanza de Causa Justa.",
+    "what_you_can_do": "Pídales a su arrendador asistencia de reubicación por escrito si le entrega una noticia de terminación sin causa justa."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-JUST-06": {
+   "input_sha256": "f2c2673e6765b972be6d73a7d49178d77a060131f340f758e9e6fc4a2312f8fb",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "When a landlord owns a single-family home under the Just Cause Ordinance and has no more than four units plus one single-family home in Los Angeles, the landlord must pay the tenant relocation assistance. The amount is one month's rent, paid in cash or as a credit.",
+    "who_it_covers": "Tenants in single-family dwellings owned by a natural person who owns no more than four units plus one single-family home in Los Angeles.",
+    "what_you_can_do": "If your landlord owns this type of property and serves you notice, ask your landlord for your relocation assistance of one month's rent in writing."
+   },
+   "es": {
+    "what_it_means": "Cuando un propietario es dueño de una casa unifamiliar bajo la Ordenanza de Causa Justa y tiene no más de cuatro unidades más una casa unifamiliar en Los Ángeles, el propietario debe pagar al inquilino una asistencia de reubicación. La cantidad es el alquiler de un mes, pagado en efectivo o como un crédito.",
+    "who_it_covers": "Inquilinos en casas unifamiliares que son propiedad de una persona natural que posee no más de cuatro unidades más una casa unifamiliar en Los Ángeles.",
+    "what_you_can_do": "Si su propietario es dueño de este tipo de propiedad y le entrega un aviso, pida a su propietario su asistencia de reubicación de un mes de alquiler por escrito."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-RENT-01": {
+   "input_sha256": "1edba1a71e7372666b358d1601aaf3edaacd3989b9f4801a4046fd464e5558c8",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Starting February 2, 2026, landlords cannot charge more rent just because a dependent (like a child) moves into the unit. Landlords can still charge 10% more if an adult (non-dependent) tenant is added, but they must tell the tenant in writing within 60 days of finding out.",
+    "who_it_covers": "People renting units in Los Angeles that are subject to the Los Angeles Rent Stabilization Ordinance (RSO).",
+    "what_you_can_do": "If a dependent moved into your unit, ask your landlord in writing not to raise your rent for that reason. Keep records of who lives in your home."
+   },
+   "es": {
+    "what_it_means": "A partir del 2 de febrero de 2026, los propietarios no pueden cobrar más alquiler solo porque una persona a cargo (como un niño) se mude a la unidad. Los propietarios aún pueden cobrar 10% más si se agrega un inquilino adulto (no a cargo), pero deben notificar al inquilino por escrito dentro de 60 días de enterarse.",
+    "who_it_covers": "Las personas que alquilan unidades en Los Ángeles que están sujetas a la Ordenanza de Estabilización de Arrendamientos de Los Ángeles (RSO).",
+    "what_you_can_do": "Si una persona a cargo se mudó a su unidad, pídales a su propietario por escrito que no aumenten el alquiler por esa razón. Mantenga registros de quién vive en su hogar."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-RENT-02": {
+   "input_sha256": "f8da3f396a5a010553cb262ced11763e7a3d21cd261af53b3d293d16f3f20b18",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "In Los Angeles, rent for older apartment buildings can only go up once every 12 months. The increase can only be by the amount the city allows. Rent can be set to market rate only when a tenant moves out on their own, agrees to a buyout, or is evicted for certain reasons.",
+    "who_it_covers": "This rule covers apartments, condos, townhomes, and other rental homes in Los Angeles built on or before October 1, 1978. Some newer condos and townhomes that started after December 31, 1995 are not covered.",
+    "what_you_can_do": "Ask your landlord to show you in writing the allowable rent increase percentage for your unit, and when your last rent increase was."
+   },
+   "es": {
+    "what_it_means": "En Los Ángeles, la renta de edificios de apartamentos antiguos solo puede aumentar una vez cada 12 meses. El aumento solo puede ser por la cantidad que la ciudad permite. La renta puede establecerse a precio de mercado solo cuando un inquilino se muda por su cuenta, acepta una oferta de compra, o es desalojado por ciertas razones.",
+    "who_it_covers": "Esta regla cubre apartamentos, condominios, casas adosadas y otras viviendas de alquiler en Los Ángeles construidas el 1 de octubre de 1978 o antes. Algunos condominios y casas adosadas más nuevos que comenzaron después del 31 de diciembre de 1995 no están cubiertos.",
+    "what_you_can_do": "Solicítele a su arrendador que le muestre por escrito el porcentaje de aumento de renta permitido para su unidad y cuándo fue su último aumento de renta."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-RENT-03": {
+   "input_sha256": "1703a4bfe581a475dc48d0ea0b2af2f17eebad694c0d6e6c3b2f19a0c5f14ba1",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Starting February 2, 2026, landlords cannot add an extra percentage increase for utilities on top of the yearly rent increase that is already allowed.",
+    "who_it_covers": "Rental units that are subject to the Los Angeles RSO (Rent Stabilization Ordinance).",
+    "what_you_can_do": "Keep a copy of your rent increase notice and check that your landlord does not charge extra for utilities on top of the base rent increase."
+   },
+   "es": {
+    "what_it_means": "A partir del 2 de febrero de 2026, los propietarios no pueden agregar un aumento de porcentaje adicional por servicios, aparte del aumento de alquiler anual que ya es permitido.",
+    "who_it_covers": "Unidades de alquiler que están sujetas a la Ordenanza de Estabilización de Arrendamientos de Los Ángeles.",
+    "what_you_can_do": "Guarde una copia de su aviso de aumento de alquiler y verifique que su propietario no cobre extra por servicios además del aumento de alquiler base."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-RENT-04": {
+   "input_sha256": "c91229e9810ecefacc9a6b0ef765c69f6ba2c66eaca357f381c3d8505b31ef47",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "From March 30, 2020 through January 31, 2024, landlords could not raise the rent on RSO units in Los Angeles. This rule is no longer in effect.",
+    "who_it_covers": "Rental units subject to the Los Angeles RSO (Rent Stabilization Ordinance).",
+    "what_you_can_do": "If your landlord raised your rent during this period, contact your local Los Angeles housing department or rent board to ask about your rights."
+   },
+   "es": {
+    "what_it_means": "Del 30 de marzo de 2020 al 31 de enero de 2024, los propietarios no podían aumentar la renta en unidades RSO en Los Ángeles. Esta regla ya no está en vigor.",
+    "who_it_covers": "Unidades de alquiler sujetas a la Ordenanza de Estabilización de Arrendamientos (RSO) de Los Ángeles.",
+    "what_you_can_do": "Si su propietario aumentó su renta durante este período, comuníquese con el departamento de vivienda local de Los Ángeles o la Junta de Arrendamiento para preguntar sobre sus derechos."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "LA-RENT-05": {
+   "input_sha256": "75e1a40e42bbdd7b359ce20569437681c0a9e4ee9b20667388b005d799a837b3",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Starting February 2, 2026, landlords cannot add extra percentage increases for utilities on top of the regular rent increase that is allowed each year.",
+    "who_it_covers": "Rental units that are covered by the City of Los Angeles Rent Stabilization Ordinance (RSO).",
+    "what_you_can_do": "Keep a copy of your lease and any rent increase notices to check that your landlord is not adding a separate utility charge on top of the yearly allowed increase."
+   },
+   "es": {
+    "what_it_means": "A partir del 2 de febrero de 2026, los propietarios no pueden agregar aumentos de porcentaje adicionales por servicios públicos encima del aumento de renta regular que se permite cada año.",
+    "who_it_covers": "Unidades de alquiler que están cubiertas por la Ordenanza de Estabilización de Arrendamientos de la Ciudad de Los Ángeles (RSO).",
+    "what_you_can_do": "Conserve una copia de su contrato de arrendamiento y de cualquier aviso de aumento de renta para verificar que su propietario no esté agregando un cargo separado por servicios públicos encima del aumento anual permitido."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "MA-ALG-P1": {
+   "input_sha256": "be29fd2740a86e47e76ed571b01dd7d0a18f471448774e7979c917bc0c2d46e0",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "This is a proposal, not a law yet. It would address algorithmic rent fixing in the rental housing market.",
+    "who_it_covers": "The document does not describe who or what would be covered by this proposal.",
+    "what_you_can_do": "Contact your state representative or local housing authority if you have questions about this proposed bill."
+   },
+   "es": {
+    "what_it_means": "Esta es una propuesta, no es una ley todavía. Se ocuparía de la fijación algorítmica de alquileres en el mercado de vivienda de alquiler.",
+    "who_it_covers": "El documento no describe quién o qué sería cubierto por esta propuesta.",
+    "what_you_can_do": "Contacte a su representante estatal o autoridad local de vivienda si tiene preguntas sobre este proyecto de ley propuesto."
+   }
+  },
+  "MA-ALG-P2": {
+   "input_sha256": "94700df2c20e3bf73e70bc9d5a2cfe69c5286bf114816dacd1e586d7960a1452",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "This is a proposal, not yet a law. It would ban landlords from using computer algorithms to set rent prices.",
+    "who_it_covers": "The proposal description does not say who or what would be covered.",
+    "what_you_can_do": "Contact your state representative or senator to ask about the status of this bill."
+   },
+   "es": {
+    "what_it_means": "Esta es una propuesta, no es una ley todavía. Prohibiría a los propietarios usar algoritmos de computadora para establecer los precios del alquiler.",
+    "who_it_covers": "La descripción de la propuesta no dice quién o qué sería cubierto.",
+    "what_you_can_do": "Comuníquese con su representante estatal o senador para preguntar sobre el estado de este proyecto de ley."
+   }
+  },
+  "MA-DEP-01": {
+   "input_sha256": "4c90dc6e943f9f539c7b5568b05a4b300167791c995e3a0978bafaee24982314",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Your landlord can only take a security deposit equal to one month's rent. The landlord must keep it in a separate interest-bearing bank account in Massachusetts and give you a receipt. The landlord must pay you 5% interest each year (or the lesser bank rate). When you move out, the landlord must return your deposit within 30 days, minus only unpaid rent, water charges, and costs for damage. If your landlord breaks these rules, you can get treble damages and the landlord loses the right to keep any of the deposit.",
+    "who_it_covers": "Tenants who rent residential properties in Massachusetts and landlords who take security deposits.",
+    "what_you_can_do": "Ask your landlord for a written receipt when you pay a security deposit, get a signed statement of the apartment's condition at move-in, and keep records of all deposit-related documents."
+   },
+   "es": {
+    "what_it_means": "Su arrendador solo puede tomar un depósito de garantía igual a un mes de renta. El arrendador debe guardarlo en una cuenta bancaria separada que gane intereses en Massachusetts y darle un recibo. El arrendador debe pagarle 5% de interés cada año (o la tasa bancaria menor). Cuando se mude, el arrendador debe devolverle su depósito de garantía dentro de 30 días, menos solo la renta impagada, los cargos de agua y el costo de los daños. Si su arrendador incumple estas reglas, usted puede recibir daños triples y el arrendador pierde el derecho a quedarse con parte del depósito de garantía.",
+    "who_it_covers": "Los inquilinos que alquilan propiedades residenciales en Massachusetts y los arrendadores que toman depósitos de garantía.",
+    "what_you_can_do": "Pídale a su arrendador un recibo escrito cuando pague un depósito de garantía, obtenga una declaración firmada del estado del apartamento al momento de la mudanza, y guarde registros de todos los documentos relacionados con el depósito de garantía."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "MA-FEE-01": {
+   "input_sha256": "ad3232b983a3656399e8d0c35226d449ee48a22cf891333734ec57af634f1680",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Only a licensed broker or salesperson can charge a fee to find rental housing. The fee must be paid only by the person or landlord who hired the broker and signed a contract with them.",
+    "who_it_covers": "People in the business of finding rental homes for tenants, or finding tenants for landlords.",
+    "what_you_can_do": "Ask for proof that anyone charging you a rental-finding fee is a licensed broker or salesperson, and make sure you signed a contract with them."
+   },
+   "es": {
+    "what_it_means": "Solo un corredor o agente de ventas con licencia puede cobrar una cuota para encontrar vivienda de alquiler. La cuota debe ser pagada solo por la persona o propietario que contrató al corredor y firmó un contrato con él.",
+    "who_it_covers": "Personas en el negocio de encontrar casas de alquiler para inquilinos, o encontrar inquilinos para propietarios.",
+    "what_you_can_do": "Solicite prueba de que cualquier persona que le cobre una cuota de búsqueda de alquiler sea un corredor o agente de ventas con licencia, y asegúrese de que usted firmó un contrato con él."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "MA-FEE-02": {
+   "input_sha256": "c2b4e91b97432c7491656823f987bf6a4569d472ea0af483e7bc21fddc1dc8b4",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "A landlord cannot ask for more money upfront than first month's rent, last month's rent, a security deposit equal to one month's rent, and the cost of a new key and lock.",
+    "who_it_covers": "Landlords of residential rentals and their agents (not vacation or recreational leases of 100 days or less).",
+    "what_you_can_do": "Ask your landlord in writing to list all upfront fees before you move in, and keep a copy."
+   },
+   "es": {
+    "what_it_means": "Regla de MA sobre cuotas de solicitud y evaluación. Texto oficial (en inglés): At or before the start of a tenancy, neither a landlord nor the landlord's agent may require a tenant or prospective tenant to pay them more than first month's rent, last month's rent, a security deposit equal to the…",
+    "who_it_covers": "Viviendas de alquiler cubiertas por esta regla en MA.",
+    "what_you_can_do": "Pida por escrito la lista de cuotas y los recibos antes de pagar."
+   },
+   "es_version": "es-0.2.0",
+   "es_method": "template",
+   "es_problems": [
+    "es must translate 'lease' as 'contrato de arrendamiento'"
+   ]
+  },
+  "MA-JUST-F1": {
+   "input_sha256": "168db71cc7607deb3f65a5b5f8d9453ab1e7c566a95b2b4b15a4bd67925f9ff2",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "This is a proposal, not a law yet. It would allow the city of Boston to create rules to protect tenants from eviction.",
+    "who_it_covers": "Tenants in the city of Boston.",
+    "what_you_can_do": "Contact your city council member or the city of Boston to ask about the status of this proposal."
+   },
+   "es": {
+    "what_it_means": "Esta es una propuesta, no es una ley todavía. Permitiría que la ciudad de Boston cree reglas para proteger a los inquilinos del desalojo.",
+    "who_it_covers": "Los inquilinos en la ciudad de Boston.",
+    "what_you_can_do": "Comuníquese con su representante del consejo municipal o con la ciudad de Boston para preguntar sobre el estado de esta propuesta."
+   }
+  },
+  "MA-RENT-01": {
+   "input_sha256": "1db03ebadfbe352c0bb0e6e1679d0114e4d1530c3d0fbbb4524b774a7b850bf0",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Massachusetts does not allow cities or towns to have rent control, except in rare cases where the city agrees to special rules. Even then, rent control is voluntary for landlords after six months, and the city must pay landlords the difference if rent is below fair market value.",
+    "who_it_covers": "This rule applies to every city and town in Massachusetts. It does not cover landlords who own fewer than ten rental units or units renting for more than $400 per month.",
+    "what_you_can_do": "Ask your city or town if they have adopted rent control rules, and request a copy of those rules in writing."
+   },
+   "es": {
+    "what_it_means": "Massachusetts no permite que las ciudades o pueblos tengan control de rentas, excepto en casos raros donde la ciudad acepta reglas especiales. Incluso entonces, el control de rentas es voluntario para los arrendadores después de seis meses, y la ciudad debe pagar a los arrendadores la diferencia si la renta está por debajo del valor justo del mercado.",
+    "who_it_covers": "Esta regla se aplica a todas las ciudades y pueblos de Massachusetts. No cubre a los arrendadores que tienen menos de diez unidades de alquiler o unidades que se alquilan por más de $400 por mes.",
+    "what_you_can_do": "Pregunte a su ciudad o pueblo si han adoptado reglas de control de rentas y solicite una copia de esas reglas por escrito."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "MA-RENT-F1": {
+   "input_sha256": "a4543cdb53b2d5faf4aac9d1b166e99487111e1a1cf264c467724a4ffb96f738",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "This is a proposal, not law yet. It would allow the city of Boston to set limits on how much rent can increase.",
+    "who_it_covers": "Renters in the city of Boston.",
+    "what_you_can_do": "Contact your city representative or the city of Boston housing office to learn about this proposal."
+   },
+   "es": {
+    "what_it_means": "Esta es una propuesta, no es ley todavía. Permitiría a la ciudad de Boston establecer límites sobre cuánto puede aumentar el alquiler.",
+    "who_it_covers": "Los inquilinos en la ciudad de Boston.",
+    "what_you_can_do": "Comuníquese con su representante de la ciudad o la oficina de vivienda de la ciudad de Boston para aprender sobre esta propuesta."
+   }
+  },
+  "MA-SCRN-01": {
+   "input_sha256": "01949b156e364d47ac3ddc366c71b3ee250d3fa6e190f20bccd132c655c705c7",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords cannot refuse to rent to you because you get public assistance or housing subsidies. They also cannot say in ads that they do not want tenants who receive these benefits.",
+    "who_it_covers": "People who receive public assistance or housing subsidies like rental assistance.",
+    "what_you_can_do": "Keep records of any ads or statements from landlords that reject tenants based on public assistance. Contact your local housing authority or civil rights agency if you believe you have been discriminated against."
+   },
+   "es": {
+    "what_it_means": "Los arrendadores no pueden negarse a alquilarle porque usted reciba asistencia pública o subsidios de vivienda. Tampoco pueden decir en los anuncios que no quieren inquilinos que reciban estos beneficios.",
+    "who_it_covers": "Personas que reciben asistencia pública o subsidios de vivienda, como asistencia de alquiler.",
+    "what_you_can_do": "Guarde registros de cualquier anuncio o declaración de arrendadores que rechacen inquilinos por asistencia pública. Comuníquese con su autoridad de vivienda local o agencia de derechos civiles si cree que ha sido discriminado."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-ALG-01": {
+   "input_sha256": "32acb4bfcf76603bbe405c0b9385cb3024311eff7e30af36e0589a41d9a1fb36",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Rental property owners cannot use software or hire someone to help coordinate prices with other landlords or use matching pricing strategies. This is illegal under New Jersey's antitrust laws.",
+    "who_it_covers": "Owners of rental homes and apartments in New Jersey, their agents, and anyone who helps coordinate prices among landlords.",
+    "what_you_can_do": "If you believe your landlord or property owner is using price coordination software or strategies, you can report this to the New Jersey Attorney General's office or local housing authority."
+   },
+   "es": {
+    "what_it_means": "Los dueños de propiedades de alquiler no pueden usar software o contratar a alguien para ayudar a coordinar precios con otros propietarios o usar estrategias de precios coincidentes. Esto es ilegal según las leyes antimonopolio de Nueva Jersey.",
+    "who_it_covers": "Dueños de casas y apartamentos de alquiler en Nueva Jersey, sus agentes, y cualquier persona que ayude a coordinar precios entre arrendadores.",
+    "what_you_can_do": "Si usted cree que su arrendador o dueño de propiedad está usando software de coordinación de precios o estrategias, puede reportarlo a la Oficina del Fiscal General de Nueva Jersey o a la autoridad local de vivienda."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-DEP-01": {
+   "input_sha256": "834fcea40a94e6c062f5b8aa45b3503ab173b48ced98086ace7e25d0872816ed",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Your landlord must return your security deposit plus interest within 30 days after your lease ends. If you are forced to leave because of fire, flood, condemnation, or evacuation, your landlord must return it within five business days. The landlord must send the deposit and an itemized list of any deductions by registered or certified mail. If your landlord wrongfully keeps your deposit, you can get double the amount owed.",
+    "who_it_covers": "Most tenants in residential rental properties in New Jersey. Owner-occupied two- or three-family dwellings are not covered unless you choose to be covered.",
+    "what_you_can_do": "Ask your landlord to return your deposit in writing, and keep copies of your lease and move-out photos. If your landlord does not return it on time, contact your local housing authority or small claims court."
+   },
+   "es": {
+    "what_it_means": "Su arrendador debe devolver su depósito de garantía más interés dentro de 30 días después de que termine su contrato de arrendamiento. Si se ve obligado a irse por incendio, inundación, condenación o evacuación, su arrendador debe devolverlo dentro de cinco días hábiles. El arrendador debe enviar el depósito de garantía y una lista detallada de cualquier deducción por correo registrado o certificado. Si su arrendador retiene injustamente su depósito de garantía, puede recibir el doble de la cantidad adeudada.",
+    "who_it_covers": "La mayoría de los inquilinos en propiedades de alquiler residencial en Nueva Jersey. Las viviendas unifamiliares o de dos a tres familias ocupadas por el propietario no están cubiertas a menos que usted elija estarlo.",
+    "what_you_can_do": "Solicite a su arrendador que devuelva su depósito de garantía por escrito y conserve copias de su contrato de arrendamiento y fotos de la mudanza. Si su arrendador no lo devuelve a tiempo, comuníquese con su autoridad local de vivienda o con la corte de reclamos menores."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-DEP-02": {
+   "input_sha256": "37e00c195703a921033e28c74f8dd9b752a7905e49d187fd289e4d6a910c4097",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Your landlord cannot ask for a security deposit larger than one and one-half times one month's rent. If your deposit goes up each year, it can only increase by 10% of what you are already paying. Prepaid rent and pet deposits count toward this limit.",
+    "who_it_covers": "Most residential rental properties, including mobile homes. Owner-occupied two- or three-family dwellings are not covered, unless the tenant asks in writing (the rule then applies 30 days later).",
+    "what_you_can_do": "Ask your landlord in writing for a full list of what money they are collecting from you at move-in, so you can check that the total does not exceed one and one-half times one month's rent."
+   },
+   "es": {
+    "what_it_means": "Su arrendador no puede pedirle un depósito de garantía mayor que una vez y media la renta de un mes. Si su depósito sube cada año, solo puede aumentar el 10% de lo que ya está pagando. La renta prepagada y los depósitos por mascotas cuentan para este límite.",
+    "who_it_covers": "La mayoría de las propiedades de alquiler residencial, incluyendo casas móviles. Las viviendas de dos o tres familias ocupadas por el propietario no están cubiertas, a menos que el inquilino lo solicite por escrito (la regla se aplica 30 días después).",
+    "what_you_can_do": "Solicite a su arrendador por escrito una lista completa de todo el dinero que le está pidiendo al entrar, para que pueda verificar que el total no exceda una vez y media la renta de un mes."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-DEP-03": {
+   "input_sha256": "3aa063e189f218392f359826a5420b3a835ba6a658510048cc1e75fbc87a36ac",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "When a tenant ends a lease early because of domestic violence under the Safe Housing Act, the landlord must give back the security deposit plus interest within 15 business days. The landlord must also tell the tenant in writing within three business days where and when to pick it up.",
+    "who_it_covers": "Tenants who terminate a lease early under the Safe Housing Act as domestic violence victims, except for transient or seasonal rentals.",
+    "what_you_can_do": "If you end your lease early under the Safe Housing Act, keep a copy of the landlord's written notice about where and when to pick up your deposit."
+   },
+   "es": {
+    "what_it_means": "Cuando un inquilino termina un contrato de arrendamiento antes de tiempo por violencia doméstica bajo la Ley de Vivienda Segura, el propietario debe devolver el depósito de garantía más intereses dentro de 15 días hábiles. El propietario también debe notificar al inquilino por escrito dentro de tres días hábiles dónde y cuándo recogerlo.",
+    "who_it_covers": "Inquilinos que terminan un contrato de arrendamiento antes de tiempo bajo la Ley de Vivienda Segura como víctimas de violencia doméstica, excepto en alquileres transitorios o estacionales.",
+    "what_you_can_do": "Si termina su contrato de arrendamiento antes de tiempo bajo la Ley de Vivienda Segura, guarde una copia del aviso escrito del propietario sobre dónde y cuándo recoger su depósito de garantía."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-FEE-01": {
+   "input_sha256": "6d227b9ed19ccc0894575d9f17f216f8d2f1e295786d84508ab0ba2dad3ea27d",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords and their agents cannot charge more than $50 to apply to lease or sublease a residential rental property. The $50 amount is adjusted each year for increases in the cost of living.",
+    "who_it_covers": "Landlords and agents who charge application fees for residential rental properties, except for one-family or two-family dwellings and unless the person charging the fee is licensed by the New Jersey Real Estate Commission.",
+    "what_you_can_do": "If your landlord charges more than $50 for an application fee, keep a copy of what you paid and contact your local housing authority or tenant rights organization for help."
+   },
+   "es": {
+    "what_it_means": "Los propietarios y sus agentes no pueden cobrar más de $50 para solicitar un contrato de arrendamiento o subarrendamiento de una propiedad de alquiler residencial. La cantidad de $50 se ajusta cada año según los aumentos en el costo de vida.",
+    "who_it_covers": "Propietarios y agentes que cobran cuotas de solicitud para propiedades de alquiler residencial, excepto para casas de una o dos familias y a menos que la persona que cobre la cuota esté autorizada por la Comisión de Bienes Raíces de Nueva Jersey.",
+    "what_you_can_do": "Si su propietario cobra más de $50 por una cuota de solicitud, guarde una copia de lo que pagó y comuníquese con su autoridad de vivienda local u organización de derechos de los inquilinos para obtener ayuda."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-JUST-01": {
+   "input_sha256": "9bb84a5538c3df5e2547e2b8058a6f63d990046533a521f5d23c7a25b6aa2cfa",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "A landlord in New Jersey cannot evict you or refuse to renew your lease unless they have a legal reason. Legal reasons include not paying rent, breaking rules, damaging the property, behaving badly, refusing a huge rent increase, moving out of the rental business, converting to condos, wanting to live in the unit themselves, or having drug or assault convictions.",
+    "who_it_covers": "Most residential rental properties, including single-family homes, apartment buildings, and mobile homes. It does not cover: small owner-occupied buildings with two or three units total, hotel or motel guests, seasonal tenants, or units held in trust for a developmentally disabled family member.",
+    "what_you_can_do": "If your landlord tries to evict you or refuses to renew your lease, ask them to give you the legal reason in writing, and contact your local housing authority or a legal aid organization if you believe it is not one of the reasons listed."
+   },
+   "es": {
+    "what_it_means": "Un propietario en Nueva Jersey no puede desalojarlo ni negarse a renovar su contrato de arrendamiento sin una razón legal. Las razones legales incluyen no pagar la renta, violar las reglas, dañar la propiedad, comportarse mal, rechazar un aumento de renta muy grande, dejar de alquilar, convertir a condominios, querer vivir en la unidad ellos mismos, o tener condenas por drogas o asalto.",
+    "who_it_covers": "La mayoría de las propiedades de alquiler residenciales, incluyendo casas unifamiliares, edificios de apartamentos y casas móviles. No cubre: edificios pequeños ocupados por el propietario con dos o tres unidades en total, huéspedes de hoteles o moteles, inquilinos de temporada, o unidades en fideicomiso para un miembro discapacitado de la familia.",
+    "what_you_can_do": "Si su propietario intenta desalojarlo o se niega a renovar su contrato de arrendamiento, pídales que le proporcionen la razón legal por escrito y comuníquese con la autoridad de vivienda local u organización de asistencia legal si considera que no es una de las razones enumeradas."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-JUST-02": {
+   "input_sha256": "4d000abe111959bc70bd6404a7d1e9a886775dd8b71207c14c33f751df00f12a",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Senior citizens, disabled tenants, and certain disabled veterans who have lived in a building for at least one year before it converts to a condominium, cooperative, or fee simple ownership may have protection from eviction for 40 years if their income meets the legal limit.",
+    "who_it_covers": "Qualifying senior citizens, disabled tenants, and disabled veterans in buildings being converted for at least one year before the conversion recording date, subject to income limits.",
+    "what_you_can_do": "If you are a senior citizen, disabled tenant, or disabled veteran and your building is converting, contact your local housing authority or legal aid office to learn if you qualify for protection and what income limits apply."
+   },
+   "es": {
+    "what_it_means": "Los adultos mayores, inquilinos discapacitados y ciertos veteranos discapacitados que han vivido en un edificio durante al menos un año antes de que se convierta en condominio, cooperativa o propiedad de tarifa simple pueden tener protección contra el desalojo durante 40 años si sus ingresos cumplen con el límite legal.",
+    "who_it_covers": "Adultos mayores calificados, inquilinos discapacitados y veteranos discapacitados en edificios en conversión durante al menos un año antes de la fecha de registro de la conversión, sujeto a límites de ingresos.",
+    "what_you_can_do": "Si es un adulto mayor, inquilino discapacitado o veterano discapacitado y su edificio se está convirtiendo, comuníquese con su autoridad de vivienda local u oficina de asistencia legal para saber si califica para la protección y qué límites de ingresos se aplican."
+   }
+  },
+  "NJ-RENT-01": {
+   "input_sha256": "9d20f921843a642ec6f0a0fbbc233cdd78708461f13ab4168b124ae529d87dc9",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Rent increases must be fair and cannot be unreasonably high. Your landlord must follow local rent rules if your city or town has them. Your landlord must give you proper notice before they can evict you for not paying a rent increase.",
+    "who_it_covers": "People who rent homes in New Jersey under residential tenancies covered by the Anti-Eviction Act.",
+    "what_you_can_do": "Ask your landlord for any rent increase in writing and check if your city has local rent rules. If you get an eviction notice about a rent increase, make sure your landlord gave you proper notice first."
+   },
+   "es": {
+    "what_it_means": "Los aumentos de renta deben ser justos y no pueden ser excesivamente altos. Su arrendador debe seguir las reglas locales de renta si su ciudad o pueblo las tiene. Su arrendador debe darle aviso adecuado antes de poder desalojarlo por no pagar un aumento de renta.",
+    "who_it_covers": "Las personas que alquilan casas en Nueva Jersey bajo arrendamientos residenciales cubiertos por la Ley Antidesahucio.",
+    "what_you_can_do": "Pida a su arrendador cualquier aumento de renta por escrito y verifique si su ciudad tiene reglas locales de renta. Si recibe un aviso de desalojo sobre un aumento de renta, asegúrese de que su arrendador le haya dado el aviso adecuado primero."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-RENT-02": {
+   "input_sha256": "23fe23a43134457f22e99c70ccd4fdf25a95e8fa4656b2ece4ef58abbc272f95",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "When a building becomes a condominium, cooperative, or fee simple ownership, your rent cannot go up just because of the conversion. Your landlord can raise rent for new services or amenities, but not for conversion costs alone.",
+    "who_it_covers": "All tenants in buildings that are converted to condominium, cooperative, or fee simple ownership.",
+    "what_you_can_do": "If your rent increases after a conversion, ask your landlord in writing to explain what new services or amenities justify the increase. Contact your local housing authority or tenant advocacy organization if you believe the increase is unlawful."
+   },
+   "es": {
+    "what_it_means": "Cuando un edificio se convierte en condominio, cooperativa o propiedad de dominio completo, su renta no puede aumentar solo por la conversión. Su arrendador puede subir la renta por servicios o comodidades nuevas, pero no por costos de conversión solos.",
+    "who_it_covers": "Todos los inquilinos en edificios que se convierten en condominio, cooperativa o propiedad de dominio completo.",
+    "what_you_can_do": "Si su renta sube después de una conversión, pídales a su arrendador por escrito que explique qué servicios o comodidades nuevos justifican el aumento. Póngase en contacto con su autoridad local de vivienda u organización de defensa de inquilinos si cree que el aumento es ilegal."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-RENT-03": {
+   "input_sha256": "f3e7ab2470075096304f82d37dedd254c065ac350be295ddb3d3eb5fd58e7831",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Newly constructed apartment buildings and multi-family homes do not have to follow local rent control rules for 30 years after construction is finished.",
+    "who_it_covers": "Newly constructed multiple dwellings (apartment buildings and multi-family homes) for 30 years following completion of construction.",
+    "what_you_can_do": "If you rent a newly constructed building, ask your landlord in writing when construction was completed so you know if rent control rules apply to your home."
+   },
+   "es": {
+    "what_it_means": "Los edificios de apartamentos y casas de múltiples familias recién construidos no tienen que seguir las reglas de control de arrendamientos local durante 30 años después de que se termine la construcción.",
+    "who_it_covers": "Edificios de múltiples familias recién construidos (edificios de apartamentos y casas de múltiples familias) durante 30 años después de que se complete la construcción.",
+    "what_you_can_do": "Si usted alquila en un edificio recién construido, pregúntele a su arrendador por escrito cuándo se completó la construcción para que sepa si las reglas de control de arrendamientos se aplican a su hogar."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-SCRN-01": {
+   "input_sha256": "420348697261f0a94ce8c398f6c6c9f2245d2235fc135b006bd8987942de1d89",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords cannot refuse to rent to you or treat you unfairly because of where your money comes from, such as a job, Section 8 voucher, or other lawful income source. This rule applies to all rental housing in New Jersey.",
+    "who_it_covers": "This rule covers all rental properties in New Jersey, except owner-occupied two-family homes, rooms in an owner-occupied single home, and some religious or age-restricted housing.",
+    "what_you_can_do": "If a landlord denies you housing based on your source of income, keep records of the denial and contact your local housing authority or the New Jersey Division on Civil Rights."
+   },
+   "es": {
+    "what_it_means": "Los arrendadores no pueden negarle una vivienda o tratarle de forma injusta porque su dinero venga de un trabajo, un voucher de la Sección 8 u otra fuente legal de ingresos. Esta regla se aplica a todas las viviendas de alquiler en Nueva Jersey.",
+    "who_it_covers": "Esta regla cubre todas las propiedades de alquiler en Nueva Jersey, excepto las casas de dos familias ocupadas por el dueño, habitaciones en una casa unifamiliar ocupada por el dueño, y algunas viviendas religiosas o para personas mayores.",
+    "what_you_can_do": "Si un arrendador le niega una vivienda basándose en su fuente de ingresos, guarde registros de la negación y comuníquese con su autoridad de vivienda local o con la División de Derechos Civiles de Nueva Jersey."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "NJ-SCRN-02": {
+   "input_sha256": "024f4ec6aac79bac4b2427acc7a4c06ceb0433aeab79da21e883335ddc72e0c7",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Housing providers cannot ask you about your criminal record before offering you a rental home, even in writing or by phone. If they offer you a place and then want to check your record, they can only look at certain serious convictions from recent years—6 years back for first-degree crimes, 4 years for second or third-degree crimes, and 1 year for fourth-degree crimes. They cannot consider arrests without convictions, expunged records, pardoned records, sealed records, or juvenile adjudications.",
+    "who_it_covers": "Landlords, owners, property managers, and their agents who rent out residential dwelling units.",
+    "what_you_can_do": "If a housing provider asks about your criminal record before offering you an apartment, let them know this is not allowed. If they withdraw an offer, ask them in writing for the specific reason, an explanation of how they reviewed your record, and your right to appeal."
+   },
+   "es": {
+    "what_it_means": "Los arrendadores no pueden preguntarle sobre su historial criminal antes de ofrecerle un hogar de alquiler, ni por escrito ni por teléfono. Si le ofrecen un lugar y luego quieren revisar su registro, solo pueden ver ciertos delitos graves de años recientes—6 años atrás para crímenes de primer grado, 4 años para crímenes de segundo o tercer grado, y 1 año para crímenes de cuarto grado. No pueden considerar arrestos sin condena, registros borrados, registros indultados, registros sellados, o adjudicaciones de menores.",
+    "who_it_covers": "Arrendadores, dueños, administradores de propiedades, y sus agentes que alquilan unidades de vivienda residencial.",
+    "what_you_can_do": "Si un arrendador le pregunta sobre su historial criminal antes de ofrecerle un apartamento, hágale saber que esto no está permitido. Si retiran la oferta, solicíteles por escrito la razón específica, una explicación de cómo revisaron su registro, y su derecho a apelar."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "SD-ALG-P1": {
+   "input_sha256": "4e6ee8bf465be8ac314b7d8597bf46ca92dae8260325df8f170e30b41367127c",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "This is a proposed rule. It would ban landlords from using computer programs that use secret competitor data to set rental prices or decide how many apartments to rent. It would also ban selling or providing these programs to landlords.",
+    "who_it_covers": "Landlords in San Diego who rent residential property, and anyone who sells or gives these computer programs to landlords.",
+    "what_you_can_do": "If your landlord sets your rent using such a program, you may be able to contact a lawyer or your local housing authority to report it."
+   },
+   "es": {
+    "what_it_means": "Esta es una propuesta de regla. Prohibiría que los propietarios usen programas de computadora que usan datos secretos de competidores para fijar precios de alquiler o decidir cuántos apartamentos alquilar. También prohibiría vender o proporcionar estos programas a los propietarios.",
+    "who_it_covers": "Los propietarios en San Diego que alquilan propiedades residenciales, y cualquiera que venda o proporcione estos programas de computadora a los propietarios.",
+    "what_you_can_do": "Si su propietario fija su alquiler usando tal programa, es posible que pueda contactar a un abogado o a su autoridad local de vivienda para denunciarlo."
+   }
+  },
+  "SD-JUST-01": {
+   "input_sha256": "ddc513e28b4095b7efb5f8ffe4c70268fa87157ba29f3ae70a991bc4aaff2674",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "Landlords in San Diego must have a valid reason to end your tenancy. Valid reasons include not paying rent, breaking the lease, or causing problems. If the landlord wants to end your tenancy for other reasons (like moving in themselves), they must give you notice and pay you relocation assistance of 2 months' actual rent (3 months if you are a senior or disabled).",
+    "who_it_covers": "Tenants in residential rental properties in San Diego with tenancies longer than 30 days (excluding fixed-term leases of 3 months or less).",
+    "what_you_can_do": "If your landlord tries to end your tenancy, ask them in writing what the reason is and whether relocation assistance applies to you."
+   },
+   "es": {
+    "what_it_means": "Los propietarios en San Diego deben tener una razón válida para terminar su arrendamiento. Las razones válidas incluyen no pagar la renta, romper el contrato de arrendamiento o causar problemas. Si el propietario quiere terminar su arrendamiento por otras razones (como mudarse a la propiedad), debe notificarle y pagarle asistencia de reubicación de 2 meses de renta actual (3 meses si usted es mayor de edad o tiene una discapacidad).",
+    "who_it_covers": "Inquilinos en propiedades residenciales de alquiler en San Diego con arrendamientos más largos de 30 días (excluyendo contratos de plazo fijo de 3 meses o menos).",
+    "what_you_can_do": "Si su propietario intenta terminar su arrendamiento, pregúntele por escrito cuál es la razón y si se aplica asistencia de reubicación en su caso."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 2
+  },
+  "SF-ALG-01": {
+   "input_sha256": "ab632d4f634916fa9b6b1076fd4620cb0173f4ce9bd8a2dadb2b23771d083322",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "San Francisco forbids landlords and property managers from using algorithmic software or devices to set rents or control how many tenants live in residential units. This ban applies to tools that analyze competitor rental data to recommend prices.",
+    "who_it_covers": "Residential rental units in San Francisco.",
+    "what_you_can_do": "If you believe your landlord is using algorithmic pricing to set your rent, you can contact the San Francisco City Attorney's office or consult a local housing advocate for guidance."
+   },
+   "es": {
+    "what_it_means": "San Francisco prohíbe que los arrendadores y administradores de viviendas usen software o dispositivos algorítmicos para fijar alquileres o controlar cuántos inquilinos viven en unidades residenciales. Esta prohibición se aplica a herramientas que analizan datos de alquileres de la competencia para recomendar precios.",
+    "who_it_covers": "Unidades de alquiler residencial en San Francisco.",
+    "what_you_can_do": "Si cree que su arrendador usa precios algorítmicos para fijar su alquiler, puede comunicarse con la oficina del Fiscal General de la Ciudad de San Francisco o consultar a un defensor de vivienda local para obtener orientación."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "SF-JUST-01": {
+   "input_sha256": "242e4bf5555766a5c191d7921f33b6efcabea2d2acf61b6b52591acd50ca2553",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "A landlord can only evict a tenant from a rental unit covered by the San Francisco Rent Ordinance if they have one of 17 specific just cause reasons. The landlord must prove this reason is the main reason for eviction. Simply ending a lease or selling the building is not enough reason to evict. Landlords also need just cause to remove housing services like parking, storage, or laundry.",
+    "who_it_covers": "Rental units covered by the San Francisco Rent Ordinance, including some units exempt from rent increase limits.",
+    "what_you_can_do": "Ask your landlord in writing to explain the just cause reason for any eviction or removal of housing services. Keep copies of all notices and documents from your landlord."
+   },
+   "es": {
+    "what_it_means": "Un arrendador solo puede desalojar a un inquilino de una unidad de alquiler cubierta por la Ordenanza de Arrendamiento de San Francisco si tiene una de 17 razones de causa justa específicas. El arrendador debe probar que esta razón es la razón principal para el desalojo. Simplemente terminar un contrato de arrendamiento o vender el edificio no es razón suficiente para desalojar. Los arrendadores también necesitan causa justa para remover servicios de vivienda como estacionamiento, almacenamiento o lavandería.",
+    "who_it_covers": "Unidades de alquiler cubiertas por la Ordenanza de Arrendamiento de San Francisco, incluyendo algunas unidades exentas de los límites de aumento de alquiler.",
+    "what_you_can_do": "Pida a su arrendador por escrito que explique la razón de causa justa para cualquier desalojo o retiro de servicios de vivienda. Guarde copias de todos los avisos y documentos de su arrendador."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "SF-RENT-01": {
+   "input_sha256": "b51bdc9434beef3c146e1fd56b7697f10aaa1a3b6ac5ebc197026bf6f7f16d80",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "San Francisco's Rent Ordinance limits how much landlords can raise rent on covered units. Some units are exempt from this rule, including new buildings, certain tenancies under Costa-Hawkins, and units regulated by other government agencies.",
+    "who_it_covers": "Rental units in San Francisco that are covered by the Rent Ordinance, except for exempt units like those first obtaining a Certificate of Occupancy after June 13, 1979.",
+    "what_you_can_do": "Ask your landlord in writing what rent increase, if any, applies to your unit, and whether your unit is exempt from the Rent Ordinance."
+   },
+   "es": {
+    "what_it_means": "La Ordenanza de Arrendamiento de San Francisco limita cuánto pueden aumentar el alquiler los propietarios en unidades cubiertas. Algunas unidades están exentas de esta regla, incluyendo edificios nuevos, ciertos arrendamientos bajo Costa-Hawkins, y unidades reguladas por otras agencias del gobierno.",
+    "who_it_covers": "Unidades de alquiler en San Francisco que están cubiertas por la Ordenanza de Arrendamiento, excepto unidades exentas como aquellas que obtuvieron por primera vez un Certificado de Ocupación después del 13 de junio de 1979.",
+    "what_you_can_do": "Pregúntele a su propietario por escrito qué aumento de alquiler, si alguno, se aplica a su unidad, y si su unidad está exenta de la Ordenanza de Arrendamiento."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "SF-SCRN-01": {
+   "input_sha256": "0cb2e6414237f12ed29425fe5da3e0c16a6d148fada6f0367ce36805688c7aa2",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "San Francisco's Fair Chance Ordinance protects people with an arrest or conviction history. It limits how landlords can make decisions about affordable housing based on that history.",
+    "who_it_covers": "People with an arrest or conviction history applying for or living in affordable housing in San Francisco.",
+    "what_you_can_do": "Ask your local San Francisco housing department if you have questions about how this rule protects you."
+   },
+   "es": {
+    "what_it_means": "La Ordenanza de Segunda Oportunidad de San Francisco protege a las personas con un historial de arresto o condena. Limita cómo los propietarios pueden tomar decisiones sobre vivienda asequible basándose en ese historial.",
+    "who_it_covers": "Personas con un historial de arresto o condena que solicitan vivienda asequible o viven en vivienda asequible en San Francisco.",
+    "what_you_can_do": "Pregúntele al departamento de vivienda local de San Francisco si tiene preguntas sobre cómo esta regla lo protege."
+   }
+  },
+  "SNA-JUST-01": {
+   "input_sha256": "999046b6c5d09b12793af137ad6a364cd2bc023ded50179a7d4625203f56f379",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords can only evict tenants for valid reasons, such as not paying rent, breaking the lease, or the owner moving into the unit. Some evictions require the landlord to pay for the tenant's moving costs.",
+    "who_it_covers": "The rule does not describe who or what is covered.",
+    "what_you_can_do": "If your landlord tries to evict you, ask for the reason in writing and contact your local housing or rent board if you believe the eviction is not for a valid reason."
+   },
+   "es": {
+    "what_it_means": "Los propietarios solo pueden desalojar a los inquilinos por razones válidas, como no pagar la renta, violar el contrato de arrendamiento o porque el propietario se va a mudar a la unidad. Algunos desalojos requieren que el propietario pague los costos de mudanza del inquilino.",
+    "who_it_covers": "La regla no describe a quién o qué está cubierto.",
+    "what_you_can_do": "Si su propietario intenta desalojarlo, pida la razón por escrito y comuníquese con su Junta de Arrendamiento local si cree que el desalojo no es por una razón válida."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "SNA-JUST-02": {
+   "input_sha256": "70c6c50ff37cfdf4a23ae88128e19940d92630699653acb691600d76fe94887f",
+   "method": "llm",
+   "attempts": 2,
+   "en": {
+    "what_it_means": "After you live in your rental for 30 days, your landlord cannot end your tenancy without a good reason. Your landlord must give you written notice and let you fix any problems first. If your landlord ends your tenancy without your fault, they must pay you 3 months of relocation help or let you skip the last 3 months of rent.",
+    "who_it_covers": "Renters in Santa Ana who have lived in their homes for at least 30 days.",
+    "what_you_can_do": "Keep copies of any notices from your landlord and ask about the relocation assistance or rent waiver you are entitled to receive."
+   },
+   "es": {
+    "what_it_means": "Después de vivir en su vivienda alquilada por 30 días, su arrendador no puede terminar su contrato de arrendamiento sin una causa justa válida. Su arrendador debe enviarle un aviso escrito y primero dejarle arreglar cualquier problema. Si su arrendador termina su contrato de arrendamiento sin culpa suya, debe pagarle 3 meses de asistencia de reubicación o permitirle no pagar los últimos 3 meses de renta.",
+    "who_it_covers": "Inquilinos en Santa Ana que han vivido en sus hogares por lo menos 30 días.",
+    "what_you_can_do": "Guarde copias de cualquier aviso de su arrendador y pregunte sobre la asistencia de reubicación o la rebaja de renta que tiene derecho a recibir."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "SNA-RENT-01": {
+   "input_sha256": "5f330b9b2e75e5013ab9b67acb9dc27a72db52482df9309fdfaff138bc8e1fdc",
+   "method": "llm",
+   "attempts": 1,
+   "en": {
+    "what_it_means": "Landlords in Santa Ana can raise rent only once per year. The increase must be the lower of 3% or 80% of the change in the Consumer Price Index. If the CPI drops, rent cannot go up.",
+    "who_it_covers": "Residential rental properties and mobile home spaces in Santa Ana, except buildings built after February 1, 1995, and mobile home spaces offered for rent after January 1, 1990.",
+    "what_you_can_do": "Ask your landlord in writing how much your rent will increase and check that it follows the 3% or 80% CPI rule. Contact the City of Santa Ana Housing Department if you think your rent increase is too high."
+   },
+   "es": {
+    "what_it_means": "Los arrendadores en Santa Ana solo pueden aumentar la renta una vez por año. El aumento debe ser el menor entre 3% u 80% del cambio en el Índice de Precios al Consumidor. Si el IPC baja, la renta no puede subir.",
+    "who_it_covers": "Propiedades residenciales de alquiler y espacios para casas móviles en Santa Ana, excepto edificios construidos después del 1 de febrero de 1995 y espacios para casas móviles ofrecidos en alquiler después del 1 de enero de 1990.",
+    "what_you_can_do": "Pídale a su arrendador por escrito cuánto va a aumentar su renta y verifique que siga la regla del 3% u 80% del IPC. Comuníquese con el Departamento de Vivienda de la Ciudad de Santa Ana si considera que su aumento de renta es demasiado alto."
+   },
+   "es_version": "es-0.2.0",
+   "es_attempts": 1
+  },
+  "HOB-ALG-A1": {
+   "input_sha256": "8428db8799710232cff6a4bf88bf2f09bb0199fba527e0caa46722a7381f36cb",
+   "method": "template",
+   "en": {
+    "what_it_means": "A Hoboken, NJ law on algorithmic rent setting that the challenge materials name; its text is not in our sources.",
+    "who_it_covers": "Rentals covered by this rule in Hoboken, NJ.",
+    "what_you_can_do": "If you think rent was set with pricing software, contact your local housing department or the state attorney general's office."
+   },
+   "es": {
+    "what_it_means": "Una ley de Hoboken, NJ sobre fijación de renta con algoritmos mencionada en los materiales del reto; su texto no está en nuestras fuentes.",
+    "who_it_covers": "Viviendas de alquiler cubiertas por esta regla en Hoboken, NJ.",
+    "what_you_can_do": "Si cree que la renta se fijó con software de precios, comuníquese con la oficina de vivienda local o la fiscalía general del estado."
+   }
+  },
+  "JC-ALG-A1": {
+   "input_sha256": "2665157cb485c1e8e7ade41d97646924b8918ea1142e093769aaa1e7cd9a1e26",
+   "method": "template",
+   "en": {
+    "what_it_means": "A Jersey City, NJ law on algorithmic rent setting that the challenge materials name; its text is not in our sources.",
+    "who_it_covers": "Rentals covered by this rule in Jersey City, NJ.",
+    "what_you_can_do": "If you think rent was set with pricing software, contact your local housing department or the state attorney general's office."
+   },
+   "es": {
+    "what_it_means": "Una ley de Jersey City, NJ sobre fijación de renta con algoritmos mencionada en los materiales del reto; su texto no está en nuestras fuentes.",
+    "who_it_covers": "Viviendas de alquiler cubiertas por esta regla en Jersey City, NJ.",
+    "what_you_can_do": "Si cree que la renta se fijó con software de precios, comuníquese con la oficina de vivienda local o la fiscalía general del estado."
+   }
+  },
+  "MA-RENT-A1": {
+   "input_sha256": "fbd718bd989069ab4a10a1aa9acafdbd0f0094d3a64e661a3b6f0148e95922f0",
+   "method": "template",
+   "en": {
+    "what_it_means": "A MA law on rent increases that the challenge materials name; its text is not in our sources.",
+    "who_it_covers": "Rentals covered by this rule in MA.",
+    "what_you_can_do": "Ask your landlord for any rent increase notice in writing and keep a copy."
+   },
+   "es": {
+    "what_it_means": "Una ley de MA sobre aumentos de renta mencionada en los materiales del reto; su texto no está en nuestras fuentes.",
+    "who_it_covers": "Viviendas de alquiler cubiertas por esta regla en MA.",
+    "what_you_can_do": "Pida por escrito cualquier aviso de aumento de renta y guarde una copia."
+   }
+  }
+ }
+}

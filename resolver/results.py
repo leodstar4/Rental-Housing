@@ -225,6 +225,59 @@ def explanation(e: dict, facts: dict, as_of: date, titles: dict[str, str]) -> st
     return " ".join(sentences + [src, f"As of {as_of.isoformat()}.", "Not legal advice."])
 
 
+def facts_phrase_es(e: dict, facts: dict) -> str:
+    return (facts_phrase(e, facts).replace("built", "construido en").replace("units (assessor description)",
+            "unidades (descripción del tasador)").replace("units (use code)", "unidades (código de uso)")
+            .replace("units", "unidades"))
+
+
+_MISSING_ES = {"year_built": "el año de construcción", "units": "el número de unidades",
+               "owner_type": "el tipo legal del propietario", "owner_occupied": "si un propietario vive en la propiedad"}
+
+
+def explanation_es(e: dict, facts: dict, as_of: date, titles: dict[str, str], plain: dict | None) -> str:
+    """Spanish explanation: first sentence from the validated plain-language summary (api/plain_language),
+    the rest from fixed templates. Citations, rule ids and URLs stay as in the source."""
+    rule, res = e["rule"], e["result"]
+    p = (plain or {}).get(e["rule_id"], {}).get("es") or {}
+    req = p.get("what_it_means") or f"{rule['title']} (texto oficial en inglés)."
+    fp = facts_phrase_es(e, facts)
+    where = f" ({fp})" if fp else f" (todas las viviendas de alquiler cubiertas en {rule['jurisdiction']})"
+    if res == "applies" and e.get("dependency_via"):
+        why = f"Aplica aquí porque otra ley que cubre este edificio lo incluye ({e['dependency_via'][1]})."
+    elif res == "applies":
+        why = f"Aplica aquí{where}."
+    elif res == "superseded":
+        why = f"Cubre este edificio{where}, pero rige {e['superseded_by']} ({titles.get(e['superseded_by'], '')[:70]})."
+    elif res == "not_yet_effective":
+        why = (f"Aprobada pero aún no vigente: entra en vigor el {e['effective_date']}." if e.get("effective_date")
+               else "Aprobada pero aún no vigente.")
+    elif res == "pending":
+        why = "Proyecto de ley pendiente, no es ley."
+    else:
+        y = facts["year_built"]["value"]
+        miss = ", ".join(_MISSING_ES.get(m, f"la fecha del certificado de ocupación (construido en {y})"
+                                         if m.startswith("certificate of occupancy") else m)
+                         for m in e["missing_facts"]) or "datos que no tenemos"
+        why = f"Depende de {miss}, que no está en los datos del tasador."
+    if res in ("applies", "unknown") and e.get("explain"):
+        why += " Aplica solo si la unidad se demuele para un nuevo desarrollo de vivienda." if any(
+            "demolished" in x for x in e["explain"]) else ""
+    notes = []
+    if e["presumptions"]:
+        notes.append(f"se presume que no hay evidencia de un estatus especial ({len(e['presumptions'])}) "
+                     "en los datos del tasador")
+    notes += [f"podría ceder ante {x} si aplica" for x in e["may_yield_to"]]
+    if e["conflict_notes"]:
+        notes.append("posible conflicto de preempción, marcado para revisión humana")
+    sentences = [req, why] + (["Notas: " + "; ".join(notes) + "."] if notes else [])
+    if rule.get("evidence_type") == "manifest_only":
+        src = f"Fuente: {rule.get('citation') or rule['title']}; texto fuera del corpus (atestiguada en el manifiesto)."
+    else:
+        src = f"Fuente: {rule['citation']} ({rule['source_url']}, consultado el {e['retrieved']})."
+    return " ".join(sentences + [src, f"Vigente al {as_of.isoformat()}.", "No es asesoría legal."])
+
+
 # --------------------------------------------------------------------------- #
 # Lookup
 # --------------------------------------------------------------------------- #
@@ -248,7 +301,8 @@ class Engine:
             law_named(c["text"], r) for c in self.compiled[r["team_rule_id"]]["conditions"])}
         self.titles = {r["team_rule_id"]: r["title"] for r in self.rules}
 
-    def lookup(self, aid: str) -> dict:
+    def lookup(self, aid: str, plain: dict | None = None) -> dict:
+        """``plain`` (data/plain_language.json rules) adds ``explanation_es`` to every result."""
         facts, stack, as_of = self.facts[aid], self.stacks[aid], self.as_of
         entries: dict[str, dict] = {}
         for rule in self.rules:
@@ -379,6 +433,7 @@ class Engine:
                 "presumptions": e["presumptions"], "reasons": e["coverage"]["reasons"],
                 "caveats": e["coverage"]["caveats"], "unresolved_other_law": e["unresolved_other_law"],
                 "rule_conflict_flag": bool(e["rule"].get("conflict_flag")),
+                **({"explanation_es": explanation_es(e, facts, as_of, self.titles, plain)} if plain is not None else {}),
             })
         results.sort(key=lambda r: (list(CATEGORY_LABEL).index(r["category"]), r["level"] != "city", r["team_rule_id"]))
         return {"address_id": aid, "jurisdiction": {k: stack.get(k) for k in

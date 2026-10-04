@@ -1,0 +1,29 @@
+# Known open questions in the law (participant guide §9) and how the system handles them.
+# Served by GET /conflicts for human review. Source: participant guide §9 and README
+# ("Preguntas abiertas no resolubles con el corpus").
+
+questions:
+  - id: OQ-1
+    topic: "Berkeley algorithmic ban (ch. 13.63) effective date"
+    question: "March 1, 2026 in the ordinance text vs January 2026 per an August 2026 law-firm alert."
+    corpus: "D001 records only the first reading (passed to print 2025-11-18); D002 (law-firm alert) is link-only."
+    handling: "BRK-ALG-P1 reported as pending with conflict_flag (data/review_flags.yaml)."
+    rule_ids: [BRK-ALG-P1]
+  - id: OQ-2
+    topic: "NJ FAIR Act preemption of local algorithmic ordinances"
+    question: "The FAIR Act (effective 2027-07-01) prohibits conflicting municipal ordinances; it may preempt Jersey City § 218-12 and Hoboken ch. 158."
+    corpus: "D069 (FAIR Act) is in the corpus; the local ordinances are link-only."
+    handling: "NJ-ALG-01 and the attested JC-ALG-A1 / HOB-ALG-A1 carry conflict_flag at Jersey City and Hoboken addresses; never superseded automatically."
+    rule_ids: [NJ-ALG-01, JC-ALG-A1, HOB-ALG-A1]
+  - id: OQ-3
+    topic: "Los Angeles RSO new formula effective date"
+    question: "2026-02-02 per LAHD vs 2026-01-24 per a landlord association."
+    corpus: "D041 and D042 (LAHD) both say February 2, 2026; the association statement is not in the corpus."
+    handling: "RSO rules carry the single verified date 2026-02-02; no conflict can be raised from one readable source."
+    rule_ids: [LA-RENT-01, LA-RENT-03, LA-RENT-05]
+  - id: OQ-4
+    topic: "California screening-fee cap for 2026"
+    question: "No single official 2026 dollar figure."
+    corpus: "Cal. Civ. Code § 1950.6 sets $30 adjusted by CPI; a secondary page gives $68.96 for 2026."
+    handling: "CA-FEE-01 and CA-FEE-02 carry conflict_flag (Module A value conflict)."
+    rule_ids: [CA-FEE-01, CA-FEE-02]

@@ -571,6 +571,43 @@ from 2027-03-14 at 45 Cambridge addresses (the 5 with fewer than 6 units are not
 elsewhere; ≈ 30 s (extract-doc ≈ 17 s, compile ≈ 11 s). To undo: delete
 `corpus/new/<doc_id>.*`, then `python -m extractor.cli reproduce` and `python -m resolver.cli changes`.
 
+## API (FastAPI) and plain language
+
+```bash
+python -m api.plain_language          # tenant summaries EN/ES -> data/plain_language.json (reuses unchanged entries)
+uvicorn api.main:app --reload         # http://localhost:8000/docs
+python -m api.export_static           # static/ backup: one JSON per address and language (+ index, rules, changes)
+```
+
+* **Plain language** (`api/plain_language.py`): per rule, `what_it_means`, `who_it_covers`,
+  `what_you_can_do` in English and Spanish, written by `PLAIN_MODEL` (default
+  claude-haiku-4-5) from the rule's requirement, key_value, coverage text, exemptions and
+  effective date only. Validator: every number, amount, percentage, month and date must appear
+  in those fields, and nothing may suggest avoiding the rule; one regeneration with the reason,
+  then a deterministic template (also used for attested rules). Spanish always uses "usted"
+  and the fixed legal terms of `data/glossary_es.yaml` (Certificado de Ocupación, Ordenanza de
+  Arrendamiento, depósito de garantía…); both are validated, and summaries written before
+  these rules were revised in Spanish only (`es_version`). Versioned, so the API never calls a
+  model. The API prepends `status_line`, computed at the requested `as_of` ("In force since …",
+  "Not in force yet — takes effect …", "Pending bill — not law", "Covered, but X governs
+  instead"; Spanish equivalents).
+* **Routes** (`api/main.py`, contract and real examples in `docs/API.md`): `/health`,
+  `/addresses`, `/lookup/{address_id}?as_of=&lang=`, `/changes`, `/changes/{test_id}`,
+  `/rules`, `/conflicts`, `/audit`. Every response has a disclaimer in the requested language;
+  `as_of` is validated (YYYY-MM-DD, 2020–2030); CORS allows Lovable domains and localhost.
+  Spanish explanations use the validated Spanish summary as their first sentence and fixed
+  templates for the rest.
+
+### Deploy on Render
+
+1. Push the repository to GitHub, then in Render: **New → Blueprint** and pick the repo
+   (`render.yaml`). No `ANTHROPIC_API_KEY` is needed: the build runs
+   `python -m extractor.cli reproduce` and `python -m resolver.cli changes` from the versioned
+   snapshot, then starts `uvicorn api.main:app`.
+2. Set `ALLOWED_ORIGINS` if the front end is served from a non-Lovable domain.
+3. Free instances sleep: point the front end at `static/` (export it and host it with the
+   front end, e.g. as public assets) when `/health` does not answer.
+
 ## Tests
 
 ```bash

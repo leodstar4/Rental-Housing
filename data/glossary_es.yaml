@@ -1,0 +1,47 @@
+# Fixed English -> Spanish legal terms for the tenant summaries (api/plain_language.py).
+# The prompt lists them; the validator requires that when the English summary uses `en`, the
+# Spanish summary uses one of `es` exactly (accents included), and never a form in `avoid`.
+
+terms:
+  - en: "Certificate of Occupancy"
+    es: ["Certificado de Ocupación"]
+    avoid: ["Ocupancia", "Certificado de Ocupancía"]
+  - en: "Rent Board"
+    es: ["Junta de Arrendamiento"]
+    avoid: ["Junta de Renta", "Junta de Alquiler"]
+  - en: "Rent Ordinance"
+    es: ["Ordenanza de Arrendamiento"]
+    avoid: ["Ordenanza de Renta", "Ordenanza de Alquiler"]
+  - en: "Rent Stabilization Ordinance"
+    es: ["Ordenanza de Estabilización de Arrendamientos"]
+  - en: "Just Cause Ordinance"
+    es: ["Ordenanza de Causa Justa"]
+  - en: "just cause"
+    es: ["causa justa"]
+    avoid: ["causa válida", "razón justa"]
+  - en: "security deposit"
+    es: ["depósito de garantía"]
+    avoid: ["depósito de seguridad"]
+  - en: "tenant"
+    es: ["inquilino", "inquilinos", "inquilina", "inquilinas"]
+  - en: "landlord"
+    es: ["arrendador", "arrendadores", "propietario", "propietarios"]
+    avoid: ["casero", "caseros"]
+  - en: "bill"
+    es: ["proyecto de ley"]
+  - en: "eviction"
+    es: ["desalojo", "desalojos"]
+  - en: "lease"
+    es: ["contrato de arrendamiento"]
+  - en: "relocation assistance"
+    es: ["asistencia de reubicación"]
+  - en: "screening fee"
+    es: ["cuota de evaluación", "cuotas de evaluación"]
+  - en: "application fee"
+    es: ["cuota de solicitud", "cuotas de solicitud"]
+  - en: "Attorney General"
+    es: ["Fiscal General"]
+  - en: "rent control"
+    es: ["control de arrendamientos", "control de rentas"]
+  - en: "condominium"
+    es: ["condominio", "condominios"]

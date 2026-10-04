@@ -1,0 +1,18 @@
+# Render blueprint: read-only API, no ANTHROPIC_API_KEY needed (every model output is versioned).
+# The build regenerates out/ from the frozen snapshot and the change tests (~10 s, no API calls).
+services:
+  - type: web
+    name: rental-housing-navigator-api
+    runtime: python
+    plan: free
+    buildCommand: >-
+      pip install -r requirements.txt &&
+      python -m extractor.cli reproduce &&
+      python -m resolver.cli changes
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.10"
+      - key: ALLOWED_ORIGINS   # extra exact origins, comma-separated (Lovable domains are allowed by default)
+        value: ""
