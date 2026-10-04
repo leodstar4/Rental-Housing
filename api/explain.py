@@ -73,8 +73,11 @@ def _other_law_note(item: dict, rule: dict, res: dict | None, by_result: dict, l
     label = " / ".join(i18n.law_label(l, lang) for l in laws)
     ts = [x for x in by_result.values() if x["team_rule_id"] != rule["team_rule_id"]
           and any(is_law(x["_rule"], l, l.get("category") or rule["category"]) for l in laws)]
-    if res and res["result"] == "superseded" and res["trace"]["precedence_basis"] == "other_law":
+    gov = [x["team_rule_id"] for x in ts if x["result"] == "applies"]
+    if res and res["result"] == "superseded" and res["superseded_by"] in gov:
         return "yes", i18n.t("other_law_yields", lang, law=label, rid=res["superseded_by"])
+    if gov:
+        return "yes", i18n.t("other_law_yields", lang, law=label, rid=gov[0])
     maybe = [x["team_rule_id"] for x in ts if x["result"] == "unknown"] + (res or {}).get("may_yield_to", [])
     if maybe:
         return "unknown", i18n.t("other_law_maybe", lang, law=label, rids=", ".join(dict.fromkeys(maybe)))

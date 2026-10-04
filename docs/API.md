@@ -1343,8 +1343,8 @@ date (tested for every rule of several addresses and dates). Labels in the reque
       "value": {},
       "fact_source": {},
       "certainty": {},
-      "outcome": "yes",
-      "note": "Refers to the Los Angeles Rent Stabilization Ordinance (RSO); SF-RENT-01 covers this building, so this rule yields to it.",
+      "outcome": "no",
+      "note": "Refers to the Los Angeles Rent Stabilization Ordinance (RSO), which does not cover this building.",
       "class": "other_law"
     }
   ],
@@ -1698,8 +1698,8 @@ date (tested for every rule of several addresses and dates). Labels in the reque
       "value": {},
       "fact_source": {},
       "certainty": {},
-      "outcome": "yes",
-      "note": "Se refiere a la Ordenanza de Estabilización de Arrendamientos de Los Ángeles (RSO); SF-RENT-01 cubre este edificio, así que esta regla cede ante ella.",
+      "outcome": "no",
+      "note": "Se refiere a la Ordenanza de Estabilización de Arrendamientos de Los Ángeles (RSO), que no cubre este edificio.",
       "class": "other_law"
     }
   ],

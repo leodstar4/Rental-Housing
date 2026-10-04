@@ -66,6 +66,12 @@ def test_explain_ca_rent_01_sf(client):
     assert es["result"] == en["result"] and es["summary"].startswith("CA-RENT-01 cubre este edificio")
     assert "rige SF-RENT-01" in es["summary"] and es["disclaimer"].startswith("No es asesoría legal")
     assert " a el " not in str(es) and " tú " not in str(es)
+    # each other_law exemption is resolved against its own law (the LA RSO does not reach San Francisco)
+    other = {s["source_text"]: s for s in en["exemption_steps"] if s["class"] == "other_law"}
+    rso = next(s for t, s in other.items() if "RSO" in t or "Rent Stabilization" in t)
+    assert rso["outcome"] == "no" and "SF-RENT-01" not in rso["note"]
+    local = next(s for t, s in other.items() if "local rent" in t)
+    assert local["outcome"] == "yes" and "SF-RENT-01" in local["note"]
 
 
 def test_explain_calendar_default_and_review(client):
