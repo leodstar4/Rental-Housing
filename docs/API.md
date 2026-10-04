@@ -972,6 +972,8 @@ max-age=31536000, immutable` (the `?v=` in `audio_url` changes when the text cha
 22.05 kHz, 32 kbps, from ElevenLabs `eleven_multilingual_v2`, generated once by
 `python -m api.audio --generate` (cached by text, voice and model; `data/audio/manifest.json`
 records text hash, voice, model and characters). `404` if there is no file.
+**AI disclosure:** the voice is AI-generated (ElevenLabs); label the player "AI-generated voice"
+in any interface. Information only — not legal advice.
 
 ### `GET /changes?lang=` and `GET /changes/{test_id}?lang=`
 `/changes`: `changes` (per test `affected_address_ids`, `conflict_flag_address_ids`, `notes` —

@@ -11,3 +11,4 @@ corpus/new/** -text
 # Spoken summaries (api/audio.py): binary audio + its manifest
 data/audio/**/*.mp3 binary
 data/audio/manifest.json -text
+docs/*.pdf binary
