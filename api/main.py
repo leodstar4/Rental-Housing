@@ -21,6 +21,7 @@ from datetime import date
 import yaml
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from extractor import config
 from resolver.results import CATEGORY_LABEL, Engine, rule_status
@@ -29,6 +30,7 @@ from . import i18n
 
 API_VERSION = "1.0.0"
 AS_OF_MIN, AS_OF_MAX = date(2020, 1, 1), date(2030, 12, 31)
+AUDIO_DIR = config.DATA_DIR / "audio"
 DISCLAIMER = {
     "en": "Not legal advice. This prototype summarizes public housing law for information only; "
           "check the cited source and consult a qualified professional before acting.",
@@ -65,6 +67,28 @@ class Store:
         internal = _load(config.NORMALIZED_PATH).get("rules", [])
         self.retrieved = {r["team_rule_id"]: r["retrieved_at"][:10] for r in internal
                           if r.get("team_rule_id") and r["disposition"] == "accepted"}
+        self.audio = _load(AUDIO_DIR / "manifest.json").get("items", {})
+
+
+def audio_url(rid: str, lang: str) -> str | None:
+    """/audio/<lang>/<rule>.mp3?v=<text hash> (path on this API), or null if the file does not exist.
+    The version query changes with the spoken text, so the long cache headers stay safe."""
+    item = store().audio.get(f"{lang}/{rid}")
+    if not item or not (AUDIO_DIR / item["file"]).exists():
+        return None
+    return f"/audio/{item['file']}?v={item['text_sha256'][:8]}"
+
+
+class AudioFiles(StaticFiles):
+    """data/audio served as audio/mpeg with long cache headers."""
+
+    async def get_response(self, path: str, scope):
+        response = await super().get_response(path, scope)
+        if response.status_code == 200:
+            response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+            if path.endswith(".mp3"):
+                response.headers["Content-Type"] = "audio/mpeg"
+        return response
 
 
 @functools.lru_cache(maxsize=1)
@@ -109,6 +133,7 @@ app = FastAPI(title="Rental Housing Law Navigator API", version=API_VERSION, lif
 app.add_middleware(CORSMiddleware, allow_origin_regex=ORIGIN_REGEX,
                    allow_origins=[o for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o],
                    allow_methods=["GET"], allow_headers=["*"])
+app.mount("/audio", AudioFiles(directory=AUDIO_DIR, check_dir=False), name="audio")
 
 
 # --------------------------------------------------------------------------- #
@@ -186,6 +211,7 @@ def lookup_payload(aid: str, as_of: date, lang: str) -> dict:
             "needs_review": r["needs_review"], "missing_facts": r["missing_facts"],
             "missing_facts_label": [i18n.missing_label(m, lang) for m in r["missing_facts"]],
             "presumptions": r["presumptions"], "superseded_by": r["superseded_by"], "attested": r["attested"],
+            "audio_url": audio_url(r["team_rule_id"], lang),
         })
     return {"address": address_info(aid), "building_facts": building_facts(aid),
             "jurisdiction_stack": jurisdiction_stack(aid), "as_of": as_of.isoformat(), "lang": lang,
@@ -210,7 +236,8 @@ def rules_payload(as_of: date, lang: str, jurisdiction: str | None = None, categ
                     "confidence": r.get("confidence"), "conflict_flag": r.get("conflict_flag", False),
                     "conflict_note": r.get("conflict_note"), "attested": r.get("evidence_type") == "manifest_only",
                     "plain_language": plain_with_status(r["team_rule_id"], lang, status_line(
-                        status, eff.isoformat() if eff else None, lang))})
+                        status, eff.isoformat() if eff else None, lang)),
+                    "audio_url": audio_url(r["team_rule_id"], lang)})
     return {"as_of": as_of.isoformat(), "disclaimer": DISCLAIMER[lang], "count": len(out), "rules": out}
 
 

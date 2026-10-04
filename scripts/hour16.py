@@ -217,6 +217,23 @@ def hour16(path: Path, jurisdiction: str | None, *, git: bool, dry_run: bool) ->
             run.say(f"plain language {rid} [{p.get('method')}]: {(p.get('en') or {}).get('what_it_means', '')[:110]}")
             run.say(f"                    ES: {(p.get('es') or {}).get('what_it_means', '')[:110]}")
         run.cost["plain language (Haiku)"] = "not metered (new rules only)"
+        # audio of the new rules only (ElevenLabs); never in a dry run; without a key audio_url stays null
+        audio_files: list[str] = []
+        if dry_run:
+            run.say("audio: skipped (--dry-run never spends ElevenLabs credits); audio_url of new rules = null")
+        elif os.getenv("ELEVENLABS_API_KEY", "").strip():
+            from api import audio
+
+            try:
+                r = audio.generate(audio.settings(), log=run.say,
+                                   only=[f"{lang}/{rid}" for rid in new_ids for lang in audio.LANGS])
+                audio_files = [f"data/audio/{lang}/{rid}.mp3" for rid in new_ids for lang in audio.LANGS
+                               if (audio.AUDIO_DIR / lang / f"{rid}.mp3").exists()] + ["data/audio/manifest.json"]
+                run.cost["audio (ElevenLabs)"] = f"{r['characters']} characters"
+            except (SystemExit, RuntimeError) as e:  # budget or API error: everything else still works
+                run.say(f"audio: not generated ({e}); audio_url of new rules = null")
+        else:
+            run.say("audio: ELEVENLABS_API_KEY not set; audio_url of new rules = null")
         from api import export_static, main as api_main
 
         from api import timeline as api_timeline
@@ -247,7 +264,7 @@ def hour16(path: Path, jurisdiction: str | None, *, git: bool, dry_run: bool) ->
                     body = client.get(f"/lookup/{aid}", params={"as_of": after}).json()
                     got = next((x for g in body["results"].values() for x in g if x["team_rule_id"] == rid), None)
                     run.say(f"GET /lookup/{aid}?as_of={after}  {rid}: {got and got['result']} · "
-                            f"{got and got['plain_language']['status_line']}")
+                            f"{got and got['plain_language']['status_line']} · audio_url {got and got.get('audio_url')}")
                     tl = client.get(f"/timeline/{aid}", params={"lang": "es"}).json()
                     ev = next((e for e in tl["events"] if e["team_rule_id"] == rid and e["after"] == "applies"), None)
                     run.say(f"GET /timeline/{aid}?lang=es  {rid}: {ev and ev['date']} · {ev and ev['status_line']}")
@@ -257,6 +274,10 @@ def hour16(path: Path, jurisdiction: str | None, *, git: bool, dry_run: bool) ->
                       bool(got) and got["result"] == "applies", f"{aid} as of {after}")
             run.check(f"API /timeline shows {new_ids[0]} applying on its effective date",
                       bool(aid) and bool(ev) and ev["date"] == eff_new, f"{aid}: {ev and ev['date']} vs {eff_new}")
+            if got:
+                want = bool(audio_files)
+                run.check(f"API audio_url of {new_ids[0]} is {'set' if want else 'null'}",
+                          bool(got.get("audio_url")) == want, str(got.get("audio_url")))
 
     # f) report -------------------------------------------------------------------------------
     total = round(time.perf_counter() - run.t0, 1)
@@ -279,7 +300,7 @@ def hour16(path: Path, jurisdiction: str | None, *, git: bool, dry_run: bool) ->
             shutil.copyfile(config.OUT_DIR / "hour16_report.md", docs)
             paths = [str(p.relative_to(ROOT)) for p in sorted(config.NEW_DOCS_DIR.glob(f"{doc_id}.*"))]
             paths += ["data/compiled_exemptions.json", "data/compiled_exemptions_review.md",
-                      "data/plain_language.json", "docs/hour16_report.md"]
+                      "data/plain_language.json", "docs/hour16_report.md", *audio_files]
             gitexe = shutil.which("git") or r"C:\Program Files\Git\cmd\git.exe"
             for cmd in (["add", *paths], ["commit", "-m", "T6: hour-16 ordinance", "-m", f"{doc_id}: {', '.join(new_ids)}"],
                         ["push", "origin", "HEAD"]):

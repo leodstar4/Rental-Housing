@@ -79,6 +79,7 @@ Each **result**:
 | `missing_facts_label` | the same missing facts as readable names in the requested language ("year built" / "año de construcción", "number of units" / "número de unidades", "type of owner" / "tipo de propietario", "certificate of occupancy date" / "fecha del certificado de ocupación") |
 | `superseded_by` | rule that governs instead (when `result` = superseded) |
 | `attested` | true for laws named by the organizers but without text in the corpus (Hoboken / Jersey City algorithmic bans): show them with a "text not in corpus" badge |
+| `audio_url` | spoken plain-language summary in the requested language, a path on this API (`/audio/<lang>/<team_rule_id>.mp3?v=<text hash>`; prefix the API base URL), or null if there is no audio file (e.g. a rule added at hour 16 without an ElevenLabs key) |
 
 Rules omitted from `results`: failed rules, and rules that do not cover the building
 (`not_covered` / `exempt`).
@@ -227,7 +228,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/SF-RENT-01.mp3?v=7fafa433"
       },
       {
         "team_rule_id": "CA-RENT-01",
@@ -258,7 +260,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
         "superseded_by": "SF-RENT-01",
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-RENT-01.mp3?v=2e8a5449"
       }
     ],
     "JUST CAUSE": [
@@ -289,7 +292,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/SF-JUST-01.mp3?v=77d8cb84"
       },
       {
         "team_rule_id": "CA-JUST-02",
@@ -320,7 +324,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
         "superseded_by": "SF-JUST-01",
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-JUST-02.mp3?v=da31426d"
       },
       {
         "team_rule_id": "CA-JUST-03",
@@ -349,7 +354,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-JUST-03.mp3?v=7b137446"
       }
     ],
     "DEPOSIT": [
@@ -380,7 +386,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-DEP-01.mp3?v=8047814b"
       },
       {
         "team_rule_id": "CA-DEP-03",
@@ -409,7 +416,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-DEP-03.mp3?v=68adf0c2"
       },
       {
         "team_rule_id": "CA-DEP-04",
@@ -438,7 +446,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-DEP-04.mp3?v=2a169a41"
       },
       {
         "team_rule_id": "CA-DEP-05",
@@ -467,7 +476,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-DEP-05.mp3?v=ddd31165"
       }
     ],
     "SCREENING FEE": [
@@ -498,7 +508,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-FEE-01.mp3?v=a19de4f5"
       },
       {
         "team_rule_id": "CA-FEE-02",
@@ -527,7 +538,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-FEE-02.mp3?v=f158b939"
       }
     ],
     "SCREENING": [
@@ -558,7 +570,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-SCRN-01.mp3?v=c960874b"
       },
       {
         "team_rule_id": "CA-SCRN-02",
@@ -587,7 +600,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-SCRN-02.mp3?v=1dbaa2c0"
       }
     ],
     "ALGORITHMIC": [
@@ -618,7 +632,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/SF-ALG-01.mp3?v=50b0cce1"
       },
       {
         "team_rule_id": "CA-ALG-01",
@@ -647,7 +662,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/en/CA-ALG-01.mp3?v=543afc42"
       }
     ]
   },
@@ -802,7 +818,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/es/SF-RENT-01.mp3?v=fc276d7d"
       },
       {
         "team_rule_id": "CA-RENT-01",
@@ -833,7 +850,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
         "superseded_by": "SF-RENT-01",
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/es/CA-RENT-01.mp3?v=454e2203"
       }
     ],
     "CAUSA JUSTA": [
@@ -864,7 +882,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/es/SF-JUST-01.mp3?v=ecf6da81"
       },
       {
         "team_rule_id": "CA-JUST-02",
@@ -895,7 +914,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
         "superseded_by": "SF-JUST-01",
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/es/CA-JUST-02.mp3?v=6de7c4b7"
       },
       {
         "team_rule_id": "CA-JUST-03",
@@ -924,7 +944,8 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
-        "attested": false
+        "attested": false,
+        "audio_url": "/audio/es/CA-JUST-03.mp3?v=3e3077fe"
       }
     ]
   },
@@ -941,6 +962,16 @@ Every rule (and attested rule) with its status at `as_of`, citation, source, quo
 confidence, conflict flag/note and plain language. `jurisdiction`: `CA` | `NJ` | `MA` or
 `"City, ST"`; `category`: rent_increase_limits | just_cause_eviction | security_deposits |
 application_screening_fees | screening_restrictions | algorithmic_rent_setting.
+
+`/rules` entries also carry `audio_url` (same format as in `/lookup`).
+
+### `GET /audio/{lang}/{team_rule_id}.mp3`
+The spoken plain-language summary (what it means, who it covers, what you can do; no status
+line, so it does not change with `as_of`). `Content-Type: audio/mpeg`, `Cache-Control: public,
+max-age=31536000, immutable` (the `?v=` in `audio_url` changes when the text changes). MP3 mono,
+22.05 kHz, 32 kbps, from ElevenLabs `eleven_multilingual_v2`, generated once by
+`python -m api.audio --generate` (cached by text, voice and model; `data/audio/manifest.json`
+records text hash, voice, model and characters). `404` if there is no file.
 
 ### `GET /changes?lang=` and `GET /changes/{test_id}?lang=`
 `/changes`: `changes` (per test `affected_address_ids`, `conflict_flag_address_ids`, `notes` —

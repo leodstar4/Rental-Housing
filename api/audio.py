@@ -186,10 +186,17 @@ def synthesize(text: str, lang: str, cfg: dict, retries: int = 4) -> bytes:
     raise RuntimeError("unreachable")
 
 
-def generate(cfg: dict, log=print) -> dict:
+def duration_seconds(n_bytes: int, output_format: str = OUTPUT_FORMAT) -> float:
+    """Duration of a constant-bitrate MP3 from its size (mp3_<rate>_<kbps>)."""
+    kbps = int(output_format.rsplit("_", 1)[1])
+    return round(n_bytes * 8 / (kbps * 1000), 1)
+
+
+def generate(cfg: dict, log=print, only: list[str] | None = None) -> dict:
+    """``only``: ["es/SF-RENT-01", ...] limits the run to those files (samples)."""
     if not cfg["api_key"] or not cfg["voice_id"]:
         raise SystemExit("ELEVENLABS_API_KEY and ELEVENLABS_VOICE_ID must be set in .env")
-    todo = [x for x in plan(cfg) if not x["cached"]]
+    todo = [x for x in plan(cfg) if not x["cached"] and (not only or f"{x['lang']}/{x['team_rule_id']}" in only)]
     manifest = load_manifest()
     need = sum(x["characters"] for x in todo)
     if manifest["spent_characters"] + need > cfg["budget"]:
@@ -204,10 +211,11 @@ def generate(cfg: dict, log=print) -> dict:
             "file": x["path"].relative_to(AUDIO_DIR).as_posix(), "cache_key": x["cache_key"],
             "text_sha256": hashlib.sha256(x["text"].encode("utf-8")).hexdigest(), "voice_id": cfg["voice_id"],
             "model_id": cfg["model_id"], "output_format": cfg["output_format"], "characters": x["characters"],
-            "bytes": len(audio), "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+            "bytes": len(audio), "duration_s": duration_seconds(len(audio), cfg["output_format"]), "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
         manifest["output_format"] = cfg["output_format"]
         MANIFEST_PATH.write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
-        log(f"[{i}/{len(todo)}] {x['lang']}/{x['team_rule_id']}: {x['characters']} chars, {len(audio)} bytes")
+        log(f"[{i}/{len(todo)}] {x['lang']}/{x['team_rule_id']}: {x['characters']} chars, {len(audio)} bytes, "
+            f"~{duration_seconds(len(audio), cfg['output_format'])} s -> {x['path']}")
     return {"generated": len(todo), "characters": need, "spent_total": manifest["spent_characters"]}
 
 
@@ -236,6 +244,7 @@ def main(argv: list[str] | None = None) -> None:
     mode.add_argument("--dry-run", action="store_true", help="default: no API call")
     mode.add_argument("--generate", action="store_true", help="call ElevenLabs for files not cached")
     ap.add_argument("--show", nargs="*", default=[], metavar="LANG/RULE", help="print the exact text, e.g. es/SF-RENT-01")
+    ap.add_argument("--only", nargs="*", default=None, metavar="LANG/RULE", help="--generate only these files")
     args = ap.parse_args(argv)
     cfg = settings()
     key = cfg["api_key"]
@@ -244,7 +253,7 @@ def main(argv: list[str] | None = None) -> None:
     print(f"ELEVENLABS_VOICE_ID: {cfg['voice_id'] or 'MISSING'} ({len(cfg['voice_id'])} chars)")
     print(f"model: {cfg['model_id']} · output_format: {cfg['output_format']} · AUDIO_CHAR_BUDGET: {cfg['budget']}")
     if args.generate:
-        print(generate(cfg))
+        print(generate(cfg, only=args.only))
         return
     r = dry_run(cfg)
     print(f"\nDRY RUN (no API call): {r['files']} files = {r['rules']} rules × {len(LANGS)} languages")

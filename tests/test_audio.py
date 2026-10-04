@@ -54,6 +54,42 @@ def test_generate_aborts_before_any_call_over_budget(tmp_path, monkeypatch):
     assert calls == []
 
 
+def test_api_serves_audio_and_audio_url(tmp_path, monkeypatch):
+    """audio_url only when the file exists; /audio/... is audio/mpeg with long cache headers."""
+    import json
+
+    from fastapi.testclient import TestClient
+
+    from api import main
+
+    (tmp_path / "es").mkdir()
+    (tmp_path / "es" / "SF-RENT-01.mp3").write_bytes(b"ID3fake-mp3")
+    (tmp_path / "manifest.json").write_text(json.dumps({"items": {"es/SF-RENT-01": {
+        "file": "es/SF-RENT-01.mp3", "text_sha256": "abcdef1234"}, "en/SF-RENT-01": {
+        "file": "en/SF-RENT-01.mp3", "text_sha256": "0000"}}}), encoding="utf-8")
+    monkeypatch.setattr(main, "AUDIO_DIR", tmp_path)
+    main.store.cache_clear()
+    try:
+        app_mount = next(r for r in main.app.routes if getattr(r, "name", "") == "audio")
+        monkeypatch.setattr(app_mount.app, "directory", tmp_path)
+        monkeypatch.setattr(app_mount.app, "all_directories", [tmp_path])
+        with TestClient(main.app) as c:
+            es = c.get("/lookup/A0016", params={"lang": "es"}).json()
+            urls = {x["team_rule_id"]: x["audio_url"] for g in es["results"].values() for x in g}
+            assert urls["SF-RENT-01"] == "/audio/es/SF-RENT-01.mp3?v=abcdef12"
+            assert all(u is None for r, u in urls.items() if r != "SF-RENT-01")
+            en = c.get("/lookup/A0016").json()  # manifest entry but no file -> null
+            assert all(x["audio_url"] is None for g in en["results"].values() for x in g)
+            rules = {r["team_rule_id"]: r["audio_url"] for r in c.get("/rules", params={"lang": "es"}).json()["rules"]}
+            assert rules["SF-RENT-01"] == urls["SF-RENT-01"]
+            r = c.get(urls["SF-RENT-01"])
+            assert r.status_code == 200 and r.headers["content-type"] == "audio/mpeg"
+            assert "max-age=31536000" in r.headers["cache-control"] and r.content == b"ID3fake-mp3"
+            assert c.get("/audio/es/NOPE.mp3").status_code == 404
+    finally:
+        main.store.cache_clear()
+
+
 def test_generate_caches_by_text_voice_model(tmp_path, monkeypatch):
     monkeypatch.setattr(audio, "AUDIO_DIR", tmp_path)
     monkeypatch.setattr(audio, "MANIFEST_PATH", tmp_path / "manifest.json")
