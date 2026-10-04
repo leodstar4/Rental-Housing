@@ -13,8 +13,8 @@ quote, a citation and a confidence score behind every answer.
 | 🎬 **Videos** | Team: `VIDEO_TEAM` · Demo: `VIDEO_DEMO` · Technical: `VIDEO_TECH` *(TODO: links)* |
 | 📄 **Method note** | [docs/METHOD.md](docs/METHOD.md) · [PDF](docs/METHOD.pdf) |
 
-> ⚖️ **Not legal advice.** This is an information prototype built for the MIT AI Hackathon
-> challenge *Rental Housing Law Navigator*. It is not legal counsel or a compliance
+> ⚖️ **Not legal advice.** This is an information prototype built for the **7th Global AI
+> Hackathon · Hack-Nation × RealPage**, challenge 02: *Rental Housing Law Navigator*. It is not legal counsel or a compliance
 > certification. Every answer links to its source; check it and consult a qualified
 > professional before acting.
 
@@ -67,7 +67,7 @@ Query date **2026-10-01**. Extraction comes from the frozen snapshot **`a-0.4.0`
 | Smoke check | **all checks pass**: pipeline 3/3, behaviour 7/7, change-test rule map 7/7; 20 of 23 expected citations found (the other 3 are link-only in the corpus) | `out/smoke_check.json` |
 | T6 rehearsal (hour 16, new document) | `.pdf` with live Opus extraction: **38.7 s** of pipeline steps (42.6 s wall clock), $0.08 extraction + $0.0054 compiler · `.txt` replayed from cache: 14.3 s; all checks pass | hour-16 dry-run reports |
 | AI cost: extraction | **$3.87** for the official snapshot (extraction $3.8585 + date classifier $0.0086; 231,645 input / 141,857 output tokens) | `MANIFEST.json` |
-| AI cost: everything measured | ≈ **$10** including prompt iterations, re-extractions, the coverage compiler (≈ $1.7) and rehearsals; plain-language summaries not metered (TODO: meter) | [cost table](docs/PIPELINE.md#cost) |
+| AI cost: everything measured | ≈ **$10** including prompt iterations, re-extractions, the coverage compiler (≈ $1.7) and rehearsals; plain-language summaries (Haiku 4.5) not metered | [cost table](docs/PIPELINE.md#cost) |
 | Audio | 136 MP3 files (68 rules × EN/ES), **82,935 ElevenLabs characters**, 91.6 min, 22.0 MB | `data/audio/manifest.json` |
 | Automated tests | **211 passing**, offline (no Anthropic, ElevenLabs or Census call) | `python -m pytest -q` |
 
@@ -371,7 +371,7 @@ responses: **[docs/API.md](docs/API.md)**.
 - **"Why this answer?" trace.** A deterministic step-by-step explanation in EN/ES, tested to
   match `/lookup` on the same date.
 - **Audio summaries.** 136 MP3s (EN/ES) generated with an **ElevenLabs AI voice**, cached by
-  text hash, voice and model.
+  text hash, voice and model. The UI labels it "AI-generated voice".
 - **Static backup.** `python -m api.export_static` writes the same JSON for every address
   (lookup and timeline, EN/ES) for a frontend to fall back on while the API sleeps.
 
@@ -403,7 +403,7 @@ how this project meets it:
 | **Must not: invent rules or citations** | Quote verification cascade; unverified → rejected; no citation → held, not exported; laws without text are only attested, with no requirement, figure or quote; aliases only from the corpus or a recorded decision | `extractor/validate.py`, `extractor/attested.py` |
 | **Must not: use non-public data** | Starter-pack corpus and public assessor sample (no owner names; owner type is always unknown); public Census Geocoder | `resolver/facts.py`, `resolver/geocode.py` |
 | **Must not: scrape sites in violation of their terms** | No scraping at all: only the supplied text is read; link-only and check-terms sources are never fetched | `extractor/corpus.py` |
-| **AI disclosure** | The audio is an **AI-generated voice (ElevenLabs)**, documented as such in the API contract; any interface that plays it must label it "AI-generated voice" (TODO: confirm the label in the Lovable UI; the `frontend/` copy predates the audio feature). Plain-language texts are model-written from the rule's fields and versioned with model and prompt in `/audit` | [docs/API.md](docs/API.md), `/audit` |
+| **AI disclosure** | The audio is an **AI-generated voice (ElevenLabs)**, documented as such in the API contract and labelled "AI-generated voice" in the Lovable UI (note under the first audio player). Plain-language texts are model-written from the rule's fields and versioned with model and prompt in `/audit` | [docs/API.md](docs/API.md), `/audit` |
 
 ---
 
@@ -475,19 +475,18 @@ All open questions are also served by `GET /conflicts` (`data/open_questions.yam
 
 ## Scoring map
 
-> **TODO:** the scoring rubric is not in our starter pack (the brief is the "no-scoring"
-> version). The seven components below are taken from the brief's requirements and should be
-> replaced with the official rubric names when available.
+Official rubric of the Hack-Nation × RealPage brief (p. 6): 100 points, 75 automatic and 25
+from the judges.
 
-| # | Component (from the brief) | Evidence |
-|---|---|---|
-| 1 | Module A: automated rule extraction with citations and quoted spans | `out/rules.json` (65 rules, schema-valid), 103/103 verified quotes (`out/validation_report.json`), [Module A](#module-a--rule-extraction) |
-| 2 | Module B: jurisdiction resolution and address lookup, with unknown when facts are missing | `out/lookups.json` (500 addresses), `data/jurisdictions.json`, [Module B](#module-b--address-lookup) |
-| 3 | Module C: change cases T1–T5 and as-of queries | `out/changes.json`, T1–T5 dashboard 14/14, `/timeline`, [Module C](#module-c--change-tracking) |
-| 4 | Explain: plain-language view in English and Spanish | `data/plain_language.json`, `/lookup?lang=es`, `/explain`, audio, [UX features](#api-and-ux-features) |
-| 5 | Confidence indicator and conflict flag per answer | `confidence`, `needs_review`, `conflict_flag` in every result; `/explain` confidence breakdown; `/conflicts` |
-| 6 | Audit view and reproducibility (source, retrieval date, as-of date, reasoning boundary) | `out/audit.jsonl`, `snapshots/a-0.4.0/`, `/audit`, `/explain` provenance, `data/human_review.yaml` |
-| 7 | Responsible design, new jurisdiction / new document, live demo and method note | [Responsible AI](#responsible-ai-by-design), [Hour 16](#hour-16-runbook) (T6), [Scalability](#scalability-path), live demo, [docs/METHOD.md](docs/METHOD.md) |
+| Component | Pts | Scored by | Evidence (repo and app) | How we optimized for it |
+|---|---:|---|---|---|
+| **Extraction accuracy**: rules vs. answer key by jurisdiction, category and citation; accuracy of date, status, key value and citation | 25 | automatic | `out/rules.json` (65 schema-valid rules); `out/validation_report.json`; change-test rule map 7/7 and 20 of 23 expected citations in `out/smoke_check.json`; [Module A](#module-a--rule-extraction) | One rule per jurisdiction × category × law (the granularity of the change-test ids); citations normalized to the schema style plus a corpus-backed alias table; dates verified **by value** in a literal quote and typed, so only effective dates drive status; status **computed** from stage and dates, never extracted; administrative figures folded into `key_value` with their period |
+| **Address coverage**: 100 held-out addresses; omitting a rule that applies costs double; `unknown` earns partial credit | 20 | automatic | `out/lookups.json` (500/500 addresses, every one with ≥ 1 result: 5,164 applies, 434 unknown, 360 superseded); `data/jurisdictions.json` (legal city from the Census Geocoder, 0 disagreements); `/lookup` in the app | **`unknown` instead of omitting**, because an omission costs double: three-valued logic drops a rule only when a fact *refutes* it, and a missing fact keeps it as `unknown`; superseded rules stay listed with `superseded_by`; special-status exemptions presumed absent (stated, ×0.9 confidence) so rare statuses do not turn every result into `unknown`; geocoding with an ordinal retry and a dataset-city fallback for the 15 non-matches, so no address is left without a stack |
+| **Citations**: share of `applies` with a source and a quoted span found in the corpus | 15 | automatic | **5,164 / 5,164 `applies` (100%)** come from `rules.json` rules with citation, source URL and quoted span, and every explanation names the source and retrieval date; 103/103 quotes verified in the raw text | Literal-quote verification cascade (exact → normalized → fuzzy → one retry; unverifiable → rejected, never exported); verified spans replaced by the **literal raw fragment**; laws without corpus text kept out of `rules.json` and `lookups.json` (attested records only) |
+| **Change tracking**: overlap with the affected sets T1–T6 and conflict flags on T3 | 15 | automatic | `out/changes.json`; T1–T5 dashboard **14/14** (T1 250 · T2 40 / 50 / 0 · T3 140 with **90 conflict flags** · T4 110 · T5 empty); T6 via `scripts/hour16.py` (rehearsal: 45 Cambridge addresses, all checks green); `/changes`, `/timeline` in the app | One as-of engine for every date, so change sets are diffs of the same lookup; the CA calendar default (Cal. Const. art. IV § 8(c)) gives T1 its date; attested Hoboken / Jersey City records confine T2 to city limits and carry the T3 preemption flag; a one-command hour-16 runbook with checks for T6 |
+| **Plain language and usability** | 10 | judges (demo) | Live demo; `data/plain_language.json` (EN/ES: what it means, who it covers, what you can do); "Why this answer?" (`/explain`); "What changes for you" (`/timeline`); 136 audio summaries; `missing_facts_label`; `status_line` | Summaries limited to the rule's own fields and validated for figures; Spanish with "usted" and a fixed legal glossary; readable dates and missing-fact names in both languages; explanation and timeline tested to match `/lookup` |
+| **Responsible design**: uncertainty, audit trail, guardrails | 10 | judges | [Responsible AI by design](#responsible-ai-by-design); `confidence` / `needs_review` (743) / `conflict_flag` (845); `out/audit.jsonl`; `snapshots/a-0.4.0/`; `data/human_review.yaml`; `/audit`, `/conflicts`, `/explain` provenance; "Not legal advice" everywhere; "AI-generated voice" label | Uncertainty shown, never hidden (`unknown` + the fact needed, confidence breakdown, review flags); every manual correction in one register with a verbatim quote; offline reproduction from a frozen snapshot; validators that reject invented figures and evasion advice |
+| **Scalability path**: how it extends to new jurisdictions | 5 | judges | [Scalability path](#scalability-path); [Hour 16 runbook](#hour-16-runbook); configuration in `data/citation_aliases.yaml`, `data/jurisdiction_defaults.yaml`, `data/use_code_map.yaml` | Generic engine with per-jurisdiction configuration only; one command per new document (38.7 s end to end, ≈ $0.08); extraction ≈ $0.07 per document across the corpus |
 
 ---
 
@@ -531,5 +530,6 @@ All open questions are also served by `GET /conflicts` (`data/open_questions.yam
 
 ---
 
-*Built for the MIT AI Hackathon, Rental Housing Law Navigator challenge. Research and
+*Built for the 7th Global AI Hackathon · Hack-Nation × RealPage, challenge 02: Rental Housing
+Law Navigator. Research and
 informational use only. **Not legal advice.***
