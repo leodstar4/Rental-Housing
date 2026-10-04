@@ -74,7 +74,8 @@ Each **result**:
 | `confidence` | rule confidence × coverage confidence × geocoding certainty |
 | `conflict_flag`, `conflict_note` | a **legal** conflict for human review (Module A flag or a preemption conflict at this address) |
 | `needs_review` | combined confidence < 0.5 (show a "needs review" badge; not a conflict) |
-| `missing_facts`, `presumptions` | why `unknown`; special-status presumptions applied ("presumed: no evidence of … in assessor data") |
+| `missing_facts`, `presumptions` | why `unknown` (internal names); special-status presumptions applied ("presumed: no evidence of … in assessor data") |
+| `missing_facts_label` | the same missing facts as readable names in the requested language ("year built" / "año de construcción", "number of units" / "número de unidades", "type of owner" / "tipo de propietario", "certificate of occupancy date" / "fecha del certificado de ocupación") |
 | `superseded_by` | rule that governs instead (when `result` = superseded) |
 | `attested` | true for laws named by the organizers but without text in the corpus (Hoboken / Jersey City algorithmic bans): show them with a "text not in corpus" badge |
 
@@ -222,6 +223,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": true,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -250,6 +252,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
@@ -282,6 +285,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -310,6 +314,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
@@ -340,6 +345,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": true,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -370,6 +376,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -398,6 +405,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -426,6 +434,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -454,6 +463,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -484,6 +494,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": "key_value conflict with CA-FEE-02: D026: '$30 per applicant, CPI-adjusted annually' vs D005: '$68.96 (2026 maximum)'",
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -512,6 +523,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": "key_value conflict with CA-FEE-01: D026: '$30 per applicant, CPI-adjusted annually' vs D005: '$68.96 (2026 maximum)'",
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -542,6 +554,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -570,6 +583,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -600,6 +614,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -628,6 +643,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -782,6 +798,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": true,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -810,6 +827,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
@@ -842,6 +860,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -870,6 +889,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": false,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [
           "presumed: no evidence of an affordability restriction in assessor data"
         ],
@@ -900,6 +920,7 @@ Rules omitted from `results`: failed rules, and rules that do not cover the buil
         "conflict_note": null,
         "needs_review": true,
         "missing_facts": [],
+        "missing_facts_label": [],
         "presumptions": [],
         "superseded_by": null,
         "attested": false
@@ -920,11 +941,17 @@ confidence, conflict flag/note and plain language. `jurisdiction`: `CA` | `NJ` |
 `"City, ST"`; `category`: rent_increase_limits | just_cause_eviction | security_deposits |
 application_screening_fees | screening_restrictions | algorithmic_rent_setting.
 
-### `GET /changes` and `GET /changes/{test_id}`
-`/changes`: `changes` (the submission `changes.json`: per test `affected_address_ids`,
-`conflict_flag_address_ids`, `notes`) and `summary` (counts, type, title). `/changes/T1` … `T5`
-(and `T6` after an hour-16 run): the test definition, our rule ids, and the before/after result
-per address.
+### `GET /changes?lang=` and `GET /changes/{test_id}?lang=`
+`/changes`: `changes` (per test `affected_address_ids`, `conflict_flag_address_ids`, `notes` —
+notes in the requested language) and `summary` (counts, `type`, `type_label`, `title`, `notes`).
+`/changes/T1` … `T5` (and `T6` after an hour-16 run): the test definition, our rule ids,
+`type_label`, `title`, `notes` and the before/after result per address.
+
+`type_label`: as_of → "Change by date" / "Cambio por fecha"; boundary → "City boundary" /
+"Límite de ciudad"; pending → "Pending bill" / "Proyecto de ley pendiente"; negative → "Did not
+become law" / "No se convirtió en ley". Spanish titles and notes are deterministic templates
+(no model) with the same numbers, long-form dates ("1 de enero de 2026"), the glossary terms
+and "usted". (The submission file `out/changes.json` keeps the English notes.)
 
 ```json
 {
@@ -933,37 +960,42 @@ per address.
     "T1": {
       "affected": 250,
       "conflict_flagged": 0,
-      "notes": "CA-ALG-01 changes between 2025-12-31 and 2026-01-02 (effective 2026-01-01) at 250 addresses (Berkeley, CA 40, Los Angeles, CA 80, San Diego, CA 50, San Francisco, CA 80); not_yet_effective -> applies: 250.",
       "type": "as_of",
-      "title": "California AB 325 / SB 763 takes effect"
+      "type_label": "Change by date",
+      "title": "California AB 325 / SB 763 takes effect",
+      "notes": "CA-ALG-01 changes between 2025-12-31 and 2026-01-02 (effective 2026-01-01) at 250 addresses (Berkeley, CA 40, Los Angeles, CA 80, San Diego, CA 50, San Francisco, CA 80); not_yet_effective -> applies: 250."
     },
     "T2": {
       "affected": 90,
       "conflict_flagged": 90,
-      "notes": "HOB-ALG-A1, JC-ALG-A1 apply only inside their own city limits as of 2026-10-01 (Hoboken, NJ 40, Jersey City, NJ 50); none elsewhere. Local ordinance text not in corpus; scope from organizer brief (manifest-attested rules). All 90 carry a conflict flag: the NJ FAIR Act may preempt them once effective.",
       "type": "boundary",
-      "title": "Hoboken vs Jersey City local algorithmic bans"
+      "type_label": "City boundary",
+      "title": "Hoboken vs Jersey City local algorithmic bans",
+      "notes": "HOB-ALG-A1, JC-ALG-A1 apply only inside their own city limits as of 2026-10-01 (Hoboken, NJ 40, Jersey City, NJ 50); none elsewhere. Local ordinance text not in corpus; scope from organizer brief (manifest-attested rules). All 90 carry a conflict flag: the NJ FAIR Act may preempt them once effective."
     },
     "T3": {
       "affected": 140,
       "conflict_flagged": 90,
-      "notes": "NJ-ALG-01 changes between 2026-10-01 and 2027-07-02 (effective 2027-07-01) at 140 addresses (Hoboken, NJ 40, Jersey City, NJ 50, Newark, NJ 50); not_yet_effective -> applies: 140. 90 addresses carry a conflict flag: possible preemption of the local algorithmic ordinances, flagged for human review.",
       "type": "as_of",
-      "title": "NJ FAIR Act: enacted, not yet effective; possible preemption"
+      "type_label": "Change by date",
+      "title": "NJ FAIR Act: enacted, not yet effective; possible preemption",
+      "notes": "NJ-ALG-01 changes between 2026-10-01 and 2027-07-02 (effective 2027-07-01) at 140 addresses (Hoboken, NJ 40, Jersey City, NJ 50, Newark, NJ 50); not_yet_effective -> applies: 140. 90 addresses carry a conflict flag: possible preemption of the local algorithmic ordinances, flagged for human review."
     },
     "T4": {
       "affected": 110,
       "conflict_flagged": 0,
-      "notes": "MA-ALG-P2, MA-ALG-P1 are pending bills, not law, as of 2026-10-01; if enacted they would cover 110 Massachusetts addresses (Boston, MA 60, Cambridge, MA 50). Bill text not in corpus: scope stated statewide from the bill status pages.",
       "type": "pending",
-      "title": "Massachusetts pending bills S.2983 and H.5222"
+      "type_label": "Pending bill",
+      "title": "Massachusetts pending bills S.2983 and H.5222",
+      "notes": "MA-ALG-P2, MA-ALG-P1 are pending bills, not law, as of 2026-10-01; if enacted they would cover 110 Massachusetts addresses (Boston, MA 60, Cambridge, MA 50). Bill text not in corpus: scope stated statewide from the bill status pages."
     },
     "T5": {
       "affected": 0,
       "conflict_flagged": 0,
-      "notes": "No rent cap in force in Massachusetts as of 2026-10-01: affected set is empty (0). The rent-control ballot question (MA-RENT-A1, IP 25-21) is recorded as failed (struck 2026-06-23); M.G.L. c. 40P bars local rent control and is not a cap.",
       "type": "negative",
-      "title": "Massachusetts rent-control ballot question struck"
+      "type_label": "Did not become law",
+      "title": "Massachusetts rent-control ballot question struck",
+      "notes": "No rent cap in force in Massachusetts as of 2026-10-01: affected set is empty (0). The rent-control ballot question (MA-RENT-A1, IP 25-21) is recorded as failed (struck 2026-06-23); M.G.L. c. 40P bars local rent control and is not a cap."
     }
   },
   "changes": {
@@ -984,6 +1016,53 @@ per address.
       "conflict_flag_address_ids": [],
       "notes": "CA-ALG-01 changes between 2025-12-31 and 2026-01-02 (effective 2026-01-01) at 250 addresses (Berkeley, CA 40, Los Angeles, CA 80, San Diego, CA 50, San Francisco, CA 80); not_yet_effective -> applies: 250."
     }
+  }
+}
+```
+
+Spanish summary (`GET /changes?lang=es`, real response, `summary` only):
+
+```json
+{
+  "T1": {
+    "affected": 250,
+    "conflict_flagged": 0,
+    "type": "as_of",
+    "type_label": "Cambio por fecha",
+    "title": "Entrada en vigor: Cal. Bus. & Prof. Code § 16729 (fijación de renta con algoritmos, California)",
+    "notes": "CA-ALG-01 cambia entre el 31 de diciembre de 2025 y el 2 de enero de 2026 (entra en vigor el 1 de enero de 2026) en 250 direcciones (Berkeley, CA 40, Los Angeles, CA 80, San Diego, CA 50, San Francisco, CA 80); aún no vigente → aplica: 250."
+  },
+  "T2": {
+    "affected": 90,
+    "conflict_flagged": 90,
+    "type": "boundary",
+    "type_label": "Límite de ciudad",
+    "title": "Límite de ciudad: Hoboken Code ch. 158, Art. II (fijación de renta con algoritmos, Hoboken, NJ); Jersey City Code § 218-12 (fijación de renta con algoritmos, Jersey City, NJ)",
+    "notes": "HOB-ALG-A1, JC-ALG-A1 aplican solo dentro de los límites de su propia ciudad al 1 de octubre de 2026 (Hoboken, NJ 40, Jersey City, NJ 50); en ninguna otra. El texto de las ordenanzas locales no está en el corpus; su alcance proviene del documento de los organizadores (reglas atestiguadas en el manifiesto). Las 90 tienen alerta de conflicto: la Ley FAIR de Nueva Jersey podría desplazarlas cuando entre en vigor."
+  },
+  "T3": {
+    "affected": 140,
+    "conflict_flagged": 90,
+    "type": "as_of",
+    "type_label": "Cambio por fecha",
+    "title": "Entrada en vigor: P.L.2026, c.43 (fijación de renta con algoritmos, Nueva Jersey)",
+    "notes": "NJ-ALG-01 cambia entre el 1 de octubre de 2026 y el 2 de julio de 2027 (entra en vigor el 1 de julio de 2027) en 140 direcciones (Hoboken, NJ 40, Jersey City, NJ 50, Newark, NJ 50); aún no vigente → aplica: 140. 90 direcciones tienen una alerta de conflicto: posible preempción de las ordenanzas locales sobre algoritmos, marcada para revisión humana."
+  },
+  "T4": {
+    "affected": 110,
+    "conflict_flagged": 0,
+    "type": "pending",
+    "type_label": "Proyecto de ley pendiente",
+    "title": "Proyectos de ley pendientes: MA S.2983 (fijación de renta con algoritmos, Massachusetts); MA H.5222 (fijación de renta con algoritmos, Massachusetts)",
+    "notes": "MA-ALG-P2, MA-ALG-P1 son proyectos de ley pendientes, no leyes, al 1 de octubre de 2026; si se aprobaran cubrirían 110 direcciones de Massachusetts (Boston, MA 60, Cambridge, MA 50). El texto de los proyectos de ley no está en el corpus: su alcance se indica a nivel estatal según las páginas de estado de los proyectos."
+  },
+  "T5": {
+    "affected": 0,
+    "conflict_flagged": 0,
+    "type": "negative",
+    "type_label": "No se convirtió en ley",
+    "title": "No se convirtió en ley: control de rentas (Massachusetts)",
+    "notes": "No hay ningún tope de renta vigente en Massachusetts al 1 de octubre de 2026: el conjunto de direcciones afectadas está vacío (0). La pregunta de boleta sobre control de rentas (MA-RENT-A1, IP 25-21) consta como fallida (anulada el 23 de junio de 2026); la ley M.G.L. c. 40P prohíbe el control de rentas local y no es un tope."
   }
 }
 ```

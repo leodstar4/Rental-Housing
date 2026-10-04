@@ -25,6 +25,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from extractor import config
 from resolver.results import CATEGORY_LABEL, Engine, rule_status
 
+from . import i18n
+
 API_VERSION = "1.0.0"
 AS_OF_MIN, AS_OF_MAX = date(2020, 1, 1), date(2030, 12, 31)
 DISCLAIMER = {
@@ -182,6 +184,7 @@ def lookup_payload(aid: str, as_of: date, lang: str) -> dict:
             "effective_date": r["effective_date"], "status": r["status"], "confidence": r["confidence"],
             "conflict_flag": r["conflict_flag"], "conflict_note": "; ".join(notes) or None,
             "needs_review": r["needs_review"], "missing_facts": r["missing_facts"],
+            "missing_facts_label": [i18n.missing_label(m, lang) for m in r["missing_facts"]],
             "presumptions": r["presumptions"], "superseded_by": r["superseded_by"], "attested": r["attested"],
         })
     return {"address": address_info(aid), "building_facts": building_facts(aid),
@@ -211,13 +214,28 @@ def rules_payload(as_of: date, lang: str, jurisdiction: str | None = None, categ
     return {"as_of": as_of.isoformat(), "disclaimer": DISCLAIMER[lang], "count": len(out), "rules": out}
 
 
+def change_texts(tid: str, lang: str) -> dict:
+    """type, type_label, title and notes of a change test in the requested language."""
+    s = store()
+    entry, full = s.changes[tid], s.changes_full.get(tid, {})
+    test = full.get("test") or {"test_id": tid, "type": "new_document" if tid == "T6" else None, "title": tid}
+    rules = [s.by_id[r] for r in full.get("our_rule_ids") or [] if r in s.by_id]
+    if lang == "es":
+        city_of = {a: f["dataset_city"] for a, f in s.facts.items()}
+        notes = i18n.change_notes_es(test, entry, rules, full.get("addresses", {}), city_of)
+    else:
+        notes = entry["notes"]
+    return {"type": test.get("type"), "type_label": i18n.type_label(test.get("type"), lang),
+            "title": i18n.change_title(test, rules, lang), "notes": notes}
+
+
 def changes_payload(lang: str) -> dict:
     s = store()
+    texts = {tid: change_texts(tid, lang) for tid in s.changes}
     summary = {tid: {"affected": len(e["affected_address_ids"]), "conflict_flagged": len(e["conflict_flag_address_ids"]),
-                     "notes": e["notes"], "type": (s.changes_full.get(tid, {}).get("test") or {}).get("type"),
-                     "title": (s.changes_full.get(tid, {}).get("test") or {}).get("title")}
-               for tid, e in s.changes.items()}
-    return {"disclaimer": DISCLAIMER[lang], "changes": s.changes, "summary": summary}
+                     **texts[tid]} for tid, e in s.changes.items()}
+    changes = {tid: {**e, "notes": texts[tid]["notes"]} for tid, e in s.changes.items()}
+    return {"disclaimer": DISCLAIMER[lang], "lang": lang, "changes": changes, "summary": summary}
 
 
 # --------------------------------------------------------------------------- #
@@ -264,9 +282,11 @@ def change_detail(test_id: str, lang: str = "en") -> dict:
     s = store()
     if test_id not in s.changes:
         raise HTTPException(404, f"unknown test_id {test_id!r}; known: {sorted(s.changes)}")
+    lang = lang_of(lang)
     full = s.changes_full.get(test_id, {})
-    return {"disclaimer": DISCLAIMER[lang_of(lang)], "test_id": test_id, "test": full.get("test"),
-            "our_rule_ids": full.get("our_rule_ids"), **s.changes[test_id], "addresses": full.get("addresses", {})}
+    return {"disclaimer": DISCLAIMER[lang], "lang": lang, "test_id": test_id, "test": full.get("test"),
+            "our_rule_ids": full.get("our_rule_ids"), **s.changes[test_id], **change_texts(test_id, lang),
+            "addresses": full.get("addresses", {})}
 
 
 @app.get("/rules")

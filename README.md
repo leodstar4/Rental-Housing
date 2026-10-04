@@ -867,6 +867,10 @@ python -m api.export_static           # static/ backup: one JSON per address and
   `/addresses`, `/lookup/{address_id}?as_of=&lang=`, `/changes`, `/changes/{test_id}`,
   `/rules`, `/conflicts`, `/audit`. Every response has a disclaimer in the requested language;
   `as_of` is validated (YYYY-MM-DD, 2020–2030); CORS allows Lovable domains and localhost.
+  `/changes` and `/changes/{test_id}` take `lang` too: `type_label`, `title` and `notes` in
+  Spanish come from deterministic templates in `api/i18n.py` (same numbers, long-form dates,
+  glossary, "usted"); `/lookup` results add `missing_facts_label` (readable names of the
+  missing facts in the requested language).
 * **Static backup** (`api/export_static.py`): `static/` with the same JSON as the routes for
   `as_of=2026-10-01` — 1,011 files, ≈ 29 MB (≈ 7 MB gzipped), git-ignored, rebuilt in ~3 s.
 

@@ -104,6 +104,49 @@ def test_changes(client):
     assert client.get("/changes/T9").status_code == 404
 
 
+def test_changes_in_spanish(client):
+    import re
+
+    from api.plain_language import _TUTEO
+
+    en, es = client.get("/changes").json(), client.get("/changes", params={"lang": "es"}).json()
+    assert es["lang"] == "es" and es["disclaimer"].startswith("No es asesoría legal")
+    labels = {t: (en["summary"][t]["type_label"], es["summary"][t]["type_label"]) for t in ("T1", "T2", "T4", "T5")}
+    assert labels == {"T1": ("Change by date", "Cambio por fecha"), "T2": ("City boundary", "Límite de ciudad"),
+                      "T4": ("Pending bill", "Proyecto de ley pendiente"),
+                      "T5": ("Did not become law", "No se convirtió en ley")}
+    for tid in ("T1", "T2", "T3", "T4", "T5"):
+        e, s = en["summary"][tid], es["summary"][tid]
+        assert s["notes"] != e["notes"] and s["title"] != e["title"] and not _TUTEO.search(s["notes"] + s["title"])
+        assert str(e["affected"]) in s["notes"] and es["changes"][tid]["notes"] == s["notes"]
+        # the counts in the notes are the same in both languages (dates are written differently)
+        counts = lambda t: sorted(n for n in re.findall(r"\b\d+\b", t) if len(n) < 4)  # noqa: E731
+        assert counts(re.sub(r"\d{4}-\d{2}-\d{2}|[A-Z][a-z]+ \d{1,2}, \d{4}", "", e["notes"])) == counts(
+            re.sub(r"\d{1,2} de [a-z]+ de \d{4}", "", s["notes"]))
+    assert "1 de enero de 2026" in es["summary"]["T1"]["notes"] and "proyectos de ley" in es["summary"]["T4"]["notes"]
+    d = client.get("/changes/T3", params={"lang": "es"}).json()
+    assert d["type_label"] == "Cambio por fecha" and "1 de julio de 2027" in d["notes"] and d["addresses"]
+
+
+def test_long_dates_and_missing_labels():
+    from api.i18n import long_date, missing_label
+
+    assert long_date("2026-01-01", "es") == "1 de enero de 2026" and long_date("2026-01-01", "en") == "January 1, 2026"
+    assert long_date("2025-06", "es") == "junio de 2025"
+    assert [missing_label(m, "es") for m in ("year_built", "units", "owner_type",
+                                             "certificate of occupancy date (built in cutoff year)")] == [
+        "año de construcción", "número de unidades", "tipo de propietario", "fecha del certificado de ocupación"]
+    assert missing_label("units", "en") == "number of units"
+
+
+def test_lookup_missing_facts_label(client):
+    for lang, label in (("en", "year built"), ("es", "año de construcción")):
+        body = client.get("/lookup/A0113", params={"lang": lang}).json()  # Berkeley: no year built
+        rows = [x for g in body["results"].values() for x in g if x["missing_facts"]]
+        assert rows and all(len(x["missing_facts"]) == len(x["missing_facts_label"]) for x in rows)
+        assert any(label in x["missing_facts_label"] for x in rows)
+
+
 def test_rules_with_status_at_date(client):
     before = client.get("/rules", params={"jurisdiction": "CA", "category": "algorithmic_rent_setting",
                                           "as_of": "2025-12-31"}).json()
