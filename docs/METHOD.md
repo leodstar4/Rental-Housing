@@ -1,6 +1,6 @@
 # Rental Housing Law Navigator — Method note
 
-*7th Global AI Hackathon · Hack-Nation × RealPage · Challenge 02: Rental Housing Law Navigator · Not legal advice.*
+*7th Global AI Hackathon · Hack-Nation × RealPage · Challenge 02: Rental Housing Law Navigator · Team: Infinity Tokens · Not legal advice.*
 
 **Problem.** Whether a rental rule applies to an apartment depends on layered state and city
 law, coverage tests, exemptions, effective dates and the address's legal city, which is not

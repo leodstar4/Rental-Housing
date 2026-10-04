@@ -10,7 +10,7 @@ quote, a citation and a confidence score behind every answer.
 | 🖥️ **Live demo** | https://scene-styler-kit.lovable.app |
 | 🔌 **API** | https://rental-housing-navigator-api.onrender.com · interactive docs at [`/docs`](https://rental-housing-navigator-api.onrender.com/docs) · contract in [docs/API.md](docs/API.md) |
 | 🧩 **Frontend repo (Lovable)** | https://github.com/elbicho707/Rental-Housing-Lovable (mirrored in [`frontend/`](frontend/) at commit `54768b0`) |
-| 🎬 **Videos** | Team: `VIDEO_TEAM` · Demo: `VIDEO_DEMO` · Technical: `VIDEO_TECH` *(TODO: links)* |
+| 🎬 **Videos** | Videos (team intro, demo, technical; ≤ 60 s each) were submitted through the Hack-Nation portal. Narration of the demo and technical videos is an AI voice (ElevenLabs). |
 | 📄 **Method note** | [docs/METHOD.md](docs/METHOD.md) · [PDF](docs/METHOD.pdf) |
 
 > ⚖️ **Not legal advice.** This is an information prototype built for the **7th Global AI
@@ -528,7 +528,7 @@ from the judges.
 | **Public data** | starter-pack corpus of state and municipal law (official codes, legislature and agency pages), public assessor sample (no owner names), brief and change tests by the organizers |
 | Python libraries | FastAPI, pydantic, jsonschema, rapidfuzz, pypdf, PyYAML, pytest, Anthropic SDK |
 
-**Team:** `TEAM_NAME`. Members: `MEMBER_1`, `MEMBER_2`, `MEMBER_3` *(TODO)*.
+Team: Infinity Tokens (4 systems engineering students, Mexico)
 
 ---
 
