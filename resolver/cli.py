@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
+from pathlib import Path
 
 import typer
 
@@ -184,6 +185,41 @@ def lookup_cmd(as_of: str = typer.Option("2026-10-01", help="Query date (ISO).")
         typer.echo(f"  {rid:24} {n:4d}")
     typer.echo(f"results with needs_review (combined confidence < 0.5, lookups_full only): {sum(review.values())} "
                f"in {len(review)} rules")
+
+
+@app.command("changes")
+def changes_cmd(new_doc: Path = typer.Option(None, exists=True, dir_okay=False,
+                                             help="Hour 16: a new document (.txt/.pdf/.html) -> entry T6."),
+                jurisdiction: str = typer.Option(None, help='Jurisdiction hint for --new-doc, e.g. "Cambridge, MA".')) -> None:
+    """Change tests T1-T5 -> out/changes.json + out/changes_full.json and a dashboard; or T6 for --new-doc."""
+    import time
+
+    from . import changes as ch
+
+    if new_doc:
+        out = ch.new_doc(new_doc, jurisdiction, log=typer.echo)
+        typer.echo(f"\nT6 · {out['doc_id']} · new rules: {', '.join(out['new_rule_ids']) or 'none'}")
+        for rid, v in out["rules"].items():
+            typer.echo(f"  {rid}: {v['status_now']} on {config_default()}, effective {v['effective_date']}")
+            for d, x in v["by_date"].items():
+                typer.echo(f"    as of {d}: {len(x['affected_address_ids'])} affected {x['by_city']} results {x['results']}")
+        typer.echo(f"  notes: {out['entry']['notes']}")
+        typer.echo(f"  timings: {out['timings_s']}  total {out['total_s']} s  -> {ch.CHANGES_PATH} (T6)")
+        return
+    t0 = time.perf_counter()
+    changes, full, tl = ch.run_all_tests()
+    ch.write(changes, full)
+    typer.echo(f"-> {ch.CHANGES_PATH}, {ch.CHANGES_FULL_PATH}\n")
+    for tid, e in changes.items():
+        typer.echo(f"{tid}: affected {len(e['affected_address_ids'])}, conflict-flagged "
+                   f"{len(e['conflict_flag_address_ids'])}\n    {e['notes']}")
+    typer.echo("\n" + ch.render(ch.verify(changes, tl), time.perf_counter() - t0))
+
+
+def config_default() -> str:
+    from extractor import config
+
+    return config.DEFAULT_AS_OF.isoformat()
 
 
 if __name__ == "__main__":

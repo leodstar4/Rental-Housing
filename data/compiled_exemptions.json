@@ -1969,120 +1969,9 @@
     ]
    }
   },
-  "CA-JUST-01": {
-   "rule_id": "CA-JUST-01",
-   "input_sha256": "c3a8eaa5a5d7dbf6fd3f7e55d9eb2f3a6b6b432cc6a0f8430feea7998160758b",
-   "conditions": [
-    {
-     "source": "property_types_covered",
-     "kind": "condition",
-     "origin": "llm",
-     "scope": "building",
-     "text": "residential rental",
-     "predicate": {
-      "const": true
-     },
-     "irreducible": false
-    }
-   ],
-   "exemptions": [
-    {
-     "source": "exemption_conditions[0]",
-     "kind": "exemption",
-     "origin": "code+llm",
-     "scope": "building",
-     "text": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant",
-     "predicate": {
-      "and": [
-       {
-        "fact": "owner_type",
-        "op": "in",
-        "value": [
-         "not real estate trust",
-         "not corporation",
-         "not LLC with corporate member"
-        ]
-       },
-       {
-        "or": [
-         {
-          "and": [
-           {
-            "fact": "use.single_family",
-            "op": "==",
-            "value": true
-           }
-          ]
-         },
-         {
-          "and": [
-           {
-            "fact": "use.condo",
-            "op": "==",
-            "value": true
-           }
-          ]
-         }
-        ]
-       }
-      ]
-     },
-     "structured": "owner_type in [\"not real estate trust\", \"not corporation\", \"not LLC with corporate member\"]",
-     "irreducible": false
-    }
-   ],
-   "llm": {
-    "model": "claude-haiku-4-5",
-    "served_model": "claude-haiku-4-5-20251001",
-    "prompt_version": "cx-0.4.0",
-    "results": [
-     {
-      "ref": "E0",
-      "kind": "qualifier",
-      "scope": "building",
-      "text": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant",
-      "predicate": {
-       "or": [
-        {
-         "and": [
-          {
-           "fact": "use.single_family",
-           "op": "==",
-           "value": true
-          }
-         ]
-        },
-        {
-         "and": [
-          {
-           "fact": "use.condo",
-           "op": "==",
-           "value": true
-          }
-         ]
-        }
-       ]
-      },
-      "irreducible": false,
-      "missing_fact": null
-     },
-     {
-      "ref": "PT",
-      "kind": "property_types",
-      "scope": "building",
-      "text": "residential rental",
-      "predicate": {
-       "const": true
-      },
-      "irreducible": false,
-      "missing_fact": null
-     }
-    ]
-   }
-  },
   "CA-JUST-02": {
    "rule_id": "CA-JUST-02",
-   "input_sha256": "0296aec26e7c9902276c98f4a5633b1699d37bd4a49ad44cae1d1bba47e5b751",
+   "input_sha256": "3ab1f6e7cdef7ef244f428308cb9fc8afff128a15ec70bfc085f3fd74e29eb42",
    "conditions": [
     {
      "source": "building_age_min_years",
@@ -2313,6 +2202,42 @@
      "irreducible": false
     },
     {
+     "source": "exemption_conditions[8]",
+     "kind": "exemption",
+     "origin": "code+llm",
+     "scope": "building",
+     "text": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant",
+     "predicate": {
+      "and": [
+       {
+        "fact": "owner_type",
+        "op": "in",
+        "value": [
+         "not real estate trust",
+         "not corporation",
+         "not LLC with corporate member"
+        ]
+       },
+       {
+        "or": [
+         {
+          "fact": "use.single_family",
+          "op": "==",
+          "value": true
+         },
+         {
+          "fact": "use.condo",
+          "op": "==",
+          "value": true
+         }
+        ]
+       }
+      ]
+     },
+     "structured": "owner_type in [\"not real estate trust\", \"not corporation\", \"not LLC with corporate member\"]",
+     "irreducible": false
+    },
+    {
      "source": "exemptions_text",
      "kind": "exemption",
      "origin": "llm",
@@ -2469,8 +2394,32 @@
       },
       "irreducible": false,
       "missing_fact": null
+     },
+     {
+      "ref": "E8",
+      "kind": "qualifier",
+      "scope": "building",
+      "text": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant",
+      "predicate": {
+       "or": [
+        {
+         "fact": "use.single_family",
+         "op": "==",
+         "value": true
+        },
+        {
+         "fact": "use.condo",
+         "op": "==",
+         "value": true
+        }
+       ]
+      },
+      "irreducible": false,
+      "missing_fact": null
      }
-    ]
+    ],
+    "free_text_sha": "83266eb14ac2f0ed6e63f8a2ced310d2d61000461fb9990239432178e8dfe170",
+    "partial_reuse": 7
    }
   },
   "CA-JUST-03": {
@@ -2499,6 +2448,19 @@
      },
      "irreducible": true,
      "note": "free-text condition: not evaluated until reviewed"
+    },
+    {
+     "source": "human_review:HR-004",
+     "kind": "condition",
+     "origin": "human_review",
+     "scope": "unit_or_tenancy",
+     "text": "residential units demolished for new construction",
+     "predicate": {
+      "missing": "whether the unit is demolished for new housing development"
+     },
+     "irreducible": false,
+     "note": "human review HR-004 (project team (Module C decision), 2026-10-03): The Housing Crisis Act relocation duty depends on a specific event at a unit (demolition for new housing development), not on the building's facts: keep the rule applicable and state the condition in the explanation.",
+     "explanation": "Applies only if the unit is demolished for new housing development."
     }
    ],
    "exemptions": [],
@@ -7378,6 +7340,7 @@
  },
  "human_review_applied": [
   "HR-001",
-  "HR-002"
+  "HR-002",
+  "HR-004"
  ]
 }

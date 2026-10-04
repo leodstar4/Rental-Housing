@@ -62,9 +62,15 @@ def test_reproduce_from_snapshot_differs_only_by_documented_changes(tmp_path, sn
     now = {r["team_rule_id"]: r for r in json.loads(first)["rules"]}
     snap = {r["team_rule_id"]: r for r in map(_upgrade_ids, json.loads((SNAPSHOT / "rules.json").read_text(
         encoding="utf-8"))["rules"])}
-    assert set(now) == set(snap)
+    # human review HR-003: CA-JUST-01 (an exemption extracted as a rule) folded into CA-JUST-02
+    assert set(snap) - set(now) == {"CA-JUST-01"} and set(now) <= set(snap)
+    merged = snap.pop("CA-JUST-01")["coverage_conditions"]["exemption_conditions"]
     for rid, old in snap.items():
         new = now[rid]
+        if rid == "CA-JUST-02":
+            ex_old, ex_new = old["coverage_conditions"].pop("exemption_conditions"), new["coverage_conditions"].pop(
+                "exemption_conditions")
+            assert ex_new == ex_old + [e for e in merged if e not in ex_old]
         if rid in LA_CO:
             cov_old, cov_new = old.pop("coverage_conditions"), new.pop("coverage_conditions")
             assert cov_old.pop("year_built_max") == 1978 and "year_built_max" not in cov_new
@@ -109,7 +115,7 @@ def test_incremental_fake_cambridge(tmp_path, monkeypatch, snapshot_mode):
     assert any(e["field"] == "units" and e["op"] == "<" and e["value"] == 6
                for e in r["coverage_conditions"]["exemption_conditions"])
     snap = {upgrade_legacy_id(x["team_rule_id"])
-            for x in json.loads((SNAPSHOT / "rules.json").read_text(encoding="utf-8"))["rules"]}
+            for x in json.loads((SNAPSHOT / "rules.json").read_text(encoding="utf-8"))["rules"]} - {"CA-JUST-01"}  # HR-003
     now = {x["team_rule_id"] for x in json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]}
     assert now - snap == {"CAM-ALG-01"} and snap <= now  # existing ids kept; records untouched = only 1 change
     assert "incremental" in incremental.render(s).lower()

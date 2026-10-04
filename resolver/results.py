@@ -150,10 +150,18 @@ def rule_status(rule: dict, internal: dict, as_of: date) -> tuple[str, date | No
 # --------------------------------------------------------------------------- #
 
 
+_ABBREV = re.compile(r"\b(Gov|Civ|Code|Stat|Stats|Bus|Prof|Mun|Admin|Cal|Sec|No|St|Ave|U\.S|e\.g|i\.e|etc|vs|Inc|Co)\.$")
+
+
 def _first_sentence(text: str | None, limit: int = 220) -> str:
     if not text:
         return ""
-    s = re.split(r"(?<=[.;])\s+(?=[A-Z(])", text.strip())[0].rstrip(";")
+    s, start = text.strip(), 0
+    for m in re.finditer(r"(?<=[.;])\s+(?=[A-Z(])", s):
+        if not _ABBREV.search(s[start:m.start()]):
+            s = s[: m.start()]
+            break
+    s = s.rstrip(";")
     s = s if s.endswith(".") else s + "."
     return s if len(s) <= limit else s[: limit - 1].rsplit(" ", 1)[0] + "…"
 
@@ -203,6 +211,8 @@ def explanation(e: dict, facts: dict, as_of: date, titles: dict[str, str]) -> st
     else:
         miss = ", ".join(missing_phrase(m, facts) for m in e["missing_facts"]) or "facts not in the data"
         why = f"Depends on {miss}, which is not in the assessor data."
+    if res in ("applies", "unknown") and e.get("explain"):
+        why = f"{why} {' '.join(e['explain'])}"  # reviewed unit-level conditions (human review register)
     notes = [p.replace("presumed: ", "Presumed ") for p in e["presumptions"]]
     notes += [f"may yield to {x} if it applies" for x in e["may_yield_to"]]
     notes += e["conflict_notes"]
@@ -251,6 +261,8 @@ class Engine:
                  "coverage": cov, "missing_facts": list(cov["missing_facts"]), "presumptions": list(cov["presumptions"]),
                  "superseded_by": None, "may_yield_to": [], "conflict_notes": [], "omitted": None, "notes": [],
                  "attested": rule.get("evidence_type") == "manifest_only",
+                 "explain": [x["explanation"] for x in self.compiled[rid]["conditions"] + self.compiled[rid]["exemptions"]
+                             if x.get("explanation")],
                  "retrieved": (self.internal[rid].retrieved_at[:10] if rid in self.internal else None)}
             if status == "failed":
                 e["omitted"] = "status failed"

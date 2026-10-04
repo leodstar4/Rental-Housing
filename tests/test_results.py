@@ -40,8 +40,10 @@ def test_sf_brief_example(engines):
     assert (r["CA-RENT-01"]["result"], r["CA-RENT-01"]["superseded_by"]) == ("superseded", "SF-RENT-01")
     assert r["SF-JUST-01"]["result"] == "applies"
     assert (r["CA-JUST-02"]["result"], r["CA-JUST-02"]["superseded_by"]) == ("superseded", "SF-JUST-01")
-    # same law and section (Cal. Civ. Code § 1946.2): precedence propagates
-    assert (r["CA-JUST-01"]["result"], r["CA-JUST-01"]["superseded_by"]) == ("superseded", "SF-JUST-01")
+    # HR-003: CA-JUST-01 folded into CA-JUST-02; HR-004: demolition condition stated, rule still applies
+    assert "CA-JUST-01" not in r
+    assert r["CA-JUST-03"]["result"] == "applies"
+    assert "Applies only if the unit is demolished for new housing development." in r["CA-JUST-03"]["explanation"]
     assert not r["SF-RENT-01"]["conflict_flag"] and r["CA-FEE-01"]["conflict_flag"]  # legal conflicts only
     assert r["CA-DEP-03"]["result"] == "applies" and "CA-DEP-06" not in r  # small-landlord rule does not cover 21 units
     assert r["CA-FEE-01"]["result"] == "applies"

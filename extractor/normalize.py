@@ -24,6 +24,8 @@ Pipeline (``normalize_rules``), in order:
                          held, deterministic (``CA-ALG-01``, ``MA-ALG-P1``).
 7. ``apply_precedence``  state rules that yield to stricter local rules (e.g. Civ. Code
                          § 1947.12 vs local rent control) or preempt them get ``overrides``.
+6b. ``apply_human_review_merges`` ``data/human_review.yaml`` (merge_rule): a rule extracted as a
+                         standalone rule is folded into another as an exemption.
 8. ``apply_review_flags`` ``data/review_flags.yaml``: known open questions flagged for human review.
 
 Cross-document conflicts are detected afterwards in ``conflicts.py``.
@@ -692,6 +694,41 @@ def apply_precedence(rules: list[RuleInternal]) -> list[tuple[str, str, str]]:
     return out
 
 
+def human_review_merges() -> list[dict]:
+    """``merge_rule`` entries of data/human_review.yaml (the human review register)."""
+    if not config.HUMAN_REVIEW_PATH.exists():
+        return []
+    reg = yaml.safe_load(config.HUMAN_REVIEW_PATH.read_text(encoding="utf-8"))["reviews"]
+    return [r for r in reg if r["action"] == "merge_rule"]
+
+
+def apply_human_review_merges(rules: list[RuleInternal], entries: list[dict] | None = None) -> list[tuple[str, str]]:
+    """Fold a rule extracted as a standalone rule into another one as an exemption (human review
+    register, action merge_rule): the merged rule leaves the export; its exemption conditions,
+    quote (as evidence) and law aliases join the target. The entry's quoted_span must be the
+    merged rule's own quote (whitespace-insensitive)."""
+    by_id = {r.team_rule_id: r for r in rules if r.disposition == "accepted" and r.team_rule_id}
+    done = []
+    for e in human_review_merges() if entries is None else entries:
+        src, tgt = by_id.get(e["rule_id"]), by_id.get(e["into"])
+        if src is None or tgt is None:
+            continue
+        if " ".join(e["quoted_span"].split()) not in " ".join(src.quoted_span.split()):
+            # the entry does not describe this rule (e.g. ids differ in another run): never merge blindly
+            src.validation_errors.append(f"human review {e['id']} NOT applied: quoted_span not in this rule's quote")
+            continue
+        if tgt.coverage is not None and src.coverage is not None:
+            have = {x.condition for x in tgt.coverage.exemption_conditions}
+            tgt.coverage.exemption_conditions += [x for x in src.coverage.exemption_conditions if x.condition not in have]
+        tgt.citation_aliases += [a for a in src.citation_aliases if a not in tgt.citation_aliases]
+        tgt.evidence.append(_evidence(src, "merged"))
+        tgt.merged_uids.append(src.uid)
+        tgt.validation_errors.append(f"human review {e['id']}: merged {src.team_rule_id} as an exemption")
+        src.disposition, src.disposition_reason, src.merged_into = "merged", f"human_review:{e['id']}", tgt.uid
+        done.append((src.team_rule_id, tgt.team_rule_id))
+    return done
+
+
 @functools.lru_cache(maxsize=1)
 def review_flags_table() -> list[dict]:
     return yaml.safe_load(config.REVIEW_FLAGS_PATH.read_text(encoding="utf-8"))["flags"]
@@ -726,6 +763,7 @@ class NormalizationReport:
     admin_links: list[tuple[str, str | None]] = field(default_factory=list)
     precedence: list[tuple[str, str, str]] = field(default_factory=list)
     review_flags: list[tuple[str, str]] = field(default_factory=list)
+    human_review_merges: list[tuple[str, str]] = field(default_factory=list)
     ids: dict[str, str] = field(default_factory=dict)
     cells: Counter = field(default_factory=Counter)
 
@@ -745,6 +783,7 @@ def normalize_rules(
     rep.co_conversions = certificate_of_occupancy(rules)
     rep.admin_links = link_administrative(rules)
     rep.ids = assign_ids(rules, existing_ids)
+    rep.human_review_merges = apply_human_review_merges(rules)
     rep.precedence = apply_precedence(rules)
     rep.review_flags = apply_review_flags(rules)
     rep.cells = Counter((r.jurisdiction, r.category) for r in rules if r.disposition == "accepted")

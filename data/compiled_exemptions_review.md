@@ -71,8 +71,6 @@ Model `claude-haiku-4-5`, prompt `cx-0.4.0`. Conditions are ANDed (rule covers t
 | CA-FEE-01 | condition | building | llm | residential rental | `TRUE` |  |
 | CA-FEE-01 | exemption | unit_or_tenancy | llm | Applies to owners of residential rental property and their agents, and to applicants, including guarantors and cosigners. | `MISSING[whether the party is an owner, agent, applicant, guarantor, or cosigner]` | **yes** |
 | CA-FEE-02 | condition | review | llm | The maximum screening fee for 2026 is $68.96. | `MISSING[whether the fee charged is within the annual statutory maximum]` | **yes** |
-| CA-JUST-01 | condition | building | llm | residential rental | `TRUE` |  |
-| CA-JUST-01 | exemption | building | code+llm | Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant | `(owner_type in ["not real estate trust", "not corporation", "not LLC with corporate member"] AND (use.single_family == true OR use.condo == true))` |  |
 | CA-JUST-02 | condition | building | code | building_age_min_years = 15 | `building_age >= 15` |  |
 | CA-JUST-02 | condition | building | llm | residential real property | `TRUE` |  |
 | CA-JUST-02 | exemption | building | code | Transient and tourist hotel occupancy; housing in nonprofit hospitals, religious facilities, extended care facilities, licensed residential care facilities for the elderly, adult residential facilities; dormitories owned and operated by higher education institutions or K-12 schools | `(use_class == "hotel_transient" OR use_class == "hospital" OR use_class == "religious_facility" OR use_class == "care_facility" OR use_class == "care_facility" OR use_class == "care_facility" OR use_class == "dormitory")` |  |
@@ -83,9 +81,11 @@ Model `claude-haiku-4-5`, prompt `cx-0.4.0`. Conditions are ANDed (rule covers t
 | CA-JUST-02 | exemption | building | code | Deed-restricted or regulatory-restricted affordable housing for very low, low, or moderate income households, or housing under an affordable housing subsidy agreement | `use.affordable == true` |  |
 | CA-JUST-02 | exemption | other_law | llm | Property subject to a local just cause ordinance adopted on or before September 1, 2019, or a more protective one adopted or amended after that date | `MISSING[property is subject to a qualifying local just cause ordinance]` | **yes** |
 | CA-JUST-02 | exemption | building | llm | Homeowner of a mobilehome as defined in Section 798.9 | `(use_class == "mobilehome" AND units == 1)` |  |
+| CA-JUST-02 | exemption | building | code+llm | Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, with written notice to tenant | `(owner_type in ["not real estate trust", "not corporation", "not LLC with corporate member"] AND (use.single_family == true OR use.condo == true))` |  |
 | CA-JUST-02 | exemption | building | llm | Housing with a certificate of occupancy issued within 15 years (except mobilehomes) | `(building_age < 15 AND use_class != "mobilehome")` |  |
 | CA-JUST-03 | condition | building | llm | residential units demolished for new construction | `TRUE` |  |
 | CA-JUST-03 | condition | review | llm | Only lower-income households (80% AMI or below). | `MISSING[household income relative to area median income (AMI)]` | **yes** |
+| CA-JUST-03 | condition | unit_or_tenancy | human_review | residential units demolished for new construction | `MISSING[whether the unit is demolished for new housing development]` |  |
 | CA-RENT-01 | condition | building | code | building_age_min_years = 15 | `building_age >= 15` |  |
 | CA-RENT-01 | condition | building | llm | residential real property | `TRUE` |  |
 | CA-RENT-01 | exemption | building | code | Housing deed- or regulatory-restricted as affordable housing for very low, low, or moderate income persons, or subject to an affordable housing subsidy agreement | `(use.affordable == true OR use.affordable == true)` |  |

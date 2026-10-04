@@ -429,12 +429,17 @@ manifest's link-only rows and `dev/change_tests.json`:
 
 **Human review.** Every manual correction to the compiled coverage is an entry of
 `data/human_review.yaml`, and nothing else in the code or data changes a rule by hand. Each entry
-has an id (HR-NNN), the rule, the action (`set_scope` or `add_item`), a `quoted_span`, the
-reason, the reviewer (a role, not a name) and the date. The compiler refuses an entry whose
-quoted span is not found verbatim in the rule's exported text, and records the ids applied
-(`human_review_applied` in `data/compiled_exemptions.json`); each corrected item carries a
-"human review HR-NNN" note that reaches `lookups_full.json`. Current entries: HR-001
-(MA-RENT-01 exemptions → other_law) and HR-002 (CA-DEP-06 limited to ≤ 4 units).
+has an id (HR-NNN), the rule, the action (`set_scope`, `add_item`, or `merge_rule`, applied in
+Module A's normalize step so the merged rule leaves `rules.json`), a `quoted_span`, the reason,
+the reviewer (a role, not a name) and the date. Entries whose quoted span is not found verbatim
+in the rule's text are refused (compiler) or not applied (normalize); applied ids are recorded
+(`human_review_applied` in `data/compiled_exemptions.json`, `human review merges` in the normalize
+report), and each corrected item carries a "human review HR-NNN" note. Current entries: HR-001
+(MA-RENT-01 exemptions → other_law), HR-002 (CA-DEP-06 limited to ≤ 4 units), HR-003
+(CA-JUST-01, an exemption extracted as a standalone rule, folded into CA-JUST-02), HR-004
+(CA-JUST-03 demolition condition as unit_or_tenancy, stated in its explanation). When a rule
+changes only by gaining items (e.g. a merge), the compiler reuses the reviewed answers for the
+unchanged items and asks the model only about the new ones.
 `tests/test_human_review.py` runs the hour-16 flow (extract-doc of a new ordinance → compile →
 coverage) with an empty register to show a new document never needs an entry.
 
@@ -541,6 +546,30 @@ Explanations are deterministic: requirement, why (facts used, governing rule, ef
 "pending bill, not law", or the missing fact), presumptions/notes, then source, retrieval date,
 as-of date and "Not legal advice." `lookups.json` holds only rules.json ids (validated);
 manifest-attested rules appear only in `lookups_full.json`.
+
+## Module C — change tracking
+
+```bash
+python -m resolver.cli changes        # T1-T5 -> out/changes.json + out/changes_full.json + dashboard (~3 s)
+python -m resolver.cli changes --new-doc path/to/ordinance.txt --jurisdiction "Cambridge, MA"   # hour 16 -> T6
+```
+
+`resolver/changes.py` reuses `results.py` lookups at any dates (`diff(address, rules, before,
+after)`, attested rules included) and maps the change tests through `data/test_rule_map.yaml`.
+Affected = the rule's result changes between the two dates (as_of: T1, T3); is applies / unknown
+/ not_yet_effective (boundary: T2, with the attested Hoboken and Jersey City bans); is pending
+(T4); or an in-force rent cap exists (negative: T5, empty — c. 40P is a ban, not a cap).
+`conflict_flag_address_ids` are affected addresses whose test-rule result carries
+`conflict_flag`. The dashboard checks the expected counts (T1 250 CA, T2 40 / 50 / 0, T3 140 NJ
+with 90 flagged, T4 110 pending, T5 empty and IP 25-21 failed).
+
+`--new-doc` runs extract-doc (Module A), compiles the new rules in memory (the versioned compile
+snapshot is not written), and reports each new rule's affected addresses at the default query
+date and the day after its effective date as entry `T6`. Rehearsal with
+`tests/fixtures/fake_cambridge_ordinance.txt`: CAM-ALG-01 not_yet_effective on 2026-10-01, applies
+from 2027-03-14 at 45 Cambridge addresses (the 5 with fewer than 6 units are not covered), none
+elsewhere; ≈ 30 s (extract-doc ≈ 17 s, compile ≈ 11 s). To undo: delete
+`corpus/new/<doc_id>.*`, then `python -m extractor.cli reproduce` and `python -m resolver.cli changes`.
 
 ## Tests
 

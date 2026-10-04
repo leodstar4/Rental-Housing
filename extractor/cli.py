@@ -228,6 +228,7 @@ def normalize(
     for rid, what in rep.co_conversions:
         typer.echo(f"  {rid:12} {what}")
     typer.echo(f"review flags (data/review_flags.yaml): {rep.review_flags}")
+    typer.echo(f"human review merges (data/human_review.yaml): {rep.human_review_merges}")
     typer.echo("\nadministrative figures:")
     for uid, aid, tgt in rep.admin_links:
         typer.echo(f"  {uid:8} -> {tgt or 'HELD administrative_unlinked'}")

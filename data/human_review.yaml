@@ -7,8 +7,12 @@
 #
 #   id:           HR-NNN (never reused)
 #   rule_id:      team_rule_id in out/rules.json
-#   action:       set_scope (kind + scope: rescope every compiled item of that kind)
-#                 add_item  (kind + predicate: add an item the compiler missed)
+#   action:       set_scope  (kind + scope: rescope every compiled item of that kind)
+#                 add_item   (kind + predicate [+ scope, explanation]: add an item the compiler missed;
+#                            `explanation` is appended to the result's explanation)
+#                 merge_rule (into: fold a rule extracted as standalone into another rule as an
+#                            exemption; applied by extractor/normalize.py, so it leaves rules.json;
+#                            quoted_span must come from the merged rule's quoted_span)
 #   quoted_span:  verbatim text of the rule that supports the decision
 #   reason:       why
 #   reviewer:     who decided (role, not a personal name)
@@ -43,4 +47,28 @@ reviews:
       total, so a building with more than four units refutes it. Same restriction as CA-DEP-02
       (units_max 4, same law).
     reviewer: "project team (B3 decision; proposed by the coding assistant in the SF self-check)"
+    date: "2026-10-03"
+
+  - id: HR-003
+    rule_id: CA-JUST-01
+    action: merge_rule
+    into: CA-JUST-02
+    quoted_span: "The landlord notified the tenant in writing that the tenancy is not subject to the “just cause” and rent increase limitations as specifically described in Civil Code Sections 1946.2(e)(8)(B)(i) and 1947.12(d)(5)(B)(i)."
+    reason: "exemption extracted as a standalone rule; same law and section"
+    reviewer: "project team (Module C decision)"
+    date: "2026-10-03"
+
+  - id: HR-004
+    rule_id: CA-JUST-03
+    action: add_item
+    kind: condition
+    scope: unit_or_tenancy
+    predicate: {"missing": "whether the unit is demolished for new housing development"}
+    explanation: "Applies only if the unit is demolished for new housing development."
+    quoted_span: "residential units demolished for new construction"
+    reason: >-
+      The Housing Crisis Act relocation duty depends on a specific event at a unit (demolition for
+      new housing development), not on the building's facts: keep the rule applicable and state the
+      condition in the explanation.
+    reviewer: "project team (Module C decision)"
     date: "2026-10-03"

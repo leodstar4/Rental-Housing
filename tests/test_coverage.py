@@ -144,8 +144,7 @@ def test_berkeley_status_exemptions_presumed_so_rent_rule_covers_old_building():
     assert r["coverage"] == "covered" and len(r["presumptions"]) == 3
 
 
-@pytest.mark.parametrize("rid, city", [("CA-RENT-01", "Los Angeles"), ("CA-JUST-02", "Los Angeles"),
-                                       ("CA-JUST-01", "Los Angeles")])
+@pytest.mark.parametrize("rid, city", [("CA-RENT-01", "Los Angeles"), ("CA-JUST-02", "Los Angeles")])
 def test_owner_exemptions_refuted_by_building_facts(rid, city):
     """owner-occupied duplex / single-family or condo owned by a natural person, at a 20-unit
     building: the building term is false, so the owner term cannot leave the rule unknown."""

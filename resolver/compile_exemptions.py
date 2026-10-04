@@ -395,7 +395,8 @@ def classify_special(texts: list[str], *, use_cache: bool = True) -> dict[str, d
     raise llm.ExtractionLLMError("no valid record_special call")
 
 
-REVIEW_FIELDS = {"id", "rule_id", "action", "kind", "quoted_span", "reason", "reviewer", "date"}
+REVIEW_FIELDS = {"id", "rule_id", "action", "quoted_span", "reason", "reviewer", "date"}
+ACTION_FIELDS = {"set_scope": {"kind", "scope"}, "add_item": {"kind", "predicate"}, "merge_rule": {"into"}}
 
 
 @functools.lru_cache(maxsize=1)
@@ -407,7 +408,8 @@ def rule_texts(rule: dict) -> list[str]:
     cov = rule.get("coverage_conditions") or {}
     cov = cov if isinstance(cov, dict) else {"notes": cov}
     return [t for t in (cov.get("notes"), cov.get("text"), rule.get("exemptions"),
-                        *(e.get("condition") for e in cov.get("exemption_conditions") or [])) if t]
+                        *(e.get("condition") for e in cov.get("exemption_conditions") or []),
+                        *(cov.get("property_types_covered") or [])) if t]
 
 
 def apply_reviews(compiled: dict, rules: dict[str, dict], register: list[dict] | None = None) -> list[str]:
@@ -416,8 +418,13 @@ def apply_reviews(compiled: dict, rules: dict[str, dict], register: list[dict] |
     applied = []
     for o in review_register() if register is None else register:
         missing = REVIEW_FIELDS - set(o)
+        if o.get("action") not in ACTION_FIELDS:
+            raise ValueError(f"human review {o.get('id')}: unknown action {o.get('action')!r}")
+        missing |= ACTION_FIELDS[o["action"]] - set(o)
         if missing:
             raise ValueError(f"human review {o.get('id')}: missing {sorted(missing)}")
+        if o["action"] == "merge_rule":  # applied in Module A (extractor/normalize.py)
+            continue
         c, rule = compiled.get(o["rule_id"]), rules.get(o["rule_id"])
         if c is None or rule is None:
             continue
@@ -427,14 +434,13 @@ def apply_reviews(compiled: dict, rules: dict[str, dict], register: list[dict] |
         if o["action"] == "add_item":
             validate(o["predicate"])
             c[o["kind"] + "s"].append({"source": f"human_review:{o['id']}", "kind": o["kind"], "origin": "human_review",
-                                       "scope": "building", "text": o["quoted_span"], "predicate": o["predicate"],
-                                       "irreducible": False, "note": note})
-        elif o["action"] == "set_scope":
+                                       "scope": o.get("scope", "building"), "text": o["quoted_span"],
+                                       "predicate": o["predicate"], "irreducible": False, "note": note,
+                                       **({"explanation": o["explanation"]} if o.get("explanation") else {})})
+        else:  # set_scope
             for e in c.get(o["kind"] + "s", []):
                 if e["scope"] != o["scope"]:
                     e.update(scope=o["scope"], note=note)
-        else:
-            raise ValueError(f"human review {o['id']}: unknown action {o['action']!r}")
         applied.append(o["id"])
     return applied
 
@@ -552,8 +558,38 @@ def assemble(rule: dict, llm_out: dict | None) -> dict:
     return {"rule_id": rule["team_rule_id"], "input_sha256": _sha(compile_input(rule)),
             "conditions": conditions, "exemptions": exemptions,
             # raw answer kept so assembly changes never need a new API call
-            "llm": {k: llm_out.get(k) for k in ("model", "served_model", "prompt_version", "results")}
+            "llm": {k: llm_out.get(k) for k in ("model", "served_model", "prompt_version", "results", "free_text_sha",
+                                                  "partial_reuse") if k in llm_out}
             if llm_out else None}
+
+
+def free_text_sha(rule: dict) -> str:
+    return _sha([it["text"] for it in llm_items(rule) if it["ref"] in ("PT", "EXEMPTIONS_TEXT", "NOTES")])
+
+
+def partial_reuse(rule: dict, snap_entry: dict | None) -> tuple[list[dict], list[dict]] | None:
+    """When a rule changed but kept items already compiled (e.g. a human-review merge appended an
+    exemption), reuse the reviewed answers for unchanged items and return only the new items for
+    the LLM. None = nothing reusable."""
+    old = (snap_entry or {}).get("llm")
+    if not old:
+        return None
+    old_ref_by_text = {}
+    for e in snap_entry["exemptions"] + snap_entry["conditions"]:
+        m = re.fullmatch(r"exemption_conditions\[(\d+)\]", e.get("source", ""))
+        if m:
+            old_ref_by_text.setdefault(e["text"], f"E{m.group(1)}")
+    free_ok = old.get("free_text_sha") in (None, free_text_sha(rule))  # None: legacy entry, text unchanged
+    reused, new = [], []
+    for it in llm_items(rule):
+        is_e = bool(re.fullmatch(r"E\d+", it["ref"]))
+        if is_e and it["text"] in old_ref_by_text:
+            reused += [{**r, "ref": it["ref"]} for r in old["results"] if r["ref"] == old_ref_by_text[it["text"]]]
+        elif not is_e and free_ok:
+            reused += [r for r in old["results"] if r["ref"] == it["ref"]]
+        else:
+            new.append(it)
+    return reused, new
 
 
 def load_rules() -> list[dict]:
@@ -583,7 +619,16 @@ def compile_all(*, refresh: bool = False, log=print, write: bool = True, registe
         log(f"compiling {len(todo)} rule(s) not in the snapshot with {COMPILE_MODEL}...")
     def one(r: dict) -> dict:
         try:
-            return call_llm(r, llm_items(r), use_cache=not refresh)
+            part = None if refresh else partial_reuse(r, snap.get(r["team_rule_id"]))
+            if part is None:
+                out = call_llm(r, llm_items(r), use_cache=not refresh)
+            else:
+                reused, new = part
+                out = call_llm(r, new, use_cache=True) if new else {
+                    "model": COMPILE_MODEL, "served_model": None, "prompt_version": version, "results": [],
+                    "usage": {}, "cached": True}
+                out = {**out, "results": reused + out["results"], "partial_reuse": len(reused)}
+            return {**out, "free_text_sha": free_text_sha(r)}
         except llm.ExtractionLLMError as e:
             return {"error": str(e)}
 
@@ -609,15 +654,14 @@ def compile_all(*, refresh: bool = False, log=print, write: bool = True, registe
     stored = (json.loads(COMPILED_PATH.read_text(encoding="utf-8")).get("special_status_llm", {})
               if COMPILED_PATH.exists() and not refresh else {})
     cands = special_candidates(compiled)
-    if all(t in stored for t in cands):
-        labels = {t: stored[t] for t in cands}
-    else:
-        log(f"classifying {len(cands)} items for special status with {COMPILE_MODEL}...")
+    labels = {t: stored[t] for t in cands if t in stored}  # reviewed labels are kept
+    new_texts = [t for t in cands if t not in stored]
+    if new_texts:
+        log(f"classifying {len(new_texts)} new item(s) for special status with {COMPILE_MODEL}...")
         try:
-            labels = classify_special(cands, use_cache=not refresh)
+            labels.update(classify_special(new_texts, use_cache=not refresh))
         except llm.ExtractionLLMError as e:  # offline: code regex only for the new texts
             log(f"  special-status classification unavailable ({e}); regex only for new items")
-            labels = {t: stored[t] for t in cands if t in stored}
     mark_special(compiled, labels)
     data = {"model": COMPILE_MODEL, "prompt_version": version, "rules": compiled, "special_status_llm": labels,
             "human_review_applied": reviews}

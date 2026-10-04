@@ -20,7 +20,8 @@ def test_register_entries_are_complete_and_quoted():
     reg = review_register()
     assert [r["id"] for r in reg] == sorted({r["id"] for r in reg})  # unique, ordered
     for r in reg:
-        assert {"id", "rule_id", "action", "kind", "quoted_span", "reason", "reviewer", "date"} <= set(r)
+        assert {"id", "rule_id", "action", "quoted_span", "reason", "reviewer", "date"} <= set(r)
+        assert r["action"] in ("set_scope", "add_item", "merge_rule")
         date.fromisoformat(r["date"])
 
 
