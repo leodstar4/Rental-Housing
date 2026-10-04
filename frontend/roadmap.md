@@ -4,3 +4,5 @@
 - [x] Update units certainty labels and preserve open/wide ranges.
 - [x] Add Berkeley and Los Angeles examples.
 - [x] Add translated result-color legend and verify both languages.
+- [x] Timeline below address card
+- [x] "Why this answer?" drawer

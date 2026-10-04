@@ -30,7 +30,7 @@ function TransparencyPage() {
   const c = conf.data;
   const ex = a?.extraction ?? {};
   const statusEntries = Object.entries(a?.rules?.by_status ?? {}) as [string, number][];
-  const items: { label: string; value: string; help: string; extra?: string }[] = a ? [
+  const items: { label: string; value: string; help: string; extra?: string | undefined }[] = a ? [
     { label: t.rules, value: String(a.rules?.exported ?? "—"), help: t.rulesHelp, extra: statusEntries.length ? `${t.byStatus}: ${statusEntries.map(([k, n]) => `${k} ${n}`).join(" · ")}` : undefined },
     { label: t.documents, value: String(ex.documents ?? "—"), help: t.docsHelp },
     { label: t.model, value: String(ex.model ?? "—"), help: t.modelHelp },

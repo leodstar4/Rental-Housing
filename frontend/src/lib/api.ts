@@ -34,6 +34,7 @@ export interface Rule {
   presumptions?: string[];
   superseded_by?: string | null;
   attested?: boolean;
+  audio_url?: string | null;
 }
 
 export interface Fact { value?: unknown; range?: [number, number | null]; certainty?: string; source?: string; basis?: string }

@@ -9,7 +9,7 @@ quote, a citation and a confidence score behind every answer.
 |---|---|
 | 🖥️ **Live demo** | https://scene-styler-kit.lovable.app |
 | 🔌 **API** | https://rental-housing-navigator-api.onrender.com · interactive docs at [`/docs`](https://rental-housing-navigator-api.onrender.com/docs) · contract in [docs/API.md](docs/API.md) |
-| 🧩 **Frontend repo (Lovable)** | https://github.com/elbicho707/Rental-Housing-Lovable (an earlier export lives in [`frontend/`](frontend/); see the [note](#api-and-ux-features)) |
+| 🧩 **Frontend repo (Lovable)** | https://github.com/elbicho707/Rental-Housing-Lovable (mirrored in [`frontend/`](frontend/) at commit `54768b0`) |
 | 🎬 **Videos** | Team: `VIDEO_TEAM` · Demo: `VIDEO_DEMO` · Technical: `VIDEO_TECH` *(TODO: links)* |
 | 📄 **Method note** | [docs/METHOD.md](docs/METHOD.md) · [PDF](docs/METHOD.pdf) |
 
@@ -289,8 +289,8 @@ Frontend (from `frontend/`, needs Node.js; it calls the Render API set in `src/l
 
 ```bash
 cd frontend
-npm install
-npm run dev                               # Vite dev server
+bun install                               # or: npm install
+bun run dev                               # or: npm run dev (Vite dev server)
 ```
 
 An API key is needed only to extract **new** text (`extract-doc`, hour 16), to recompile
@@ -375,10 +375,12 @@ responses: **[docs/API.md](docs/API.md)**.
 - **Static backup.** `python -m api.export_static` writes the same JSON for every address
   (lookup and timeline, EN/ES) for a frontend to fall back on while the API sleeps.
 
-> **Note on `frontend/`.** The copy in this repository is an earlier Lovable export (address
-> search, lookup, change tests). The live demo is maintained in Lovable. **TODO:** sync
-> `frontend/` from https://github.com/elbicho707/Rental-Housing-Lovable, which had no commits
-> when this README was written.
+> **Note on `frontend/`.** A mirror of the Lovable project
+> [elbicho707/Rental-Housing-Lovable](https://github.com/elbicho707/Rental-Housing-Lovable)
+> (commit `54768b0`, without `.git`, `node_modules` and `dist`). It calls `/lookup`, `/explain`
+> ("Why this answer?" drawer), `/timeline` ("What changes for you") and `audio_url` (audio
+> player with the "AI-generated voice" note). Lovable remains the source of truth; re-sync by
+> mirroring that repository into `frontend/`.
 
 ---
 
@@ -504,7 +506,7 @@ from the judges.
 ├── scripts/                       # hour16.py runbook (+ PowerShell wrapper)
 ├── tests/                         # 211 offline tests + fixtures (fictitious Cambridge ordinance)
 ├── docs/                          # API.md (contract), PIPELINE.md (technical reference), METHOD.md / METHOD.pdf
-├── frontend/                      # Lovable frontend (TanStack Start + React + Tailwind), calls the Render API
+├── frontend/                      # mirror of the Lovable project (TanStack Start + React + Tailwind), calls the Render API
 ├── participant-final-no-hour16 3/ # starter pack: brief, corpus, schema, sample addresses, change tests, templates
 ├── render.yaml                    # Render blueprint (build reproduces out/ from the snapshot; ignores frontend/ and docs/)
 ├── requirements.txt               # pinned Python dependencies

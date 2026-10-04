@@ -10,6 +10,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon } from "lucide-react";
 import { enUS, es } from "react-day-picker/locale";
 import { formatDate } from "@/lib/dates";
+import { Timeline } from "@/components/Timeline";
+import { AudioPlayer } from "@/components/AudioPlayer";
+import { WhyButton } from "@/components/WhyDrawer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -200,6 +203,8 @@ function ResultView({ data, refreshing }: { data: Lookup; refreshing: boolean })
         )}
       </section>
 
+      <Timeline addressId={data.address.address_id} />
+
       <div aria-label={t.resultLegend} className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
         {(["applies", "superseded", "unknown", "not_yet_effective", "pending"] as const).map(kind => (
           <ResultBadge key={kind} kind={kind} />
@@ -212,21 +217,21 @@ function ResultView({ data, refreshing }: { data: Lookup; refreshing: boolean })
         ))}
       </div>
 
-      {data.category_order.map((cat) => {
+      {(() => { const firstAudio = data.category_order.flatMap((c) => data.results[c] ?? []).find((r) => r.audio_url)?.team_rule_id; return data.category_order.map((cat) => {
         const rules = data.results[cat] ?? [];
         if (!rules.length) return null;
         return (
           <section key={cat} className="space-y-4">
             <h2 className="text-xl font-bold border-b-2 border-primary pb-1 text-primary">{cat}</h2>
-            {rules.map((r) => <RuleCard key={r.team_rule_id} r={r} />)}
+            {rules.map((r) => <RuleCard key={r.team_rule_id} r={r} addressId={data.address.address_id} asOf={data.as_of} firstAudio={r.team_rule_id === firstAudio} />)}
           </section>
         );
-      })}
+      }); })()}
     </div>
   );
 }
 
-function RuleCard({ r }: { r: Rule }) {
+function RuleCard({ r, addressId, asOf, firstAudio }: { r: Rule; addressId: string; asOf: string; firstAudio: boolean }) {
   const { t, lang } = useI18n();
 
   const pl = r.plain_language ?? {};
@@ -253,6 +258,8 @@ function RuleCard({ r }: { r: Rule }) {
           <p>{pl.what_you_can_do}</p>
         </div>
       )}
+      {r.audio_url && <AudioPlayer url={r.audio_url} showNote={firstAudio} />}
+      <div className="flex justify-end"><WhyButton addressId={addressId} ruleId={r.team_rule_id} asOf={asOf.slice(0, 10)} /></div>
       <details className="group rounded-md border">
         <summary className="cursor-pointer px-4 py-2.5 font-semibold text-primary">{t.legalDetails}</summary>
         <div className="space-y-3 px-4 pb-4 text-[0.95rem]">
