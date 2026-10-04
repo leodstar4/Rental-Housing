@@ -8,12 +8,13 @@ Every response carries `disclaimer` ("Not legal advice …" / "No es asesoría l
   (`uvicorn api.main:app --reload`). Interactive docs at `/docs` (OpenAPI at `/openapi.json`).
 * Static backup (backend asleep): `static/` from `python -m api.export_static` — same JSON as
   the routes for `as_of=2026-10-01`: `static/lookup/<address_id>.<lang>.json`,
+  `static/timeline/<address_id>.<lang>.json` (default `from`/`to`),
   `static/rules.<lang>.json`, `static/changes.json`, `static/changes/<test_id>.json`,
   `static/conflicts.json`, `static/audit.json`, and `static/index.json` (address list + file map).
 * CORS: any `https://*.lovable.app`, `*.lovable.dev`, `*.lovableproject.com`, and localhost;
   more exact origins via the `ALLOWED_ORIGINS` env var. Methods: GET.
 * Errors: `422` (bad `as_of` — must be `YYYY-MM-DD` between 2020-01-01 and 2030-12-31 — or bad
-  `lang`), `404` (unknown address or test). Body: `{"detail": "<message>"}`.
+  `lang`), `404` (unknown address, rule or test). Body: `{"detail": "<message>"}`.
 
 ## Common parameters
 
@@ -1064,6 +1065,1215 @@ Spanish summary (`GET /changes?lang=es`, real response, `summary` only):
     "title": "No se convirtió en ley: control de rentas (Massachusetts)",
     "notes": "No hay ningún tope de renta vigente en Massachusetts al 1 de octubre de 2026: el conjunto de direcciones afectadas está vacío (0). La pregunta de boleta sobre control de rentas (MA-RENT-A1, IP 25-21) consta como fallida (anulada el 23 de junio de 2026); la ley M.G.L. c. 40P prohíbe el control de rentas local y no es un tope."
   }
+}
+```
+
+### `GET /explain/{address_id}/{team_rule_id}?as_of=&lang=`
+"Why this answer?" — loaded on demand so `/lookup` stays small. A deterministic trace (no
+model) built from **the same lookup** as `/lookup`, so `result`, `status`, `effective_date`,
+`confidence`, `conflict_flag` and `superseded_by` are always identical to `/lookup` on the same
+date (tested for every rule of several addresses and dates). Labels in the requested language
+(Spanish with "usted" and the glossary terms); source texts, citations and quotes stay as written.
+`404` for an unknown address or rule; a rule outside the address's jurisdiction returns
+`result: "not_in_stack"`.
+
+| Field | Meaning |
+|---|---|
+| `result`, `status`, `effective_date`, `coverage`, `confidence`, `conflict_flag`, `superseded_by`, `omitted_reason`, `status_line` | the answer being explained (`result` also `omitted` — not covered / exempt / failed — or `not_in_stack`) |
+| `summary` | 1–2 plain sentences |
+| `jurisdiction` | rule level and jurisdiction vs the address's geocoded state/city: `source` (census \| dataset_fallback), `match_quality`, `certainty`, `in_stack`, `note` |
+| `coverage_steps` | each coverage condition: `{condition (readable), source_text, fact_used, value, fact_source, certainty, outcome: yes \| no \| unknown, note}` |
+| `exemption_steps` | same shape plus `class`: `special_status` (presumed absent unless a use flag shows it), `building`, `unit_or_tenancy` (a caveat that does not change the result), `other_law` (resolved against the address's other rules), `review` (not machine-checkable, not counted); `note` says why it was resolved that way |
+| `precedence` | `superseded`, `governed_by`, `governing_title`, `basis` (`overrides` = Module A "[Yields to]" / "[Takes precedence over]"; `other_law` = an exemption for housing covered by another law; `same_law` = carried over from `same_law_as`, a rule of the same law and section), `interaction`, `may_yield_to`, `conflict_flag`, `conflict_note`, `preemption` (notes), `note` |
+| `status_steps` | legislative `stage`, `enacted`, each `effective_date` with its `origin` — `literal` (with `quote`) \| `derived` (formula in the text, with `quote`) \| `calendar_default` (`calendar_source`, e.g. Cal. Const. art. IV, § 8(c)) \| `attested` — `sunset`, and the resulting `status` |
+| `confidence_breakdown` | `rule`, `coverage` (with each reducing `factor` and its reason), `geocoding`, `combined` (= `confidence`), `needs_review` |
+| `provenance` | `doc_id`, `source_url`, `retrieved_at`, `quoted_span`, `citation`, extraction `prompt_version`, `model`, `snapshot`, `supporting_quotes`, `coverage_compiler`, and the `human_review` register entries that affect the rule |
+
+**Example — `GET /explain/A0016/CA-RENT-01?lang=en` (real response):**
+
+```json
+{
+  "address": {
+    "address_id": "A0016",
+    "street": "3515 FILLMORE ST",
+    "postal_city": "San Francisco",
+    "state": "CA",
+    "city": "San Francisco, CA",
+    "dataset_city": "San Francisco, CA"
+  },
+  "team_rule_id": "CA-RENT-01",
+  "title": "Statewide rent cap (Tenant Protection Act rent increase limits)",
+  "category": "rent_increase_limits",
+  "as_of": "2026-10-01",
+  "lang": "en",
+  "disclaimer": "Not legal advice. This prototype summarizes public housing law for information only; check the cited source and consult a qualified professional before acting.",
+  "result": "superseded",
+  "status": "in_force",
+  "effective_date": "2024-04-01",
+  "coverage": "covered",
+  "confidence": 0.648,
+  "conflict_flag": false,
+  "superseded_by": "SF-RENT-01",
+  "omitted_reason": null,
+  "status_line": "Covered, but SF-RENT-01 governs instead",
+  "summary": "CA-RENT-01 covers this building on October 1, 2026, but SF-RENT-01 governs instead. Confidence: 0.648 (rule × coverage × geocoding).",
+  "jurisdiction": {
+    "rule_jurisdiction": "CA",
+    "rule_level": "state",
+    "address_state": "CA",
+    "address_city": "San Francisco, CA",
+    "source": "census",
+    "match_quality": "exact",
+    "certainty": "high",
+    "matched_address": "3515 FILLMORE ST, SAN FRANCISCO, CA, 94123",
+    "in_stack": true,
+    "note": "State rule of CA; this address is in CA (Census geocoder)."
+  },
+  "coverage_steps": [
+    {
+      "condition": "building age (years) is at least 15",
+      "source_text": "building_age_min_years = 15",
+      "fact_used": [
+        "building age (years)"
+      ],
+      "value": {
+        "building age (years)": "99 to 100"
+      },
+      "fact_source": {
+        "building age (years)": "year_built 1926 as certificate-of-occupancy proxy, as of 2026-10-01"
+      },
+      "certainty": {
+        "building age (years)": "approximate (year built used as proxy)"
+      },
+      "outcome": "yes",
+      "note": "The building meets this condition."
+    },
+    {
+      "condition": "always",
+      "source_text": "residential real property",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "yes",
+      "note": "The building meets this condition."
+    }
+  ],
+  "exemption_steps": [
+    {
+      "condition": "the building has an affordability restriction",
+      "source_text": "Housing deed- or regulatory-restricted as affordable housing for very low, low, or moderate income persons, or subject to an affordable housing subsidy agreement",
+      "fact_used": [
+        "an affordability restriction"
+      ],
+      "value": {
+        "an affordability restriction": null
+      },
+      "fact_source": {
+        "an affordability restriction": "the use code does not say"
+      },
+      "certainty": {
+        "an affordability restriction": "not in the data"
+      },
+      "outcome": "no",
+      "note": "Presumed absent: the assessor data shows no evidence of it (special status presumption).",
+      "class": "special_status",
+      "special_status_presumption": true
+    },
+    {
+      "condition": "type of building is dormitory",
+      "source_text": "Dormitories owned and operated by an institution of higher education or a K-12 school",
+      "fact_used": [
+        "type of building"
+      ],
+      "value": {
+        "type of building": "apartment building"
+      },
+      "fact_source": {
+        "type of building": "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+      },
+      "certainty": {
+        "type of building": "inferred from the use code"
+      },
+      "outcome": "no",
+      "note": "This exemption does not apply.",
+      "class": "building"
+    },
+    {
+      "condition": "requires a fact not in the data: subject to stricter local rent control",
+      "source_text": "Housing subject to local rent or price control under Chapter 2.7 that restricts annual increases to less than subdivision (a)",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "yes",
+      "note": "Refers to local rent control; SF-RENT-01 covers this building, so this rule yields to it.",
+      "class": "other_law"
+    },
+    {
+      "condition": "building age (years) is less than 15 and not (type of building is mobilehome)",
+      "source_text": "Housing issued a certificate of occupancy within the previous 15 years, unless it is a mobilehome",
+      "fact_used": [
+        "building age (years)",
+        "type of building"
+      ],
+      "value": {
+        "building age (years)": "99 to 100",
+        "type of building": "apartment building"
+      },
+      "fact_source": {
+        "building age (years)": "year_built 1926 as certificate-of-occupancy proxy, as of 2026-10-01",
+        "type of building": "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+      },
+      "certainty": {
+        "building age (years)": "approximate (year built used as proxy)",
+        "type of building": "inferred from the use code"
+      },
+      "outcome": "no",
+      "note": "This exemption does not apply.",
+      "class": "building"
+    },
+    {
+      "condition": "type of owner is one of individual or entity other than REIT, corporation, LLC with corporate member, or mobilehome park management (separately alienable unit, with notice)",
+      "source_text": "Residential property alienable separate from any other dwelling unit (including mobilehome) where owner is not a REIT, corporation, LLC with a corporate member, or mobilehome park management, and tenants received the required written exemption notice",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "unknown",
+      "note": "Depends on the unit or the tenancy, not on the building: shown as a caveat; it does not change the result.",
+      "class": "unit_or_tenancy"
+    },
+    {
+      "condition": "an owner lives on the property and number of units is 2",
+      "source_text": "Two-unit property in a single structure where the owner occupied one unit as principal residence at the beginning of the tenancy and continues in occupancy, and neither unit is an ADU or JADU",
+      "fact_used": [
+        "whether an owner lives on the property",
+        "number of units"
+      ],
+      "value": {
+        "whether an owner lives on the property": null,
+        "number of units": "21"
+      },
+      "fact_source": {
+        "whether an owner lives on the property": "no owner data in the sample",
+        "number of units": "units column"
+      },
+      "certainty": {
+        "whether an owner lives on the property": "not in the data",
+        "number of units": "exact (assessor record)"
+      },
+      "outcome": "no",
+      "note": "This exemption does not apply.",
+      "class": "building"
+    },
+    {
+      "condition": "type of building is mobilehome",
+      "source_text": "Homeowner of a mobilehome, as defined in Section 798.9",
+      "fact_used": [
+        "type of building"
+      ],
+      "value": {
+        "type of building": "apartment building"
+      },
+      "fact_source": {
+        "type of building": "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+      },
+      "certainty": {
+        "type of building": "inferred from the use code"
+      },
+      "outcome": "no",
+      "note": "This exemption does not apply.",
+      "class": "building"
+    },
+    {
+      "condition": "building age (years) is less than 15",
+      "source_text": "Units constructed within the last 15 years (rolling)",
+      "fact_used": [
+        "building age (years)"
+      ],
+      "value": {
+        "building age (years)": "99 to 100"
+      },
+      "fact_source": {
+        "building age (years)": "year_built 1926 as certificate-of-occupancy proxy, as of 2026-10-01"
+      },
+      "certainty": {
+        "building age (years)": "approximate (year built used as proxy)"
+      },
+      "outcome": "no",
+      "note": "This exemption does not apply.",
+      "class": "building"
+    },
+    {
+      "condition": "the building has an affordability restriction",
+      "source_text": "Units restricted by deed, regulatory restriction or recorded document limiting affordability to low or moderate-income households",
+      "fact_used": [
+        "an affordability restriction"
+      ],
+      "value": {
+        "an affordability restriction": null
+      },
+      "fact_source": {
+        "an affordability restriction": "the use code does not say"
+      },
+      "certainty": {
+        "an affordability restriction": "not in the data"
+      },
+      "outcome": "no",
+      "note": "Presumed absent: the assessor data shows no evidence of it (special status presumption).",
+      "class": "special_status",
+      "special_status_presumption": true
+    },
+    {
+      "condition": "type of owner is one of not real estate trust, not corporation, not LLC with corporate member and (the building has single-family use or the building has condominium ownership)",
+      "source_text": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, where the landlord gave written notice of exemption",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "unknown",
+      "note": "Depends on the unit or the tenancy, not on the building: shown as a caveat; it does not change the result.",
+      "class": "unit_or_tenancy"
+    },
+    {
+      "condition": "requires a fact not in the data: subject to Los Angeles RSO",
+      "source_text": "Units already subject to the City's RSO",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "yes",
+      "note": "Refers to the Los Angeles Rent Stabilization Ordinance (RSO); SF-RENT-01 covers this building, so this rule yields to it.",
+      "class": "other_law"
+    }
+  ],
+  "precedence": {
+    "superseded": true,
+    "governed_by": "SF-RENT-01",
+    "governing_title": "Rent Ordinance rent increase limitations – exempt tenancies",
+    "basis": "other_law",
+    "same_law_as": null,
+    "interaction": "Does not apply to housing under local rent control (consistent with Civ. Code Ch. 2.7, § 1954.50 et seq.) that restricts annual increases to less than this section's cap. It does not expand or limit local governments' authority to regulate rents under Chapter 2.7. Waivers are void. Does not apply to units subject to the Los Angeles RSO; the JCO does not regulate rent increases. [Yields to: BRK-RENT-01, BRK-RENT-02, LA-RENT-01, LA-RENT-02, LA-RENT-03, LA-RENT-04, SF-RENT-01, SNA-RENT-01]",
+    "may_yield_to": [],
+    "conflict_flag": false,
+    "conflict_note": null,
+    "note": "CA-RENT-01 has an exemption for housing covered by another law, and SF-RENT-01 covers this building. Module A precedence also says it yields to SF-RENT-01."
+  },
+  "status_steps": [
+    {
+      "step": "stage",
+      "value": "enacted",
+      "note": "Legislative stage: enacted."
+    },
+    {
+      "step": "effective_date",
+      "date": "2024-04-01",
+      "origin": "literal",
+      "quote": "This section shall become operative on April 1, 2024.",
+      "raw": "operative on April 1, 2024",
+      "rule_applied": null,
+      "calendar_source": null,
+      "verified": true,
+      "source_doc_id": "D024",
+      "note": "Effective date stated in the text: \"This section shall become operative on April 1, 2024.\""
+    },
+    {
+      "step": "status",
+      "value": "in_force",
+      "note": "Status on October 1, 2026: in force."
+    }
+  ],
+  "confidence_breakdown": {
+    "rule": {
+      "value": 0.9,
+      "reason": "Extraction confidence of the rule (validated quote and citation)."
+    },
+    "coverage": {
+      "value": 0.72,
+      "factors": [
+        {
+          "factor": 0.8,
+          "reason": "Year built used as a proxy for the Certificate of Occupancy date."
+        },
+        {
+          "factor": 0.9,
+          "reason": "The result rests on the special status presumption."
+        }
+      ]
+    },
+    "geocoding": {
+      "value": 1.0,
+      "reason": "Census geocoder: exact match."
+    },
+    "combined": 0.648,
+    "needs_review": false
+  },
+  "provenance": {
+    "doc_id": "D024",
+    "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12",
+    "retrieved_at": "2026-10-01T22:35:00+00:00",
+    "quoted_span": "Subject to subdivision (b), an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, of the lowest gross rental rate charged for that dwelling or unit at any time during the 12 months prior to the effective date of the increase.",
+    "citation": "Cal. Civ. Code § 1947.12",
+    "prompt_version": "a-0.4.0",
+    "model": "claude-opus-5-5",
+    "snapshot": "a-0.4.0",
+    "supporting_quotes": [
+      {
+        "doc_id": "D040",
+        "role": "merged",
+        "quoted_span": "A\nnnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower)"
+      },
+      {
+        "doc_id": "D040",
+        "role": "administrative",
+        "quoted_span": "Effective August 1, 2024 to July 31, 2025, the maximum allowable increase is\n8.9%"
+      },
+      {
+        "doc_id": "D040",
+        "role": "administrative",
+        "quoted_span": "Previously, from August 1, 2023 to July 31, 2024 the maximum annual increase for units subject to AB 1482 was 8.8%"
+      }
+    ],
+    "coverage_compiler": {
+      "model": "claude-haiku-4-5",
+      "prompt_version": "cx-0.4.0"
+    },
+    "human_review": []
+  }
+}
+```
+
+**Example — `GET /explain/A0016/CA-RENT-01?lang=es` (real response):**
+
+```json
+{
+  "address": {
+    "address_id": "A0016",
+    "street": "3515 FILLMORE ST",
+    "postal_city": "San Francisco",
+    "state": "CA",
+    "city": "San Francisco, CA",
+    "dataset_city": "San Francisco, CA"
+  },
+  "team_rule_id": "CA-RENT-01",
+  "title": "Statewide rent cap (Tenant Protection Act rent increase limits)",
+  "category": "rent_increase_limits",
+  "as_of": "2026-10-01",
+  "lang": "es",
+  "disclaimer": "No es asesoría legal. Este prototipo resume leyes públicas de vivienda solo con fines informativos; revise la fuente citada y consulte a un profesional calificado antes de actuar.",
+  "result": "superseded",
+  "status": "in_force",
+  "effective_date": "2024-04-01",
+  "coverage": "covered",
+  "confidence": 0.648,
+  "conflict_flag": false,
+  "superseded_by": "SF-RENT-01",
+  "omitted_reason": null,
+  "status_line": "Aplica, pero rige SF-RENT-01",
+  "summary": "CA-RENT-01 cubre este edificio al 1 de octubre de 2026, pero rige SF-RENT-01 en su lugar. Confianza: 0.648 (regla × cobertura × geocodificación).",
+  "jurisdiction": {
+    "rule_jurisdiction": "CA",
+    "rule_level": "state",
+    "address_state": "CA",
+    "address_city": "San Francisco, CA",
+    "source": "census",
+    "match_quality": "exact",
+    "certainty": "high",
+    "matched_address": "3515 FILLMORE ST, SAN FRANCISCO, CA, 94123",
+    "in_stack": true,
+    "note": "Regla estatal de CA; esta dirección está en CA (geocodificador del Censo)."
+  },
+  "coverage_steps": [
+    {
+      "condition": "antigüedad del edificio (años) es al menos 15",
+      "source_text": "building_age_min_years = 15",
+      "fact_used": [
+        "antigüedad del edificio (años)"
+      ],
+      "value": {
+        "antigüedad del edificio (años)": "entre 99 y 100"
+      },
+      "fact_source": {
+        "antigüedad del edificio (años)": "year_built 1926 as certificate-of-occupancy proxy, as of 2026-10-01"
+      },
+      "certainty": {
+        "antigüedad del edificio (años)": "aproximado (se usa el año de construcción)"
+      },
+      "outcome": "yes",
+      "note": "El edificio cumple esta condición."
+    },
+    {
+      "condition": "siempre",
+      "source_text": "residential real property",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "yes",
+      "note": "El edificio cumple esta condición."
+    }
+  ],
+  "exemption_steps": [
+    {
+      "condition": "el edificio tiene una restricción de asequibilidad",
+      "source_text": "Housing deed- or regulatory-restricted as affordable housing for very low, low, or moderate income persons, or subject to an affordable housing subsidy agreement",
+      "fact_used": [
+        "una restricción de asequibilidad"
+      ],
+      "value": {
+        "una restricción de asequibilidad": null
+      },
+      "fact_source": {
+        "una restricción de asequibilidad": "the use code does not say"
+      },
+      "certainty": {
+        "una restricción de asequibilidad": "no está en los datos"
+      },
+      "outcome": "no",
+      "note": "Se presume que no existe: los datos del tasador no muestran evidencia (presunción de estatus especial).",
+      "class": "special_status",
+      "special_status_presumption": true
+    },
+    {
+      "condition": "tipo de edificio es dormitorio",
+      "source_text": "Dormitories owned and operated by an institution of higher education or a K-12 school",
+      "fact_used": [
+        "tipo de edificio"
+      ],
+      "value": {
+        "tipo de edificio": "edificio de apartamentos"
+      },
+      "fact_source": {
+        "tipo de edificio": "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+      },
+      "certainty": {
+        "tipo de edificio": "inferido del código de uso"
+      },
+      "outcome": "no",
+      "note": "Esta exención no aplica.",
+      "class": "building"
+    },
+    {
+      "condition": "requiere un dato que no tenemos: subject to stricter local rent control",
+      "source_text": "Housing subject to local rent or price control under Chapter 2.7 that restricts annual increases to less than subdivision (a)",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "yes",
+      "note": "Se refiere al control de rentas local; SF-RENT-01 cubre este edificio, así que esta regla cede ante ella.",
+      "class": "other_law"
+    },
+    {
+      "condition": "antigüedad del edificio (años) es menor que 15 y no (tipo de edificio es casa móvil)",
+      "source_text": "Housing issued a certificate of occupancy within the previous 15 years, unless it is a mobilehome",
+      "fact_used": [
+        "antigüedad del edificio (años)",
+        "tipo de edificio"
+      ],
+      "value": {
+        "antigüedad del edificio (años)": "entre 99 y 100",
+        "tipo de edificio": "edificio de apartamentos"
+      },
+      "fact_source": {
+        "antigüedad del edificio (años)": "year_built 1926 as certificate-of-occupancy proxy, as of 2026-10-01",
+        "tipo de edificio": "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+      },
+      "certainty": {
+        "antigüedad del edificio (años)": "aproximado (se usa el año de construcción)",
+        "tipo de edificio": "inferido del código de uso"
+      },
+      "outcome": "no",
+      "note": "Esta exención no aplica.",
+      "class": "building"
+    },
+    {
+      "condition": "tipo de propietario es uno de individual or entity other than REIT, corporation, LLC with corporate member, or mobilehome park management (separately alienable unit, with notice)",
+      "source_text": "Residential property alienable separate from any other dwelling unit (including mobilehome) where owner is not a REIT, corporation, LLC with a corporate member, or mobilehome park management, and tenants received the required written exemption notice",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "unknown",
+      "note": "Depende de la unidad o del contrato de arrendamiento, no del edificio: se muestra como advertencia y no cambia el resultado.",
+      "class": "unit_or_tenancy"
+    },
+    {
+      "condition": "un propietario vive en la propiedad y número de unidades es 2",
+      "source_text": "Two-unit property in a single structure where the owner occupied one unit as principal residence at the beginning of the tenancy and continues in occupancy, and neither unit is an ADU or JADU",
+      "fact_used": [
+        "si un propietario vive en la propiedad",
+        "número de unidades"
+      ],
+      "value": {
+        "si un propietario vive en la propiedad": null,
+        "número de unidades": "21"
+      },
+      "fact_source": {
+        "si un propietario vive en la propiedad": "no owner data in the sample",
+        "número de unidades": "units column"
+      },
+      "certainty": {
+        "si un propietario vive en la propiedad": "no está en los datos",
+        "número de unidades": "exacto (registro del tasador)"
+      },
+      "outcome": "no",
+      "note": "Esta exención no aplica.",
+      "class": "building"
+    },
+    {
+      "condition": "tipo de edificio es casa móvil",
+      "source_text": "Homeowner of a mobilehome, as defined in Section 798.9",
+      "fact_used": [
+        "tipo de edificio"
+      ],
+      "value": {
+        "tipo de edificio": "edificio de apartamentos"
+      },
+      "fact_source": {
+        "tipo de edificio": "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+      },
+      "certainty": {
+        "tipo de edificio": "inferido del código de uso"
+      },
+      "outcome": "no",
+      "note": "Esta exención no aplica.",
+      "class": "building"
+    },
+    {
+      "condition": "antigüedad del edificio (años) es menor que 15",
+      "source_text": "Units constructed within the last 15 years (rolling)",
+      "fact_used": [
+        "antigüedad del edificio (años)"
+      ],
+      "value": {
+        "antigüedad del edificio (años)": "entre 99 y 100"
+      },
+      "fact_source": {
+        "antigüedad del edificio (años)": "year_built 1926 as certificate-of-occupancy proxy, as of 2026-10-01"
+      },
+      "certainty": {
+        "antigüedad del edificio (años)": "aproximado (se usa el año de construcción)"
+      },
+      "outcome": "no",
+      "note": "Esta exención no aplica.",
+      "class": "building"
+    },
+    {
+      "condition": "el edificio tiene una restricción de asequibilidad",
+      "source_text": "Units restricted by deed, regulatory restriction or recorded document limiting affordability to low or moderate-income households",
+      "fact_used": [
+        "una restricción de asequibilidad"
+      ],
+      "value": {
+        "una restricción de asequibilidad": null
+      },
+      "fact_source": {
+        "una restricción de asequibilidad": "the use code does not say"
+      },
+      "certainty": {
+        "una restricción de asequibilidad": "no está en los datos"
+      },
+      "outcome": "no",
+      "note": "Se presume que no existe: los datos del tasador no muestran evidencia (presunción de estatus especial).",
+      "class": "special_status",
+      "special_status_presumption": true
+    },
+    {
+      "condition": "tipo de propietario es uno de not real estate trust, not corporation, not LLC with corporate member y (el edificio tiene uso unifamiliar o el edificio tiene propiedad en condominio)",
+      "source_text": "Single-family homes and condominiums not owned by a real estate trust, corporation, or LLC with at least one corporate member, where the landlord gave written notice of exemption",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "unknown",
+      "note": "Depende de la unidad o del contrato de arrendamiento, no del edificio: se muestra como advertencia y no cambia el resultado.",
+      "class": "unit_or_tenancy"
+    },
+    {
+      "condition": "requiere un dato que no tenemos: subject to Los Angeles RSO",
+      "source_text": "Units already subject to the City's RSO",
+      "fact_used": [],
+      "value": {},
+      "fact_source": {},
+      "certainty": {},
+      "outcome": "yes",
+      "note": "Se refiere a la Ordenanza de Estabilización de Arrendamientos de Los Ángeles (RSO); SF-RENT-01 cubre este edificio, así que esta regla cede ante ella.",
+      "class": "other_law"
+    }
+  ],
+  "precedence": {
+    "superseded": true,
+    "governed_by": "SF-RENT-01",
+    "governing_title": "Rent Ordinance rent increase limitations – exempt tenancies",
+    "basis": "other_law",
+    "same_law_as": null,
+    "interaction": "Does not apply to housing under local rent control (consistent with Civ. Code Ch. 2.7, § 1954.50 et seq.) that restricts annual increases to less than this section's cap. It does not expand or limit local governments' authority to regulate rents under Chapter 2.7. Waivers are void. Does not apply to units subject to the Los Angeles RSO; the JCO does not regulate rent increases. [Yields to: BRK-RENT-01, BRK-RENT-02, LA-RENT-01, LA-RENT-02, LA-RENT-03, LA-RENT-04, SF-RENT-01, SNA-RENT-01]",
+    "may_yield_to": [],
+    "conflict_flag": false,
+    "conflict_note": null,
+    "note": "CA-RENT-01 tiene una exención para viviendas cubiertas por otra ley, y SF-RENT-01 cubre este edificio. La precedencia del Módulo A también indica que cede ante SF-RENT-01."
+  },
+  "status_steps": [
+    {
+      "step": "stage",
+      "value": "enacted",
+      "note": "Etapa legislativa: promulgada."
+    },
+    {
+      "step": "effective_date",
+      "date": "2024-04-01",
+      "origin": "literal",
+      "quote": "This section shall become operative on April 1, 2024.",
+      "raw": "operative on April 1, 2024",
+      "rule_applied": null,
+      "calendar_source": null,
+      "verified": true,
+      "source_doc_id": "D024",
+      "note": "Fecha de vigencia indicada en el texto: \"This section shall become operative on April 1, 2024.\""
+    },
+    {
+      "step": "status",
+      "value": "in_force",
+      "note": "Estado al 1 de octubre de 2026: vigente."
+    }
+  ],
+  "confidence_breakdown": {
+    "rule": {
+      "value": 0.9,
+      "reason": "Confianza de la extracción de la regla (cita textual y referencia validadas)."
+    },
+    "coverage": {
+      "value": 0.72,
+      "factors": [
+        {
+          "factor": 0.8,
+          "reason": "Se usa el año de construcción en lugar de la fecha del Certificado de Ocupación."
+        },
+        {
+          "factor": 0.9,
+          "reason": "El resultado depende de la presunción de estatus especial."
+        }
+      ]
+    },
+    "geocoding": {
+      "value": 1.0,
+      "reason": "Geocodificador del Censo: coincidencia exacta."
+    },
+    "combined": 0.648,
+    "needs_review": false
+  },
+  "provenance": {
+    "doc_id": "D024",
+    "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12",
+    "retrieved_at": "2026-10-01T22:35:00+00:00",
+    "quoted_span": "Subject to subdivision (b), an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, of the lowest gross rental rate charged for that dwelling or unit at any time during the 12 months prior to the effective date of the increase.",
+    "citation": "Cal. Civ. Code § 1947.12",
+    "prompt_version": "a-0.4.0",
+    "model": "claude-opus-5-5",
+    "snapshot": "a-0.4.0",
+    "supporting_quotes": [
+      {
+        "doc_id": "D040",
+        "role": "merged",
+        "quoted_span": "A\nnnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower)"
+      },
+      {
+        "doc_id": "D040",
+        "role": "administrative",
+        "quoted_span": "Effective August 1, 2024 to July 31, 2025, the maximum allowable increase is\n8.9%"
+      },
+      {
+        "doc_id": "D040",
+        "role": "administrative",
+        "quoted_span": "Previously, from August 1, 2023 to July 31, 2024 the maximum annual increase for units subject to AB 1482 was 8.8%"
+      }
+    ],
+    "coverage_compiler": {
+      "model": "claude-haiku-4-5",
+      "prompt_version": "cx-0.4.0"
+    },
+    "human_review": []
+  }
+}
+```
+
+### `GET /timeline/{address_id}?from=YYYY-MM-DD&to=YYYY-MM-DD&lang=`
+Dated changes in the rules that reach one address. Defaults: `from` = 2024-10-01 (24 months
+before 2026-10-01), `to` = 2028-12-31. Candidate dates: every effective, enactment and sunset
+date of the rules in the address's jurisdiction stack (corpus, manifest-attested and hour-16
+rules), plus the days a building-age cutoff flips for this building. For each date `d` the
+result of every rule at `d − 1` is compared with its result at `d` using the same engine as
+`/lookup` (so each event matches `/lookup?as_of=` on both sides).
+
+| Field | Meaning |
+|---|---|
+| `events` | sorted by date: `{date, team_rule_id, title, category, category_label, level, attested, before, after, before_label, after_label, status_line, date_origin (literal \| derived \| calendar_default), conflict_flag, conflict_note, past}`; `past` = on or before 2026-10-01; `before` / `after` also `omitted` (no longer / not yet covered) |
+| `by_year` | the same events grouped by year |
+| `next_change` | first event after 2026-10-01 (null if none) |
+| `pending` | pending bills that would cover the address — no date: "pending bill, not law" / "sin fecha: proyecto de ley, no es ley" |
+| `from`, `to`, `reference_date`, `count`, `lang`, `disclaimer` | |
+
+Errors: `422` for a bad date or `from` after `to`; `404` for an unknown address.
+
+**Example — `GET /timeline/A0489?lang=en` (Hoboken, real response):**
+
+```json
+{
+  "address": {
+    "address_id": "A0489",
+    "street": "204 GRAND ST",
+    "postal_city": "Hoboken",
+    "state": "NJ",
+    "city": "Hoboken, NJ",
+    "dataset_city": "Hoboken, NJ"
+  },
+  "from": "2024-10-01",
+  "to": "2028-12-31",
+  "reference_date": "2026-10-01",
+  "lang": "en",
+  "disclaimer": "Not legal advice. This prototype summarizes public housing law for information only; check the cited source and consult a qualified professional before acting.",
+  "events": [
+    {
+      "date": "2025-07-01",
+      "team_rule_id": "HOB-ALG-A1",
+      "title": "Hoboken, NJ: algorithmic rent setting law named by the starter pack (text not in corpus)",
+      "category": "algorithmic_rent_setting",
+      "category_label": "ALGORITHMIC",
+      "level": "city",
+      "attested": true,
+      "before": "not_yet_effective",
+      "after": "applies",
+      "before_label": "not yet in force",
+      "after_label": "applies",
+      "status_line": "In force since 2025-07-01",
+      "date_origin": "literal",
+      "conflict_flag": true,
+      "conflict_note": "Possible preemption by NJ-ALG-01 once effective (change_tests conflict_with; participant guide §9); possible preemption conflict with NJ-ALG-01, flagged for human review",
+      "past": true
+    },
+    {
+      "date": "2026-01-20",
+      "team_rule_id": "NJ-FEE-01",
+      "title": "Residential rental property application fee not to exceed $50",
+      "category": "application_screening_fees",
+      "category_label": "SCREENING FEE",
+      "level": "state",
+      "attested": false,
+      "before": "pending",
+      "after": "not_yet_effective",
+      "before_label": "pending bill",
+      "after_label": "not yet in force",
+      "status_line": "Not in force yet — takes effect 2026-05-01",
+      "date_origin": "literal",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "past": true
+    },
+    {
+      "date": "2026-05-01",
+      "team_rule_id": "NJ-FEE-01",
+      "title": "Residential rental property application fee not to exceed $50",
+      "category": "application_screening_fees",
+      "category_label": "SCREENING FEE",
+      "level": "state",
+      "attested": false,
+      "before": "not_yet_effective",
+      "after": "applies",
+      "before_label": "not yet in force",
+      "after_label": "applies",
+      "status_line": "In force since 2026-05-01",
+      "date_origin": "derived",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "past": true
+    },
+    {
+      "date": "2026-07-20",
+      "team_rule_id": "NJ-ALG-01",
+      "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+      "category": "algorithmic_rent_setting",
+      "category_label": "ALGORITHMIC",
+      "level": "state",
+      "attested": false,
+      "before": "pending",
+      "after": "not_yet_effective",
+      "before_label": "pending bill",
+      "after_label": "not yet in force",
+      "status_line": "Not in force yet — takes effect 2027-07-01",
+      "date_origin": "literal",
+      "conflict_flag": true,
+      "conflict_note": "possible preemption conflict with the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), flagged for human review",
+      "past": true
+    },
+    {
+      "date": "2027-07-01",
+      "team_rule_id": "NJ-ALG-01",
+      "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+      "category": "algorithmic_rent_setting",
+      "category_label": "ALGORITHMIC",
+      "level": "state",
+      "attested": false,
+      "before": "not_yet_effective",
+      "after": "applies",
+      "before_label": "not yet in force",
+      "after_label": "applies",
+      "status_line": "In force since 2027-07-01",
+      "date_origin": "derived",
+      "conflict_flag": true,
+      "conflict_note": "possible preemption conflict with the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), flagged for human review",
+      "past": false
+    }
+  ],
+  "by_year": {
+    "2025": [
+      {
+        "date": "2025-07-01",
+        "team_rule_id": "HOB-ALG-A1",
+        "title": "Hoboken, NJ: algorithmic rent setting law named by the starter pack (text not in corpus)",
+        "category": "algorithmic_rent_setting",
+        "category_label": "ALGORITHMIC",
+        "level": "city",
+        "attested": true,
+        "before": "not_yet_effective",
+        "after": "applies",
+        "before_label": "not yet in force",
+        "after_label": "applies",
+        "status_line": "In force since 2025-07-01",
+        "date_origin": "literal",
+        "conflict_flag": true,
+        "conflict_note": "Possible preemption by NJ-ALG-01 once effective (change_tests conflict_with; participant guide §9); possible preemption conflict with NJ-ALG-01, flagged for human review",
+        "past": true
+      }
+    ],
+    "2026": [
+      {
+        "date": "2026-01-20",
+        "team_rule_id": "NJ-FEE-01",
+        "title": "Residential rental property application fee not to exceed $50",
+        "category": "application_screening_fees",
+        "category_label": "SCREENING FEE",
+        "level": "state",
+        "attested": false,
+        "before": "pending",
+        "after": "not_yet_effective",
+        "before_label": "pending bill",
+        "after_label": "not yet in force",
+        "status_line": "Not in force yet — takes effect 2026-05-01",
+        "date_origin": "literal",
+        "conflict_flag": false,
+        "conflict_note": null,
+        "past": true
+      },
+      {
+        "date": "2026-05-01",
+        "team_rule_id": "NJ-FEE-01",
+        "title": "Residential rental property application fee not to exceed $50",
+        "category": "application_screening_fees",
+        "category_label": "SCREENING FEE",
+        "level": "state",
+        "attested": false,
+        "before": "not_yet_effective",
+        "after": "applies",
+        "before_label": "not yet in force",
+        "after_label": "applies",
+        "status_line": "In force since 2026-05-01",
+        "date_origin": "derived",
+        "conflict_flag": false,
+        "conflict_note": null,
+        "past": true
+      },
+      {
+        "date": "2026-07-20",
+        "team_rule_id": "NJ-ALG-01",
+        "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+        "category": "algorithmic_rent_setting",
+        "category_label": "ALGORITHMIC",
+        "level": "state",
+        "attested": false,
+        "before": "pending",
+        "after": "not_yet_effective",
+        "before_label": "pending bill",
+        "after_label": "not yet in force",
+        "status_line": "Not in force yet — takes effect 2027-07-01",
+        "date_origin": "literal",
+        "conflict_flag": true,
+        "conflict_note": "possible preemption conflict with the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), flagged for human review",
+        "past": true
+      }
+    ],
+    "2027": [
+      {
+        "date": "2027-07-01",
+        "team_rule_id": "NJ-ALG-01",
+        "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+        "category": "algorithmic_rent_setting",
+        "category_label": "ALGORITHMIC",
+        "level": "state",
+        "attested": false,
+        "before": "not_yet_effective",
+        "after": "applies",
+        "before_label": "not yet in force",
+        "after_label": "applies",
+        "status_line": "In force since 2027-07-01",
+        "date_origin": "derived",
+        "conflict_flag": true,
+        "conflict_note": "possible preemption conflict with the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), flagged for human review",
+        "past": false
+      }
+    ]
+  },
+  "next_change": {
+    "date": "2027-07-01",
+    "team_rule_id": "NJ-ALG-01",
+    "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+    "category": "algorithmic_rent_setting",
+    "category_label": "ALGORITHMIC",
+    "level": "state",
+    "attested": false,
+    "before": "not_yet_effective",
+    "after": "applies",
+    "before_label": "not yet in force",
+    "after_label": "applies",
+    "status_line": "In force since 2027-07-01",
+    "date_origin": "derived",
+    "conflict_flag": true,
+    "conflict_note": "possible preemption conflict with the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), flagged for human review",
+    "past": false
+  },
+  "pending": [],
+  "count": 5
+}
+```
+
+**Example — `GET /timeline/A0489?lang=es` (real response):**
+
+```json
+{
+  "address": {
+    "address_id": "A0489",
+    "street": "204 GRAND ST",
+    "postal_city": "Hoboken",
+    "state": "NJ",
+    "city": "Hoboken, NJ",
+    "dataset_city": "Hoboken, NJ"
+  },
+  "from": "2024-10-01",
+  "to": "2028-12-31",
+  "reference_date": "2026-10-01",
+  "lang": "es",
+  "disclaimer": "No es asesoría legal. Este prototipo resume leyes públicas de vivienda solo con fines informativos; revise la fuente citada y consulte a un profesional calificado antes de actuar.",
+  "events": [
+    {
+      "date": "2025-07-01",
+      "team_rule_id": "HOB-ALG-A1",
+      "title": "Hoboken, NJ: algorithmic rent setting law named by the starter pack (text not in corpus)",
+      "category": "algorithmic_rent_setting",
+      "category_label": "ALGORITMOS",
+      "level": "city",
+      "attested": true,
+      "before": "not_yet_effective",
+      "after": "applies",
+      "before_label": "aún no vigente",
+      "after_label": "aplica",
+      "status_line": "Vigente desde el 2025-07-01",
+      "date_origin": "literal",
+      "conflict_flag": true,
+      "conflict_note": "Possible preemption by NJ-ALG-01 once effective (change_tests conflict_with; participant guide §9); posible conflicto de preempción con NJ-ALG-01, marcado para revisión humana",
+      "past": true
+    },
+    {
+      "date": "2026-01-20",
+      "team_rule_id": "NJ-FEE-01",
+      "title": "Residential rental property application fee not to exceed $50",
+      "category": "application_screening_fees",
+      "category_label": "CUOTA DE EVALUACIÓN",
+      "level": "state",
+      "attested": false,
+      "before": "pending",
+      "after": "not_yet_effective",
+      "before_label": "pendiente",
+      "after_label": "aún no vigente",
+      "status_line": "Aún no vigente — entra en vigor el 2026-05-01",
+      "date_origin": "literal",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "past": true
+    },
+    {
+      "date": "2026-05-01",
+      "team_rule_id": "NJ-FEE-01",
+      "title": "Residential rental property application fee not to exceed $50",
+      "category": "application_screening_fees",
+      "category_label": "CUOTA DE EVALUACIÓN",
+      "level": "state",
+      "attested": false,
+      "before": "not_yet_effective",
+      "after": "applies",
+      "before_label": "aún no vigente",
+      "after_label": "aplica",
+      "status_line": "Vigente desde el 2026-05-01",
+      "date_origin": "derived",
+      "conflict_flag": false,
+      "conflict_note": null,
+      "past": true
+    },
+    {
+      "date": "2026-07-20",
+      "team_rule_id": "NJ-ALG-01",
+      "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+      "category": "algorithmic_rent_setting",
+      "category_label": "ALGORITMOS",
+      "level": "state",
+      "attested": false,
+      "before": "pending",
+      "after": "not_yet_effective",
+      "before_label": "pendiente",
+      "after_label": "aún no vigente",
+      "status_line": "Aún no vigente — entra en vigor el 2027-07-01",
+      "date_origin": "literal",
+      "conflict_flag": true,
+      "conflict_note": "posible conflicto de preempción con the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), marcado para revisión humana",
+      "past": true
+    },
+    {
+      "date": "2027-07-01",
+      "team_rule_id": "NJ-ALG-01",
+      "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+      "category": "algorithmic_rent_setting",
+      "category_label": "ALGORITMOS",
+      "level": "state",
+      "attested": false,
+      "before": "not_yet_effective",
+      "after": "applies",
+      "before_label": "aún no vigente",
+      "after_label": "aplica",
+      "status_line": "Vigente desde el 2027-07-01",
+      "date_origin": "derived",
+      "conflict_flag": true,
+      "conflict_note": "posible conflicto de preempción con the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), marcado para revisión humana",
+      "past": false
+    }
+  ],
+  "by_year": {
+    "2025": [
+      {
+        "date": "2025-07-01",
+        "team_rule_id": "HOB-ALG-A1",
+        "title": "Hoboken, NJ: algorithmic rent setting law named by the starter pack (text not in corpus)",
+        "category": "algorithmic_rent_setting",
+        "category_label": "ALGORITMOS",
+        "level": "city",
+        "attested": true,
+        "before": "not_yet_effective",
+        "after": "applies",
+        "before_label": "aún no vigente",
+        "after_label": "aplica",
+        "status_line": "Vigente desde el 2025-07-01",
+        "date_origin": "literal",
+        "conflict_flag": true,
+        "conflict_note": "Possible preemption by NJ-ALG-01 once effective (change_tests conflict_with; participant guide §9); posible conflicto de preempción con NJ-ALG-01, marcado para revisión humana",
+        "past": true
+      }
+    ],
+    "2026": [
+      {
+        "date": "2026-01-20",
+        "team_rule_id": "NJ-FEE-01",
+        "title": "Residential rental property application fee not to exceed $50",
+        "category": "application_screening_fees",
+        "category_label": "CUOTA DE EVALUACIÓN",
+        "level": "state",
+        "attested": false,
+        "before": "pending",
+        "after": "not_yet_effective",
+        "before_label": "pendiente",
+        "after_label": "aún no vigente",
+        "status_line": "Aún no vigente — entra en vigor el 2026-05-01",
+        "date_origin": "literal",
+        "conflict_flag": false,
+        "conflict_note": null,
+        "past": true
+      },
+      {
+        "date": "2026-05-01",
+        "team_rule_id": "NJ-FEE-01",
+        "title": "Residential rental property application fee not to exceed $50",
+        "category": "application_screening_fees",
+        "category_label": "CUOTA DE EVALUACIÓN",
+        "level": "state",
+        "attested": false,
+        "before": "not_yet_effective",
+        "after": "applies",
+        "before_label": "aún no vigente",
+        "after_label": "aplica",
+        "status_line": "Vigente desde el 2026-05-01",
+        "date_origin": "derived",
+        "conflict_flag": false,
+        "conflict_note": null,
+        "past": true
+      },
+      {
+        "date": "2026-07-20",
+        "team_rule_id": "NJ-ALG-01",
+        "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+        "category": "algorithmic_rent_setting",
+        "category_label": "ALGORITMOS",
+        "level": "state",
+        "attested": false,
+        "before": "pending",
+        "after": "not_yet_effective",
+        "before_label": "pendiente",
+        "after_label": "aún no vigente",
+        "status_line": "Aún no vigente — entra en vigor el 2027-07-01",
+        "date_origin": "literal",
+        "conflict_flag": true,
+        "conflict_note": "posible conflicto de preempción con the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), marcado para revisión humana",
+        "past": true
+      }
+    ],
+    "2027": [
+      {
+        "date": "2027-07-01",
+        "team_rule_id": "NJ-ALG-01",
+        "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+        "category": "algorithmic_rent_setting",
+        "category_label": "ALGORITMOS",
+        "level": "state",
+        "attested": false,
+        "before": "not_yet_effective",
+        "after": "applies",
+        "before_label": "aún no vigente",
+        "after_label": "aplica",
+        "status_line": "Vigente desde el 2027-07-01",
+        "date_origin": "derived",
+        "conflict_flag": true,
+        "conflict_note": "posible conflicto de preempción con the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), marcado para revisión humana",
+        "past": false
+      }
+    ]
+  },
+  "next_change": {
+    "date": "2027-07-01",
+    "team_rule_id": "NJ-ALG-01",
+    "title": "Forbidding the Algorithmic Inflation of Rent (FAIR) Act – prohibition on algorithmic rent coordination",
+    "category": "algorithmic_rent_setting",
+    "category_label": "ALGORITMOS",
+    "level": "state",
+    "attested": false,
+    "before": "not_yet_effective",
+    "after": "applies",
+    "before_label": "aún no vigente",
+    "after_label": "aplica",
+    "status_line": "Vigente desde el 2027-07-01",
+    "date_origin": "derived",
+    "conflict_flag": true,
+    "conflict_note": "posible conflicto de preempción con the Hoboken, NJ local ordinance (Hoboken Code ch. 158, Art. II), marcado para revisión humana",
+    "past": false
+  },
+  "pending": [],
+  "count": 5
 }
 ```
 

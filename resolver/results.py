@@ -29,6 +29,7 @@ to ``out/lookups_full.json`` (no literal quote, so never to ``lookups.json``).
 
 from __future__ import annotations
 
+import copy
 import functools
 import json
 import re
@@ -301,8 +302,15 @@ class Engine:
             law_named(c["text"], r) for c in self.compiled[r["team_rule_id"]]["conditions"])}
         self.titles = {r["team_rule_id"]: r["title"] for r in self.rules}
 
-    def lookup(self, aid: str, plain: dict | None = None) -> dict:
-        """``plain`` (data/plain_language.json rules) adds ``explanation_es`` to every result."""
+    def at(self, as_of: date) -> "Engine":
+        """The same loaded data at another query date (nothing loaded depends on the date)."""
+        other = copy.copy(self)
+        other.as_of = as_of
+        return other
+
+    def lookup(self, aid: str, plain: dict | None = None, *, trace: bool = False) -> dict:
+        """``plain`` (data/plain_language.json rules) adds ``explanation_es`` to every result;
+        ``trace`` adds the decision trace used by /explain (never written to the lookup files)."""
         facts, stack, as_of = self.facts[aid], self.stacks[aid], self.as_of
         entries: dict[str, dict] = {}
         for rule in self.rules:
@@ -337,11 +345,11 @@ class Engine:
             return sorted((t for t in live if t["coverage"]["coverage"] == "covered"),
                           key=lambda t: (t["result"] != "applies", not self.own[t["rule_id"]], t["rule_id"]))
 
-        def supersede(e: dict, cands: list[dict]) -> None:
+        def supersede(e: dict, cands: list[dict], basis: str) -> None:
             e.setdefault("_cands", []).extend(cands)
             covered = best(cands)
             if covered:
-                e["result"], e["superseded_by"] = "superseded", covered[0]["rule_id"]
+                e["result"], e["superseded_by"], e["precedence_basis"] = "superseded", covered[0]["rule_id"], basis
             else:
                 e["may_yield_to"] += [t["rule_id"] for t in cands if t["status"] == "in_force" and t["result"]
                                       and t["coverage"]["coverage"] == "unknown" and t["rule_id"] not in e["may_yield_to"]]
@@ -363,7 +371,7 @@ class Engine:
             if ts and e["result"] in ("applies", "unknown"):
                 plan.append((e, ts))
         for e, ts in plan:
-            supersede(e, ts)
+            supersede(e, ts, "other_law")
         # 3. rules defined by another law's coverage
         for e in entries.values():
             deps = self.deps[e["rule_id"]]
@@ -385,7 +393,7 @@ class Engine:
         # 4. Module A precedence (state rule yields to the local rule)
         for e in entries.values():
             if e["result"] in ("applies", "unknown") and self.yields.get(e["rule_id"]):
-                supersede(e, [entries[x] for x in self.yields[e["rule_id"]] if x in entries])
+                supersede(e, [entries[x] for x in self.yields[e["rule_id"]] if x in entries], "overrides")
         # name a superseding rule that itself applies (follow to the best candidate)
         for e in entries.values():
             t = entries.get(e["superseded_by"] or "")
@@ -401,6 +409,7 @@ class Engine:
                 if (s is not e and s["result"] in ("applies", "unknown") and s["status"] == "in_force"
                         and key[0] and (base_citation(s["rule"].get("citation")), s["rule"]["category"]) == key):
                     s["result"], s["superseded_by"] = "superseded", e["superseded_by"]
+                    s["precedence_basis"] = f"same_law:{e['rule_id']}"
                     s["notes"].append(f"same law and section as {e['rule_id']}")
         # 5. preemption the other way: flag both, never supersede
         for pair in self.pairs:
@@ -417,7 +426,9 @@ class Engine:
         results, omitted = [], []
         for e in entries.values():
             if e["result"] is None:
-                omitted.append({"team_rule_id": e["rule_id"], "reason": e["omitted"], "attested": e["attested"]})
+                omitted.append({"team_rule_id": e["rule_id"], "reason": e["omitted"], "attested": e["attested"],
+                                **({"trace": {"status": e["status"], "effective_date": e["effective_date"],
+                                              "coverage_detail": e["coverage"], "geocode_factor": geo}} if trace else {})})
                 continue
             conf = round((e["rule"].get("confidence") or 1.0) * e["coverage"]["confidence_coverage"] * geo, 3)
             # conflict_flag = a LEGAL conflict only; low confidence is needs_review (lookups_full / UI)
@@ -433,6 +444,11 @@ class Engine:
                 "presumptions": e["presumptions"], "reasons": e["coverage"]["reasons"],
                 "caveats": e["coverage"]["caveats"], "unresolved_other_law": e["unresolved_other_law"],
                 "rule_conflict_flag": bool(e["rule"].get("conflict_flag")),
+                **({"trace": {"precedence_basis": e.get("precedence_basis"), "dependency_via": e.get("dependency_via"),
+                              "candidates": [t["rule_id"] for t in e.get("_cands", [])],
+                              "geocode_factor": geo, "rule_confidence": e["rule"].get("confidence") or 1.0,
+                              "coverage_confidence": e["coverage"]["confidence_coverage"],
+                              "coverage_detail": e["coverage"], "notes": e["notes"]}} if trace else {}),
                 **({"explanation_es": explanation_es(e, facts, as_of, self.titles, plain)} if plain is not None else {}),
             })
         results.sort(key=lambda r: (list(CATEGORY_LABEL).index(r["category"]), r["level"] != "city", r["team_rule_id"]))

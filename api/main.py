@@ -272,6 +272,41 @@ def lookup(address_id: str, as_of: str | None = None, lang: str = "en") -> dict:
     return lookup_payload(address_id, parse_as_of(as_of), lang_of(lang))
 
 
+def explain_payload(aid: str, rid: str, as_of: date, lang: str) -> dict:
+    from . import explain
+
+    if aid not in store().facts:
+        raise HTTPException(404, f"unknown address_id {aid!r}")
+    if rid not in {r["team_rule_id"] for r in engine(config.DEFAULT_AS_OF).rules}:
+        raise HTTPException(404, f"unknown team_rule_id {rid!r}")
+    return explain.build(aid, rid, as_of, lang)
+
+
+def timeline_payload(aid: str, frm: date, to: date, lang: str) -> dict:
+    from . import timeline
+
+    if aid not in store().facts:
+        raise HTTPException(404, f"unknown address_id {aid!r}")
+    if frm > to:
+        raise HTTPException(422, "from must be on or before to")
+    return timeline.build(aid, frm, to, lang)
+
+
+@app.get("/explain/{address_id}/{team_rule_id}")
+def explain_route(address_id: str, team_rule_id: str, as_of: str | None = None, lang: str = "en") -> dict:
+    return explain_payload(address_id, team_rule_id, parse_as_of(as_of), lang_of(lang))
+
+
+@app.get("/timeline/{address_id}")
+def timeline_route(address_id: str, from_: str | None = Query(None, alias="from"), to: str | None = None,
+                   lang: str = "en") -> dict:
+    from .timeline import DEFAULT_FROM, DEFAULT_TO
+
+    frm = parse_as_of(from_) if from_ else DEFAULT_FROM
+    end = parse_as_of(to) if to else DEFAULT_TO
+    return timeline_payload(address_id, frm, end, lang_of(lang))
+
+
 @app.get("/changes")
 def changes(lang: str = "en") -> dict:
     return changes_payload(lang_of(lang))

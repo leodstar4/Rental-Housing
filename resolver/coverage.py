@@ -258,19 +258,22 @@ def evaluate(rule: dict, compiled: dict, facts: dict, stack: dict, as_of: date,
     for rs in reasons:
         rs.pop("_missing")
 
-    conf = 1.0
+    conf, factors = 1.0, []
     if "units_range" in ctx.proxies or stack.get("source") == "dataset_fallback":
         conf *= 0.9
+        factors.append({"factor": 0.9, "reason": "units_range" if "units_range" in ctx.proxies else "dataset_fallback"})
     if "co_approx" in ctx.proxies:
         conf *= 0.8
+        factors.append({"factor": 0.8, "reason": "co_approx"})
     # a presumption counts only if it was decisive (covered / not_covered resting on it)
     presumptions = ctx.presumed if coverage in ("covered", "not_covered") else []
     if presumptions:
         conf *= 0.9
+        factors.append({"factor": 0.9, "reason": "special_status_presumption"})
     return {
         "rule_id": rule["team_rule_id"], "coverage": coverage, "conditions": cond.value, "exemption": exem.value,
         "missing_facts": missing, "presumptions": presumptions, "reasons": reasons,
-        "confidence_coverage": round(conf, 3),
+        "confidence_coverage": round(conf, 3), "confidence_factors": factors,
         "caveats": [e["text"] for e in compiled["exemptions"] + compiled["conditions"] if e["scope"] == "unit_or_tenancy"],
         "deferred_other_law": [e["text"] for e in compiled["exemptions"] + compiled["conditions"]
                                if e["scope"] == "other_law"],

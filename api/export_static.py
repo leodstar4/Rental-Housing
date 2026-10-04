@@ -5,6 +5,7 @@ Same builders as api/main.py, written as files a front end can fetch when the ba
     static/index.json                 addresses + file map + as_of + disclaimer
     static/lookup/<id>.en.json        GET /lookup/<id>?as_of=2026-10-01&lang=en
     static/lookup/<id>.es.json        ... lang=es
+    static/timeline/<id>.<lang>.json  GET /timeline/<id>?lang=<lang> (default from/to)
     static/rules.<lang>.json          GET /rules
     static/changes.json, static/changes/<test_id>.json, static/conflicts.json, static/audit.json
 """
@@ -20,6 +21,7 @@ from pathlib import Path
 from extractor import config
 
 from . import main as api
+from .timeline import DEFAULT_FROM, DEFAULT_TO
 
 STATIC_DIR: Path = config.ROOT / "static"
 
@@ -39,6 +41,7 @@ def export(out: Path = STATIC_DIR, as_of=None) -> dict:
     for aid in ids:
         for lang in ("en", "es"):
             _write(out / "lookup" / f"{aid}.{lang}.json", api.lookup_payload(aid, as_of, lang))
+            _write(out / "timeline" / f"{aid}.{lang}.json", api.timeline_payload(aid, DEFAULT_FROM, DEFAULT_TO, lang))
     for lang in ("en", "es"):
         _write(out / f"rules.{lang}.json", api.rules_payload(as_of, lang))
     _write(out / "changes.json", api.changes_payload("en"))
@@ -49,7 +52,8 @@ def export(out: Path = STATIC_DIR, as_of=None) -> dict:
     _write(out / "index.json", {
         "as_of": as_of.isoformat(), "disclaimer": api.DISCLAIMER, "api_version": api.API_VERSION,
         "addresses": [api.address_info(a) for a in ids],
-        "files": {"lookup": "lookup/{address_id}.{lang}.json", "rules": "rules.{lang}.json", "changes": "changes.json",
+        "files": {"lookup": "lookup/{address_id}.{lang}.json", "timeline": "timeline/{address_id}.{lang}.json",
+                  "rules": "rules.{lang}.json", "changes": "changes.json",
                   "change_detail": "changes/{test_id}.json", "conflicts": "conflicts.json", "audit": "audit.json"}})
     files = list(out.rglob("*.json"))
     return {"dir": str(out), "files": len(files), "bytes": sum(f.stat().st_size for f in files),

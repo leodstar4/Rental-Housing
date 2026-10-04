@@ -219,8 +219,11 @@ def hour16(path: Path, jurisdiction: str | None, *, git: bool, dry_run: bool) ->
         run.cost["plain language (Haiku)"] = "not metered (new rules only)"
         from api import export_static, main as api_main
 
+        from api import timeline as api_timeline
+
         api_main.store.cache_clear()
         api_main.engine.cache_clear()
+        api_timeline._changes.cache_clear()
         st = export_static.export()
         run.say(f"static/: {st['files']} files, {st['bytes'] / 1e6:.1f} MB")
 
@@ -239,15 +242,21 @@ def hour16(path: Path, jurisdiction: str | None, *, git: bool, dry_run: bool) ->
                 rid = new_ids[0]
                 aid = changes[tid]["affected_address_ids"][0] if changes[tid]["affected_address_ids"] else None
                 after = full[tid]["test"]["as_of_after"]
-                got = None
+                got = ev = None
                 if aid:
                     body = client.get(f"/lookup/{aid}", params={"as_of": after}).json()
                     got = next((x for g in body["results"].values() for x in g if x["team_rule_id"] == rid), None)
                     run.say(f"GET /lookup/{aid}?as_of={after}  {rid}: {got and got['result']} · "
                             f"{got and got['plain_language']['status_line']}")
+                    tl = client.get(f"/timeline/{aid}", params={"lang": "es"}).json()
+                    ev = next((e for e in tl["events"] if e["team_rule_id"] == rid and e["after"] == "applies"), None)
+                    run.say(f"GET /timeline/{aid}?lang=es  {rid}: {ev and ev['date']} · {ev and ev['status_line']}")
+            eff_new = next((r.get("effective_date") for r in eng.rules if r["team_rule_id"] == new_ids[0]), None)
             run.check(f"API lists {tid} in /changes (en, es)", bool(lst) and es.get("type_label") == "Documento nuevo (hora 16)")
             run.check(f"API /lookup shows {new_ids[0]} as applies after its effective date",
                       bool(got) and got["result"] == "applies", f"{aid} as of {after}")
+            run.check(f"API /timeline shows {new_ids[0]} applying on its effective date",
+                      bool(aid) and bool(ev) and ev["date"] == eff_new, f"{aid}: {ev and ev['date']} vs {eff_new}")
 
     # f) report -------------------------------------------------------------------------------
     total = round(time.perf_counter() - run.t0, 1)
