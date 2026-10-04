@@ -4,3 +4,6 @@ participant-final-no-hour16[[:space:]]3/** -text
 snapshots/** -text
 tests/fixtures/** -text
 prompts/*.md -text
+# Module B generated data (raw Census responses, versioned outputs): keep LF as written.
+data/geocode_raw/** -text
+data/*.json -text

@@ -21,6 +21,7 @@ import yaml
 from . import config
 from .corpus import load_documents, load_manifest
 from .models import RuleInternal
+from .normalize import preempts
 from .status import compute_status
 from .validate import load_schema, validate_schema
 
@@ -74,6 +75,15 @@ def expected_citations(rules: list[RuleInternal], docs, manifest_rows) -> list[d
     return out
 
 
+_BARS = re.compile(r"\b(prohibit\w*|bars?|barred|forbid\w*|preempt\w*)\b[^.]{0,60}\brent control\b|"
+                   r"\bno (local )?rent control\b", re.I)
+
+
+def _bars_local_control(r: RuleInternal) -> bool:
+    """Rule prohibits / preempts local rent control rather than setting a cap."""
+    return preempts(r.interaction) or any(_BARS.search(t or "") for t in (r.title, r.requirement, r.key_value))
+
+
 def behaviour_checks(rules: list[RuleInternal]) -> list[dict]:
     acc = [r for r in rules if r.disposition == "accepted"]
     checks = []
@@ -100,10 +110,17 @@ def behaviour_checks(rules: list[RuleInternal]) -> list[dict]:
         got = [compute_status(r, config.DEFAULT_AS_OF) for r in rs]
         add(f"T4 MA {bill} = pending", bool(got) and all(g == "pending" for g in got),
             f"{[r.team_rule_id for r in rs]} -> {got}")
-    bad = find(lambda r: r.jurisdiction in ("MA", "Boston, MA", "Cambridge, MA")
-               and r.category == "rent_increase_limits" and compute_status(r, config.DEFAULT_AS_OF) == "in_force")
-    add("T5 no MA/Boston/Cambridge rent_increase_limits in force", not bad,
-        "none" if not bad else "; ".join(f"{r.team_rule_id} {r.citation}: {r.title}" for r in bad))
+    # T5: a rule fails only if it is an in-force CAP: it has a key_value and is not a
+    # prohibition/preemption of local rent control (M.G.L. c. 40P is reported, not a cap).
+    ma = find(lambda r: r.jurisdiction in ("MA", "Boston, MA", "Cambridge, MA")
+              and r.category == "rent_increase_limits" and compute_status(r, config.DEFAULT_AS_OF) == "in_force")
+    bars = [r for r in ma if _bars_local_control(r)]
+    bad = [r for r in ma if r.key_value and r not in bars]
+    notes = ["c. 40P bars local rent control → no local cap" if re.search(r"40P", r.citation or "")
+             else f"{r.team_rule_id} bars local rent control → no local cap" for r in bars]
+    add("T5 no rent cap in force in MA/Boston/Cambridge", not bad,
+        "; ".join(f"{r.team_rule_id} {r.citation}: {r.key_value}" for r in bad) if bad
+        else "; ".join(notes) or "none")
     return checks
 
 
@@ -126,13 +143,33 @@ def invariants(rules: list[RuleInternal], docs) -> list[dict]:
     return out
 
 
+def test_rule_map() -> list[dict]:
+    """Every dev/change_tests.json rule_id is mapped, to an exported or a manifest-attested id."""
+    spec = yaml.safe_load(config.TEST_RULE_MAP_PATH.read_text(encoding="utf-8"))["map"]
+    tests = json.loads(config.CHANGE_TESTS_PATH.read_text(encoding="utf-8"))
+    exported = {r["team_rule_id"] for r in json.loads(config.RULES_PATH.read_text(encoding="utf-8"))["rules"]}
+    attested = ({r["team_rule_id"] for r in json.loads(config.ATTESTED_PATH.read_text(encoding="utf-8"))["rules"]}
+                if config.ATTESTED_PATH.exists() else set())
+    out = []
+    for tid in sorted({x for t in tests for x in [*t["rule_ids"], *t.get("conflict_with", [])]}):
+        e = spec.get(tid) or {}
+        if e.get("ours"):
+            ok, detail = e["ours"] in exported, f"-> {e['ours']} (rules.json)"
+        elif e.get("attested"):
+            ok, detail = e["attested"] in attested, f"-> {e['attested']} (attested, no text)"
+        else:
+            ok, detail = False, "not in data/test_rule_map.yaml"
+        out.append({"check": f"test rule {tid}", "result": OK if ok else FAIL, "detail": detail})
+    return out
+
+
 def run() -> dict:
     rules = [RuleInternal.model_validate(r)
              for r in json.loads(config.NORMALIZED_PATH.read_text(encoding="utf-8"))["rules"]]
     docs = load_documents()
     rows = load_manifest()
     return {"invariants": invariants(rules, docs), "citations": expected_citations(rules, docs, rows),
-            "behaviour": behaviour_checks(rules)}
+            "behaviour": behaviour_checks(rules), "test_rule_map": test_rule_map()}
 
 
 def render(res: dict) -> str:
@@ -151,7 +188,10 @@ def render(res: dict) -> str:
     lines.append("   " + " · ".join(f"{k}: {v}" for k, v in counts.items()))
     lines += ["", " BEHAVIOUR"]
     for c in res["behaviour"]:
-        lines.append(f"   [{c['result']}] {c['check']:<58} {c['detail'][:40]}")
-    n_fail = sum(c["result"] == FAIL for c in res["invariants"] + res["behaviour"])
+        lines.append(f"   [{c['result']}] {c['check']:<48} {c['detail'][:52]}")
+    lines += ["", " TEST RULE MAP (data/test_rule_map.yaml)"]
+    for c in res["test_rule_map"]:
+        lines.append(f"   [{c['result']}] {c['check']:<48} {c['detail'][:52]}")
+    n_fail = sum(c["result"] == FAIL for c in res["invariants"] + res["behaviour"] + res["test_rule_map"])
     lines += ["", f" RESULT: {'ALL CHECKS PASS' if not n_fail else f'{n_fail} CHECK(S) FAILED'}", "=" * w]
     return "\n".join(lines)

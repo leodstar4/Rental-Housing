@@ -1,0 +1,119 @@
+# Building facts inferred from the sample's use_code / use_description (resolver/facts.py).
+#
+# datasets:     source_dataset -> legal city in rules.json format. NJ rows share one dataset,
+#               so their city comes from postal_city (`city_from: postal_city`).
+# unit_ranges:  first matching entry gives a [min, max] unit range (max null = open) when the
+#               `units` column is empty. `use_code` / `use_description` are regexes (fullmatch /
+#               search). A number in the units column always wins; a contradiction is a warning.
+# flags:        use flags for exemption tests (use_type). Each entry may match on use_code
+#               (fullmatch) and/or use_description (search, case-insensitive).
+# `basis` says where the meaning comes from: the row's own use_description, or "inferred"
+# when it is our reading of the assessor code (no code book in the starter pack).
+
+datasets:
+  "LA County eGIS parcels": {city: "Los Angeles, CA"}
+  "DataSF wv5m-vpq2 (2025 roll)": {city: "San Francisco, CA"}
+  "SANDAG/SanGIS parcels": {city: "San Diego, CA"}
+  "Alameda County parcels": {city: "Berkeley, CA"}
+  "Boston Property Assessment FY2026": {city: "Boston, MA"}
+  "Cambridge Property Database FY2026 (waa7-ibdu)": {city: "Cambridge, MA"}
+  "NJOGIS Parcels & MOD-IV Composite": {city_from: postal_city}
+
+unit_ranges:
+  - dataset: "LA County eGIS parcels"
+    use_code: "05[0-9A-Z]{2}"
+    units: [5, null]
+    basis: "use_description 'Five or more apartments' (codes 0500, 0501, 050V, 050C, 0551)"
+  - dataset: "SANDAG/SanGIS parcels"
+    use_code: "1[4-6]"
+    units: [5, null]
+    basis: "use_description 'SANDAG asr_landuse 14-16 (5+ units)'"
+  - dataset: "Alameda County parcels"
+    use_code: "7[0-9]00"
+    units: [5, null]
+    basis: "use_description 'Alameda County use code (5+ units)' (codes 7200, 7700, 7800)"
+  - dataset: "NJOGIS Parcels & MOD-IV Composite"
+    use_code: "4C"
+    units: [5, null]
+    basis: "inferred: NJ MOD-IV property class 4C = apartment building (5+ units)"
+  - dataset: "DataSF wv5m-vpq2 (2025 roll)"
+    use_code: "A5|F5|FS5"
+    units: [5, 14]
+    basis: "use_description 'Apartment / Flats / Flat & Store 5 to 14 units'"
+  - dataset: "DataSF wv5m-vpq2 (2025 roll)"
+    use_code: "A15"
+    units: [15, null]
+    basis: "use_description 'Apartment 15 Units or more'"
+  - dataset: "DataSF wv5m-vpq2 (2025 roll)"
+    use_code: "TIC"
+    units: [1, 4]
+    basis: "use_description 'TIC Bldg 4 units or less'"
+  - dataset: "Boston Property Assessment FY2026"
+    use_code: "A/112"
+    units: [7, 30]
+    basis: "use_description 'APT 7-30 UNITS'"
+  - dataset: "Cambridge Property Database FY2026 (waa7-ibdu)"
+    use_code: "111"
+    units: [4, 8]
+    basis: "use_description '4-8-UNIT-APT'"
+  - dataset: "Cambridge Property Database FY2026 (waa7-ibdu)"
+    use_code: "112"
+    units: [9, null]
+    basis: "use_description '>8-UNIT-APT'"
+
+# Every sample row is an apartment-building parcel class (5+ units, or Boston "A/" apartment
+# classes, or SF TIC/flats buildings). This sets use_class = apartment_building and makes
+# single_family / condo false (a condominium is classed per unit, not as a building).
+apartment_class:
+  use_class: apartment_building
+  false_flags: [single_family, condo]
+  basis: "inferred: the assessor classes the parcel as a multi-unit apartment building, not as a single-family home or condominium units"
+
+# Datasets whose use codes distinguish a flag: there, a flag that does not match is false
+# (elsewhere it is unknown).
+flag_domains:
+  "Boston Property Assessment FY2026":
+    flags: [section8, elderly, luxury]
+    basis: "Boston apartment codes separate subsidized (A/125), elderly (A/118) and luxury (A/120) buildings"
+  "DataSF wv5m-vpq2 (2025 roll)":
+    flags: [tic, mixed_use]
+    basis: "SF codes separate TIC buildings (TIC) and flat-and-store buildings (FS5)"
+  "Cambridge Property Database FY2026 (waa7-ibdu)":
+    flags: [mixed_use]
+    basis: "Cambridge descriptions mark mixed-use apartment buildings (MXD)"
+
+all_flags: [section8, coop, affordable, tic, elderly, mixed_use, luxury, single_family, condo]
+
+flags:
+  - flag: section8
+    dataset: "Boston Property Assessment FY2026"
+    use_code: "A/125"
+    basis: "use_description 'SUBSD HOUSING S- 8' (subsidized, Section 8)"
+  - flag: elderly
+    dataset: "Boston Property Assessment FY2026"
+    use_code: "A/118"
+    basis: "use_description 'ELDERLY HOME'"
+  - flag: luxury
+    dataset: "Boston Property Assessment FY2026"
+    use_code: "A/120"
+    basis: "use_description 'LUXURY APARTMENT'"
+  - flag: tic
+    dataset: "DataSF wv5m-vpq2 (2025 roll)"
+    use_code: "TIC"
+    basis: "use_description 'TIC Bldg' (tenancy in common)"
+  - flag: mixed_use
+    dataset: "DataSF wv5m-vpq2 (2025 roll)"
+    use_code: "FS5"
+    basis: "use_description 'Flat & Store' (residential over retail)"
+  - flag: mixed_use
+    dataset: "Cambridge Property Database FY2026 (waa7-ibdu)"
+    use_description: "^MXD\\b"
+    basis: "use_description 'MXD >8-UNIT-APT' (mixed use)"
+  - flag: coop
+    dataset: "NJOGIS Parcels & MOD-IV Composite"
+    use_description: "CO-?OP"
+    basis: "use_description contains 'CO-OP' (cooperative)"
+  - flag: affordable
+    dataset: "NJOGIS Parcels & MOD-IV Composite"
+    use_description: "AFFORDAB"
+    basis: "use_description contains 'AFFORDABL' (affordable housing)"

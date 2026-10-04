@@ -169,6 +169,19 @@ def reproduce(
     extract_all(no_cache=False, only=None, from_snapshot=snapshot)
     normalize(ids_from=snapshot / "ids.json")
     export(as_of=as_of, out=config.RULES_PATH)
+    attest()
+
+
+@app.command("attest")
+def attest() -> None:
+    """Manifest-attested rules (no corpus text) -> out/rules_attested.json, never rules.json."""
+    from .attested import write_attested
+
+    rules = write_attested()
+    typer.echo(f"{len(rules)} manifest-attested rules -> {config.ATTESTED_PATH} (not in rules.json)")
+    for r in rules:
+        typer.echo(f"  {r['team_rule_id']:11} <- {r['test_rule_id']:11} {r['status']:9} "
+                   f"sources={','.join(r['source_doc_ids'])} ({r['sources'][0]['match'] if r['sources'] else '-'})")
 
 
 @app.command("normalize")
@@ -201,7 +214,8 @@ def normalize(
     audit.append(audit.AuditEvent("normalize", run_id, data={
         "dispositions": dict(Counter(r.disposition for r in rules)),
         "resolved_citations": rep.resolved_citations, "defaults_applied": rep.defaults_applied,
-        "admin_links": rep.admin_links, "precedence": rep.precedence, "conflicts": len(conflicts)}))
+        "co_conversions": rep.co_conversions, "admin_links": rep.admin_links, "precedence": rep.precedence,
+        "review_flags": rep.review_flags, "conflicts": len(conflicts)}))
     for c in conflicts:
         audit.append(audit.AuditEvent("conflict_flagged", run_id, data=c))
 
@@ -210,6 +224,11 @@ def normalize(
                f"{dict(Counter(r.disposition_reason for r in rules if r.disposition != 'accepted'))}")
     typer.echo(f"\ncitations resolved (held -> source): {rep.resolved_citations}")
     typer.echo(f"calendar defaults applied: {rep.defaults_applied}")
+    typer.echo("year_built_max -> certificate_of_occupancy_on_or_before:")
+    for rid, what in rep.co_conversions:
+        typer.echo(f"  {rid:12} {what}")
+    typer.echo(f"review flags (data/review_flags.yaml): {rep.review_flags}")
+    typer.echo(f"human review merges (data/human_review.yaml): {rep.human_review_merges}")
     typer.echo("\nadministrative figures:")
     for uid, aid, tgt in rep.admin_links:
         typer.echo(f"  {uid:8} -> {tgt or 'HELD administrative_unlinked'}")

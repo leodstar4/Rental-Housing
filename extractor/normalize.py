@@ -14,12 +14,19 @@ Pipeline (``normalize_rules``), in order:
                          AND same coverage thresholds, compatible key_value and same effective
                          dates -> one rule; requirement summarizes, every literal quote is kept
                          in ``evidence``.
+4b. ``certificate_of_occupancy`` a ``year_built_max`` whose text states the cutoff as a
+                         certificate-of-occupancy date or a full calendar date becomes
+                         ``certificate_of_occupancy_on_or_before`` (guide §4.1).
 5. ``link_administrative`` an administrative figure is folded into the enacted rule of the same
                          jurisdiction and category (preferring the same law) as a
                          ``key_value_details`` entry; otherwise held/administrative_unlinked.
-6. ``assign_ids``        ``{JUR}-{CAT}-{NN}`` (P = pending, F = failed, H = held), deterministic.
+6. ``assign_ids``        ``{JUR}-{CAT}-{NN}``, or ``{JUR}-{CAT}-{P|F|H}{N}`` for pending / failed /
+                         held, deterministic (``CA-ALG-01``, ``MA-ALG-P1``).
 7. ``apply_precedence``  state rules that yield to stricter local rules (e.g. Civ. Code
                          § 1947.12 vs local rent control) or preempt them get ``overrides``.
+6b. ``apply_human_review_merges`` ``data/human_review.yaml`` (merge_rule): a rule extracted as a
+                         standalone rule is folded into another as an exemption.
+8. ``apply_review_flags`` ``data/review_flags.yaml``: known open questions flagged for human review.
 
 Cross-document conflicts are detected afterwards in ``conflicts.py``.
 """
@@ -48,7 +55,7 @@ JUR_CODES: dict[str, str] = {
 }
 CAT_CODES: dict[str, str] = {
     "rent_increase_limits": "RENT", "just_cause_eviction": "JUST", "security_deposits": "DEP",
-    "application_screening_fees": "FEE", "screening_restrictions": "SCRN", "algorithmic_rent_setting": "ALGO",
+    "application_screening_fees": "FEE", "screening_restrictions": "SCRN", "algorithmic_rent_setting": "ALG",
 }
 RESOLVED_CITATION_FACTOR = 0.9
 TITLE_SIMILARITY = 70  # rapidfuzz token_set_ratio for "same provision" checks
@@ -454,6 +461,80 @@ def merge_rules(rules: list[RuleInternal]) -> list[RuleInternal]:
 
 
 # --------------------------------------------------------------------------- #
+# Certificate-of-occupancy cutoffs
+# --------------------------------------------------------------------------- #
+
+_MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july", "august",
+                "september", "october", "november", "december"]
+_CO = re.compile(r"\bcertificates? of occupancy\b", re.I)
+_CUTOFF_DATE = re.compile(
+    r"\b(?P<kw>built|constructed|completed|occupancy)\b[^.;]{0,60}?"
+    r"(?P<rel>on or before|before|prior to|after|on or after)\s+"
+    r"(?:(?P<mon>[A-Za-z]{3,9})\.?\s+(?P<d>\d{1,2}),?\s+(?P<y>\d{4})|(?P<m2>\d{1,2})/(?P<d2>\d{1,2})/(?P<y2>\d{4}))",
+    re.I)
+
+
+def _cutoff_dates(text: str) -> list[tuple[date, str]]:
+    """``(last covered day, matched text)`` for every "built/occupancy ... on or before <date>"
+    phrase. "before X" covers up to the day before X; "after" phrases are skipped (they state
+    the exempt side and are converted only through an "on or before" phrase)."""
+    out = []
+    for m in _CUTOFF_DATE.finditer(text):
+        rel = m.group("rel").lower()
+        if "after" in rel:
+            continue
+        try:
+            if m.group("mon"):
+                mon = next(i for i, n in enumerate(_MONTH_NAMES, 1) if n.startswith(m.group("mon").lower()[:3]))
+                d = date(int(m.group("y")), mon, int(m.group("d")))
+            else:
+                d = date(int(m.group("y2")), int(m.group("m2")), int(m.group("d2")))
+        except (StopIteration, ValueError):
+            continue
+        if rel != "on or before":
+            d = date.fromordinal(d.toordinal() - 1)
+        out.append((d, m.group(0)))
+    return out
+
+
+def certificate_of_occupancy(rules: list[RuleInternal]) -> list[tuple[str, str]]:
+    """Turn ``year_built_max`` into ``certificate_of_occupancy_on_or_before`` (guide §4.1:
+    "Year built ≠ certificate of occupancy"; a building in the cutoff year is then unknown).
+
+    Converted when the rule's coverage_text, coverage notes or quoted_span give a cutoff date in
+    the ``year_built_max`` year, and either (a) mention a certificate of occupancy, or (b) state
+    the cutoff as a full calendar date other than December 31 (a year cannot express it, e.g.
+    L.A. RSO "first built on or before October 1, 1978"). Several distinct dates -> not
+    converted (ambiguous). Every decision is written to ``validation_errors``."""
+    out = []
+    for r in rules:
+        c = r.coverage
+        if r.disposition not in ("accepted", "held") or c is None or c.year_built_max is None:
+            continue
+        y = c.year_built_max
+        texts = [t for t in (r.coverage_text, c.notes, r.quoted_span) if t]
+        mentions_co = any(_CO.search(t) for t in texts)
+        found = {d: s for t in texts for d, s in _cutoff_dates(t) if d.year == y}
+        if len(found) != 1:
+            if mentions_co or found:
+                why = "no cutoff date in the text" if not found else f"ambiguous dates {sorted(map(str, found))}"
+                r.validation_errors.append(f"coverage: year_built_max {y} kept ({why})")
+            continue
+        [(d, phrase)] = found.items()
+        if mentions_co:
+            trigger = "text mentions a certificate of occupancy"
+        elif (d.month, d.day) != (12, 31):
+            trigger = "cutoff is a full date, not a year"
+        else:
+            continue
+        c.certificate_of_occupancy_on_or_before, c.year_built_max = d, None
+        r.validation_errors.append(
+            f"coverage: year_built_max {y} -> certificate_of_occupancy_on_or_before {d} ({trigger}: {phrase!r})")
+        out.append((r.uid, f"{y} -> {d} ({trigger})"))
+    return out
+
+
+# --------------------------------------------------------------------------- #
 # Administrative figures
 # --------------------------------------------------------------------------- #
 
@@ -507,13 +588,28 @@ def link_administrative(rules: list[RuleInternal]) -> list[tuple[str, str | None
 # --------------------------------------------------------------------------- #
 
 
+def upgrade_legacy_id(rid: str) -> str:
+    """Snapshot ids from before Module B: ``ALGO`` -> ``ALG``, ``P01``/``F01``/``H01`` -> ``P1``/...
+    (the id style of ``dev/change_tests.json``). Current ids are returned unchanged."""
+    rid = rid.replace("-ALGO-", "-ALG-")
+    return re.sub(r"-([PFH])0*(\d+)$", lambda m: f"-{m.group(1)}{int(m.group(2))}", rid)
+
+
+def _id(stem: str, prefix: str, n: int) -> str:
+    return f"{stem}{n}" if prefix else f"{stem}{n:02d}"
+
+
 def assign_ids(rules: list[RuleInternal], existing: dict[str, str] | None = None) -> dict[str, str]:
-    """Deterministic ``{JUR}-{CAT}-{NN}`` for accepted/held rules; returns uid -> team_rule_id
-    (merged uids map to the id of the rule that absorbed them).
+    """Deterministic ``{JUR}-{CAT}-{NN}`` (``{JUR}-{CAT}-{P|F|H}{N}`` for pending / failed / held)
+    for accepted/held rules; returns uid -> team_rule_id (merged uids map to the id of the rule
+    that absorbed them).
 
     ``existing`` (uid -> id from a frozen snapshot) keeps published ids stable in incremental
     runs: a rule reuses the id of its own uid or of any uid it absorbed when that id still fits
-    its cell; genuinely new rules get the next free number in the cell."""
+    its cell; genuinely new rules get the next free number in the cell. Legacy snapshot ids are
+    upgraded first (``upgrade_legacy_id``)."""
+    if existing:
+        existing = {u: upgrade_legacy_id(i) for u, i in existing.items()}
     cells: dict[tuple, list[RuleInternal]] = defaultdict(list)
     for r in rules:
         if r.disposition in ("accepted", "held"):
@@ -533,26 +629,26 @@ def assign_ids(rules: list[RuleInternal], existing: dict[str, str] | None = None
         stem = f"{jc}-{CAT_CODES[cat]}-{prefix}"
         if not existing:
             for i, r in enumerate(rs, 1):
-                r.team_rule_id = f"{stem}{i:02d}"
+                r.team_rule_id = _id(stem, prefix, i)
                 ids[r.uid] = r.team_rule_id
             continue
+        num = re.compile(re.escape(stem) + (r"(\d+)" if prefix else r"(\d{2})"))
         taken: set[str] = set()
         pending: list[RuleInternal] = []
         for r in rs:
             prior = [existing[u] for u in [r.uid, *r.merged_uids] if u in existing]
-            pick = next((p for p in prior if re.fullmatch(re.escape(stem) + r"\d{2}", p) and p not in taken), None)
+            pick = next((p for p in prior if num.fullmatch(p) and p not in taken), None)
             if pick:
                 r.team_rule_id = pick
                 taken.add(pick)
                 ids[r.uid] = pick
             else:
                 pending.append(r)
-        used = {int(x[-2:]) for x in existing.values() if re.fullmatch(re.escape(stem) + r"\d{2}", x)} | {
-            int(x[-2:]) for x in taken}
+        used = {int(m.group(1)) for x in [*existing.values(), *taken] if (m := num.fullmatch(x))}
         n = max(used, default=0)
         for r in pending:
             n += 1
-            r.team_rule_id = f"{stem}{n:02d}"
+            r.team_rule_id = _id(stem, prefix, n)
             ids[r.uid] = r.team_rule_id
     by_uid = {r.uid: r for r in rules}
     for r in rules:  # merged -> absorbing rule's id (follow chains)
@@ -598,6 +694,62 @@ def apply_precedence(rules: list[RuleInternal]) -> list[tuple[str, str, str]]:
     return out
 
 
+def human_review_merges() -> list[dict]:
+    """``merge_rule`` entries of data/human_review.yaml (the human review register)."""
+    if not config.HUMAN_REVIEW_PATH.exists():
+        return []
+    reg = yaml.safe_load(config.HUMAN_REVIEW_PATH.read_text(encoding="utf-8"))["reviews"]
+    return [r for r in reg if r["action"] == "merge_rule"]
+
+
+def apply_human_review_merges(rules: list[RuleInternal], entries: list[dict] | None = None) -> list[tuple[str, str]]:
+    """Fold a rule extracted as a standalone rule into another one as an exemption (human review
+    register, action merge_rule): the merged rule leaves the export; its exemption conditions,
+    quote (as evidence) and law aliases join the target. The entry's quoted_span must be the
+    merged rule's own quote (whitespace-insensitive)."""
+    by_id = {r.team_rule_id: r for r in rules if r.disposition == "accepted" and r.team_rule_id}
+    done = []
+    for e in human_review_merges() if entries is None else entries:
+        src, tgt = by_id.get(e["rule_id"]), by_id.get(e["into"])
+        if src is None or tgt is None:
+            continue
+        if " ".join(e["quoted_span"].split()) not in " ".join(src.quoted_span.split()):
+            # the entry does not describe this rule (e.g. ids differ in another run): never merge blindly
+            src.validation_errors.append(f"human review {e['id']} NOT applied: quoted_span not in this rule's quote")
+            continue
+        if tgt.coverage is not None and src.coverage is not None:
+            have = {x.condition for x in tgt.coverage.exemption_conditions}
+            tgt.coverage.exemption_conditions += [x for x in src.coverage.exemption_conditions if x.condition not in have]
+        tgt.citation_aliases += [a for a in src.citation_aliases if a not in tgt.citation_aliases]
+        tgt.evidence.append(_evidence(src, "merged"))
+        tgt.merged_uids.append(src.uid)
+        tgt.validation_errors.append(f"human review {e['id']}: merged {src.team_rule_id} as an exemption")
+        src.disposition, src.disposition_reason, src.merged_into = "merged", f"human_review:{e['id']}", tgt.uid
+        done.append((src.team_rule_id, tgt.team_rule_id))
+    return done
+
+
+@functools.lru_cache(maxsize=1)
+def review_flags_table() -> list[dict]:
+    return yaml.safe_load(config.REVIEW_FLAGS_PATH.read_text(encoding="utf-8"))["flags"]
+
+
+def apply_review_flags(rules: list[RuleInternal]) -> list[tuple[str, str]]:
+    """Flag rules matching ``data/review_flags.yaml`` (known open questions the corpus text
+    cannot settle) for human review. Matching is on jurisdiction, category and stage."""
+    out = []
+    for f in review_flags_table():
+        for r in rules:
+            if r.disposition not in ("accepted", "held") or any(
+                    (r.stage.value if k == "stage" else getattr(r, k)) != v for k, v in f["match"].items()):
+                continue
+            r.conflict_flag = True
+            if not r.conflict_note or f["conflict_note"] not in r.conflict_note:
+                r.conflict_note = f"{r.conflict_note}; {f['conflict_note']}" if r.conflict_note else f["conflict_note"]
+            out.append((r.team_rule_id or r.uid, f["id"]))
+    return out
+
+
 # --------------------------------------------------------------------------- #
 # Orchestration
 # --------------------------------------------------------------------------- #
@@ -607,8 +759,11 @@ def apply_precedence(rules: list[RuleInternal]) -> list[tuple[str, str, str]]:
 class NormalizationReport:
     resolved_citations: list[tuple[str, str]] = field(default_factory=list)
     defaults_applied: list[tuple[str, str]] = field(default_factory=list)
+    co_conversions: list[tuple[str, str]] = field(default_factory=list)
     admin_links: list[tuple[str, str | None]] = field(default_factory=list)
     precedence: list[tuple[str, str, str]] = field(default_factory=list)
+    review_flags: list[tuple[str, str]] = field(default_factory=list)
+    human_review_merges: list[tuple[str, str]] = field(default_factory=list)
     ids: dict[str, str] = field(default_factory=dict)
     cells: Counter = field(default_factory=Counter)
 
@@ -616,7 +771,7 @@ class NormalizationReport:
 def normalize_rules(
     rules: list[RuleInternal], docs: dict[str, Document], existing_ids: dict[str, str] | None = None
 ) -> tuple[list[RuleInternal], NormalizationReport]:
-    """Run steps 1-7 on validated rules (rejected rules pass through untouched).
+    """Run steps 1-8 on validated rules (rejected rules pass through untouched).
 
     ``existing_ids``: uid -> team_rule_id of a frozen snapshot, to keep ids stable."""
     rep = NormalizationReport()
@@ -625,11 +780,15 @@ def normalize_rules(
     rep.resolved_citations = resolve_citations(rules)
     rep.defaults_applied = apply_defaults(rules, docs)
     rules = merge_rules(rules)
+    rep.co_conversions = certificate_of_occupancy(rules)
     rep.admin_links = link_administrative(rules)
     rep.ids = assign_ids(rules, existing_ids)
+    rep.human_review_merges = apply_human_review_merges(rules)
     rep.precedence = apply_precedence(rules)
+    rep.review_flags = apply_review_flags(rules)
     rep.cells = Counter((r.jurisdiction, r.category) for r in rules if r.disposition == "accepted")
     # report merges/links with final ids
     rep.admin_links = [(a, rep.ids.get(a, a), rep.ids.get(t) if t else None) for a, t in rep.admin_links]
     rep.resolved_citations = [(rep.ids.get(h, h), rep.ids.get(s, s)) for h, s in rep.resolved_citations]
+    rep.co_conversions = [(rep.ids.get(u, u), what) for u, what in rep.co_conversions]
     return rules, rep

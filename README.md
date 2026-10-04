@@ -55,9 +55,19 @@ directly from the text.
 │   ├── smoke.py               # smoke-check dashboard
 │   ├── audit.py               # append-only out/audit.jsonl
 │   └── models.py              # pydantic models (RuleInternal, RuleOut, ...)
+├── resolver/                  # Module B (python -m resolver.cli <command>)
+│   ├── addresses.py           # sample_addresses.csv -> Address (all strings) + dataset city
+│   ├── facts.py               # building facts: units range, year built, use flags
+│   └── geocode.py             # Census Geocoder -> jurisdiction stack
 ├── data/
 │   ├── citation_aliases.yaml       # law alias table (see "Citation aliases")
-│   └── jurisdiction_defaults.yaml  # calendar defaults (see "Status")
+│   ├── jurisdiction_defaults.yaml  # calendar defaults (see "Status")
+│   ├── review_flags.yaml           # known open questions flagged for review (guide §9)
+│   ├── test_rule_map.yaml          # dev/change_tests.json ids -> our ids
+│   ├── use_code_map.yaml           # use codes -> unit ranges and use flags
+│   ├── building_facts.json         # Module B output (versioned)
+│   ├── jurisdictions.json          # Module B output (versioned)
+│   └── geocode_raw/                # raw Census responses (versioned; demo works offline)
 ├── prompts/                   # extract_system.md (PROMPT_VERSION), quote_retry.md
 ├── snapshots/a-0.4.0/         # frozen official extraction (see "Reproducing from the snapshot")
 ├── corpus/new/                # documents added with extract-doc (created on demand)
@@ -137,11 +147,14 @@ The official extraction is frozen in **`snapshots/a-0.4.0/`** (versioned in git)
 | `rules.json`, `conflicts.json` | official export (as of 2026-10-01) |
 
 `python -m extractor.cli reproduce` (or `extract-all --from-snapshot snapshots/a-0.4.0`
-followed by `normalize --ids-from snapshots/a-0.4.0/ids.json` and `export`) serves every
-document from `llm/`, re-runs validation, normalization, conflicts and status locally, and
-writes `out/rules.json` — byte-identical to `snapshots/a-0.4.0/rules.json`. In snapshot mode
-the API client is disabled (`config.OFFLINE`); a document missing from the snapshot is an
-error, never a silent API call.
+followed by `normalize --ids-from snapshots/a-0.4.0/ids.json`, `export` and `attest`) serves
+every document from `llm/`, re-runs validation, normalization, conflicts and status locally,
+and writes `out/rules.json` and `out/rules_attested.json`. The output is deterministic; it
+differs from the frozen `snapshots/a-0.4.0/rules.json` only by the documented Module B
+adjustments (see "Module B adjustments to the rules"), which
+`tests/test_snapshot_incremental.py` checks record by record. In snapshot mode the API client
+is disabled (`config.OFFLINE`); a document missing from the snapshot is an error, never a
+silent API call.
 
 ## Incremental mode — `extract-doc`
 
@@ -161,7 +174,7 @@ python -m extractor.cli extract-doc tests/fixtures/fake_cambridge_ordinance.txt 
 It prints a video-friendly summary (new/modified rules, status as of 2026-10-01,
 effective date and whether it was derived, new conflicts, seconds per stage) and writes
 `out/increment_<doc_id>.json` for Module C. Rehearsal with the fictitious Cambridge
-ordinance (`tests/fixtures/`): CAM-ALGO-01, city, `algorithmic_rent_setting`,
+ordinance (`tests/fixtures/`): CAM-ALG-01, city, `algorithmic_rent_setting`,
 `not_yet_effective`, effective 2027-03-13 derived from "180 days after its adoption"
 (adopted 2026-09-14), exemption `units < 6`; ~17 s, of which ~16 s is the LLM call.
 To undo an incremental run: delete `corpus/new/<doc_id>.*` and run `reproduce`.
@@ -179,7 +192,9 @@ first) and prints a dashboard (also saved to `out/smoke_check.json`):
   without explanation (text present but not extracted).
 * **Behaviour**: T1 (AB 325 not yet effective 2025-12-31, in force 2026-01-02), T3 (FAIR Act
   not yet effective 2026-10-01, in force 2027-07-02), T4 (S.2983 and H.5222 pending), T5 (no
-  MA, Boston or Cambridge `rent_increase_limits` rule in force).
+  MA, Boston or Cambridge rent **cap** in force: a rule fails only if it has a `key_value` and
+  is not a prohibition/preemption of local rent control — M.G.L. c. 40P is still reported, with
+  the note "c. 40P bars local rent control → no local cap").
 
 ## Cost of Module A
 
@@ -312,8 +327,10 @@ capped at 0.5                  if stage = unknown (also conflict_flag = true, no
    candidate rules exist without a clear title match (similarity ≥ 60 and 10 points above the
    runner-up). On export, `key_value` shows the legal value plus every figure in force on
    `--as-of`.
-6. **IDs**: `{JUR}-{CAT}-{NN}`, `P` = pending bill, `F` = failed bill, `H` = held (internal),
-   e.g. `CA-RENT-01`, `MA-ALGO-P01`. Deterministic across runs.
+6. **IDs**: `{JUR}-{CAT}-{NN}`, or `{JUR}-{CAT}-{P|F|H}{N}` for a pending bill, failed bill or
+   held (internal) rule, e.g. `CA-RENT-01`, `CA-ALG-01`, `MA-ALG-P1` (the style of
+   `dev/change_tests.json`). Deterministic across runs; snapshot ids in the older style
+   (`ALGO`, `P01`) are upgraded when loaded (`upgrade_legacy_id`).
 7. **Precedence**: a state rule whose interaction says it yields to stricter local law (e.g.
    Civ. Code § 1947.12 vs local rent control) or preempts it gets the local `team_rule_id`s in
    `overrides`, and each local rule gets the state id; the direction is written in `interaction`.
@@ -371,13 +388,191 @@ gap visible.
 
 | Question | What the corpus has | Missing source (no text) | How the system handles it |
 |---|---|---|---|
-| **Berkeley ch. 13.63 — two published effective dates** (March 1, 2026 per the ordinance; January 2026 per an Aug 2026 law-firm alert) | D001: Ordinance No. 7,992-N.S. amending ch. 13.63, recorded only as "passed to print" on November 18, 2025 (first reading). No effective date, no adoption/second-reading record. No other Berkeley document mentions 13.63. | D002 (Morgan Lewis alert, link-only) | The rule is extracted with stage `bill_pending` → status `pending`, no effective date. With one date-less source, no date conflict can be raised. |
+| **Berkeley ch. 13.63 — two published effective dates** (March 1, 2026 per the ordinance; January 2026 per an Aug 2026 law-firm alert) | D001: Ordinance No. 7,992-N.S. amending ch. 13.63, recorded only as "passed to print" on November 18, 2025 (first reading). No effective date, no adoption/second-reading record. No other Berkeley document mentions 13.63. | D002 (Morgan Lewis alert, link-only) | The rule is extracted with stage `bill_pending` → status `pending`, no effective date. With one date-less source, no date conflict can be raised; `data/review_flags.yaml` sets `conflict_flag` on BRK-ALG-P1 with the §9 note. |
 | **Los Angeles RSO new formula — two effective dates** (2026-02-02 per LAHD; 2026-01-24 per a landlord association) | D041 and D042 (LAHD) both state February 2, 2026. | The landlord-association statement is not in the corpus; D044 (AAGLA, link-only) is about deposit interest; LAMC text D038 is check-terms. | RSO rules carry the single verified date 2026-02-02; no conflict is flagged because only one source is readable. |
-| **Hoboken and Jersey City algorithmic rent-setting ordinances** (T2 boundary, T3 preemption by the NJ FAIR Act) | D036 (Jersey City landlord/tenant page) has no algorithm content. | Hoboken code D032–D034 (ecode360, check-terms); Jersey City D035 (news) and D037 (Morgan Lewis), link-only; D060 (Day Pitney on the FAIR Act), link-only. | No local NJ `algorithmic_rent_setting` rule exists. The FAIR Act's "municipalities are prohibited from enacting ordinances…" clause is recorded in `out/conflicts.json` as `preemption_no_local_rule` (informational) instead of a conflict pair. |
-| **Massachusetts bills S.2983 and H.5222** (T4: who would be affected) | D045, D046, D047: bill status/history pages (titles, committee actions, dates). D011: H.3744 status page. | The bill texts themselves (no bill-text document in the manifest); D059 (WBUR on the struck ballot question), link-only. | Bills are recorded with stage `bill_pending` (status `pending`), `key_value` null and coverage "not described"; their scope can only be stated at jurisdiction level (MA statewide). H.3744 is `failed`. No MA or Boston/Cambridge rent cap exists (T5 empty), consistent with M.G.L. c. 40P. |
+| **Hoboken and Jersey City algorithmic rent-setting ordinances** (T2 boundary, T3 preemption by the NJ FAIR Act) | D036 (Jersey City landlord/tenant page) has no algorithm content. | Hoboken code D032–D034 (ecode360, check-terms); Jersey City D035 (news) and D037 (Morgan Lewis), link-only; D060 (Day Pitney on the FAIR Act), link-only. | No local NJ `algorithmic_rent_setting` rule exists. The FAIR Act's "municipalities are prohibited from enacting ordinances…" clause is recorded in `out/conflicts.json` as `preemption_no_local_rule` (informational) instead of a conflict pair. Module B adds manifest-attested records HOB-ALG-A1 and JC-ALG-A1 (`out/rules_attested.json`, see "Responsible design"), flagged as possibly preempted by NJ-ALG-01. |
+| **Massachusetts bills S.2983 and H.5222** (T4: who would be affected) | D045, D046, D047: bill status/history pages (titles, committee actions, dates). D011: H.3744 status page. | The bill texts themselves (no bill-text document in the manifest); D059 (WBUR on the struck ballot question), link-only. | Bills are recorded with stage `bill_pending` (status `pending`), `key_value` null and coverage "not described"; their scope can only be stated at jurisdiction level (MA statewide). H.3744 is `failed`. No MA or Boston/Cambridge rent cap exists (T5 empty), consistent with M.G.L. c. 40P. The struck ballot question itself (T5's MA-RENT-P1) is the manifest-attested MA-RENT-A1, status `failed`; it is not our MA-RENT-F1 (H.3744). |
+
+## Module B adjustments to the rules
+
+Applied by `normalize.py` on every run (no API calls), on top of the frozen a-0.4.0 extraction:
+
+| Change | What | Rules affected |
+|---|---|---|
+| Id style | `ALGO` → `ALG`; `P01`/`F01`/`H01` → `P1`/`F1`/`H1` | every algorithmic, pending, failed and held id |
+| Certificate of occupancy (step 4b) | `year_built_max` → `certificate_of_occupancy_on_or_before` when the coverage text, notes or quote mention a certificate of occupancy, or state the cutoff as a full date other than Dec 31 (a year cannot express it) | LA-JUST-03, LA-RENT-01..04: 1978 → 1978-10-01 ("first built on or before October 1, 1978"; guide §4.1 treats it as the certificate date) |
+| Review flags (step 8, `data/review_flags.yaml`) | `conflict_flag` + note for open questions of guide §9 | BRK-ALG-P1 (Berkeley ch. 13.63 effective date) |
+
+`data/test_rule_map.yaml` maps every rule id of `dev/change_tests.json` to ours; `smoke-check`
+verifies each mapped id exists.
+
+## Responsible design
+
+**Manifest-attested rules (`out/rules_attested.json`).** Three laws named by the starter pack
+have no text in the corpus: the Hoboken and Jersey City algorithmic rent-setting ordinances
+(T2, T3) and the struck Massachusetts rent-control ballot question (T5). The corpus was searched
+for "Hoboken", "Jersey City", "218-12" and "158" near algorithm/software/rent-setting wording;
+the only hit is the FAIR Act's findings (D069: Hoboken studio rents up 61 percent), which
+describes no local ordinance, so there was nothing to re-extract. Instead of inventing text,
+`extractor/attested.py` builds one record per such law from `data/test_rule_map.yaml`, the
+manifest's link-only rows and `dev/change_tests.json`:
+
+* `evidence_type: "manifest_only"`, `confidence: 0.3`; `quoted_span`, requirement and coverage
+  null. Citation and effective date only where the organizers' challenge brief (p.3) gives them:
+  Jersey City Code § 218-12, 2025-06; Hoboken Code ch. 158 Art. II, 2025-07 (`status_basis`:
+  "Challenge brief p.3 (organizer-provided); text not in corpus"). `sources` lists the
+  link-only documents (topical URL, or every link-only row of the jurisdiction when no URL names
+  the topic, as for Hoboken's ecode360 pages).
+* They are written **only** to `out/rules_attested.json`, never to `rules.json` (they cannot
+  meet the schema's quoted-span requirement), and Module B/C use them **only** for affected
+  address sets and conflict flags — never to state a requirement, a figure or a date.
+
+**Human review.** Every manual correction to the compiled coverage is an entry of
+`data/human_review.yaml`, and nothing else in the code or data changes a rule by hand. Each entry
+has an id (HR-NNN), the rule, the action (`set_scope`, `add_item`, or `merge_rule`, applied in
+Module A's normalize step so the merged rule leaves `rules.json`), a `quoted_span`, the reason,
+the reviewer (a role, not a name) and the date. Entries whose quoted span is not found verbatim
+in the rule's text are refused (compiler) or not applied (normalize); applied ids are recorded
+(`human_review_applied` in `data/compiled_exemptions.json`, `human review merges` in the normalize
+report), and each corrected item carries a "human review HR-NNN" note. Current entries: HR-001
+(MA-RENT-01 exemptions → other_law), HR-002 (CA-DEP-06 limited to ≤ 4 units), HR-003
+(CA-JUST-01, an exemption extracted as a standalone rule, folded into CA-JUST-02), HR-004
+(CA-JUST-03 demolition condition as unit_or_tenancy, stated in its explanation). When a rule
+changes only by gaining items (e.g. a merge), the compiler reuses the reviewed answers for the
+unchanged items and asks the model only about the new ones.
+`tests/test_human_review.py` runs the hour-16 flow (extract-doc of a new ordinance → compile →
+coverage) with an empty register to show a new document never needs an entry.
+
+**Building facts are never guessed.** Owner type and owner occupancy are always unknown;
+`year_built` stands in for the certificate-of-occupancy date only as a flagged approximation;
+unit counts inferred from use codes are ranges, and every inference names its basis in
+`data/use_code_map.yaml`.
+
+## Module B — building facts and jurisdictions
+
+```bash
+python -m resolver.cli facts      # -> data/building_facts.json (+ table and warnings)
+python -m resolver.cli geocode    # -> data/jurisdictions.json; reuses data/geocode_raw/ (--refresh to query again)
+```
+
+**Facts** (`resolver/facts.py`), per address, each with source and certainty:
+
+* `units`: `range` [min, max] (max null = open-ended), certainty `exact` (units column),
+  `parsed` (count in a NJ MOD-IV description: `3S-F-D-6U-NH` → 6; buildings separated by `/`
+  summed; `1OU` read as 10; `NUG` is a garage, not units), `range` (from the use code, e.g.
+  Boston `A/112` → 7–30, NJ class `4C` → 5+) or `unknown`. A column that contradicts the code is
+  kept with a warning (SF TIC A0398); a column equal to the description's commercial count is
+  replaced by the description (Hoboken A0227: `13B-93U-2C-G` → 93, not 2).
+* `year_built`, `co_year_approx` (approximate), `use_flags` (section8, coop, affordable, tic,
+  elderly, mixed_use, luxury), `owner_type` / `owner_occupied` (unknown).
+
+**Jurisdictions** (`resolver/geocode.py`): one Census batch request (`Public_AR_Current` /
+`Current_Current`; NJ rows sent without ZIP because the sample's NJ ZIPs are mostly mailing
+ZIPs of other cities or states), then one `geographies/coordinates` lookup per matched point
+for the incorporated place (the batch output has none), 4 at a time with retries. The stack
+holds state, county (informational), city = incorporated place in rules.json format
+("Jersey City city" → "Jersey City, NJ"), `match_quality` (exact / non_exact / no_match) and
+`source` (census / dataset_fallback, certainty low). The geocoder's place wins over the
+dataset city; every disagreement is listed in `discrepancies`.
+
+## Module B — coverage (three-valued)
+
+```bash
+python -m resolver.cli compile    # -> data/compiled_exemptions.json + data/compiled_exemptions_review.md
+python -m resolver.cli coverage --as-of 2026-10-01   # -> out/coverage.json + summary
+```
+
+**Compiling** (`resolver/compile_exemptions.py`, once per rule): coverage scalars and
+structured exemptions are translated by code into predicates over the building facts
+(`resolver/predicates.py`: units, year_built, co_date, building_age, use flags, use_class,
+owner_type, owner_occupied, `missing` leaves). Free text — `field: other` exemptions, the
+`exemptions` text, coverage notes, property types, and the building conditions inside
+owner-occupied / owner-type exemptions ("owner-occupied two- or three-family dwellings") — goes
+to a small model (`COMPILE_MODEL`, default `claude-haiku-4-5`, prompt
+`prompts/compile_exemptions.md`) through tool use; answers are validated (grammar, one result
+per item, no negated or always-true exemption) and retried with the rejection reason. Every
+item gets a scope: `building` (evaluated), `unit_or_tenancy` (caveat: tenant, unit, product or
+transaction), `other_law` (depends on another law's coverage; deferred to precedence, B3),
+`duplicate` (free text restating a structured exemption), or `review` (free-text coverage
+conditions and exemptions that restate the rule's own scope — the small model read inclusive
+examples and exemption qualifiers as restrictions, so these are shown for review, never
+evaluated). Deterministic scope hints (`SCOPE_HINTS`) correct the model on recurring cases. The
+raw answers are versioned in `data/compiled_exemptions.json`; reproducing reassembles them with
+no API call (cost of a full compile ≈ $0.42).
+
+**Evaluating** (`resolver/coverage.py`): Kleene T/F/U. Rules match by jurisdiction stack (state
+rule → same state, city rule → same city). Units are intervals; the certificate-of-occupancy
+date is the interval of the building's year (a cutoff inside it → unknown); the rolling
+building-age cutoff likewise; owner facts are always U unless another term decides.
+`coverage` = not_covered (a condition is F) / exempt (an exemption is T) / covered / unknown,
+with `reasons` (condition, value used, fact source, result), `missing_facts`, caveats, deferred
+other-law items and `confidence_coverage` (×0.9 unit range or fallback city, ×0.8
+certificate-date proxy, ×0.9 special-status presumption).
+
+**Special-status presumption** (team decision B2, `PRESUME_SPECIAL_STATUS=true` by default):
+exemptions and conditions that need a recorded or documented status — deed or regulatory
+affordability restriction, HUD subsidy (Section 8/202/811…), nonprofit cooperative, government or
+university owner, institutional or care use, single-sex designation, condo / co-op / fee-simple
+conversion — are marked `special_status` at compile time (regex `SPECIAL_STATUS` OR a one-call
+LLM classification stored in `special_status_llm`). At evaluation their unknown status leaves
+are presumed false unless a use flag in the data shows the status (Boston A/125 → section8,
+A/118 → elderly, NJ "CO-OP" / "AFFORDABL"), and the result carries "presumed: no evidence of
+<status> in assessor data". Generic owner type (natural person vs entity), owner occupancy,
+cutoff-year and missing units / year built are never presumed. Manual corrections live only
+in the human review register (see Responsible design → Human review).
+
+## Module B — lookups (results per address)
+
+```bash
+python -m resolver.cli lookup --as-of 2026-10-01                    # all 500 -> out/lookups.json + out/lookups_full.json
+python -m resolver.cli lookup --as-of 2026-10-01 --address A0016    # readable summary by category (demo)
+```
+
+`resolver/results.py` combines the rule's status at the query date (Module A `status.py`) with
+its coverage: failed or not_covered/exempt → omitted (reason kept in `lookups_full.json`);
+pending → `pending`; not yet effective → `not_yet_effective`; in force → `applies` / `unknown`.
+Precedence: a rule that yields to a covered, in-force rule of the address (Module A
+"[Yields to]" / "[Takes precedence over]", or a B2 `other_law` exemption resolved through
+`data/other_law_map.yaml`) becomes `superseded`, naming the rule that governs; if that rule is
+only unknown, both are reported with "may yield to". Rules defined only as "for units covered by
+<law>" (LA-RENT-05, LA-JUST-04/05) follow that law's coverage-defining rules. Preemption the
+other way (FAIR Act vs Hoboken/Jersey City bans, NJ-RENT-03 vs JC-RENT-01) is never superseded:
+both carry `conflict_flag` and a review note. `conflict_flag` means a legal conflict only (the
+rule's own Module A flag, or a preemption conflict at the address); a combined confidence (rule ×
+coverage × geocoding, fallback ×0.85) below 0.5 sets `needs_review` in `lookups_full.json`
+instead. When a rule prevails over R it also prevails over the other in-force rules with R's
+base citation and category (e.g. every Cal. Civ. Code § 1946.2 rule under SF's just cause).
+Explanations are deterministic: requirement, why (facts used, governing rule, effective date,
+"pending bill, not law", or the missing fact), presumptions/notes, then source, retrieval date,
+as-of date and "Not legal advice." `lookups.json` holds only rules.json ids (validated);
+manifest-attested rules appear only in `lookups_full.json`.
+
+## Module C — change tracking
+
+```bash
+python -m resolver.cli changes        # T1-T5 -> out/changes.json + out/changes_full.json + dashboard (~3 s)
+python -m resolver.cli changes --new-doc path/to/ordinance.txt --jurisdiction "Cambridge, MA"   # hour 16 -> T6
+```
+
+`resolver/changes.py` reuses `results.py` lookups at any dates (`diff(address, rules, before,
+after)`, attested rules included) and maps the change tests through `data/test_rule_map.yaml`.
+Affected = the rule's result changes between the two dates (as_of: T1, T3); is applies / unknown
+/ not_yet_effective (boundary: T2, with the attested Hoboken and Jersey City bans); is pending
+(T4); or an in-force rent cap exists (negative: T5, empty — c. 40P is a ban, not a cap).
+`conflict_flag_address_ids` are affected addresses whose test-rule result carries
+`conflict_flag`. The dashboard checks the expected counts (T1 250 CA, T2 40 / 50 / 0, T3 140 NJ
+with 90 flagged, T4 110 pending, T5 empty and IP 25-21 failed).
+
+`--new-doc` runs extract-doc (Module A), compiles the new rules in memory (the versioned compile
+snapshot is not written), and reports each new rule's affected addresses at the default query
+date and the day after its effective date as entry `T6`. Rehearsal with
+`tests/fixtures/fake_cambridge_ordinance.txt`: CAM-ALG-01 not_yet_effective on 2026-10-01, applies
+from 2027-03-14 at 45 Cambridge addresses (the 5 with fewer than 6 units are not covered), none
+elsewhere; ≈ 30 s (extract-doc ≈ 17 s, compile ≈ 11 s). To undo: delete
+`corpus/new/<doc_id>.*`, then `python -m extractor.cli reproduce` and `python -m resolver.cli changes`.
 
 ## Tests
 
 ```bash
-python -m pytest -q        # offline; the API client is never built
+python -m pytest -q        # offline; the API client is never built, no Census calls
 ```

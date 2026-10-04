@@ -47,11 +47,11 @@ citations:
   - {id: brk-13-63, label: "Berkeley Mun. Code ch. 13.63", jurisdiction: "Berkeley, CA", category: algorithmic_rent_setting,
      patterns: ['13\.63']}
   - {id: sna-ns-3090, label: "Santa Ana Ordinance NS-3090", jurisdiction: "Santa Ana, CA", category: null,
-     patterns: ['NS-?3090'], note: "jurisdiction inferred from Santa Ana's NS- ordinance numbering; not in corpus text"}
-  - {id: hob-218-12, label: "Hoboken Code § 218-12", jurisdiction: "Hoboken, NJ", category: null,
-     patterns: ['218-12'], note: "jurisdiction inferred (Hoboken code, ecode360); not in corpus text"}
-  - {id: nwk-ch158, label: "Newark Code ch. 158", jurisdiction: "Newark, NJ", category: null,
-     patterns: ['ch(apter|\.)? ?158\b'], note: "jurisdiction inferred (Newark code, ecode360); not in corpus text"}
+     patterns: ['NS-?3090']}
+  - {id: jc-218-12, label: "Jersey City Code § 218-12", jurisdiction: "Jersey City, NJ", category: null,
+     patterns: ['218-12']}
+  - {id: hob-ch158, label: "Hoboken Code ch. 158", jurisdiction: "Hoboken, NJ", category: null,
+     patterns: ['ch(apter|\.)? ?158\b']}
   - {id: nj-fair-act, label: "P.L.2026, c.43 (NJ FAIR Act)", jurisdiction: "NJ", category: algorithmic_rent_setting,
      patterns: ['P\.L\. ?2026, ?c\. ?43\b', 'FAIR Act']}
   - {id: ma-s2983-h5222, label: "MA S.2983 / H.5222", jurisdiction: "MA", category: algorithmic_rent_setting,

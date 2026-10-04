@@ -1,0 +1,35 @@
+# Laws that other rules refer to ("units subject to the RSO", "housing subject to stricter local
+# rent control"...). resolver/results.py uses it to resolve compiled items of scope other_law
+# (and rules whose only coverage is "applies to units covered by <law>").
+#
+#   pattern:      regex on the compiled item's text that names the law
+#   jurisdiction / level / citation / category: which rules of the address ARE that law
+#                 (category omitted = same category as the referring rule)
+# A rule that itself depends on another law never serves as a target (no circular coverage).
+
+laws:
+  - id: la_rso
+    label: "the Los Angeles Rent Stabilization Ordinance (RSO)"
+    pattern: "\\bRSO\\b|Rent Stabilization Ordinance"
+    jurisdiction: "Los Angeles, CA"
+    citation: "^L\\.A\\. Mun\\. Code (ch\\. XV|§ 151)"
+  - id: la_jco
+    label: "the Los Angeles Just Cause Ordinance (JCO)"
+    pattern: "\\bJCO\\b|(?-i:Just Cause Ordinance)"
+    jurisdiction: "Los Angeles, CA"
+    citation: "^(Just Cause Ordinance|L\\.A\\. Mun\\. Code § 165)"
+  - id: berkeley_rent_ordinance
+    label: "the Berkeley Rent Ordinance"
+    pattern: "Berkeley'?s? Rent Ordinance|the Rent Ordinance"
+    jurisdiction: "Berkeley, CA"
+    citation: "^Berkeley Mun\\. Code ch\\. 13\\.76"
+  - id: local_rent_control
+    label: "local rent control"
+    pattern: "local rent (or price )?control|stricter local rent"
+    level: city
+    category: rent_increase_limits
+  - id: local_just_cause
+    label: "a local just cause ordinance"
+    pattern: "local just cause"
+    level: city
+    category: just_cause_eviction

@@ -11,7 +11,7 @@ from extractor.conflicts import detect_conflicts
 from extractor.export import _key_value
 from extractor.models import Coverage, LegalStage
 from extractor.normalize import (
-    apply_defaults, base_citation, kv_equal, normalize_citation, normalize_rules, preempts,
+    apply_defaults, base_citation, kv_equal, normalize_citation, normalize_rules, preempts, upgrade_legacy_id,
 )
 from extractor.status import compute_status
 
@@ -119,7 +119,63 @@ def test_ids_pending_failed_prefixes():
              rule("D2#0", jurisdiction="MA", stage="bill_failed", citation="MA H.3744"),
              rule("D3#0", jurisdiction="MA", stage="enacted", citation="M.G.L. c. 186, § 15B")]
     out, _ = normalize_rules(rules, DOCS)
-    assert sorted(r.team_rule_id for r in out) == ["MA-ALGO-01", "MA-ALGO-F01", "MA-ALGO-P01"]
+    assert sorted(r.team_rule_id for r in out) == ["MA-ALG-01", "MA-ALG-F1", "MA-ALG-P1"]
+
+
+@pytest.mark.parametrize("old, new", [
+    ("MA-ALGO-P01", "MA-ALG-P1"), ("MA-RENT-F01", "MA-RENT-F1"), ("SF-ALGO-H01", "SF-ALG-H1"),
+    ("CA-ALGO-01", "CA-ALG-01"), ("LA-RENT-04", "LA-RENT-04"), ("MA-ALG-P2", "MA-ALG-P2"),
+])
+def test_upgrade_legacy_id(old, new):
+    assert upgrade_legacy_id(old) == new
+
+
+def test_legacy_existing_ids_are_upgraded_and_kept():
+    rules = [rule("D1#0", jurisdiction="MA", stage="bill_pending", citation="MA S.2983"),
+             rule("D2#0", jurisdiction="MA", stage="bill_pending", citation="MA H.5222")]
+    out, _ = normalize_rules(rules, DOCS, existing_ids={"D1#0": "MA-ALGO-P02", "D2#0": "MA-ALGO-P01"})
+    assert {r.uid: r.team_rule_id for r in out} == {"D1#0": "MA-ALG-P2", "D2#0": "MA-ALG-P1"}
+
+
+# --- certificate of occupancy (guide §4.1) ------------------------------------------------
+
+
+def _cov(**kw):
+    return Coverage(**{**COV, **kw})
+
+
+@pytest.mark.parametrize("text, expected", [
+    # full-date cutoff stated as "built" (L.A. RSO)
+    ("RSO units: first built on or before October 1, 1978.", date(1978, 10, 1)),
+    # certificate of occupancy mentioned, "before" -> day before
+    ("Units with a certificate of occupancy issued before June 14, 1979.", date(1979, 6, 13)),
+    # "after" phrases state the exempt side: not a cutoff of this kind
+    ("Units with a Certificate of Occupancy after June 13, 1979 are exempt.", None),
+    # December 31 without a CO mention: a year expresses it, keep year_built_max
+    ("Buildings built on or before December 31, 1978.", None),
+    # an unrelated date in the same year is ignored (luxury exemption rent date)
+    ("Built on or before October 1, 1978. Exemption if rent charged on or before May 31, 1978.",
+     date(1978, 10, 1)),
+])
+def test_certificate_of_occupancy_conversion(text, expected):
+    y = (expected or date(1978, 1, 1)).year
+    r = rule("D1#0", jurisdiction="Los Angeles, CA", level="city", category="rent_increase_limits",
+             citation="L.A. Mun. Code ch. XV", coverage=_cov(year_built_max=y, notes=text))
+    out, rep = normalize_rules([r], DOCS)
+    c = out[0].coverage
+    if expected:
+        assert (c.certificate_of_occupancy_on_or_before, c.year_built_max) == (expected, None)
+        assert rep.co_conversions and rep.co_conversions[0][0] == out[0].team_rule_id
+    else:
+        assert (c.certificate_of_occupancy_on_or_before, c.year_built_max) == (None, y)
+
+
+def test_review_flag_berkeley_pending_alg():
+    r = rule("D1#0", jurisdiction="Berkeley, CA", level="city", stage="bill_pending",
+             citation="Berkeley Mun. Code § 13.63.030")
+    out, rep = normalize_rules([r], DOCS)
+    assert out[0].conflict_flag and "§9" in out[0].conflict_note
+    assert rep.review_flags == [("BRK-ALG-P1", "berkeley-alg-effective-date")]
 
 
 # --- defaults & status (T1 / T3) -----------------------------------------------------------
