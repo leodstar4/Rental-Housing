@@ -15,6 +15,7 @@ const es = {
     appName: "Renta MX",
     tagline: "Rentar y vivir en México, con los requisitos legales a la vista",
     navSearch: "Buscar zona",
+    navMap: "Mapa",
     navPublish: "Publicar vivienda",
     navSources: "Fuentes",
     navPrevious: "Proyecto anterior (EE. UU.)",
@@ -156,6 +157,40 @@ const es = {
     statesError: "No pudimos cargar la lista de estados.",
   },
 
+  map: {
+    sectionTitle: "Explore la Ciudad de México en el mapa",
+    sectionIntro:
+      "Explore los municipios y alcaldías publicados. Cada punto marca una ubicación oficial de INEGI, no la dirección de ninguna vivienda.",
+    pageTitle: "Mapa de zonas",
+    pageIntro: "Elija un estado y explore sus municipios en el mapa, con el número de viviendas publicadas en cada uno.",
+    stateLabel: "Estado",
+    searchLabel: "Buscar municipio o alcaldía",
+    searchPlaceholder: "Escriba un nombre, p. ej. Cuauhtémoc",
+    ariaLabel: (state: string) => `Mapa de municipios de ${state}`,
+    listLabel: "Lista de zonas (alternativa al mapa)",
+    withCoords: "Zonas en el mapa",
+    withoutCoordsTitle: "Sin coordenada oficial",
+    withoutCoordsHelp:
+      "Estas zonas no tienen una coordenada oficial de INEGI en el corpus, así que no aparecen en el mapa. Puede abrirlas desde aquí.",
+    noResults: (q: string) => `Ninguna zona coincide con “${q}”.`,
+    resultsCount: (n: number) => (n === 1 ? "1 zona encontrada" : `${n} zonas encontradas`),
+    viewZone: "Ver zona",
+    listings: (n: number) =>
+      n === 0 ? "Sin viviendas publicadas" : n === 1 ? "1 vivienda publicada" : `${n} viviendas publicadas`,
+    medianHint: (amount: string) => `Mediana de anuncios: ${amount}/mes`,
+    represents: {
+      cabecera_municipal: "Punto: cabecera municipal",
+      localidad_mas_poblada: "Punto: localidad más poblada",
+      other: "Ubicación oficial",
+    },
+    coordSource: (source: string) => `Fuente de la coordenada: ${source}`,
+    attribution: "© Colaboradores de OpenStreetMap",
+    webglUnavailable:
+      "Su navegador no puede mostrar el mapa interactivo. Use la lista de zonas de abajo.",
+    loadError: "No pudimos cargar las zonas de este estado.",
+    empty: "No hay zonas para mostrar en este estado.",
+  },
+
   listingsCount: (n: number) =>
     n === 0 ? "Sin viviendas publicadas" : n === 1 ? "1 vivienda publicada" : `${n} viviendas publicadas`,
 
@@ -194,6 +229,30 @@ const es = {
       `${n} requisito${n === 1 ? "" : "s"} verificado${n === 1 ? "" : "s"} en ${cats} categoría${cats === 1 ? "" : "s"}`,
     requirementsCta: "Ver todos los requisitos",
     notFound: "No encontramos este municipio en el catálogo oficial.",
+    price: {
+      title: "Cuánto cuesta rentar aquí",
+      intro: "Tres cosas distintas: lo que piden los anuncios de Renta MX, un dato estadístico del INEGI y los requisitos de la ley.",
+      listingsHeading: "Precio de los anuncios",
+      listingsBadge: (n: number) => `Publicado por usuarios de Renta MX · ${n} vivienda${n === 1 ? "" : "s"}`,
+      min: "Mínimo",
+      median: "Mediana",
+      max: "Máximo",
+      asOf: (date: string) => `Calculado el ${date}`,
+      notEnoughTitle: "Aún no hay suficientes anuncios",
+      notEnough: (n: number, needed: number) =>
+        `Hay ${n} vivienda${n === 1 ? "" : "s"} publicada${n === 1 ? "" : "s"}. Mostramos precios solo a partir de ${needed} para no dar una cifra engañosa con una muestra tan pequeña.`,
+      noListings:
+        "Nadie ha publicado una vivienda en esta zona todavía. No inventamos precios ni copiamos anuncios de otros portales.",
+      statHeading: "Viviendas en renta (dato estadístico)",
+      statLabel: "Porcentaje de viviendas alquiladas",
+      statCaveat: "Es un dato estadístico del INEGI, no un precio.",
+      statSource: (doc: string, year: number) => `Fuente: ${doc} (${year})`,
+      lowPrecision: "Precisión baja: estimación de muestra con coeficiente de variación alto; tómela como referencia.",
+      statUnavailable: "No hay un dato oficial de viviendas en renta para este municipio.",
+      lawHeading: "Lo que dice la ley",
+      lawBody: "Depósito, duración mínima, aumentos y más: con su cita literal verificada.",
+      lawCta: "Ver requisitos legales",
+    },
   },
 
   listingCard: {
@@ -375,6 +434,16 @@ const es = {
     currentHash: "Huella actual",
     allSignedTitle: "Contrato firmado por todas las partes",
     allSignedBody: "Descargue la constancia y guarde una copia impresa o en PDF.",
+    downloadEvidence: "Descargar constancia (JSON)",
+    downloadEvidenceHint: "Registro técnico de las firmas: texto, huellas y cadena de evidencia.",
+    signLinksTitle: "Enlaces de firma por parte",
+    signLinksBody:
+      "Cada parte firma con su propio enlace. El enlace lleva un token de un solo uso en el fragmento (#), no en la dirección visible; cópielo y compártalo solo con esa persona.",
+    signLinkFor: (role: string) => `Enlace para ${role}`,
+    copySignLink: "Copiar enlace de firma",
+    signLinkCopied: "Enlace copiado",
+    tokenShownOnce: "Estos tokens se muestran una sola vez. Si cierra la página no podrá recuperarlos.",
+    noEmailsNotice: "Esta demo no envía correos: usted comparte cada enlace manualmente.",
   },
 
   sign: {
@@ -406,6 +475,7 @@ const es = {
     scopeNotIncluded:
       "Esta demo no emite firma electrónica avanzada (e.firma del SAT) ni constancia de conservación conforme a la NOM-151 de un Prestador de Servicios de Certificación.",
     scopeLegalLink: "Ver fundamento sobre firma electrónica",
+    scopeSourcesTitle: "Fundamento sobre firma electrónica",
     scopeNoSource:
       "Todavía no tenemos fuentes verificadas sobre el alcance legal de la firma electrónica. No lo interpretamos por usted; consulte a un profesional.",
     consent: (hash: string) =>
@@ -424,6 +494,8 @@ const es = {
     errConflict: (role: string) => `Ya existe una firma como ${role} en este contrato.`,
     errHashChanged:
       "El contrato cambió mientras usted lo revisaba. Recargue la página y lea la nueva versión antes de firmar.",
+    errToken: "El enlace o token de firma no es válido para este rol. Pida a quien generó el contrato que le reenvíe su enlace.",
+    errValidation: "Revise los datos de la firma e inténtelo de nuevo.",
     errSubmit: "No pudimos registrar su firma. No se firmó nada; inténtelo de nuevo.",
   },
 
@@ -481,6 +553,7 @@ const en: MxCopy = {
     appName: "Renta MX",
     tagline: "Rent and live in Mexico, with the legal requirements in plain view",
     navSearch: "Find an area",
+    navMap: "Map",
     navPublish: "List a home",
     navSources: "Sources",
     navPrevious: "Previous project (U.S.)",
@@ -621,6 +694,40 @@ const en: MxCopy = {
     statesError: "We could not load the list of states.",
   },
 
+  map: {
+    sectionTitle: "Explore Mexico City on the map",
+    sectionIntro:
+      "Explore the listed municipalities and boroughs. Each point marks an official INEGI location, not the address of any home.",
+    pageTitle: "Area map",
+    pageIntro: "Choose a state and explore its municipalities on the map, with the number of homes listed in each.",
+    stateLabel: "State",
+    searchLabel: "Search municipality or borough",
+    searchPlaceholder: "Type a name, e.g. Cuauhtémoc",
+    ariaLabel: (state: string) => `Map of municipalities in ${state}`,
+    listLabel: "Zone list (map alternative)",
+    withCoords: "Zones on the map",
+    withoutCoordsTitle: "No official coordinate",
+    withoutCoordsHelp:
+      "These zones have no official INEGI coordinate in the corpus, so they do not appear on the map. You can open them from here.",
+    noResults: (q: string) => `No zone matches “${q}”.`,
+    resultsCount: (n: number) => (n === 1 ? "1 zone found" : `${n} zones found`),
+    viewZone: "View zone",
+    listings: (n: number) =>
+      n === 0 ? "No homes listed" : n === 1 ? "1 home listed" : `${n} homes listed`,
+    medianHint: (amount: string) => `Listings median: ${amount}/mo`,
+    represents: {
+      cabecera_municipal: "Point: municipal seat",
+      localidad_mas_poblada: "Point: most populous locality",
+      other: "Official location",
+    },
+    coordSource: (source: string) => `Coordinate source: ${source}`,
+    attribution: "© OpenStreetMap contributors",
+    webglUnavailable:
+      "Your browser cannot display the interactive map. Use the zone list below.",
+    loadError: "We could not load the zones for this state.",
+    empty: "There are no zones to show for this state.",
+  },
+
   listingsCount: (n: number) => (n === 0 ? "No homes listed" : n === 1 ? "1 home listed" : `${n} homes listed`),
 
   zone: {
@@ -658,6 +765,30 @@ const en: MxCopy = {
       `${n} verified requirement${n === 1 ? "" : "s"} in ${cats} categor${cats === 1 ? "y" : "ies"}`,
     requirementsCta: "See all requirements",
     notFound: "We could not find this municipality in the official catalog.",
+    price: {
+      title: "What it costs to rent here",
+      intro: "Three different things: what Renta MX listings ask, an INEGI statistic, and what the law requires.",
+      listingsHeading: "Listing prices",
+      listingsBadge: (n: number) => `Posted by Renta MX users · ${n} home${n === 1 ? "" : "s"}`,
+      min: "Lowest",
+      median: "Median",
+      max: "Highest",
+      asOf: (date: string) => `Computed on ${date}`,
+      notEnoughTitle: "Not enough listings yet",
+      notEnough: (n: number, needed: number) =>
+        `There ${n === 1 ? "is" : "are"} ${n} listed home${n === 1 ? "" : "s"}. We only show prices from ${needed} up, so a tiny sample does not give a misleading figure.`,
+      noListings:
+        "No one has listed a home in this area yet. We do not invent prices or copy listings from other portals.",
+      statHeading: "Rented homes (statistic)",
+      statLabel: "Share of rented dwellings",
+      statCaveat: "This is an INEGI statistic, not a price.",
+      statSource: (doc: string, year: number) => `Source: ${doc} (${year})`,
+      lowPrecision: "Low precision: sample estimate with a high coefficient of variation; treat it as a reference.",
+      statUnavailable: "There is no official rented-homes figure for this municipality.",
+      lawHeading: "What the law says",
+      lawBody: "Deposit, minimum term, increases and more — with their verified literal quote.",
+      lawCta: "See legal requirements",
+    },
   },
 
   listingCard: {
@@ -836,6 +967,16 @@ const en: MxCopy = {
     currentHash: "Current fingerprint",
     allSignedTitle: "Lease signed by all parties",
     allSignedBody: "Download the signature record and keep a printed or PDF copy.",
+    downloadEvidence: "Download record (JSON)",
+    downloadEvidenceHint: "Technical record of the signatures: text, fingerprints and evidence chain.",
+    signLinksTitle: "Signing links by party",
+    signLinksBody:
+      "Each party signs with their own link. The link carries a one-time token in the fragment (#), not in the visible address; copy it and share it only with that person.",
+    signLinkFor: (role: string) => `Link for ${role}`,
+    copySignLink: "Copy signing link",
+    signLinkCopied: "Link copied",
+    tokenShownOnce: "These tokens are shown only once. If you close the page you cannot recover them.",
+    noEmailsNotice: "This demo does not send emails: you share each link manually.",
   },
 
   sign: {
@@ -867,6 +1008,7 @@ const en: MxCopy = {
     scopeNotIncluded:
       "This demo does not issue an advanced electronic signature (SAT e.firma) or a NOM-151 preservation certificate from an accredited Certification Services Provider.",
     scopeLegalLink: "See legal basis on electronic signatures",
+    scopeSourcesTitle: "Legal basis on electronic signatures",
     scopeNoSource:
       "We do not yet have verified sources on the legal scope of electronic signatures. We do not interpret it for you; please consult a professional.",
     consent: (hash: string) =>
@@ -884,6 +1026,8 @@ const en: MxCopy = {
       n === 1 ? "1 more signature is needed to complete the lease." : `${n} more signatures are needed to complete the lease.`,
     errConflict: (role: string) => `There is already a signature as ${role} on this lease.`,
     errHashChanged: "The lease changed while you were reviewing it. Reload the page and read the new version before signing.",
+    errToken: "The signing link or token is not valid for this role. Ask whoever generated the lease to resend your link.",
+    errValidation: "Please review the signature details and try again.",
     errSubmit: "We could not record your signature. Nothing was signed; please try again.",
   },
 
@@ -969,6 +1113,11 @@ export function formatMXN(amount: number, lang: Lang): string {
 /** Format an integer statistic (e.g. INEGI counts) with locale grouping. */
 export function formatInt(value: number, lang: Lang): string {
   return new Intl.NumberFormat(lang === "es" ? "es-MX" : "en-US", { maximumFractionDigits: 0 }).format(value);
+}
+
+/** Format a percentage statistic (e.g. INEGI rented-share), up to one decimal, with a "%" sign. */
+export function formatPct(value: number, lang: Lang): string {
+  return `${new Intl.NumberFormat(lang === "es" ? "es-MX" : "en-US", { maximumFractionDigits: 1 }).format(value)}%`;
 }
 
 /** First 8 hex chars of a SHA-256, grouped for reading aloud (e.g. "3f9a 21c0"). */

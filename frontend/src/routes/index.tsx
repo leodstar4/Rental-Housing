@@ -7,6 +7,7 @@ import { apiGet, type MxStates, type MxZones, type MxZoneSearchItem } from "@/li
 import { useI18n } from "@/lib/i18n";
 import { setDisclaimer } from "@/components/Shell";
 import { CoverageBadge, MxError, useMx } from "@/components/mx/MxShared";
+import { ZoneMapExplorer } from "@/routes/mapa";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -48,6 +49,14 @@ function LandingPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section aria-labelledby="map-title" className="space-y-4">
+        <div className="max-w-3xl space-y-1">
+          <h2 id="map-title" className="text-xl font-bold text-primary">{mx.map.sectionTitle}</h2>
+          <p className="text-muted-foreground">{mx.map.sectionIntro}</p>
+        </div>
+        <ZoneMapExplorer cveEnt="09" stateName="Ciudad de México" />
       </section>
 
       <section aria-labelledby="states-title" className="space-y-4">

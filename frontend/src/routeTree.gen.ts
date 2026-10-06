@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChangesRouteImport } from './routes/changes'
 import { Route as FuentesRouteImport } from './routes/fuentes'
+import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as UsRouteImport } from './routes/us'
@@ -33,6 +34,11 @@ const ChangesRoute = ChangesRouteImport.update({
 const FuentesRoute = FuentesRouteImport.update({
   id: '/fuentes',
   path: '/fuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicarRoute = PublicarRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/changes': typeof ChangesRoute
   '/fuentes': typeof FuentesRoute
+  '/mapa': typeof MapaRoute
   '/publicar': typeof PublicarRoute
   '/transparency': typeof TransparencyRoute
   '/us': typeof UsRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/changes': typeof ChangesRoute
   '/fuentes': typeof FuentesRoute
+  '/mapa': typeof MapaRoute
   '/publicar': typeof PublicarRoute
   '/transparency': typeof TransparencyRoute
   '/us': typeof UsRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/changes': typeof ChangesRoute
   '/fuentes': typeof FuentesRoute
+  '/mapa': typeof MapaRoute
   '/publicar': typeof PublicarRoute
   '/transparency': typeof TransparencyRoute
   '/us': typeof UsRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/changes'
     | '/fuentes'
+    | '/mapa'
     | '/publicar'
     | '/transparency'
     | '/us'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/changes'
     | '/fuentes'
+    | '/mapa'
     | '/publicar'
     | '/transparency'
     | '/us'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/changes'
     | '/fuentes'
+    | '/mapa'
     | '/publicar'
     | '/transparency'
     | '/us'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChangesRoute: typeof ChangesRoute
   FuentesRoute: typeof FuentesRoute
+  MapaRoute: typeof MapaRoute
   PublicarRoute: typeof PublicarRoute
   TransparencyRoute: typeof TransparencyRoute
   UsRoute: typeof UsRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/fuentes'
       fullPath: '/fuentes'
       preLoaderRoute: typeof FuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/publicar': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChangesRoute: ChangesRoute,
   FuentesRoute: FuentesRoute,
+  MapaRoute: MapaRoute,
   PublicarRoute: PublicarRoute,
   TransparencyRoute: TransparencyRoute,
   UsRoute: UsRoute,

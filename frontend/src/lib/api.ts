@@ -185,7 +185,7 @@ export const MX_ROLES: readonly MxRole[] = ["arrendador", "arrendatario", "fiado
 
 export interface MxHealth {
   status: "ok" | "degradado";
-  store: "efimero";
+  store: "efimero" | "sqlite" | "postgres";
   store_started_at: string;
   store_notice: string;
   listings: number;
@@ -210,6 +210,24 @@ export interface MxStat {
   precision_baja?: boolean;
 }
 
+/**
+ * Honest price summary from user-published listings (`basis: "viviendas_publicadas"`), never a
+ * scraped or invented price. `min`/`median`/`max` appear only when `has_stats` is true (count >=
+ * `min_count_for_stats`); otherwise `reason` says why there is no price yet.
+ */
+export interface MxPriceSummary {
+  count: number;
+  currency: "MXN";
+  basis: "viviendas_publicadas";
+  min_count_for_stats: number;
+  as_of: string;
+  has_stats: boolean;
+  reason?: string;
+  min?: number;
+  median?: number;
+  max?: number;
+}
+
 export interface MxStateRow {
   cve_ent: string;
   name: string;
@@ -219,6 +237,7 @@ export interface MxStateRow {
   listings_count: number;
   municipios: number;
   stats?: Record<string, MxStat>;
+  price_summary?: MxPriceSummary;
 }
 
 export interface MxStates { count: number; states: MxStateRow[]; disclaimer: string }
@@ -247,7 +266,7 @@ export interface MxZone {
   coord?: MxCoord;
 }
 
-export interface MxZoneSearchItem extends MxZone { listings_count: number; empty_state: boolean }
+export interface MxZoneSearchItem extends MxZone { listings_count: number; empty_state: boolean; price_summary?: MxPriceSummary }
 
 export interface MxZones {
   cve_ent: string; state: string; legal_coverage: MxCoverage; q: string | null; count: number;
@@ -290,6 +309,7 @@ export interface MxZoneDetail {
   listings: MxListing[];
   listings_count: number;
   empty_state: boolean;
+  price_summary?: MxPriceSummary;
   requirements_summary: MxRequirementsSummary;
   listing_notice: string;
   disclaimer: string;

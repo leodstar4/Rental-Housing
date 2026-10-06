@@ -89,3 +89,65 @@
   h1, h2, h3 { font-family: var(--font-serif); letter-spacing: -0.01em; }
   :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
 }
+
+/* Print / Save as PDF — used by the contract page (/contrato/$id).
+   Hide the app chrome (header, nav, footer, buttons, forms, interactive panels) and print only the
+   document itself: title, status, full fingerprint, parties, clauses and the "Fundamento legal"
+   annex with URLs rendered as text. Clauses must not be split across pages. Elements the page tags
+   with Tailwind's `print:hidden` (header, nav, footer, forms, action buttons) are hidden here too. */
+@media print {
+  :root {
+    --background: #fff;
+    --foreground: #000;
+  }
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  /* App chrome rendered outside the print root. */
+  header,
+  nav,
+  footer,
+  form,
+  button,
+  [data-sidebar],
+  .print\:hidden {
+    display: none !important;
+  }
+  /* Let the main column use the full page width. */
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  [data-print-root] {
+    display: block !important;
+  }
+  /* Collapse the two-column grid so the document reads top to bottom. */
+  [data-print-root] .grid {
+    display: block !important;
+  }
+  /* Keep each clause / annex entry and the signatures together on one page. */
+  .print\:break-inside-avoid,
+  article,
+  blockquote {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  /* Blocks the page reveals only on paper. */
+  .print\:block {
+    display: block !important;
+  }
+}

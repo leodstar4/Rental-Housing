@@ -85,6 +85,132 @@ verificación de cita literal, evitando por completo el costo de tokens de extra
 
 ---
 
+## 5. Revisión de costos de las fases 0-4 (The Budgeter)
+
+Revisión de las superficies nuevas (zonas/precio, mapa, publicación, contratos, firma). Objetivo:
+confirmar que las fases 0-4 **no mueven la factura de inferencia de $0** y acotar el único costo
+marginal real (hosting). Evidencia reproducible, con comandos y su salida real en este árbol.
+
+### 5.1 Runtime sigue en $0 de LLM (verificado)
+
+Ni `mx/*.py` ni `api/mx.py` importan un SDK de modelo o un cliente de red; sus imports son solo
+stdlib, FastAPI y módulos `mx.*`.
+
+```
+$ grep -nE "anthropic|openai|elevenlabs|requests|httpx|urllib|socket|aiohttp" mx/*.py api/mx.py
+# (0 coincidencias)
+```
+
+Las fases nuevas son deterministas y puras:
+
+- **Precio por zona** (`mx/prices.py`): `listing_price_summary` es una función pura sobre los
+  anuncios que publican usuarios (`basis = "viviendas_publicadas"`), con `Decimal`; nunca scrapea
+  un portal ni inventa cifras, y oculta min/median/max con menos de `MIN_COUNT_FOR_STATS = 3`
+  registros sanos. El dato INEGI es estadístico, no precio, y se trata aparte.
+- **Mapa** (ver 5.2): el componente no llama a ningún backend propio; pinta solo coordenadas
+  oficiales INEGI ya versionadas.
+- **Contratos / firma** (`mx/contracts.py`, `mx/signatures.py`): plantillas fijas + SHA-256 local.
+
+Verificación de citas, offline y gratis (corre en el build de Render, falla el deploy si una cita
+no cuadra):
+
+```
+$ python -m mx.verify
+mx.verify: 229/229 citas verificadas, 85/85 documentos íntegros, 268 avisos  (ok=True)
+```
+
+> El corpus creció respecto al baseline del plan (195/82) porque otras etapas agregaron entidades;
+> el punto de costo no cambia: toda verificación es offline y $0.
+
+Pruebas offline (sin red, sin modelo), ambas en verde en este árbol:
+
+```
+$ python -m pytest -q
+429 passed in 33.02s
+
+$ cd frontend; bun run test
+Test Files  5 passed (5)
+     Tests  22 passed (22)
+```
+
+### 5.2 Mapa: tiles OSM sin clave ni facturación (con deuda anotada)
+
+`frontend/src/components/mx/MxMap.tsx` usa **maplibre-gl** (open source, sin SDK propietario) con
+tiles raster servidos directamente desde el *standard tile server* de OSM:
+
+```
+tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"]
+attribution: mx.map.attribution   // "© Colaboradores de OpenStreetMap" / "© OpenStreetMap contributors"
+```
+
+Ni Mapbox, ni MapTiler, ni Stadia, ni ningún servicio con `api_key` o facturación por carga
+(`grep -nE "mapbox|maptiler|stadia|access[_-]?token|api[_-]?key" frontend/src/components/mx` → 0).
+**Costo de servicio del mapa en la demo: $0.**
+
+**Deuda para producción (política de uso justo de OSM).** El tile server de OSMF es para
+desarrollo y volumen bajo, **no** para tráfico de producción (ver *OSM Tile Usage Policy*:
+atribución obligatoria —ya la cumplimos—, nada de descargas masivas/pre-fetch, un `User-Agent`
+identificable). Si Renta MX escala, la ruta recomendada es:
+
+1. un proveedor de tiles con plan gratuito y clave (MapTiler / Stadia / Protomaps) detrás de una
+   variable de entorno, o
+2. auto-hospedar tiles vectoriales (Protomaps `.pmtiles` en el bucket/estático), que es $0 de
+   servicio recurrente salvo el almacenamiento.
+
+Ambas no cambian el runtime Python (el mapa es 100 % cliente). Queda anotado como deuda; la demo
+no la necesita.
+
+### 5.3 Bundle del mapa: carga diferida confirmada
+
+maplibre se importa de forma **dinámica dentro de un `useEffect`** (es client-only: necesita
+`window`/WebGL), así que vive en su propio *chunk async* y **no entra en el bundle inicial**:
+
+```
+// MxMap.tsx
+const maplibregl = (await import("maplibre-gl")).default;
+await import("maplibre-gl/dist/maplibre-gl.css");
+```
+
+Evidencia del build (`cd frontend; bun run build`, Cloudflare/nitro target):
+
+- El entry principal **no contiene maplibre** (`Select-String index-*.js -Pattern maplibre` → `False`).
+- El chunk `MxMap-*.js` (6.3 KB) hace `import("./maplibre-gl-C4xRBlvl.js")`: la librería y su CSS
+  (`maplibre-gl-*.css`, 81 KB) solo se piden cuando una zona con coordenada oficial monta el mapa.
+- Hay fallback de lista navegable por teclado cuando no hay WebGL, así que un cliente sin WebGL
+  nunca descarga maplibre.
+- Dependencia pineada **exacta**: `"maplibre-gl": "6.12.0"` en `frontend/package.json` (sin `^`).
+
+Payload JS del cliente: 28 chunks, ~709.6 KB sin comprimir en total (code-split por ruta); el peso
+de maplibre está aislado tras el `import()` y no penaliza la carga de las páginas sin mapa.
+
+### 5.4 Hosting: Postgres/Render starter como disparador OPCIONAL
+
+El único costo recurrente posible. Hoy la demo corre en **Render free + store de archivos JSON
+efímero** (`mx/store.py` `JsonStore`), coherente con el proyecto US. `render.yaml` lo deja
+documentado y **comentado**: nada se activa por defecto.
+
+| Escenario | Config (`render.yaml` / `DATABASE_URL`) | Persistencia | Costo mensual (orden) |
+|---|---|---|---|
+| Demo (actual) | `plan: free`, `DATABASE_URL` sin definir | efímero (se pierde al reiniciar) | **$0** |
+| SQLite local | `DATABASE_URL=sqlite:///abs/path.db` | aún en disco efímero del free | $0 |
+| Producción | `plan: starter` + Render **managed Postgres** | persistente | de pago (plan starter + Postgres) |
+
+El disparador para pasar a Postgres es **conservar anuncios/contratos entre reinicios**, no un
+límite de inferencia. `mx/store.py` ya trae `SqlStore` (SQLite/`psycopg` perezoso) con la misma
+interfaz, así que el cambio es de configuración, no de código. Para cifras exactas de Render
+starter y su Postgres, consultar el tarifario vigente de Render (no se fija aquí para no inventar
+números).
+
+### 5.5 Conclusión de las fases 0-4
+
+Las fases 0-4 **no introducen ningún costo de LLM ni de servicios con clave**: runtime $0 de
+inferencia (verificado por `grep` y por pruebas offline en verde), mapa con tiles OSM sin clave y
+maplibre en carga diferida, y persistencia como palanca opcional de hosting. La única acción
+pendiente es de operación, no de costo de la demo: migrar los tiles a un proveedor con política de
+producción (y, si se quiere conservar datos, Postgres) cuando haya tráfico real.
+
+---
+
 *Conclusión: el pivote a Renta MX es neutral en costo de tokens. El runtime no usa LLM; la
 construcción tampoco gastó tokens de extracción porque las fuentes mexicanas se procesaron con
 descarga + extracción de texto + verificación de cita literal. El único costo recurrente es el

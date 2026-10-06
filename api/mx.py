@@ -21,12 +21,13 @@ from mx import data as mx_data
 from mx import paths
 from mx.contracts import build_contract, check_violations, missing_fields, plan_clauses
 from mx.models import ContractCreate, ListingCreate, ListingPublic, SignRequest
+from mx.prices import listing_price_summary
 from mx.ratelimit import RateLimiter
 from mx.requirements import SOLO_FEDERAL_NOTICE, coverage, item, view
 from mx.signatures import (EVIDENCE_NOTES, EVIDENCE_TITLE, SignatureError, make_evidence, mask_email, same_name,
                            sha256_hex, signature_status, validate_png)
 from mx.sources import public_doc
-from mx.store import JsonStore, StoreFull
+from mx.store import JsonStore, StoreFull, make_store
 
 MAX_BODY = 256 * 1024
 DISCLAIMER = {
@@ -41,6 +42,15 @@ STORE_NOTICE = {
     "en": "Demo: listings and contracts live on an ephemeral disk and are erased when the server restarts; "
           "download your record.",
 }
+PERSISTENT_STORE_NOTICE = {
+    "es": "Los anuncios y contratos se guardan en una base de datos; aun así, descargue su constancia de firma.",
+    "en": "Listings and contracts are kept in a database; even so, download your signature record.",
+}
+
+
+def store_notice(store, lang: str) -> str:
+    """The honest storage notice for the active backend: ephemeral disk vs persistent database."""
+    return STORE_NOTICE[lang] if getattr(store, "ephemeral", True) else PERSISTENT_STORE_NOTICE[lang]
 LISTING_NOTICE = {
     "es": "Anuncio publicado por un usuario. Renta MX no verifica la identidad de quien publica ni la titularidad "
           "del inmueble: verifique al arrendador y no realice pagos fuera de un acuerdo por escrito.",
@@ -61,7 +71,8 @@ def get_data() -> mx_data.MxData:
 
 @functools.lru_cache(maxsize=1)
 def _default_store() -> JsonStore:
-    return JsonStore(paths.store_dir())
+    # make_store picks SqlStore (sqlite/postgres) when DATABASE_URL is set, else the JSON store.
+    return make_store(paths.store_dir())
 
 
 def get_store() -> JsonStore:
@@ -193,11 +204,27 @@ def _counts(store: JsonStore) -> dict[tuple[str, str], int]:
     return out
 
 
-def _state_row(s, d: mx_data.MxData, counts: dict) -> dict:
+def _by_zone(store: JsonStore) -> dict[tuple[str, str], list[dict]]:
+    """Usable listings grouped by (cve_ent, cve_mun) in one pass (for price summaries)."""
+    out: dict[tuple[str, str], list[dict]] = {}
+    for r in store.list("listings"):
+        if _usable_listing(r):
+            out.setdefault((r["cve_ent"], r["cve_mun"]), []).append(r)
+    return out
+
+
+def _price_summary(listings: list[dict] | None, clock) -> dict:
+    return listing_price_summary(listings or [], now=clock())
+
+
+def _state_row(s, d: mx_data.MxData, counts: dict, price: dict | None = None) -> dict:
     n = sum(v for (e, _), v in counts.items() if e == s.cve_ent)
-    return {"cve_ent": s.cve_ent, "name": s.name, "abbr": s.abbr, **s.extra,
-            "legal_coverage": coverage(s.abbr, d.verified), "listings_count": n, "municipios": len(s.municipios),
-            "stats": s.stats}
+    row = {"cve_ent": s.cve_ent, "name": s.name, "abbr": s.abbr, **s.extra,
+           "legal_coverage": coverage(s.abbr, d.verified), "listings_count": n, "municipios": len(s.municipios),
+           "stats": s.stats}
+    if price is not None:
+        row["price_summary"] = price
+    return row
 
 
 def _requirements_summary(abbr: str | None, d: mx_data.MxData, lang: str) -> dict:
@@ -224,8 +251,8 @@ def mx_health(lang: str = "es", d: mx_data.MxData = Depends(get_data), store: Js
             "zones_states": len(d.zones.states) if d.zones else 0, "zones_error": d.zones_error,
             "clauses": len(d.clauses), "clauses_error": d.clauses_error}
     status = "ok" if d.zones and not d.clauses_error and d.report.ok else "degradado"
-    return {"status": status, "store": "efimero", "store_started_at": store.started_at,
-            "store_notice": STORE_NOTICE[lang], "listings": store.count("listings"),
+    return {"status": status, "store": getattr(store, "kind", "efimero"), "store_started_at": store.started_at,
+            "store_notice": store_notice(store, lang), "listings": store.count("listings"),
             "contracts": store.count("contracts"), "data": data, "disclaimer": DISCLAIMER[lang]}
 
 
@@ -262,36 +289,43 @@ def mx_privacy(lang: str = "es", d: mx_data.MxData = Depends(get_data)) -> dict:
 
 
 @router.get("/states")
-def mx_states(lang: str = "es", d: mx_data.MxData = Depends(get_data), store: JsonStore = Depends(get_store)) -> dict:
+def mx_states(lang: str = "es", d: mx_data.MxData = Depends(get_data), store: JsonStore = Depends(get_store),
+              clock=Depends(get_clock)) -> dict:
     lang = lang_of(lang)
-    z, counts = need_zones(d), _counts(store)
-    states = [_state_row(s, d, counts) for s in sorted(z.states.values(), key=lambda s: s.cve_ent)]
+    z, counts, by_zone = need_zones(d), _counts(store), _by_zone(store)
+    states = []
+    for s in sorted(z.states.values(), key=lambda s: s.cve_ent):
+        listings = [r for (e, _), rs in by_zone.items() if e == s.cve_ent for r in rs]
+        states.append(_state_row(s, d, counts, _price_summary(listings, clock)))
     return {"count": len(states), "states": states, "disclaimer": DISCLAIMER[lang]}
 
 
 @router.get("/zones")
 def mx_zones(cve_ent: str = Query(..., pattern=r"^\d{2}$"), q: str | None = Query(None, max_length=80),
              limit: int = Query(50, ge=1, le=600), lang: str = "es", d: mx_data.MxData = Depends(get_data),
-             store: JsonStore = Depends(get_store)) -> dict:
+             store: JsonStore = Depends(get_store), clock=Depends(get_clock)) -> dict:
     lang = lang_of(lang)
     s = need_state(d, cve_ent)
-    counts = _counts(store)
+    counts, by_zone = _counts(store), _by_zone(store)
     zones = []
     for m in need_zones(d).search(cve_ent, q, limit):
         n = counts.get((cve_ent, m.cve_mun), 0)
-        zones.append({**m.public(), "listings_count": n, "empty_state": n == 0})
+        zones.append({**m.public(), "listings_count": n, "empty_state": n == 0,
+                      "price_summary": _price_summary(by_zone.get((cve_ent, m.cve_mun)), clock)})
     return {"cve_ent": cve_ent, "state": s.name, "legal_coverage": coverage(s.abbr, d.verified), "q": q,
             "count": len(zones), "zones": zones, "disclaimer": DISCLAIMER[lang]}
 
 
 @router.get("/zones/{cve_ent}/{cve_mun}")
 def mx_zone(cve_ent: str, cve_mun: str, lang: str = "es", d: mx_data.MxData = Depends(get_data),
-            store: JsonStore = Depends(get_store)) -> dict:
+            store: JsonStore = Depends(get_store), clock=Depends(get_clock)) -> dict:
     lang = lang_of(lang)
     s, m = need_municipio(d, cve_ent, cve_mun)
-    listings = [listing_public(r) for r in _listings(store, cve_ent, cve_mun)]
+    raw = _listings(store, cve_ent, cve_mun)
+    listings = [listing_public(r) for r in raw]
     return {"state": _state_row(s, d, _counts(store)), "zone": m.public(), "listings": listings,
             "listings_count": len(listings), "empty_state": not listings,
+            "price_summary": _price_summary(raw, clock),
             "requirements_summary": _requirements_summary(s.abbr, d, lang),
             "listing_notice": LISTING_NOTICE[lang], "disclaimer": DISCLAIMER[lang]}
 

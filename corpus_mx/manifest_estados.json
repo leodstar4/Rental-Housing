@@ -104,6 +104,51 @@
       "text_extractor": "pypdf 6.19.0 extract_text(extraction_mode=\"layout\")",
       "notes": "Encabezado: \"Última Reforma D.O.07 junio 2022\". Listado oficial: https://www.congresoyucatan.gob.mx/legislacion/codigos",
       "text_sha256": "575a61b6dc91da4979cfd2ebbe789a654e1d17885f6558079bee3250f2e58c44"
+    },
+    {
+      "doc_id": "D-MX-GTO-01",
+      "title": "Código Civil para el Estado de Guanajuato",
+      "publisher": "H. Congreso del Estado de Guanajuato — Instituto de Investigaciones Legislativas",
+      "jurisdiction": "GTO",
+      "url": "https://congreso-gto.s3.amazonaws.com/uploads/reforma/pdf/3685/CCG_REF_18Diciembre2025_DL111.pdf",
+      "retrieved_at": "2026-10-06T04:31:49Z",
+      "sha256": "ff8f8abafae877ce9708f712233fae0e9d242ce0dc74c800a31719268a32885d",
+      "file_path": "corpus_mx/estados/GTO/CCG_REF_18Diciembre2025_DL111.pdf",
+      "text_path": "corpus_mx/estados/GTO/CCG_REF_18Diciembre2025_DL111.txt",
+      "last_reform": "2025-12-18",
+      "text_extractor": "pypdf 6.19.0 extract_text(extraction_mode=\"layout\")",
+      "notes": "Enlazado como texto vigente en https://www.congresogto.gob.mx/codigos/codigo-civil-para-el-estado-de-guanajuato . Encabezado del documento: \"Reforma: P.O. Núm. 252; Tercera Parte; DL 111; 18-12-2025\".",
+      "text_sha256": "cc221a239d12f4cf30dd0f29c020cef44eb1bb0a6552255320a9d318aa3495ef"
+    },
+    {
+      "doc_id": "D-MX-DGO-01",
+      "title": "Código Civil del Estado de Durango",
+      "publisher": "H. Congreso del Estado de Durango (LXX Legislatura)",
+      "jurisdiction": "DGO",
+      "url": "https://congresodurango.gob.mx/Archivos/legislacion/CODIGO%20CIVIL.pdf",
+      "retrieved_at": "2026-10-06T04:58:16Z",
+      "sha256": "8d1fa0d3715c5065ab3f96fa910504103e5151bb45e67c3910015dc39031a0cb",
+      "file_path": "corpus_mx/estados/DGO/codigo_civil_dgo.pdf",
+      "text_path": "corpus_mx/estados/DGO/codigo_civil_dgo.txt",
+      "last_reform": "2026-06-07",
+      "text_extractor": "pypdf 6.19.0 extract_text(extraction_mode=\"layout\")",
+      "notes": "Enlazado en la página de legislación estatal https://congresodurango.gob.mx/trabajo-legislativo/legislacion-estatal/ como \"CODIGO CIVIL.pdf\". Encabezado del documento: \"FECHA DE ÚLTIMA REFORMA: DEC. 405 P.O. 46 BIS DEL 07 DE JUNIO DE 2026.\"",
+      "text_sha256": "ccaccf43c2a989bb9e5228c6cef90edf7ae4cfb510ee0fa05426e15af2362805"
+    },
+    {
+      "doc_id": "D-MX-CHIH-01",
+      "title": "Código Civil del Estado de Chihuahua",
+      "publisher": "H. Congreso del Estado de Chihuahua — Secretaría de Asuntos Legislativos y Jurídicos (Biblioteca Legislativa \"Carlos Montemayor Aceves\")",
+      "jurisdiction": "CHIH",
+      "url": "https://www.congresochihuahua.gob.mx/biblioteca/codigos/archivosCodigos/13.pdf",
+      "retrieved_at": "2026-10-06T05:07:43Z",
+      "sha256": "5a9335eb98124fcdf56c68d5ea7a54736bee3ec18d00589dd23f7b34ee357c8c",
+      "file_path": "corpus_mx/estados/CHIH/codigo_civil_chih.pdf",
+      "text_path": "corpus_mx/estados/CHIH/codigo_civil_chih.txt",
+      "last_reform": "2024-08-24",
+      "text_extractor": "pypdf 6.19.0 extract_text(extraction_mode=\"layout\")",
+      "notes": "Listado como \"CÓDIGO CIVIL DEL ESTADO\" (archivosCodigos/13.pdf) en https://www.congresochihuahua.gob.mx/biblioteca/codigos/ (el enlace redirige al host congresochihuahua2). Encabezado del documento: \"Última Reforma POE 2024.08.24/No. 68\".",
+      "text_sha256": "8b154181239288f889de5694f1d83adb6df033f233737d072d88da38ef0e479f"
     }
   ]
 }

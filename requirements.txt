@@ -10,3 +10,6 @@ pypdf==6.19.0
 fastapi==0.142.2
 uvicorn==0.54.0
 httpx==0.28.1
+# Optional: only imported when DATABASE_URL points at Postgres (mx/store.py SqlStore).
+# SQLite uses the stdlib; the default JSON store needs nothing extra.
+psycopg[binary]==3.3.6

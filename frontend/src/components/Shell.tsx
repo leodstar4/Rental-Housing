@@ -21,6 +21,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <Link to="/" className="font-serif text-lg font-bold">{mx.common.appName}</Link>
           <nav aria-label={mx.common.navLabel} className="flex flex-wrap items-center gap-1 text-[0.95rem]">
             <Link to="/" className={nav} activeOptions={{ exact: true }} activeProps={{ className: "bg-primary-foreground/15 font-semibold" }}>{mx.common.navSearch}</Link>
+            <Link to="/mapa" className={nav} activeProps={{ className: "bg-primary-foreground/15 font-semibold" }}>{mx.common.navMap}</Link>
             <Link to="/publicar" className={nav} activeProps={{ className: "bg-primary-foreground/15 font-semibold" }}>{mx.common.navPublish}</Link>
             <Link to="/fuentes" className={nav} activeProps={{ className: "bg-primary-foreground/15 font-semibold" }}>{mx.common.navSources}</Link>
             <button onClick={() => setLang(lang === "en" ? "es" : "en")} aria-label={mx.common.langLabel}

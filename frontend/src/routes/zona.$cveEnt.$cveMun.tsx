@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { Home } from "lucide-react";
 
-import { apiGet, type MxZoneDetail, type MxListing, type MxSources, type MxStat } from "@/lib/api";
+import { apiGet, type MxZoneDetail, type MxListing, type MxSources, type MxStat, type MxPriceSummary } from "@/lib/api";
 import { setDisclaimer } from "@/components/Shell";
 import {
   CoverageBadge,
@@ -15,9 +15,10 @@ import {
   StatCard,
   useMx,
 } from "@/components/mx/MxShared";
-import { formatInt, formatMXN, type MxCopy } from "@/lib/mx-i18n";
+import { formatInt, formatMXN, formatPct, type MxCopy } from "@/lib/mx-i18n";
 import { formatDate } from "@/lib/dates";
 import { Button } from "@/components/ui/button";
+import { MxMap, zoneKey, type MxMapZone } from "@/components/mx/MxMap";
 
 export const Route = createFileRoute("/zona/$cveEnt/$cveMun")({
   component: ZonePage,
@@ -67,6 +68,15 @@ function ZonePage() {
 
       <CoverageNotice coverage={data.state.legal_coverage} state={stateName} />
 
+      {/* "What it costs to rent here" — three visually distinct treatments:
+          (a) listing prices (user-published), (b) INEGI rented-share statistic, (c) legal requirements. */}
+      <PriceBlock
+        cveEnt={cveEnt}
+        price={data.price_summary}
+        rentedShare={zone.stats.pct_viviendas_alquiladas as MxStat | undefined}
+        rentedShareSource={(s?: MxStat) => (s ? docTitle.get(s.source) : undefined)}
+      />
+
       {/* Stats */}
       <section aria-labelledby="stats-title" className="space-y-3">
         <h2 id="stats-title" className="text-xl font-bold text-primary">{mx.zone.statsTitle}</h2>
@@ -91,11 +101,17 @@ function ZonePage() {
             })}
           </div>
         )}
-        {zone.has_coords && zone.lat != null && zone.lon != null ? (
-          <figure className="overflow-hidden rounded-xl border border-border">
-            <iframe title={mx.zone.mapTitle} className="h-64 w-full border-0"
-              src={`https://www.openstreetmap.org/export/embed.html?bbox=${zone.lon - 0.03},${zone.lat - 0.02},${zone.lon + 0.03},${zone.lat + 0.02}&layer=mapnik&marker=${zone.lat},${zone.lon}`} />
-            <figcaption className="bg-muted/40 px-3 py-2 text-xs text-muted-foreground">{mx.zone.mapCaption}</figcaption>
+        {zone.has_coords && zone.lat != null && zone.lon != null && zone.coord?.source ? (
+          <figure className="space-y-2">
+            <MxMap
+              zones={[{
+                cve_ent: cveEnt, cve_mun: cveMun, name: zone.name, lat: zone.lat, lon: zone.lon,
+                has_coords: zone.has_coords, coord: zone.coord, listings_count: data.listings_count,
+              } as MxMapZone]}
+              selectedKey={zoneKey({ cve_ent: cveEnt, cve_mun: cveMun })}
+              stateName={stateName}
+            />
+            <figcaption className="text-xs text-muted-foreground">{mx.zone.mapCaption}</figcaption>
           </figure>
         ) : (
           <p className="text-sm text-muted-foreground">{mx.zone.mapUnavailable}</p>
@@ -114,6 +130,94 @@ function ZonePage() {
         <Button asChild variant="outline"><Link to="/requisitos/$cveEnt" params={{ cveEnt }}>{mx.zone.requirementsCta}</Link></Button>
       </section>
     </div>
+  );
+}
+
+export function PriceBlock({
+  cveEnt,
+  price,
+  rentedShare,
+  rentedShareSource,
+}: {
+  cveEnt: string;
+  price?: MxPriceSummary;
+  rentedShare?: MxStat;
+  rentedShareSource: (s?: MxStat) => { title: string; retrieved?: string } | undefined;
+}) {
+  const { mx, lang } = useMx();
+  const p = mx.zone.price;
+  const doc = rentedShareSource(rentedShare);
+
+  return (
+    <section aria-labelledby="price-title" className="space-y-4">
+      <div className="space-y-1">
+        <h2 id="price-title" className="text-xl font-bold text-primary">{p.title}</h2>
+        <p className="text-sm text-muted-foreground">{p.intro}</p>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-3">
+        {/* (a) Listing prices — user-published; blue "card" treatment with a provenance badge. */}
+        <article className="flex flex-col gap-3 rounded-xl border-2 border-primary/30 bg-primary/5 p-4">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-primary">{p.listingsHeading}</h3>
+          {price && price.has_stats && price.min != null && price.median != null && price.max != null ? (
+            <>
+              <span className="inline-flex w-fit items-center rounded-md bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary">
+                {p.listingsBadge(price.count)}
+              </span>
+              <dl className="grid grid-cols-3 gap-2 text-center">
+                <div>
+                  <dt className="text-xs text-muted-foreground">{p.min}</dt>
+                  <dd className="font-bold tabular-nums text-foreground">{formatMXN(price.min, lang)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted-foreground">{p.median}</dt>
+                  <dd className="text-lg font-bold tabular-nums text-primary">{formatMXN(price.median, lang)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted-foreground">{p.max}</dt>
+                  <dd className="font-bold tabular-nums text-foreground">{formatMXN(price.max, lang)}</dd>
+                </div>
+              </dl>
+              <p className="text-xs text-muted-foreground">{p.asOf(formatDate(price.as_of, lang))}</p>
+            </>
+          ) : price && price.count > 0 ? (
+            <div className="rounded-lg border border-dashed border-primary/30 bg-background/60 p-3">
+              <p className="font-medium text-foreground">{p.notEnoughTitle}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{p.notEnough(price.count, price.min_count_for_stats)}</p>
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">{p.noListings}</p>
+          )}
+        </article>
+
+        {/* (b) INEGI rented-share — statistic, NOT a price; muted "data" treatment with source + precision note. */}
+        <article className="flex flex-col gap-2 rounded-xl border border-border bg-muted/30 p-4">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">{p.statHeading}</h3>
+          {rentedShare ? (
+            <>
+              <p className="text-sm text-muted-foreground">{p.statLabel}</p>
+              <p className="text-3xl font-bold tabular-nums text-foreground">{formatPct(rentedShare.value, lang)}</p>
+              <p className="text-xs italic text-muted-foreground">{p.statCaveat}</p>
+              <p className="text-xs text-muted-foreground">{p.statSource(doc?.title ?? rentedShare.source, rentedShare.year)}</p>
+              {rentedShare.precision_baja && (
+                <p className="mt-1 rounded-md border border-pending/40 bg-pending-soft px-2 py-1 text-xs text-pending">{p.lowPrecision}</p>
+              )}
+            </>
+          ) : (
+            <p className="text-sm text-muted-foreground">{p.statUnavailable}</p>
+          )}
+        </article>
+
+        {/* (c) Legal requirements — the law; link out, no figures invented here. */}
+        <article className="flex flex-col gap-2 rounded-xl border border-primary/20 bg-card p-4">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-primary">{p.lawHeading}</h3>
+          <p className="text-sm text-muted-foreground">{p.lawBody}</p>
+          <Button asChild variant="outline" className="mt-auto w-fit">
+            <Link to="/requisitos/$cveEnt" params={{ cveEnt }}>{p.lawCta}</Link>
+          </Button>
+        </article>
+      </div>
+    </section>
   );
 }
 
