@@ -1,0 +1,218 @@
+# Requisitos QRO — citas literales verificadas contra corpus_mx/estados/QRO (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-QRO-FORMA-01
+  jurisdiction: QRO
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato siempre por escrito
+  title_en: Contract always in writing
+  summary_es: El contrato de arrendamiento se otorga siempre por escrito.
+  summary_en: The lease contract must always be executed in writing.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2292, párr. primero
+  quote: El contrato de arrendamiento se otorgará siempre por escrito.
+  applies_to_contract: true
+- id: MX-QRO-DURACION-01
+  jurisdiction: QRO
+  category: duracion
+  kind: ley
+  title_es: 'Plazo máximo: diez años para habitación'
+  title_en: 'Maximum term: ten years for housing'
+  summary_es: El arrendamiento no puede exceder de diez años para fincas destinadas a habitación.
+  summary_en: A lease may not exceed ten years for property used as housing.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2284, párr. segundo
+  quote: El arrendamiento no puede exceder de diez años para las fincas destinadas a habitación,
+  applies_to_contract: true
+- id: MX-QRO-DEPOSITO-01
+  jurisdiction: QRO
+  category: deposito
+  kind: ley
+  title_es: Garantía máxima de tres mensualidades
+  title_en: Guarantee capped at three months' rent
+  summary_es: El arrendador no puede exigir más de lo correspondiente a tres mensualidades de renta para garantizar el cumplimiento del contrato.
+  summary_en: The landlord may not require more than the equivalent of three months' rent to secure performance of the contract.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2297, fr. VII
+  quote: VII. A no exigir más de lo correspondiente a tres mensualidades de renta, para garantizar el cumplimiento del contrato.
+  applies_to_contract: true
+- id: MX-QRO-ARRENDADOR-01
+  jurisdiction: QRO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar en estado de servir y hacer reparaciones
+  title_en: Deliver fit for use and make repairs
+  summary_es: Aun sin pacto expreso, el arrendador debe entregar la finca con sus pertenencias y en estado de servir para el uso convenido, y conservarla en el mismo estado haciendo todas las reparaciones necesarias.
+  summary_en: Even without express agreement, the landlord must deliver the property with its appurtenances and fit for the agreed use, and keep it in the same condition making all necessary repairs.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2297, fr. I y II
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I. A entregar al arrendatario la finca arrendada, con todas sus pertenencias y en estado de servir para el uso convenido; si no hubo convenio expreso, para aquel a que por su misma naturaleza estuviere destinada; II. A conservar la cosa arrendada en el mismo estado, durante el arrendamiento, haciendo para ello todas las reparaciones necesarias;'
+  applies_to_contract: true
+- id: MX-QRO-ARRENDADOR-02
+  jurisdiction: QRO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Reparaciones urgentes a costa del arrendador
+  title_en: Urgent repairs at the landlord's cost
+  summary_es: Cuando las reparaciones necesarias sean urgentes, de modo que no hacerlas pueda causar un daño inminente o poner en grave riesgo a los ocupantes, el inquilino puede costearlas y exigir su pago al arrendador.
+  summary_en: When necessary repairs are urgent, such that not making them could cause imminent harm or seriously endanger occupants, the tenant may pay for them and demand reimbursement from the landlord.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2303
+  quote: Cuando las reparaciones necesarias al inmueble arrendado sean urgentes, de manera que no hacerlas pueda causarse un daño inminente o se ponga en grave riesgo a quienes hacen uso del inmueble, podrá el inquilino costearlas y exigir su pago al arrendador.
+  applies_to_contract: true
+- id: MX-QRO-ARRENDADOR-03
+  jurisdiction: QRO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Devolución inmediata del saldo al terminar
+  title_en: Immediate return of balance at end
+  summary_es: Si al terminar el arrendamiento hay saldo a favor del arrendatario, el arrendador debe devolverlo de inmediato, salvo que tenga algún derecho que ejercitar contra él, en cuyo caso lo depositará judicialmente.
+  summary_en: If at the end of the lease there is a balance in the tenant's favor, the landlord must return it immediately, unless the landlord has a claim against the tenant, in which case it is deposited with the court.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2312
+  quote: Si al terminar el arrendamiento hubiere algún saldo a favor del arrendatario, el arrendador deberá devolverlo inmediatamente, a no ser que tenga algún derecho que ejercitar contra aquél; en este caso, depositará judicialmente el saldo referido.
+  applies_to_contract: true
+- id: MX-QRO-ARRENDATARIO-01
+  jurisdiction: QRO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar renta, responder de daños, uso convenido y devolver
+  title_en: Pay rent, answer for damage, agreed use, return
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos, responder de los perjuicios por su culpa o negligencia o la de familiares, sirvientes o subarrendatarios, usar la cosa solo para el uso convenido o conforme a su naturaleza y destino, y devolverla al concluir el arrendamiento.
+  summary_en: The tenant must pay rent in the agreed form and time, answer for harm caused by their fault or negligence or that of family, servants or subtenants, use the property only as agreed or per its nature and purpose, and return it when the lease ends.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2315
+  quote: 'El arrendatario está obligado: I. A satisfacer la renta en la forma y tiempo convenidos; II. A responder de los perjuicios que la cosa arrendada sufra por su culpa o negligencia, la de los familiares, sirvientes o subarrendatarios; III. A servirse de la cosa solamente para el uso convenido o conforme a la naturaleza y destino de ella; y IV. A devolver el bien arrendado al concluir el arrendamiento.'
+  applies_to_contract: true
+- id: MX-QRO-ARRENDATARIO-02
+  jurisdiction: QRO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pago mensual vencido a falta de convenio (urbano)
+  title_en: Monthly in arrears absent agreement (urban)
+  summary_es: En fincas urbanas, la renta se paga en los plazos convenidos y, a falta de convenio, por meses vencidos.
+  summary_en: For urban property, rent is paid on the agreed schedule and, absent agreement, monthly in arrears.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2343
+  quote: La renta debe pagarse en los plazos convenidos y a falta de convenio, por meses vencidos.
+  applies_to_contract: true
+- id: MX-QRO-HABITABILIDAD-01
+  jurisdiction: QRO
+  category: habitabilidad
+  kind: ley
+  title_es: Condiciones de higiene y salubridad
+  title_en: Hygiene and sanitation conditions
+  summary_es: No puede darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por la ley de la materia.
+  summary_en: A dwelling that does not meet the hygiene and sanitation conditions required by the applicable law may not be leased.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2339
+  quote: No podrá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por la ley de la materia.
+  applies_to_contract: true
+- id: MX-QRO-FIADOR-01
+  jurisdiction: QRO
+  category: garantias_fiador
+  kind: ley
+  title_es: No se puede rechazar a un fiador idóneo
+  title_en: A qualified guarantor cannot be refused
+  summary_es: El propietario no puede rehusar como fiadora a una persona que reúna los requisitos legales para ser fiador.
+  summary_en: The owner may not refuse as guarantor a person who meets the legal requirements to be one.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2341
+  quote: El propietario no puede rehusar como fiadora a una persona que reúna los requisitos exigidos por la ley para que sea fiador.
+  applies_to_contract: true
+- id: MX-QRO-PRORROGA-01
+  jurisdiction: QRO
+  category: duracion
+  kind: ley
+  title_es: Prórroga de un año si está al corriente
+  title_en: One-year extension if rent is current
+  summary_es: Vencido el contrato, el inquilino que esté al corriente en el pago de las rentas tiene derecho a que se le prorrogue un año.
+  summary_en: When the contract expires, a tenant who is current on rent is entitled to a one-year extension.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2378, párr. primero
+  quote: Vencido un contrato de arrendamiento, tendrá derecho el inquilino, siempre que esté al corriente en el pago de las rentas, a que se le prorrogue un año ese contrato.
+  applies_to_contract: true
+- id: MX-QRO-INCREMENTO-01
+  jurisdiction: QRO
+  category: incremento_renta
+  kind: ley
+  title_es: 'Aumento en la prórroga: hasta el interés legal anual'
+  title_en: 'Increase on extension: up to annual legal interest'
+  summary_es: En los casos de prórroga del art. 2378, el arrendador puede aumentar la renta en el monto del interés legal anual.
+  summary_en: In the extension cases of art. 2378, the landlord may raise the rent by the amount of the annual legal interest rate.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2378, párr. segundo
+  quote: En cualquiera de los dos casos a que se refiere el párrafo anterior, podrá el arrendador aumentar la renta en el monto del interés legal anual.
+  applies_to_contract: true
+- id: MX-QRO-ORDEN-PUBLICO-01
+  jurisdiction: QRO
+  category: otro
+  kind: ley
+  title_es: Derecho de prórroga irrenunciable
+  title_en: Extension right cannot be waived
+  summary_es: La renuncia al derecho de prórroga y cualquier pacto en contrario es nula.
+  summary_en: Any waiver of the extension right or contrary agreement is void.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2379
+  quote: La renuncia al derecho de prórroga y cualquier pacto en contrario, será nulo.
+  applies_to_contract: true
+- id: MX-QRO-TERMINACION-01
+  jurisdiction: QRO
+  category: terminacion
+  kind: ley
+  title_es: 'Sin plazo: notificación judicial con dos meses (urbano)'
+  title_en: 'No fixed term: two months'' judicial notice (urban)'
+  summary_es: Los arrendamientos sin tiempo expresamente determinado concluyen a voluntad de cualquiera de las partes, previo aviso mediante notificación judicial con dos meses de anticipación si el predio es urbano.
+  summary_en: Leases without an expressly fixed term end at either party's will after notice by judicial notification two months in advance if the property is urban.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2371
+  quote: Todos los arrendamientos, sean de predios rústicos o urbanos, que no se hayan celebrado por tiempo expresamente determinado, concluirán a voluntad de cualquiera de las partes contratantes, previo aviso a la otra parte, dado en forma de notificación judicial con dos meses de anticipación si el predio es urbano y con un año si es rústico.
+  applies_to_contract: true
+- id: MX-QRO-TERMINACION-02
+  jurisdiction: QRO
+  category: terminacion
+  kind: ley
+  title_es: Tácita reconducción (predio urbano)
+  title_en: Tacit renewal (urban property)
+  summary_es: Si el arrendatario continúa sin oposición tras terminar el arrendamiento de un predio urbano, el arrendamiento continúa por tiempo indefinido y paga la renta del tiempo excedente conforme al contrato.
+  summary_en: If the tenant stays without objection after an urban lease ends, the lease continues indefinitely and the tenant pays rent for the extra time per the contract.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2383
+  quote: En el caso del artículo anterior, si el predio fuere urbano, el arrendamiento continuará por tiempo indefinido y el arrendatario deberá pagar la renta que corresponda al tiempo que exceda al del contrato con arreglo a éste.
+  applies_to_contract: true
+- id: MX-QRO-FIADOR-02
+  jurisdiction: QRO
+  category: garantias_fiador
+  kind: ley
+  title_es: La fianza subsiste en la prórroga
+  title_en: Guarantee continues on extension
+  summary_es: En la prórroga subsisten las estipulaciones previas, salvo el monto de la renta, y también las obligaciones otorgadas por un tercero para la seguridad del arrendamiento, salvo pacto en contrario.
+  summary_en: On extension, prior terms remain except the rent amount, as do third-party guarantee obligations for the lease, unless otherwise agreed.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2384
+  quote: En los casos en que se prorrogue el contrato de arrendamiento, subsistirán las estipulaciones previas por todo el tiempo de la prórroga, salvo la conducente al monto de la renta. Igualmente subsistirán las obligaciones otorgadas por un tercero para la seguridad del arrendamiento, salvo pacto en contrario.
+  applies_to_contract: true
+- id: MX-QRO-RESCISION-01
+  jurisdiction: QRO
+  category: terminacion
+  kind: ley
+  title_es: Causas de rescisión a favor del arrendador
+  title_en: Grounds for rescission by the landlord
+  summary_es: El arrendador puede exigir la rescisión por falta de pago de la renta, por usar la cosa contra el uso convenido o su naturaleza, por subarriendo o cesión, y por incumplimiento de las obligaciones del arrendatario.
+  summary_en: The landlord may demand rescission for non-payment of rent, using the property contrary to the agreed use or its nature, subletting or assignment, and breach of the tenant's obligations.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2386
+  quote: 'El arrendador puede exigir la rescisión del contrato: I. Por falta de pago de la renta en los plazos convenidos o en la forma dispuesta por este Código; II. Por servirse de la cosa en contravención al uso convenido o diferente a su naturaleza y destino; III. Por el subarriendo o cesión de la cosa; y IV. Por incumplimiento de las obligaciones a cargo del arrendatario, derivadas del contrato o de la ley.'
+  applies_to_contract: true
+- id: MX-QRO-SUBARRIENDO-01
+  jurisdiction: QRO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario o cesionario de los daños y perjuicios.
+  summary_en: The tenant may not sublet all or part, nor assign their rights, without the landlord's consent; otherwise they are jointly liable with the subtenant or assignee for damages.
+  doc_id: D-MX-QRO-01
+  citation: Código Civil del Estado de Querétaro, art. 2373
+  quote: El arrendatario no puede subarrendar la cosa arrendada en todo, ni en parte, ni ceder sus derechos sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el subarrendatario o cesionario de los daños y perjuicios.
+  applies_to_contract: true

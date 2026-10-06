@@ -1,0 +1,230 @@
+# Requisitos MEX — citas literales verificadas contra corpus_mx/estados/MEX (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-MEX-FORMA-01
+  jurisdiction: MEX
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato por escrito con plazo
+  title_en: Written contract stating the term
+  summary_es: El contrato de arrendamiento debe constar por escrito y estipular el plazo convenido, sin exceder los máximos del capítulo.
+  summary_en: The lease must be in writing and state the agreed term, which may not exceed the maximums set in the chapter.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.671
+  quote: El contrato de arrendamiento debe constar por escrito y estipular el plazo que se convenga, el cual no debe de exceder de los señalados en este capítulo;
+  applies_to_contract: true
+- id: MX-MEX-FORMA-02
+  jurisdiction: MEX
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido del contrato: nombre de las partes'
+  title_en: 'Contract content: names of the parties'
+  summary_es: El contrato de arrendamiento de casa habitación debe contener, entre los elementos que enumera el artículo, el nombre del arrendador y del arrendatario.
+  summary_en: The residential lease must contain, among the items listed in the article, the names of the landlord and the tenant.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.696, fr. I
+  quote: 'El contrato de arrendamiento debe contener: I. El nombre del arrendador y del arrendatario;'
+  applies_to_contract: true
+- id: MX-MEX-FORMA-03
+  jurisdiction: MEX
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido del contrato: renta, lugar y época de pago'
+  title_en: 'Contract content: rent, place and time of payment'
+  summary_es: El contrato debe contener el monto de la renta y el lugar y época de pago.
+  summary_en: The contract must state the rent amount and the place and time of payment.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.696, fr. IV
+  quote: IV. El monto de la renta, lugar y época de pago;
+  applies_to_contract: true
+- id: MX-MEX-FORMA-04
+  jurisdiction: MEX
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido del contrato: plazo y garantía'
+  title_en: 'Contract content: term and guarantee'
+  summary_es: El contrato debe contener el plazo de vigencia y, en su caso, la garantía que otorgue el arrendatario.
+  summary_en: The contract must state its term and, where applicable, the guarantee given by the tenant.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.696, fr. VI y VII
+  quote: VI. El plazo de vigencia del contrato; VII. La garantía que el arrendatario otorgue, en su caso.
+  applies_to_contract: true
+- id: MX-MEX-DURACION-01
+  jurisdiction: MEX
+  category: duracion
+  kind: ley
+  title_es: 'Plazo máximo: tres años para casa habitación'
+  title_en: 'Maximum term: three years for a dwelling'
+  summary_es: El plazo máximo de vigencia del arrendamiento de inmuebles urbanos destinados a casa habitación es de tres años.
+  summary_en: The maximum term of a lease of urban property used as a dwelling is three years.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.672, fr. II
+  quote: 'El plazo máximo de vigencia de un contrato de arrendamiento, será: I. Dos años respecto de bienes muebles; II. Tres años en tratándose de inmuebles urbanos destinados a casa habitación;'
+  applies_to_contract: true
+- id: MX-MEX-DURACION-02
+  jurisdiction: MEX
+  category: duracion
+  kind: ley
+  title_es: 'Sin plazo pactado: un año para casa habitación'
+  title_en: 'No term agreed: one year for a dwelling'
+  summary_es: Si el contrato omite el plazo, se considera de un año para casa habitación.
+  summary_en: If the contract omits the term, it is deemed to be one year for a dwelling.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.673, fr. I
+  quote: 'Cuando se omita establecer el plazo de duración en el contrato, se considerarán los siguientes: I. Un año para casa habitación;'
+  applies_to_contract: true
+- id: MX-MEX-ORDEN-PUBLICO-01
+  jurisdiction: MEX
+  category: otro
+  kind: ley
+  title_es: Normas de arrendamiento irrenunciables
+  title_en: Lease rules cannot be waived
+  summary_es: Las disposiciones sobre arrendamiento son de orden público e interés social e irrenunciables; cualquier estipulación en contrario se tiene por no puesta.
+  summary_en: Lease provisions are of public order and social interest and cannot be waived; any contrary clause is deemed not written.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.685
+  quote: Las disposiciones sobre arrendamiento son de orden público e interés social, siendo por tanto irrenunciables. Cualquier estipulación en contrario, se tendrá por no puesta.
+  applies_to_contract: true
+- id: MX-MEX-REGISTRO-01
+  jurisdiction: MEX
+  category: registro
+  kind: ley
+  title_es: Escritura pública y registro en ciertos casos (incluye anticipo de rentas)
+  title_en: Public deed and registration in certain cases (incl. advance rent)
+  summary_es: El arrendamiento de inmuebles de menores, incapacitados o de una sucesión, o en el que se pacte un anticipo de rentas, se otorga en escritura pública y se inscribe en el Registro Público de la Propiedad.
+  summary_en: Leases of property belonging to minors, incapacitated persons or an estate, or in which advance rent is agreed, must be executed by public deed and recorded in the Public Property Registry.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.680
+  quote: El arrendamiento de inmuebles de menores, incapacitados o de una sucesión o en el que se pacte un anticipo de rentas, se otorgarán en escritura pública y se inscribirán en el Registro Público de la Propiedad.
+  applies_to_contract: true
+- id: MX-MEX-ARRENDADOR-01
+  jurisdiction: MEX
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Obligaciones del arrendador
+  title_en: Landlord obligations
+  summary_es: El arrendador debe entregar el bien en el tiempo convenido (o al ser requerido), en buenas condiciones conforme a su naturaleza o fines, no cambiar su forma ni perturbar su uso salvo reparaciones necesarias, y conservar el inmueble en buenas condiciones realizando las mejoras necesarias.
+  summary_en: The landlord must deliver the property at the agreed time (or upon request), in good condition for its nature or purpose, not alter it or disturb its use except for necessary repairs, and keep it in good condition making necessary improvements.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.686, fr. I a IV
+  quote: 'El arrendador está obligado a: I. Entregar el bien en el tiempo convenido, si no se pactó, luego que sea requerido; II. Que el bien arrendado esté en buenas condiciones conforme a su naturaleza o los fines para los cuales será utilizado; III. No cambiar la forma del bien, ni perturbar su uso, salvo que requiera de reparaciones necesarias; IV. Conservar el inmueble arrendado en buenas condiciones, realizando las mejoras necesarias;'
+  applies_to_contract: true
+- id: MX-MEX-ARRENDADOR-02
+  jurisdiction: MEX
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Reparaciones necesarias
+  title_en: Necessary repairs
+  summary_es: Si el arrendador no hace las reparaciones necesarias, el arrendatario puede rescindir el contrato o reclamar que se hagan con cargo a las rentas.
+  summary_en: If the landlord fails to make necessary repairs, the tenant may rescind the contract or demand they be made and charged against the rent.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.687
+  quote: Si el arrendador no hace las reparaciones necesarias para el uso a que esté destinado el bien, el arrendatario podrá optar por rescindir el contrato o reclamar que con cargo a las rentas se hagan dichas reparaciones.
+  applies_to_contract: true
+- id: MX-MEX-HABITABILIDAD-01
+  jurisdiction: MEX
+  category: habitabilidad
+  kind: ley
+  title_es: Vivienda en condiciones de higiene y salubridad
+  title_en: Dwelling must be hygienic and sanitary
+  summary_es: Toda vivienda que se dé en arrendamiento debe reunir las condiciones de higiene y salubridad necesarias.
+  summary_en: Every dwelling leased must meet the necessary hygiene and sanitation conditions.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.695
+  quote: Toda vivienda que se dé en arrendamiento, deberá reunir las condiciones de higiene y salubridad necesarias.
+  applies_to_contract: true
+- id: MX-MEX-ARRENDATARIO-01
+  jurisdiction: MEX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar la renta y usar el bien conforme a lo convenido
+  title_en: Pay rent and use the property as agreed
+  summary_es: El arrendatario debe pagar la renta en el lugar, tiempo y forma convenidos y usar el bien exclusivamente conforme a lo convenido o a su naturaleza.
+  summary_en: The tenant must pay rent at the agreed place, time and manner, and use the property only as agreed or according to its nature.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.688, fr. I y II
+  quote: 'El arrendatario está obligado a: I. Pagar la renta en el lugar, tiempo y forma convenidos; II. Usar el bien exclusivamente conforme a lo convenido o a su naturaleza;'
+  applies_to_contract: true
+- id: MX-MEX-ARRENDATARIO-02
+  jurisdiction: MEX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Devolver el bien en las condiciones recibidas
+  title_en: Return the property as received
+  summary_es: El arrendatario debe devolver el bien al término del contrato en las condiciones en que lo recibió, salvo el deterioro por uso normal.
+  summary_en: The tenant must return the property at the end of the contract in the condition received, except for normal wear.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.688, fr. VI
+  quote: VI. Devolver el bien al término del contrato, en las condiciones en que lo recibió, salvo el deterioro por el uso normal del mismo;
+  applies_to_contract: true
+- id: MX-MEX-ARRENDATARIO-03
+  jurisdiction: MEX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pago mensual vencido a falta de convenio (habitación)
+  title_en: Monthly in arrears absent agreement (residential)
+  summary_es: La renta se paga en los plazos convenidos; a falta de convenio, por mensualidades vencidas.
+  summary_en: Rent is paid on the agreed schedule; absent agreement, monthly in arrears.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.697
+  quote: La renta se pagará en los plazos convenidos, a falta de convenio por mensualidades vencidas.
+  applies_to_contract: true
+- id: MX-MEX-INCREMENTO-01
+  jurisdiction: MEX
+  category: incremento_renta
+  kind: ley
+  title_es: Incremento máximo de 10% al renovar (vivienda)
+  title_en: Maximum 10% increase on renewal (housing)
+  summary_es: En la novación del contrato de arrendamiento de vivienda, el incremento de la renta no puede exceder del diez por ciento.
+  summary_en: On novation (renewal) of a housing lease, the rent increase may not exceed ten percent.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.698
+  quote: En la novación del contrato de arrendamiento de vivienda, el incremento de la renta no podrá exceder del diez por ciento.
+  applies_to_contract: true
+- id: MX-MEX-PREFERENCIA-01
+  jurisdiction: MEX
+  category: otro
+  kind: ley
+  title_es: Derecho de preferencia del arrendatario cumplido
+  title_en: Right of first refusal for a compliant tenant
+  summary_es: El arrendatario que ha cumplido puntualmente sus obligaciones goza del derecho de preferencia para un nuevo contrato y respecto de la venta del bien arrendado.
+  summary_en: A tenant who has punctually met their obligations has a preferential right for a new contract and regarding the sale of the leased property.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.693
+  quote: El arrendatario que ha cumplido puntualmente con sus obligaciones gozará del derecho de preferencia, tanto para la celebración de un nuevo contrato como respecto de la venta del bien arrendado, aplicándose las normas de la compraventa con derecho de preferencia.
+  applies_to_contract: true
+- id: MX-MEX-SUBARRIENDO-01
+  jurisdiction: MEX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar el bien en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hace, responde solidariamente con el tercero de los daños y perjuicios.
+  summary_en: The tenant may not sublet all or part of the property or assign their rights without the landlord's consent; otherwise they are jointly liable with the third party for damages.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.714
+  quote: El arrendatario no puede subarrendar el bien arrendado en todo, ni en parte, ni ceder sus derechos sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el tercero de los daños y perjuicios.
+  applies_to_contract: true
+- id: MX-MEX-TERMINACION-01
+  jurisdiction: MEX
+  category: terminacion
+  kind: ley
+  title_es: Causas de terminación
+  title_en: Grounds for termination
+  summary_es: El arrendamiento termina, entre otras causas, por cumplirse el plazo fijado en el contrato o en la ley, por estar satisfecho su objeto, por convenio expreso o por nulidad.
+  summary_en: The lease ends, among other grounds, when the contractual or legal term is met, when its purpose is fulfilled, by express agreement or by nullity.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.716, fr. I a IV
+  quote: 'El arrendamiento termina por: I. Haberse cumplido el plazo fijado en el contrato o en la ley; II. Estar satisfecho el objeto para el que el bien fue arrendado; III. Convenio expreso; IV. Nulidad;'
+  applies_to_contract: true
+- id: MX-MEX-RESCISION-01
+  jurisdiction: MEX
+  category: terminacion
+  kind: ley
+  title_es: Rescisión por incumplimiento
+  title_en: Rescission for breach
+  summary_es: Las partes pueden pedir la rescisión del contrato cuando la otra incumpla las obligaciones contraídas.
+  summary_en: The parties may seek rescission of the contract when obligations under it are breached.
+  doc_id: D-MX-MEX-01
+  citation: Código Civil del Estado de México, art. 7.718
+  quote: Las partes tienen acción para pedir la rescisión del contrato, cuando incurran en incumplimiento de las obligaciones contraídas en el mismo.
+  applies_to_contract: true

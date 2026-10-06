@@ -27,6 +27,8 @@ from extractor import config
 from resolver.results import CATEGORY_LABEL, Engine, rule_status
 
 from . import i18n
+from .mx import MxBodyLimit
+from .mx import router as mx_router
 
 API_VERSION = "1.0.0"
 AS_OF_MIN, AS_OF_MAX = date(2020, 1, 1), date(2030, 12, 31)
@@ -130,10 +132,13 @@ async def _lifespan(_app):
 
 app = FastAPI(title="Rental Housing Law Navigator API", version=API_VERSION, lifespan=_lifespan,
               description="Address-level answers from public housing law, with citations. Not legal advice.")
+app.add_middleware(MxBodyLimit)  # 413 for POST /mx/* bodies > 256 KB (added first: CORS stays outermost)
+# POST/OPTIONS for the Renta MX forms (/mx/*); the US routes are all GET and unchanged.
 app.add_middleware(CORSMiddleware, allow_origin_regex=ORIGIN_REGEX,
                    allow_origins=[o for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o],
-                   allow_methods=["GET"], allow_headers=["*"])
+                   allow_methods=["GET", "POST", "OPTIONS"], allow_headers=["*"])
 app.mount("/audio", AudioFiles(directory=AUDIO_DIR, check_dir=False), name="audio")
+app.include_router(mx_router)  # Renta MX (/mx/*): data loaded lazily, 503 if missing; US routes unaffected
 
 
 # --------------------------------------------------------------------------- #

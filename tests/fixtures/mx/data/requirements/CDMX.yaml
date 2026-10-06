@@ -1,0 +1,29 @@
+# FIXTURE de prueba: requisitos inventados (no son ley).
+- id: MX-CDMX-DEPOSITO-01
+  jurisdiction: CDMX
+  category: deposito
+  kind: ley
+  title_es: FIXTURE tope de depósito
+  title_en: FIXTURE deposit cap
+  summary_es: FIXTURE resumen.
+  summary_en: FIXTURE summary.
+  doc_id: D-MX-CDMX-01
+  citation: FIXTURE Código civil ficticio, art. 200
+  quote: El depósito ficticio de esta fixture no podrá exceder de 2 meses de renta
+  applies_to_contract: true
+  reviewed_by: FIXTURE
+  checks:
+    - {field: deposit_months, op: le, value: 2}
+- id: MX-CDMX-FORMA-01
+  jurisdiction: CDMX
+  category: contrato_forma
+  kind: ley
+  title_es: FIXTURE forma escrita
+  title_en: FIXTURE written form
+  summary_es: FIXTURE resumen.
+  summary_en: FIXTURE summary.
+  doc_id: D-MX-CDMX-01
+  citation: FIXTURE Código civil ficticio, art. 201
+  quote: El contrato ficticio de prueba deberá otorgarse por escrito en esta fixture
+  applies_to_contract: true
+  reviewed_by: FIXTURE

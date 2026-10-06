@@ -11,7 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChangesRouteImport } from './routes/changes'
+import { Route as FuentesRouteImport } from './routes/fuentes'
+import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as TransparencyRouteImport } from './routes/transparency'
+import { Route as UsRouteImport } from './routes/us'
+import { Route as ContratoIdRouteImport } from './routes/contrato.$id'
+import { Route as RequisitosCveEntRouteImport } from './routes/requisitos.$cveEnt'
+import { Route as ViviendaIdRouteImport } from './routes/vivienda.$id'
+import { Route as ZonaCveEntCveMunRouteImport } from './routes/zona.$cveEnt.$cveMun'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +30,134 @@ const ChangesRoute = ChangesRouteImport.update({
   path: '/changes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FuentesRoute = FuentesRouteImport.update({
+  id: '/fuentes',
+  path: '/fuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicarRoute = PublicarRouteImport.update({
+  id: '/publicar',
+  path: '/publicar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TransparencyRoute = TransparencyRouteImport.update({
   id: '/transparency',
   path: '/transparency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsRoute = UsRouteImport.update({
+  id: '/us',
+  path: '/us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContratoIdRoute = ContratoIdRouteImport.update({
+  id: '/contrato/$id',
+  path: '/contrato/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RequisitosCveEntRoute = RequisitosCveEntRouteImport.update({
+  id: '/requisitos/$cveEnt',
+  path: '/requisitos/$cveEnt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ViviendaIdRoute = ViviendaIdRouteImport.update({
+  id: '/vivienda/$id',
+  path: '/vivienda/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ZonaCveEntCveMunRoute = ZonaCveEntCveMunRouteImport.update({
+  id: '/zona/$cveEnt/$cveMun',
+  path: '/zona/$cveEnt/$cveMun',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/changes': typeof ChangesRoute
+  '/fuentes': typeof FuentesRoute
+  '/publicar': typeof PublicarRoute
   '/transparency': typeof TransparencyRoute
+  '/us': typeof UsRoute
+  '/contrato/$id': typeof ContratoIdRoute
+  '/requisitos/$cveEnt': typeof RequisitosCveEntRoute
+  '/vivienda/$id': typeof ViviendaIdRoute
+  '/zona/$cveEnt/$cveMun': typeof ZonaCveEntCveMunRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/changes': typeof ChangesRoute
+  '/fuentes': typeof FuentesRoute
+  '/publicar': typeof PublicarRoute
   '/transparency': typeof TransparencyRoute
+  '/us': typeof UsRoute
+  '/contrato/$id': typeof ContratoIdRoute
+  '/requisitos/$cveEnt': typeof RequisitosCveEntRoute
+  '/vivienda/$id': typeof ViviendaIdRoute
+  '/zona/$cveEnt/$cveMun': typeof ZonaCveEntCveMunRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/changes': typeof ChangesRoute
+  '/fuentes': typeof FuentesRoute
+  '/publicar': typeof PublicarRoute
   '/transparency': typeof TransparencyRoute
+  '/us': typeof UsRoute
+  '/contrato/$id': typeof ContratoIdRoute
+  '/requisitos/$cveEnt': typeof RequisitosCveEntRoute
+  '/vivienda/$id': typeof ViviendaIdRoute
+  '/zona/$cveEnt/$cveMun': typeof ZonaCveEntCveMunRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/changes' | '/transparency'
+  fullPaths:
+    | '/'
+    | '/changes'
+    | '/fuentes'
+    | '/publicar'
+    | '/transparency'
+    | '/us'
+    | '/contrato/$id'
+    | '/requisitos/$cveEnt'
+    | '/vivienda/$id'
+    | '/zona/$cveEnt/$cveMun'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/changes' | '/transparency'
-  id: '__root__' | '/' | '/changes' | '/transparency'
+  to:
+    | '/'
+    | '/changes'
+    | '/fuentes'
+    | '/publicar'
+    | '/transparency'
+    | '/us'
+    | '/contrato/$id'
+    | '/requisitos/$cveEnt'
+    | '/vivienda/$id'
+    | '/zona/$cveEnt/$cveMun'
+  id:
+    | '__root__'
+    | '/'
+    | '/changes'
+    | '/fuentes'
+    | '/publicar'
+    | '/transparency'
+    | '/us'
+    | '/contrato/$id'
+    | '/requisitos/$cveEnt'
+    | '/vivienda/$id'
+    | '/zona/$cveEnt/$cveMun'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChangesRoute: typeof ChangesRoute
+  FuentesRoute: typeof FuentesRoute
+  PublicarRoute: typeof PublicarRoute
   TransparencyRoute: typeof TransparencyRoute
+  UsRoute: typeof UsRoute
+  ContratoIdRoute: typeof ContratoIdRoute
+  RequisitosCveEntRoute: typeof RequisitosCveEntRoute
+  ViviendaIdRoute: typeof ViviendaIdRoute
+  ZonaCveEntCveMunRoute: typeof ZonaCveEntCveMunRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +176,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChangesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fuentes': {
+      id: '/fuentes'
+      path: '/fuentes'
+      fullPath: '/fuentes'
+      preLoaderRoute: typeof FuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publicar': {
+      id: '/publicar'
+      path: '/publicar'
+      fullPath: '/publicar'
+      preLoaderRoute: typeof PublicarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/transparency': {
       id: '/transparency'
       path: '/transparency'
       fullPath: '/transparency'
       preLoaderRoute: typeof TransparencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/us': {
+      id: '/us'
+      path: '/us'
+      fullPath: '/us'
+      preLoaderRoute: typeof UsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contrato/$id': {
+      id: '/contrato/$id'
+      path: '/contrato/$id'
+      fullPath: '/contrato/$id'
+      preLoaderRoute: typeof ContratoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/requisitos/$cveEnt': {
+      id: '/requisitos/$cveEnt'
+      path: '/requisitos/$cveEnt'
+      fullPath: '/requisitos/$cveEnt'
+      preLoaderRoute: typeof RequisitosCveEntRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vivienda/$id': {
+      id: '/vivienda/$id'
+      path: '/vivienda/$id'
+      fullPath: '/vivienda/$id'
+      preLoaderRoute: typeof ViviendaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/zona/$cveEnt/$cveMun': {
+      id: '/zona/$cveEnt/$cveMun'
+      path: '/zona/$cveEnt/$cveMun'
+      fullPath: '/zona/$cveEnt/$cveMun'
+      preLoaderRoute: typeof ZonaCveEntCveMunRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +238,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChangesRoute: ChangesRoute,
+  FuentesRoute: FuentesRoute,
+  PublicarRoute: PublicarRoute,
   TransparencyRoute: TransparencyRoute,
+  UsRoute: UsRoute,
+  ContratoIdRoute: ContratoIdRoute,
+  RequisitosCveEntRoute: RequisitosCveEntRoute,
+  ViviendaIdRoute: ViviendaIdRoute,
+  ZonaCveEntCveMunRoute: ZonaCveEntCveMunRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,5 +1,6 @@
 # Render blueprint: read-only API, no ANTHROPIC_API_KEY needed (every model output is versioned).
-# The build regenerates out/ from the frozen snapshot and the change tests (~10 s, no API calls).
+# The build regenerates out/ from the frozen snapshot and the change tests (~10 s, no API calls),
+# then `python -m mx.verify` re-checks every Renta MX quote against corpus_mx: a broken quote fails the deploy.
 services:
   - type: web
     name: rental-housing-navigator-api
@@ -8,8 +9,10 @@ services:
     buildCommand: >-
       pip install -r requirements.txt &&
       python -m extractor.cli reproduce &&
-      python -m resolver.cli changes
-    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+      python -m resolver.cli changes &&
+      python -m mx.verify
+    # --proxy-headers: request.client.host is the real client IP (rate limit of /mx/*)
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
     healthCheckPath: /health
     buildFilter:              # frontend or documentation changes do not redeploy the API
       ignoredPaths:
@@ -22,3 +25,6 @@ services:
         value: "3.12.10"
       - key: ALLOWED_ORIGINS   # extra exact origins, comma-separated (Lovable domains are allowed by default)
         value: ""
+      - key: MX_IP_SALT        # salt for the hashed IP in /mx signature evidence
+        generateValue: true
+      # Renta MX listings/contracts go to out/mx_store (MX_STORE_DIR): ephemeral disk on the free plan.

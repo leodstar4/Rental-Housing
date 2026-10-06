@@ -1,0 +1,206 @@
+# Requisitos NL — citas literales verificadas contra corpus_mx/estados/NL (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-NL-FORMA-01
+  jurisdiction: NL
+  category: contrato_forma
+  kind: ley
+  title_es: Forma escrita; ratificación ante notario si hay cláusula resolutoria
+  title_en: Written form; notarial ratification if there is a termination clause
+  summary_es: El arrendamiento debe otorgarse por escrito cuando la renta pase de cien pesos anuales, y su contenido y firmas deben ratificarse ante notario público cuando se convenga cláusula resolutoria o pacto comisorio expreso.
+  summary_en: The lease must be in writing when rent exceeds one hundred pesos per year, and its content and signatures must be ratified before a notary when an express termination clause (cláusula resolutoria / pacto comisorio) is agreed.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2300
+  quote: El arrendamiento debe otorgarse por escrito cuando la renta pase de cien pesos anuales, y ratificado su contenido y firmas ante notario público, cuando se convenga sobre cláusula resolutoria o pacto comisorio expreso.
+  applies_to_contract: true
+- id: MX-NL-DURACION-01
+  jurisdiction: NL
+  category: duracion
+  kind: ley
+  title_es: 'Plazo máximo: diez años para habitación'
+  title_en: 'Maximum term: ten years for housing'
+  summary_es: El arrendamiento no puede exceder de diez años para fincas destinadas a habitación.
+  summary_en: A lease may not exceed ten years for property used as housing.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2292, párr. segundo
+  quote: El arrendamiento no puede exceder de diez años para las fincas destinadas a habitación;
+  applies_to_contract: true
+- id: MX-NL-DURACION-02
+  jurisdiction: NL
+  category: duracion
+  kind: ley
+  title_es: 'Habitación: duración de 6 meses, prorrogable'
+  title_en: 'Housing: 6-month term, extendable'
+  summary_es: En fincas urbanas destinadas a la habitación, la duración del contrato es de 6 meses para arrendador y arrendatario, prorrogable a voluntad de las partes.
+  summary_en: For urban property used as housing, the lease term is 6 months for landlord and tenant, extendable at the parties' will.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2346 Bis, párr. primero
+  quote: Para el caso de fincas urbanas destinadas a la habitación, la duración del contrato de arrendamiento será de 6 meses para arrendador y arrendatario, el cual podrá ser prorrogable a voluntad de las partes.
+  applies_to_contract: true
+- id: MX-NL-INCREMENTO-01
+  jurisdiction: NL
+  category: incremento_renta
+  kind: ley
+  title_es: Renta en moneda nacional; aumento anual máximo de 10%
+  title_en: Rent in pesos; maximum 10% annual increase
+  summary_es: La renta debe estipularse en moneda nacional y solo puede aumentarse anualmente, sin exceder del 10% de la renta mensual pactada, para lo cual debe celebrarse un nuevo contrato.
+  summary_en: Rent must be set in national currency and may only be raised annually, by no more than 10% of the agreed monthly rent, which requires signing a new contract.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2346 Bis, párr. segundo
+  quote: Adicionalmente, la renta deberá estipularse en moneda nacional y únicamente podrá ser aumentada de manera anual, dicho incremento no podrá exceder del 10% de la cantidad pactada como renta mensual, para lo anterior se deberá celebrar un nuevo contrato.
+  applies_to_contract: true
+- id: MX-NL-DEPOSITO-01
+  jurisdiction: NL
+  category: deposito
+  kind: ley
+  title_es: Depósito máximo de un mes de renta
+  title_en: Deposit capped at one month's rent
+  summary_es: El arrendador no puede exigir más de una mensualidad de renta como depósito.
+  summary_en: The landlord may not require more than one month's rent as a deposit.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2346, párr. tercero
+  quote: El arrendador no podrá exigir más de una mensualidad de renta a manera de depósito.
+  applies_to_contract: true
+- id: MX-NL-ARRENDATARIO-01
+  jurisdiction: NL
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pago mensual y recibos de renta
+  title_en: Monthly payment and rent receipts
+  summary_es: La renta se paga en los plazos convenidos o, a falta de convenio, por meses vencidos. El arrendador debe entregar un recibo por cada mensualidad; si no entrega recibos por más de tres meses, se entiende efectuado el pago salvo requerimiento en tiempo y forma.
+  summary_en: Rent is paid on the agreed schedule or, absent agreement, monthly in arrears. The landlord must issue a receipt for each monthly payment; if no receipts are issued for more than three months, payment is deemed made unless the landlord made a timely formal demand.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2346, párr. primero y segundo
+  quote: La renta debe pagarse en los plazos convenidos, y a falta de convenio, por meses vencidos. El arrendador estará obligado a entregar un recibo por cada mensualidad que el arrendatario pague; a falta de entrega de recibos de pago de renta por más de tres meses, se entenderá que el pago ha sido efectuado, salvo que el arrendador haya hecho el requerimiento correspondiente en tiempo y forma.
+  applies_to_contract: true
+- id: MX-NL-FIADOR-01
+  jurisdiction: NL
+  category: garantias_fiador
+  kind: ley
+  title_es: No se puede rechazar a un fiador idóneo
+  title_en: A qualified guarantor cannot be refused
+  summary_es: El propietario no puede rehusar como fiador a una persona que reúna los requisitos legales para serlo.
+  summary_en: The owner may not refuse as guarantor a person who meets the legal requirements to be one.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2344, párr. primero
+  quote: El propietario no puede rehusar como fiador a una persona que reúna los requisitos exigidos por la ley para que sea fiador.
+  applies_to_contract: true
+- id: MX-NL-ARRENDADOR-01
+  jurisdiction: NL
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar en estado de servir y hacer reparaciones
+  title_en: Deliver fit for use and make repairs
+  summary_es: Aun sin pacto expreso, el arrendador debe entregar la finca con sus pertenencias y en estado de servir para el uso convenido, y conservarla en el mismo estado haciendo todas las reparaciones necesarias.
+  summary_en: Even without express agreement, the landlord must deliver the property with its appurtenances and fit for the agreed use, and keep it in the same condition making all necessary repairs.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2306, fr. I y II
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I.- A entregar al arrendatario la finca arrendada, con todas sus pertenencias y en estado de servir para el uso convenido; y si no hubo convenio expreso, para aquel a que por su misma naturaleza estuviere destinada; II.- A conservar la cosa arrendada en el mismo estado, durante el arrendamiento, haciendo para ello todas las reparaciones necesarias;'
+  applies_to_contract: true
+- id: MX-NL-HABITABILIDAD-01
+  jurisdiction: NL
+  category: habitabilidad
+  kind: ley
+  title_es: Condiciones de higiene y salubridad
+  title_en: Hygiene and sanitation conditions
+  summary_es: No puede darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas en el Código Sanitario.
+  summary_en: A dwelling that does not meet the hygiene and sanitation conditions required by the Sanitary Code may not be leased.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2342
+  quote: No podrá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas en el Código Sanitario.
+  applies_to_contract: true
+- id: MX-NL-ARRENDATARIO-02
+  jurisdiction: NL
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar renta, responder de daños y usar conforme a lo convenido
+  title_en: Pay rent, answer for damage, use as agreed
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos, responder de los perjuicios que sufra la cosa por su culpa o negligencia o la de sus familiares, sirvientes o subarrendatarios, y usarla solo para el uso convenido o conforme a su naturaleza y destino.
+  summary_en: The tenant must pay rent in the agreed form and time, answer for harm to the property caused by their fault or negligence or that of family, servants or subtenants, and use it only for the agreed use or according to its nature and purpose.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2319, fr. I a III
+  quote: 'El arrendatario está obligado: I.- A satisfacer la renta en la forma y tiempo convenidos; II.- A responder de los perjuicios que la cosa arrendada sufra por su culpa o negligencia, la de sus familiares, sirvientes o subarrendatarios; III.- A servirse de la cosa solamente para el uso convenido o conforme a la naturaleza y destino de ella.'
+  applies_to_contract: true
+- id: MX-NL-ARRENDADOR-02
+  jurisdiction: NL
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Devolución inmediata del saldo al terminar
+  title_en: Immediate return of balance at end
+  summary_es: Si al terminar el arrendamiento hay saldo a favor del arrendatario, el arrendador debe devolverlo de inmediato, salvo que tenga algún derecho que ejercitar contra él, en cuyo caso lo depositará judicialmente.
+  summary_en: If at the end of the lease there is a balance in the tenant's favor, the landlord must return it immediately, unless the landlord has a claim against the tenant, in which case it is deposited with the court.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2316
+  quote: Si al terminar el arrendamiento hubiere algún saldo a favor del arrendatario, el arrendador deberá devolverlo inmediatamente, a no ser que tenga algún derecho que ejercitar contra aquél; en este caso depositará judicialmente el saldo referido.
+  applies_to_contract: true
+- id: MX-NL-PREFERENCIA-01
+  jurisdiction: NL
+  category: otro
+  kind: ley
+  title_es: Preferencia al vencer el contrato
+  title_en: Preference when the contract expires
+  summary_es: Vencido el contrato, el arrendatario tiene derecho a ser preferido en igualdad de circunstancias frente a otro que desee rentar la finca.
+  summary_en: When the contract expires, the tenant has the right to be preferred on equal terms over another person wishing to rent the property.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2379
+  quote: Vencido un contrato de arrendamiento tendrá derecho el arrendatario a que se le prefiera en igualdad de circunstancias a otro que deseare rentar la finca.
+  applies_to_contract: true
+- id: MX-NL-TERMINACION-01
+  jurisdiction: NL
+  category: terminacion
+  kind: ley
+  title_es: 'Sin plazo determinado: aviso de dos meses (urbano)'
+  title_en: 'No fixed term: two months'' notice (urban)'
+  summary_es: Los arrendamientos sin tiempo expresamente determinado concluyen a voluntad de cualquiera de las partes, con aviso indubitable de dos meses si el predio es urbano.
+  summary_en: Leases without an expressly fixed term end at either party's will with unequivocal notice of two months if the property is urban.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2372
+  quote: Todos los arrendamientos, sean de predios rústicos o urbanos, que no se hayan celebrado por tiempo expresamente determinado, concluirán a voluntad de cualquiera de las partes contratantes, previo aviso a la otra parte dado en forma indubitable con dos meses de anticipación si el predio es urbano, y con un año si es rústico.
+  applies_to_contract: true
+- id: MX-NL-TERMINACION-02
+  jurisdiction: NL
+  category: terminacion
+  kind: ley
+  title_es: Tácita reconducción (predio urbano)
+  title_en: Tacit renewal (urban property)
+  summary_es: Si terminado el arrendamiento el arrendatario continúa sin oposición en un predio urbano, el arrendamiento continúa por tiempo indefinido y el arrendatario paga la renta del tiempo excedente conforme a lo que pagaba.
+  summary_en: If after the lease ends the tenant stays in an urban property without objection, the lease continues indefinitely and the tenant pays rent for the extra time at the prior rate.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2381
+  quote: En el caso del artículo anterior, si el predio fuere urbano, el arrendamiento continuará por tiempo indefinido, y el arrendatario deberá pagar la renta que corresponda al tiempo que exceda al del contrato con arreglo a lo que pagaba.
+  applies_to_contract: true
+- id: MX-NL-FIADOR-02
+  jurisdiction: NL
+  category: garantias_fiador
+  kind: ley
+  title_es: Cese de la fianza en prórroga
+  title_en: Guarantee ends on extension
+  summary_es: Cuando hay prórroga del contrato o tácita reconducción, cesan las obligaciones otorgadas por un tercero para la seguridad del arrendamiento, salvo convenio en contrario.
+  summary_en: When the contract is extended or tacitly renewed, third-party guarantee obligations for the lease end, unless otherwise agreed.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2382
+  quote: Cuando haya prórroga en el contrato de arrendamiento, y en los casos de que hablan los dos artículos anteriores, cesan las obligaciones otorgadas por un tercero para la seguridad del arrendamiento, salvo convenio en contrario.
+  applies_to_contract: true
+- id: MX-NL-RESCISION-01
+  jurisdiction: NL
+  category: terminacion
+  kind: ley
+  title_es: Causas de rescisión a favor del arrendador
+  title_en: Grounds for rescission by the landlord
+  summary_es: El arrendador puede exigir la rescisión por falta de pago de la renta, por usar la cosa contra lo convenido o su naturaleza, y por subarriendo no consentido.
+  summary_en: The landlord may demand rescission for non-payment of rent, for using the property contrary to the agreed use or its nature, and for unauthorized subletting.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2383, fr. I a III
+  quote: I.- Por falta de pago de la renta en los términos prevenidos en los artículos 2346 y 2348; II.- Por usarse la cosa en contravención a lo dispuesto en la fracción III del artículo 2319; III.- Por el subarriendo de la cosa en contravención a lo dispuesto en el artículo 2374.
+  applies_to_contract: true
+- id: MX-NL-SUBARRIENDO-01
+  jurisdiction: NL
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario de los daños y perjuicios.
+  summary_en: The tenant may not sublet all or part, nor assign their rights, without the landlord's consent; otherwise they are jointly liable with the subtenant for damages.
+  doc_id: D-MX-NL-01
+  citation: Código Civil para el Estado de Nuevo León, art. 2374
+  quote: El arrendatario no puede subarrendar la cosa arrendada en todo, ni en parte, ni ceder sus derechos sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el subarrendatario, de los daños y perjuicios.
+  applies_to_contract: true

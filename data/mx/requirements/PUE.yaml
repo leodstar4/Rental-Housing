@@ -1,0 +1,206 @@
+# Requisitos PUE — citas literales verificadas contra corpus_mx/estados/PUE (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-PUE-FORMA-01
+  jurisdiction: PUE
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato por escrito
+  title_en: Written contract
+  summary_es: El arrendamiento debe otorgarse por escrito; si el bien es rústico y la renta anual pasa de quinientas veces el valor diario de la UMA, se otorga en escritura pública.
+  summary_en: The lease must be in writing; if the property is rural and annual rent exceeds five hundred times the daily UMA value, it must be executed by public deed.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2269
+  quote: El arrendamiento debe otorgarse por escrito; pero si el bien arrendado fuere rústico y la renta anual pasare del importe equivalente a la cantidad de quinientas veces el valor diario de la Unidad de Medida y Actualización, el contrato se otorgará en escritura pública.
+  applies_to_contract: true
+- id: MX-PUE-DURACION-01
+  jurisdiction: PUE
+  category: duracion
+  kind: ley
+  title_es: Plazo libre con máximo de diez años (habitación)
+  title_en: Free term up to ten years (housing)
+  summary_es: El arrendamiento puede celebrarse por el tiempo que convengan las partes, pero no puede exceder de diez años para inmuebles destinados a habitación.
+  summary_en: The lease may be for whatever term the parties agree, but may not exceed ten years for property used as housing.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2271
+  quote: El arrendamiento puede celebrarse por el tiempo que convengan los contratantes; pero no puede exceder de diez años para los inmuebles destinados a habitación,
+  applies_to_contract: true
+- id: MX-PUE-NO-DISCRIMINACION-01
+  jurisdiction: PUE
+  category: otro
+  kind: ley
+  title_es: Prohibido excluir menores o enfermos dependientes
+  title_en: No clause excluding minors or dependent sick persons
+  summary_es: En arrendamientos de inmuebles para habitación, se prohíbe pactar que en el local no habitarán menores de edad o enfermos dependientes del arrendatario; es irrenunciable.
+  summary_en: In residential leases, the parties may not agree that minors or sick dependents of the tenant will not live in the dwelling; this cannot be waived.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2272
+  quote: En contratos de arrendamiento de inmuebles destinados a habitación, se prohíbe a las partes convenir que en el local arrendado no habitarán menores de edad o enfermos dependientes del arrendatario. Esta disposición es irrenunciable.
+  applies_to_contract: true
+- id: MX-PUE-ARRENDADOR-01
+  jurisdiction: PUE
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar en estado de servir
+  title_en: Deliver fit for use
+  summary_es: Aun sin pacto expreso, el arrendador debe entregar el bien con todas sus pertenencias y en estado de servir para el uso convenido.
+  summary_en: Even without express agreement, the landlord must deliver the property with all its appurtenances and fit for the agreed use.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2273, fr. I
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I. A entregar al arrendatario el bien arrendado con todas sus pertenencias y en estado de servir para el uso convenido;'
+  applies_to_contract: true
+- id: MX-PUE-ARRENDADOR-02
+  jurisdiction: PUE
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Conservar el bien y hacer reparaciones
+  title_en: Maintain the property and make repairs
+  summary_es: El arrendador debe conservar el bien en el mismo estado durante el arrendamiento haciendo las reparaciones necesarias, y no estorbar su uso salvo reparaciones urgentes e indispensables.
+  summary_en: The landlord must keep the property in the same condition during the lease, making necessary repairs, and not hinder its use except for urgent and indispensable repairs.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2273, fr. II y III
+  quote: II. A conservar el bien arrendado en el mismo estado durante el arrendamiento haciendo para ello las reparaciones necesarias; III. A no estorbar ni embarazar en manera alguna el uso del bien arrendado, a no ser por causa de reparaciones urgentes e indispensables;
+  applies_to_contract: true
+- id: MX-PUE-ARRENDADOR-03
+  jurisdiction: PUE
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Devolución inmediata del saldo al terminar
+  title_en: Immediate return of balance at end
+  summary_es: Si al terminar el arrendamiento hay saldo a favor del arrendatario, el arrendador debe devolverlo de inmediato, salvo que tenga algún derecho que ejercitar contra él, en cuyo caso lo depositará judicialmente.
+  summary_en: If at the end of the lease there is a balance in the tenant's favor, the landlord must return it immediately, unless the landlord has a claim against the tenant, in which case it is deposited with the court.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2288
+  quote: Si al terminar el arrendamiento hubiere algún saldo a favor del arrendatario, el arrendador deberá devolverlo inmediatamente, a no ser que tenga algún derecho que ejercitar contra aquél; en este caso, depositará judicialmente el saldo referido.
+  applies_to_contract: true
+- id: MX-PUE-ARRENDATARIO-01
+  jurisdiction: PUE
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar renta, responder de daños, uso convenido y restituir
+  title_en: Pay rent, answer for damage, agreed use, return
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos (a falta de convenio, por meses vencidos si es urbano), responder de los daños por culpa suya o de familiares, sirvientes, subarrendatarios o visitas, usar el bien solo para el uso convenido o conforme a su naturaleza y restituirlo al terminar.
+  summary_en: The tenant must pay rent in the agreed form and time (absent agreement, monthly in arrears if urban), answer for damage caused by their fault or that of family, servants, subtenants or visitors, use the property only as agreed or per its nature, and return it at the end.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2290
+  quote: 'El arrendatario está obligado: I. A pagar la renta en la forma y tiempo convenidos y a falta de convenio, por meses vencidos si el predio arrendado es urbano, y por semestres vencidos si es rústico; II. A responder de los daños que el bien arrendado sufra por culpa suya, de sus familiares, sirvientes, subarrendatarios o personas que lo visiten; III. A servirse del bien solamente para el uso convenido o el que sea conforme a la naturaleza y destino de él; IV. A restituir el bien al terminar el contrato.'
+  applies_to_contract: true
+- id: MX-PUE-ARRENDATARIO-02
+  jurisdiction: PUE
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pago semanal o quincenal para trabajadores
+  title_en: Weekly or biweekly payment for workers
+  summary_es: En bienes urbanos arrendados para habitación del arrendatario, si este es obrero o empleado puede pagar la renta por semanas o quincenas vencidas y el arrendador no puede negarse al pago parcial, aunque se haya pactado pago mensual.
+  summary_en: For urban property leased as the tenant's home, a worker or employee tenant may pay rent weekly or biweekly in arrears and the landlord may not refuse the partial payment, even if monthly payment was agreed.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2293
+  quote: Tratándose de bienes urbanos arrendados para habitación del arrendatario, si éste es obrero o empleado, puede pagar la renta por semanas o quincenas vencidas, y el arrendador no puede negarse a aceptar el pago parcial, aunque se haya pactado que la renta se pagaría por mensualidades.
+  applies_to_contract: true
+- id: MX-PUE-HABITABILIDAD-01
+  jurisdiction: PUE
+  category: habitabilidad
+  kind: ley
+  title_es: Condiciones de higiene y salubridad
+  title_en: Hygiene and sanitation conditions
+  summary_es: No puede darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por la ley.
+  summary_en: A dwelling that does not meet the hygiene and sanitation conditions required by law may not be leased.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2304
+  quote: No podrá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por la ley.
+  applies_to_contract: true
+- id: MX-PUE-FIADOR-01
+  jurisdiction: PUE
+  category: garantias_fiador
+  kind: ley
+  title_es: No se puede rechazar a un fiador idóneo
+  title_en: A qualified guarantor cannot be refused
+  summary_es: El arrendador no puede rehusar como fiador a una persona que reúna los requisitos exigidos por la ley.
+  summary_en: The landlord may not refuse as guarantor a person who meets the legal requirements.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2306
+  quote: El arrendador no puede rehusar como fiador a una persona que reúna los requisitos exigidas por la ley.
+  applies_to_contract: true
+- id: MX-PUE-PRORROGA-01
+  jurisdiction: PUE
+  category: duracion
+  kind: ley
+  title_es: Prórroga de hasta tres años (habitación)
+  title_en: Extension of up to three years (housing)
+  summary_es: Vencido el contrato, el arrendatario tiene derecho a una prórroga por una sola vez y hasta por tres años más si se reúnen los requisitos que el propio artículo enumera.
+  summary_en: When the contract expires, the tenant is entitled to a one-time extension of up to three more years if the requirements listed in the article are met.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2321
+  quote: 'Vencido un contrato de arrendamiento, tendrá derecho el arrendatario a que se le prorrogue por una sola vez y hasta por tres años más ese contrato, si se reúnen los siguientes requisitos:'
+  applies_to_contract: true
+- id: MX-PUE-INCREMENTO-01
+  jurisdiction: PUE
+  category: incremento_renta
+  kind: ley
+  title_es: Aumento de renta durante la prórroga
+  title_en: Rent increase during the extension
+  summary_es: Durante la prórroga, la renta solo puede aumentarse anualmente y el aumento no puede exceder del setenta por ciento del incremento porcentual fijado del valor diario de la UMA.
+  summary_en: During the extension, rent may only be raised annually and the increase may not exceed seventy percent of the percentage increase set for the daily UMA value.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2323
+  quote: Durante la prórroga prevista en los artículos anteriores, la renta estipulada en el contrato prorrogado sólo podrá aumentarse anualmente, pero el aumento no podrá exceder del setenta por ciento del incremento porcentual fijado del equivalente al valor diario de la Unidad de Medida y Actualización.
+  applies_to_contract: true
+- id: MX-PUE-FIADOR-02
+  jurisdiction: PUE
+  category: garantias_fiador
+  kind: ley
+  title_es: La garantía subsiste durante la prórroga
+  title_en: Guarantee continues during the extension
+  summary_es: En la prórroga de los arts. 2321 y 2322 no cesan las obligaciones de quien otorgó garantía para la seguridad del arrendador, y su responsabilidad se extiende a los aumentos de renta autorizados por la ley; es irrenunciable.
+  summary_en: During the statutory extension, the guarantor's obligations do not end, and their liability extends to rent increases authorized by law; this cannot be waived.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2328
+  quote: En caso de la prórroga del contrato de arrendamiento) establecida por los artículos 2321 y 2322, no cesan las obligaciones de quien haya otorgado garantía para la seguridad del arrendador, y la responsabilidad de aquél se extiende a los aumentos de renta autorizados por la ley, sin necesidad de pacto expreso. Este artículo es irrenunciable.
+  applies_to_contract: true
+- id: MX-PUE-TERMINACION-01
+  jurisdiction: PUE
+  category: terminacion
+  kind: ley
+  title_es: 'Sin plazo: notificación judicial o notarial con dos meses (urbano)'
+  title_en: 'No fixed term: two months'' judicial or notarial notice (urban)'
+  summary_es: El arrendamiento sin tiempo expresamente determinado concluye a voluntad de cualquiera de las partes, previa notificación judicial o notarial con dos meses de anticipación si el predio es urbano.
+  summary_en: A lease without an expressly fixed term ends at either party's will, after judicial or notarial notice two months in advance if the property is urban.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2320
+  quote: El arrendamiento de predios rústicos o urbanos, que no se haya celebrado por tiempo expresamente determinado, concluirá a voluntad de cualquiera de las partes contratantes, previa notificación judicial o notarial a la otra parte, con dos meses de anticipación, si el predio es urbano, y un año si es rústico.
+  applies_to_contract: true
+- id: MX-PUE-RESCISION-01
+  jurisdiction: PUE
+  category: terminacion
+  kind: ley
+  title_es: Rescisión por falta de pago de tres meses (habitación)
+  title_en: Rescission for three months' non-payment (housing)
+  summary_es: El arrendador puede exigir la rescisión al inquilino si no paga la renta correspondiente a tres meses consecutivos, cuando el arrendamiento se celebró para habitación.
+  summary_en: The landlord may demand rescission if the tenant fails to pay three consecutive months' rent when the lease was for housing.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2334, fr. I
+  quote: 'El arrendador puede exigir la rescisión del contrato al inquilino: I. Si no paga la renta correspondiente a tres meses consecutivos, cuando el arrendamiento se celebró para habitación;'
+  applies_to_contract: true
+- id: MX-PUE-TERMINACION-02
+  jurisdiction: PUE
+  category: terminacion
+  kind: ley
+  title_es: La muerte de las partes no rescinde el contrato
+  title_en: Death of a party does not rescind the lease
+  summary_es: El arrendamiento no se rescinde por la muerte del arrendador ni del arrendatario y no puede pactarse lo contrario.
+  summary_en: The lease is not rescinded by the death of the landlord or the tenant, and the contrary may not be agreed.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2340
+  quote: El contrato de arrendamiento no se rescinde por la muerte del arrendador ni del arrendatario y no puede pactarse lo contrario.
+  applies_to_contract: true
+- id: MX-PUE-SUBARRIENDO-01
+  jurisdiction: PUE
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar en todo o en parte ni ceder sus derechos sin consentimiento del arrendador.
+  summary_en: The tenant may not sublet all or part nor assign their rights without the landlord's consent.
+  doc_id: D-MX-PUE-01
+  citation: Código Civil para el Estado Libre y Soberano de Puebla, art. 2311
+  quote: El arrendatario no puede subarrendar el bien arrendado en todo o en parte ni ceder sus derechos sin consentimiento del arrendador.
+  applies_to_contract: true

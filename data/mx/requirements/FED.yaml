@@ -1,0 +1,470 @@
+# Requisitos FED — citas literales verificadas contra corpus_mx (ver manifest_fed_cdmx.json).
+# No es asesoría legal.
+- id: MX-FED-CONTRATO-FORMA-01
+  jurisdiction: FED
+  category: contrato_forma
+  kind: ley
+  title_es: El contrato debe constar por escrito
+  title_en: The lease must be in writing
+  summary_es: El contrato de arrendamiento debe otorgarse por escrito; si falta esta formalidad, se imputa al arrendador.
+  summary_en: The lease agreement must be executed in writing; failure to do so is attributed to the landlord.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2406
+  quote: El contrato de arrendamiento debe otorgarse por escrito. La falta de esta formalidad se imputará al arrendador.
+  applies_to_contract: true
+- id: MX-FED-CONTRATO-CONTENIDO-01
+  jurisdiction: FED
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido mínimo: partes, ubicación y descripción'
+  title_en: 'Minimum content: parties, location and description'
+  summary_es: En arrendamiento de fincas urbanas para habitación, el contrato debe contener al menos los nombres de arrendador y arrendatario, la ubicación del inmueble y su descripción detallada (instalaciones, accesorios y su estado).
+  summary_en: For urban residential leases, the contract must contain at least the names of landlord and tenant, the property's location, and a detailed description of the property (installations, fixtures and their condition).
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 F, fracc. I a III
+  quote: 'El contrato deberá contener, cuando menos las siguientes estipulaciones: I. Nombres del arrendador y arrendatario. II. La ubicación del inmueble. III. Descripción detallada del inmueble objeto del contrato y de las instalaciones y accesorios con que cuenta para el uso y goce del mismo, así como el estado que guardan.'
+  applies_to_contract: true
+- id: MX-FED-CONTRATO-CONTENIDO-02
+  jurisdiction: FED
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido mínimo: renta, garantía, destino y término'
+  title_en: 'Minimum content: rent, guarantee, use and term'
+  summary_es: El contrato también debe indicar el monto de la renta, la garantía en su caso, la mención expresa del destino habitacional y el término del contrato.
+  summary_en: The contract must also state the rent amount, the guarantee if any, an express statement that the property is for residential use, and the term of the contract.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 F, fracc. IV a VII
+  quote: IV. El monto de la renta. V. La garantía, en su caso. VI. La mención expresa del destino habitacional del inmueble arrendado. VII. El término del contrato.
+  applies_to_contract: true
+- id: MX-FED-DURACION-01
+  jurisdiction: FED
+  category: duracion
+  kind: ley
+  title_es: Duración mínima de un año (salvo convenio)
+  title_en: One-year minimum term (unless agreed otherwise)
+  summary_es: La duración mínima del arrendamiento de fincas urbanas para habitación es de un año forzoso para ambas partes, salvo convenio en contrario.
+  summary_en: The minimum term of an urban residential lease is one year, binding on both parties, unless otherwise agreed.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 C
+  quote: La duración mínima de todo contrato de arrendamiento de fincas urbanas destinadas a la habitación será de un año forzoso para arrendador y arrendatario, salvo convenio en contrario.
+  applies_to_contract: true
+- id: MX-FED-DURACION-02
+  jurisdiction: FED
+  category: duracion
+  kind: ley
+  title_es: Duración máxima de diez años para habitación
+  title_en: Ten-year maximum term for housing
+  summary_es: El arrendamiento no puede exceder de diez años para fincas destinadas a habitación (veinte para comercio o industria).
+  summary_en: A lease may not exceed ten years for residential property (twenty for commercial or industrial property).
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2398, párr. segundo
+  quote: El arrendamiento no puede exceder de diez años para las fincas destinadas a habitación y de veinte años para las fincas destinadas al comercio o a la industria.
+  applies_to_contract: true
+- id: MX-FED-RENTA-01
+  jurisdiction: FED
+  category: otro
+  kind: ley
+  title_es: Renta en moneda nacional
+  title_en: Rent in Mexican pesos
+  summary_es: En el arrendamiento de fincas urbanas para habitación, la renta debe estipularse en moneda nacional.
+  summary_en: For urban residential leases, rent must be stipulated in national currency.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 D
+  quote: Para los efectos de este Capítulo la renta deberá estipularse en moneda nacional.
+  applies_to_contract: true
+- id: MX-FED-PAGO-01
+  jurisdiction: FED
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Plazos de pago de la renta
+  title_en: Rent payment periods
+  summary_es: La renta se paga en los plazos convenidos; a falta de convenio, por meses vencidos.
+  summary_en: Rent is paid on the agreed dates; absent agreement, monthly in arrears.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 E
+  quote: La renta debe pagarse en los plazos convenidos y a falta de convenio, por meses vencidos.
+  applies_to_contract: true
+- id: MX-FED-ARRENDADOR-01
+  jurisdiction: FED
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar el inmueble en estado de servir, con higiene y seguridad
+  title_en: Deliver the property fit for use, hygienic and safe
+  summary_es: Aunque no se pacte, el arrendador debe entregar la finca con sus pertenencias, en estado de servir para el uso convenido y en condiciones de higiene y seguridad.
+  summary_en: Even without an express clause, the landlord must deliver the property with its appurtenances, fit for the agreed use and in hygienic and safe condition.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2412, fracc. I
+  quote: A entregar al arrendatario la finca arrendada con todas sus pertenencias y en estado de servir para el uso convenido; y si no hubo convenido expreso, para aquél a que por su misma naturaleza estuviere destinada; así como en condiciones que ofrezcan al arrendatario la higiene y seguridad del inmueble;
+  applies_to_contract: true
+- id: MX-FED-ARRENDADOR-02
+  jurisdiction: FED
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Conservar el inmueble y hacer reparaciones necesarias
+  title_en: Maintain the property and make necessary repairs
+  summary_es: El arrendador debe conservar la cosa arrendada en el mismo estado durante el arrendamiento, haciendo todas las reparaciones necesarias.
+  summary_en: The landlord must keep the leased property in the same condition during the lease, making all necessary repairs.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2412, fracc. II
+  quote: A conservar la cosa arrendada en el mismo estado, durante el arrendamiento, haciendo para ello todas las reparaciones necesarias;
+  applies_to_contract: true
+- id: MX-FED-HABITABILIDAD-01
+  jurisdiction: FED
+  category: habitabilidad
+  kind: ley
+  title_es: Condiciones de higiene y salubridad
+  title_en: Hygiene and sanitary conditions
+  summary_es: No debe darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por la ley de la materia.
+  summary_en: A dwelling that does not meet the hygiene and sanitary conditions required by the applicable law must not be leased.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 A
+  quote: No deberá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por la Ley de la materia.
+  applies_to_contract: false
+- id: MX-FED-ARRENDATARIO-01
+  jurisdiction: FED
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar la renta en forma y tiempo
+  title_en: Pay rent as and when agreed
+  summary_es: El arrendatario está obligado a pagar la renta en la forma y tiempo convenidos.
+  summary_en: The tenant must pay rent in the agreed manner and time.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2425, fracc. I
+  quote: 'El arrendatario está obligado: I. A satisfacer la renta en la forma y tiempo convenidos;'
+  applies_to_contract: true
+- id: MX-FED-ARRENDATARIO-02
+  jurisdiction: FED
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Reparaciones menores a cargo del arrendatario
+  title_en: Minor repairs are the tenant's responsibility
+  summary_es: El arrendatario debe reparar los deterioros de poca importancia que regularmente causan quienes habitan el edificio.
+  summary_en: The tenant must repair minor deterioration usually caused by the building's occupants.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2444
+  quote: El arrendatario debe hacer las reparaciones de aquellos deterioros de poca importancia, que regularmente son causados por las personas que habitan el edificio.
+  applies_to_contract: true
+- id: MX-FED-SUBARRIENDO-01
+  jurisdiction: FED
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarrendar requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar ni ceder sus derechos sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario de los daños y perjuicios.
+  summary_en: The tenant may not sublet or assign their rights without the landlord's consent; otherwise they are jointly liable with the subtenant for damages.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2480
+  quote: El arrendatario no puede subarrendar la cosa arrendada en todo, ni en parte, ni ceder sus derechos sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el subarrendatario, de los daños y perjuicios.
+  applies_to_contract: true
+- id: MX-FED-SALDO-01
+  jurisdiction: FED
+  category: terminacion
+  kind: ley
+  title_es: Devolución de saldo a favor al terminar
+  title_en: Return of any balance at termination
+  summary_es: Si al terminar el arrendamiento hay saldo a favor del arrendatario, el arrendador debe devolverlo inmediatamente, salvo que tenga algún derecho que ejercitar contra él; en ese caso lo deposita judicialmente.
+  summary_en: If at termination there is a balance in the tenant's favor, the landlord must return it immediately unless it has a claim against the tenant, in which case it must deposit the balance with the court.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2422
+  quote: Si al terminar el arrendamiento hubiere algún saldo a favor del arrendatario, el arrendador deberá devolverlo inmediatamente, a no ser que tenga algún derecho que ejercitar contra aquél; en este caso, depositará judicialmente el saldo referido.
+  applies_to_contract: true
+- id: MX-FED-FIADOR-01
+  jurisdiction: FED
+  category: garantias_fiador
+  kind: ley
+  title_es: Qué es la fianza
+  title_en: What a guaranty (fianza) is
+  summary_es: La fianza es un contrato por el que una persona se compromete con el acreedor a pagar por el deudor si éste no lo hace.
+  summary_en: A guaranty (fianza) is a contract by which a person undertakes to the creditor to pay on the debtor's behalf if the debtor does not.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2794
+  quote: La fianza es un contrato por el cual una persona se compromete con el acreedor a pagar por el deudor, si éste no lo hace.
+  applies_to_contract: true
+- id: MX-FED-TERMINACION-01
+  jurisdiction: FED
+  category: terminacion
+  kind: ley
+  title_es: Continuación tras vencer el plazo
+  title_en: Holding over after the term ends
+  summary_es: Si terminado el plazo el arrendatario sigue sin oposición en el uso del bien, el arrendamiento continúa por tiempo indeterminado, pagando la renta conforme a lo convenido.
+  summary_en: If the tenant stays on without objection after the term ends, the lease continues for an indefinite term, with rent payable as agreed.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2487
+  quote: Si después de terminado el plazo por el que se celebró el arrendamiento, el arrendatario continúa sin oposición en el uso y goce del bien arrendado, continuará el arrendamiento por tiempo indeterminado, estando obligado el arrendatario a pagar la renta que corresponda por el tiempo que exceda conforme a lo convenido en el contrato;
+  applies_to_contract: true
+- id: MX-FED-TERMINACION-02
+  jurisdiction: FED
+  category: terminacion
+  kind: ley
+  title_es: Rescisión a petición del arrendatario
+  title_en: Termination requested by the tenant
+  summary_es: El arrendatario puede exigir la rescisión, entre otros casos, cuando el arrendador incumple la obligación de conservar el inmueble (art. 2412, fracc. II).
+  summary_en: The tenant may demand rescission, among other cases, when the landlord breaches the duty to maintain the property (art. 2412, sec. II).
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2490, fracc. I
+  quote: 'El arrendatario puede exigir la rescisión del contrato: I. Por contravenir el arrendador la obligación a que se refiere la fracción II del artículo 2412 de este ordenamiento;'
+  applies_to_contract: true
+- id: MX-FED-PREFERENCIA-01
+  jurisdiction: FED
+  category: otro
+  kind: ley
+  title_es: Derecho de preferencia si se vende
+  title_en: Right of first refusal on sale
+  summary_es: Si el propietario decide enajenar el inmueble arrendado, los arrendatarios tienen derecho a ser preferidos frente a cualquier tercero, en los términos del artículo.
+  summary_en: If the owner decides to sell the leased property, the tenants have the right to be preferred over any third party, under the terms of the article.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 2448 J
+  quote: 'En el caso de que el propietario del inmueble arrendado decida enajenarlo, el o los arrendatarios tendrán derecho a ser preferidos a cualquier tercero en los siguientes términos:'
+  applies_to_contract: false
+- id: MX-FED-FIRMA-01
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: Consentimiento expreso por medios electrónicos
+  title_en: Express consent by electronic means
+  summary_es: El consentimiento es expreso cuando la voluntad se manifiesta verbalmente, por escrito, por medios electrónicos, ópticos o cualquier otra tecnología, o por signos inequívocos.
+  summary_en: Consent is express when the will is manifested verbally, in writing, by electronic or optical means or any other technology, or by unequivocal signs.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 1803, fracc. I
+  quote: Será expreso cuando la voluntad se manifiesta verbalmente, por escrito, por medios electrónicos, ópticos o por cualquier otra tecnología, o por signos inequívocos
+  applies_to_contract: true
+- id: MX-FED-FIRMA-02
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: 'Forma escrita: firma de todas las partes obligadas'
+  title_en: 'Written form: signed by all obligated parties'
+  summary_es: Cuando se exige la forma escrita, los documentos deben ser firmados por todas las personas a las que se imponga esa obligación.
+  summary_en: Where written form is required, the documents must be signed by all persons on whom that obligation is imposed.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 1834
+  quote: Cuando se exija la forma escrita para el contrato, los documentos relativos deben ser firmados por todas las personas a las cuales se imponga esa obligación.
+  applies_to_contract: true
+- id: MX-FED-FIRMA-03
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: La forma escrita se cumple por medios electrónicos
+  title_en: Written form may be met electronically
+  summary_es: Lo previsto en el art. 1834 (firma de los documentos cuando se exige forma escrita) se tiene por cumplido con medios electrónicos, siempre que la información sea íntegra, atribuible a las personas obligadas y accesible para su consulta posterior.
+  summary_en: What art. 1834 requires (signing documents where written form is required) is deemed met by electronic means, provided the information is complete, attributable to the obligated persons and accessible for later consultation.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 1834 bis
+  quote: Los supuestos previstos por el artículo anterior se tendrán por cumplidos mediante la utilización de medios electrónicos, ópticos o de cualquier otra tecnología, siempre que la información generada o comunicada en forma íntegra, a través de dichos medios sea atribuible a las personas obligadas y accesible para su ulterior consulta.
+  applies_to_contract: true
+- id: MX-FED-FIRMA-04
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: Sin pacto previo para contratar electrónicamente
+  title_en: No prior agreement needed to contract electronically
+  summary_es: Para la propuesta y aceptación por medios electrónicos no se requiere estipulación previa entre los contratantes para que produzcan efectos.
+  summary_en: Offer and acceptance made by electronic means take effect without any prior agreement between the parties.
+  doc_id: D-MX-FED-01
+  citation: Código Civil Federal, art. 1811, párr. segundo
+  quote: Tratándose de la propuesta y aceptación hechas a través de medios electrónicos, ópticos o de cualquier otra tecnología no se requerirá de estipulación previa entre los contratantes para que produzca efectos.
+  applies_to_contract: true
+- id: MX-FED-FIRMA-05
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: 'Ámbito del Código de Comercio: asuntos comerciales'
+  title_en: 'Commercial Code scope: commercial matters'
+  summary_es: Las reglas de mensajes de datos y firma electrónica del Código de Comercio rigen en toda la República en asuntos del orden comercial.
+  summary_en: The Commercial Code's rules on data messages and electronic signatures apply nationwide to commercial matters.
+  doc_id: D-MX-FED-02
+  citation: Código de Comercio, art. 89, párr. primero
+  quote: Las disposiciones de este Título regirán en toda la República Mexicana en asuntos del orden comercial, sin perjuicio de lo dispuesto en los tratados internacionales de los que México sea parte.
+  applies_to_contract: false
+- id: MX-FED-FIRMA-06
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: Definición de firma electrónica
+  title_en: Definition of electronic signature
+  summary_es: La firma electrónica son datos electrónicos asociados a un mensaje de datos que identifican al firmante e indican que aprueba la información; produce los mismos efectos que la firma autógrafa y es admisible como prueba en juicio.
+  summary_en: An electronic signature is electronic data associated with a data message that identifies the signer and indicates approval of the information; it has the same legal effects as a handwritten signature and is admissible as evidence.
+  doc_id: D-MX-FED-02
+  citation: Código de Comercio, art. 89 (definición de Firma Electrónica)
+  quote: 'Firma Electrónica: Los datos en forma electrónica consignados en un Mensaje de Datos, o adjuntados o lógicamente asociados al mismo por cualquier tecnología, que son utilizados para identificar al Firmante en relación con el Mensaje de Datos e indicar que el Firmante aprueba la información contenida en el Mensaje de Datos, y que produce los mismos efectos jurídicos que la firma autógrafa, siendo admisible como prueba en juicio.'
+  applies_to_contract: true
+- id: MX-FED-FIRMA-07
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: Forma escrita mediante mensaje de datos
+  title_en: Written form via data message
+  summary_es: Cuando la ley exige forma escrita, se cumple con un mensaje de datos si la información se mantiene íntegra y es accesible para su consulta posterior, sin importar el formato.
+  summary_en: Where the law requires written form, a data message satisfies it if the information remains complete and accessible for later consultation, regardless of format.
+  doc_id: D-MX-FED-02
+  citation: Código de Comercio, art. 93, párr. primero
+  quote: Cuando la ley exija la forma escrita para los actos, convenios o contratos, este supuesto se tendrá por cumplido tratándose de Mensaje de Datos, siempre que la información en él contenida se mantenga íntegra y sea accesible para su ulterior consulta, sin importar el formato en el que se encuentre o represente.
+  applies_to_contract: true
+- id: MX-FED-FIRMA-08
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: 'Firma electrónica avanzada: detección de alteraciones'
+  title_en: 'Advanced e-signature: tamper detection'
+  summary_es: Entre los requisitos de la firma electrónica avanzada o fiable están que sea posible detectar cualquier alteración de la firma y de la información del mensaje de datos hecha después de firmar.
+  summary_en: 'Among the requirements for an advanced or reliable electronic signature: any alteration of the signature, and of the data message''s information, made after signing must be detectable.'
+  doc_id: D-MX-FED-02
+  citation: Código de Comercio, art. 97, fracc. III y IV
+  quote: Es posible detectar cualquier alteración de la Firma Electrónica hecha después del momento de la firma, y IV. Respecto a la integridad de la información de un Mensaje de Datos, es posible detectar cualquier alteración de ésta hecha después del momento de la firma.
+  applies_to_contract: false
+- id: MX-FED-CONSERVACION-01
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: Conservación de contratos por comerciantes
+  title_en: Record retention by merchants
+  summary_es: Los comerciantes deben conservar por al menos diez años los originales de documentos y mensajes de datos en que consten contratos que generen derechos y obligaciones.
+  summary_en: Merchants must keep, for at least ten years, the originals of documents and data messages recording contracts that create rights and obligations.
+  doc_id: D-MX-FED-02
+  citation: Código de Comercio, art. 49, párr. primero
+  quote: Los comerciantes están obligados a conservar por un plazo mínimo de diez años los originales de aquellas cartas, telegramas, mensajes de datos o cualesquiera otros documentos en que se consignen contratos, convenios o compromisos que den nacimiento a derechos y obligaciones.
+  applies_to_contract: false
+- id: MX-FED-CONSERVACION-02
+  jurisdiction: FED
+  category: firma_electronica
+  kind: norma
+  title_es: 'NOM-151: constancia de conservación por PSC acreditado'
+  title_en: 'NOM-151: retention certificate from an accredited PSC'
+  summary_es: La constancia de conservación de mensajes de datos la emite un Prestador de Servicios de Certificación acreditado y debe observar el Apéndice Normativo A de la NOM-151-SCFI-2016.
+  summary_en: The data-message retention certificate is issued by an accredited Certification Service Provider and must follow Normative Appendix A of NOM-151-SCFI-2016.
+  doc_id: D-MX-FED-03
+  citation: NOM-151-SCFI-2016, numeral 6.2
+  quote: La constancia emitida por el Prestador de Servicios de Certificación, acreditado para tales efectos, deberá observar los términos establecidos en el Apéndice Normativo A de la presente NOM.
+  applies_to_contract: false
+- id: MX-FED-CONSERVACION-03
+  jurisdiction: FED
+  category: firma_electronica
+  kind: norma
+  title_es: 'NOM-151: campo de aplicación (comerciantes)'
+  title_en: 'NOM-151: scope (merchants)'
+  summary_es: La NOM-151-SCFI-2016 es de observancia general para los comerciantes que conserven mensajes de datos conforme a los artículos citados del Código de Comercio.
+  summary_en: NOM-151-SCFI-2016 is mandatory for merchants who retain data messages under the cited Commercial Code articles.
+  doc_id: D-MX-FED-03
+  citation: NOM-151-SCFI-2016, numeral 2 (Campo de aplicación)
+  quote: La presente Norma Oficial Mexicana es de observancia general para los comerciantes que conforme a lo establecido en los artículos 33, 34, 38, 46 bis, 49 y 89 del Código de Comercio conserven mensajes de datos
+  applies_to_contract: false
+- id: MX-FED-DATOS-01
+  jurisdiction: FED
+  category: datos_personales
+  kind: ley
+  title_es: Obligación de aviso de privacidad
+  title_en: Privacy notice obligation
+  summary_es: El responsable debe informar al titular, mediante el aviso de privacidad, la existencia y características principales del tratamiento de sus datos personales.
+  summary_en: The data controller must inform the data subject, through a privacy notice, of the existence and main features of the processing of their personal data.
+  doc_id: D-MX-FED-04
+  citation: LFPDPPP (DOF 20-03-2025), art. 14
+  quote: El responsable tendrá la obligación de informar a la persona titular, a través del aviso de privacidad, la existencia y características principales del tratamiento al que serán sometidos sus datos personales, a fin de que pueda tomar decisiones informadas al respecto.
+  applies_to_contract: true
+- id: MX-FED-DATOS-02
+  jurisdiction: FED
+  category: datos_personales
+  kind: ley
+  title_es: Contenido mínimo del aviso de privacidad
+  title_en: Minimum content of the privacy notice
+  summary_es: El aviso de privacidad debe contener al menos la identidad y domicilio del responsable, los datos que se tratarán (identificando los sensibles) y las finalidades del tratamiento, entre otros.
+  summary_en: The privacy notice must contain at least the controller's identity and address, the data to be processed (identifying sensitive data) and the purposes of processing, among other items.
+  doc_id: D-MX-FED-04
+  citation: LFPDPPP (DOF 20-03-2025), art. 15, fracc. I a III
+  quote: 'El aviso de privacidad deberá contener, al menos, la siguiente información: I. La identidad y domicilio del responsable; II. Los datos personales que serán sometidos a tratamiento, identificando aquéllos que son sensibles; III. Las finalidades del tratamiento de datos personales, distinguiendo aquéllas que requieren el consentimiento de la persona titular;'
+  applies_to_contract: true
+- id: MX-FED-DATOS-03
+  jurisdiction: FED
+  category: datos_personales
+  kind: ley
+  title_es: Aviso simplificado cuando los datos se recaban en línea
+  title_en: Short-form notice when data is collected online
+  summary_es: Si los datos se obtienen por medios electrónicos, se debe proporcionar el aviso en modalidad simplificada (al menos fracciones I a IV del art. 15) e indicar dónde consultar el aviso integral.
+  summary_en: If data is collected electronically, the short-form notice (at least items I to IV of art. 15) must be provided, stating where the full notice can be consulted.
+  doc_id: D-MX-FED-04
+  citation: LFPDPPP (DOF 20-03-2025), art. 16, fracc. II
+  quote: Cuando los datos personales sean obtenidos por cualquier medio electrónico, óptico, sonoro, visual, o a través de cualquier otra tecnología, deberá ser proporcionado en su modalidad simplificada la que deberá contener al menos la información a que se refieren las fracciones I a IV del artículo anterior, y señalar el sitio donde se podrá consultar el aviso de privacidad integral.
+  applies_to_contract: false
+- id: MX-FED-DATOS-04
+  jurisdiction: FED
+  category: datos_personales
+  kind: ley
+  title_es: 'Datos financieros o patrimoniales: consentimiento expreso'
+  title_en: 'Financial or asset data: express consent'
+  summary_es: Los datos financieros o patrimoniales requieren consentimiento expreso del titular, salvo las excepciones de los artículos 9 y 36.
+  summary_en: Financial or asset data require the data subject's express consent, except as provided in articles 9 and 36.
+  doc_id: D-MX-FED-04
+  citation: LFPDPPP (DOF 20-03-2025), art. 7, párr. quinto
+  quote: Los datos financieros o patrimoniales requerirán el consentimiento expreso de la persona titular, salvo las excepciones a que se refieren los artículos 9 y 36 de la presente Ley.
+  applies_to_contract: true
+- id: MX-FED-FISCAL-01
+  jurisdiction: FED
+  category: fiscal
+  kind: ley
+  title_es: 'IVA: exención para casa habitación'
+  title_en: 'VAT: exemption for residential use'
+  summary_es: No se paga IVA por el uso o goce temporal de inmuebles destinados o utilizados exclusivamente para casa habitación.
+  summary_en: No VAT is due on the temporary use of property used exclusively as a dwelling.
+  doc_id: D-MX-FED-06
+  citation: Ley del IVA, art. 20, fracc. II
+  quote: II.- Inmuebles destinados o utilizados exclusivamente para casa- habitación.
+  applies_to_contract: false
+- id: MX-FED-FISCAL-06
+  jurisdiction: FED
+  category: fiscal
+  kind: ley
+  title_es: 'IVA: la exención no aplica a inmuebles amueblados u hospedaje'
+  title_en: 'VAT: exemption excludes furnished units and lodging'
+  summary_es: La exención de IVA para casa habitación no aplica a inmuebles (o partes) que se proporcionen amueblados o se usen como hoteles o casas de hospedaje.
+  summary_en: The residential VAT exemption does not apply to property (or parts) provided furnished or used as hotels or guesthouses.
+  doc_id: D-MX-FED-06
+  citation: Ley del IVA, art. 20, fracc. II, última oración
+  quote: Lo dispuesto en esta fracción no es aplicable a los inmuebles o parte de ellos que se proporcionen amueblados o se destinen o utilicen como hoteles o casas de hospedaje.
+  applies_to_contract: false
+- id: MX-FED-FISCAL-02
+  jurisdiction: FED
+  category: fiscal
+  kind: ley
+  title_es: 'ISR: el arrendador expide comprobantes fiscales'
+  title_en: 'Income tax: landlord issues tax receipts'
+  summary_es: Quien obtiene ingresos por arrendamiento de inmuebles debe expedir comprobantes fiscales por las contraprestaciones recibidas.
+  summary_en: Persons earning income from leasing real estate must issue tax receipts for the payments received.
+  doc_id: D-MX-FED-05
+  citation: Ley del ISR, art. 118, fracc. III
+  quote: III. Expedir comprobantes fiscales por las contraprestaciones recibidas.
+  applies_to_contract: false
+- id: MX-FED-FISCAL-03
+  jurisdiction: FED
+  category: fiscal
+  kind: ley
+  title_es: 'ISR: deducción opcional del 35%'
+  title_en: 'Income tax: optional 35% deduction'
+  summary_es: Quienes otorgan el uso o goce de inmuebles pueden optar por deducir el 35% de los ingresos en lugar de las deducciones del artículo.
+  summary_en: Those leasing real estate may elect to deduct 35% of the income instead of the itemized deductions in the article.
+  doc_id: D-MX-FED-05
+  citation: Ley del ISR, art. 115, párr. segundo
+  quote: Los contribuyentes que otorguen el uso o goce temporal de bienes inmuebles podrán optar por deducir el 35% de los ingresos a que se refiere este Capítulo, en substitución de las deducciones a que este artículo se refiere.
+  applies_to_contract: false
+- id: MX-FED-FISCAL-04
+  jurisdiction: FED
+  category: fiscal
+  kind: ley
+  title_es: 'ISR: retención del 10% si paga una persona moral'
+  title_en: 'Income tax: 10% withholding if a company pays'
+  summary_es: Si la renta la pagan personas morales, éstas deben retener como pago provisional el 10% sobre el monto, sin deducción alguna.
+  summary_en: If rent is paid by a legal entity, it must withhold 10% of the amount as a provisional payment, without any deduction.
+  doc_id: D-MX-FED-05
+  citation: Ley del ISR, art. 116, párr. quinto
+  quote: Cuando los ingresos a que se refiere este Capítulo se obtengan por pagos que efectúen las personas morales, éstas deberán retener como pago provisional el monto que resulte de aplicar la tasa del 10% sobre el monto de los mismos, sin deducción alguna,
+  applies_to_contract: false
+- id: MX-FED-FISCAL-05
+  jurisdiction: FED
+  category: fiscal
+  kind: ley
+  title_es: 'CFDI: quien disfruta el uso o goce debe solicitarlo'
+  title_en: 'CFDI: the user of the property must request it'
+  summary_es: Las personas que disfrutan del uso o goce temporal de bienes, entre otras, deben solicitar el comprobante fiscal digital por Internet (CFDI) respectivo.
+  summary_en: Persons who enjoy the temporary use of property, among others, must request the corresponding digital tax receipt (CFDI).
+  doc_id: D-MX-FED-07
+  citation: Código Fiscal de la Federación, art. 29, párr. primero
+  quote: Las personas que adquieran bienes, disfruten de su uso o goce temporal, reciban servicios, realicen pagos parciales o diferidos que liquidan saldos de comprobantes fiscales digitales por Internet, o aquéllas a las que les hubieren retenido contribuciones deberán solicitar el comprobante fiscal digital por Internet respectivo.
+  applies_to_contract: false
