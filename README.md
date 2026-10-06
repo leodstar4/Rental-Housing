@@ -1,3 +1,18 @@
+> ## 🇲🇽 Upgrade en esta rama: **Renta MX**
+>
+> Esta rama (`feature/mx-renta-zonas`) lleva el proyecto más allá de "consultar la ley de EE. UU.":
+> es una plataforma para **rentar y vivir en México**, buscar por **zona** (estado → municipio),
+> ver las **viviendas publicadas**, consultar los **requisitos legales** con cita literal verificada
+> y **generar y firmar** un contrato de arrendamiento. El runtime no usa LLM.
+>
+> 📖 **Documentación completa del upgrade:** [`README_RENTA_MX.md`](README_RENTA_MX.md)
+> (qué cambió, arquitectura, cómo correrlo, seguridad, costos y roadmap).
+>
+> El proyecto original (EE. UU.) descrito abajo sigue intacto y accesible en la ruta `/us` del
+> frontend.
+
+---
+
 # Rental Housing Law Navigator
 
 **Which rental-housing rules apply at this address today, and why?** An AI pipeline reads a

@@ -1,0 +1,206 @@
+# Requisitos YUC — citas literales verificadas contra corpus_mx/estados/YUC (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-YUC-FORMA-01
+  jurisdiction: YUC
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato por escrito ante notario (escritura pública si excede 3 años)
+  title_en: Written contract before a notary (public deed if over 3 years)
+  summary_es: 'Todo contrato de arrendamiento debe constar por escrito, cualquiera que sea la renta anual: en documento ante notario público si el plazo no excede de tres años, y en escritura pública ante notario si excede de ese plazo.'
+  summary_en: 'Every lease must be in writing regardless of annual rent: in a document before a notary public if the term does not exceed three years, and in a public deed before a notary if it does.'
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1573
+  quote: Todo contrato de arrendamiento debe constar por escrito, sea cual fuere la cuantía de la renta anual; en documento ante notario público cuando el plazo no exceda de tres años y, en escritura pública ante notario cuando exceda de ese plazo.
+  applies_to_contract: true
+- id: MX-YUC-DURACION-01
+  jurisdiction: YUC
+  category: duracion
+  kind: ley
+  title_es: Tiempo y precio convenidos (con salvedades legales)
+  title_en: Term and price as agreed (with legal exceptions)
+  summary_es: El arrendamiento puede hacerse por el tiempo y el precio que convengan las partes, sin perjuicio de lo dispuesto en los arts. 1613 y 1616.
+  summary_en: The lease may be for the term and price the parties agree, without prejudice to arts. 1613 and 1616.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1571
+  quote: El arrendamiento puede hacerse por el tiempo y el precio que convengan los contratantes, sin perjuicio de las disposiciones consignadas en los artículos 1613 y 1616 de este código.
+  applies_to_contract: true
+- id: MX-YUC-DURACION-02
+  jurisdiction: YUC
+  category: duracion
+  kind: ley
+  title_es: El plazo beneficia al inquilino (habitación)
+  title_en: The term benefits the tenant (housing)
+  summary_es: En los contratos de arrendamiento de predios para habitación, el plazo se entiende siempre establecido en beneficio del inquilino.
+  summary_en: In residential leases, the term is always deemed established for the tenant's benefit.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1620
+  quote: En los contratos de arrendamiento de predios para habitación, el plazo se entenderá siempre establecido en beneficio del inquilino.
+  applies_to_contract: true
+- id: MX-YUC-PRORROGA-01
+  jurisdiction: YUC
+  category: duracion
+  kind: ley
+  title_es: Prórroga de hasta un año; aumento ligado a la UMA
+  title_en: Extension up to one year; increase tied to UMA
+  summary_es: Vencido el contrato, el inquilino al corriente en las rentas tiene derecho a una prórroga de hasta un año; en ese caso el arrendador puede aumentar la renta en un porcentaje igual al incremento anual de la UMA.
+  summary_en: When the contract expires, a tenant current on rent is entitled to an extension of up to one year; in that case the landlord may raise rent by the same percentage as that year's UMA increase.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1613
+  quote: Vencido un contrato de arrendamiento, tendrá derecho el inquilino, siempre que esté al corriente en el pago de las rentas, a que se le prorrogue hasta por un año ese contrato. En este caso, el arrendador tendrá derecho de aumentar la renta anterior en un porcentaje igual al que se haya incrementado ese año la unidad de medida y actualización.
+  applies_to_contract: true
+- id: MX-YUC-TERMINACION-01
+  jurisdiction: YUC
+  category: terminacion
+  kind: ley
+  title_es: Renovación por tiempo indefinido tras la prórroga
+  title_en: Open-ended renewal after the extension
+  summary_es: Vencida la prórroga, si el arrendatario continúa sin oposición más de diez días, el contrato se renueva por tiempo indefinido; el arrendador puede ajustar la renta conforme al art. 1613 y el arrendamiento termina previo aviso judicial con dos meses de anticipación.
+  summary_en: After the extension expires, if the tenant stays without objection for more than ten days, the contract renews indefinitely; the landlord may adjust rent per art. 1613 and the lease ends after two months' judicial notice.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1616
+  quote: Vencida la prórroga establecida en el artículo 1613 de este código, si el arrendatario continúa sin oposición en el uso o goce del predio por más de diez días, se tendrá por renovado el contrato por tiempo indefinido, teniendo derecho el arrendador de ajustar la renta en la forma establecida en el propio artículo, en este caso el arrendamiento terminará previo aviso judicial que el arrendador dé al inquilino con dos meses de anticipación.
+  applies_to_contract: true
+- id: MX-YUC-DEPOSITO-01
+  jurisdiction: YUC
+  category: deposito
+  kind: ley
+  title_es: 'Si no hay fiador: depósito máximo de un mes'
+  title_en: 'If no guarantor: deposit capped at one month'
+  summary_es: Si el arrendatario no puede dar la garantía, el arrendador no puede exigir más garantía que un depósito de dinero equivalente a un mes de renta.
+  summary_en: If the tenant cannot provide it, the landlord may not require more security than a cash deposit equal to one month's rent.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1619
+  quote: arrendatario no pueda darla, no podrá el arrendador exigir más garantía que el depósito de dinero que corresponde a un mes de renta.
+  applies_to_contract: true
+- id: MX-YUC-ARRENDADOR-01
+  jurisdiction: YUC
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar en estado de servir y conservar con reparaciones
+  title_en: Deliver fit for use and maintain with repairs
+  summary_es: Aun sin pacto expreso, el arrendador debe entregar la finca con sus pertenencias y en estado de servir para el uso convenido, y conservarla en ese estado durante el arrendamiento haciendo las reparaciones necesarias, salvo pacto en contrario.
+  summary_en: Even without express agreement, the landlord must deliver the property with its appurtenances and fit for the agreed use, and keep it so during the lease making necessary repairs, unless otherwise agreed.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1574, fr. I y II
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I.- A entregar al arrendatario la finca arrendada con todas sus pertenencias y en estado de servir para el uso convenido; y si no hubo convenio expreso, para aquél a que por su misma naturaleza estuviera destinada. II.- A conservar el predio arrendado en estado de servir para el uso convenido o para el que sea conforme a su naturaleza, durante el arrendamiento, haciendo para ello todas las reparaciones necesarias, salvo pacto en contrario.'
+  applies_to_contract: true
+- id: MX-YUC-ARRENDADOR-02
+  jurisdiction: YUC
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: El arrendador paga las contribuciones del predio
+  title_en: Landlord pays property taxes
+  summary_es: El arrendador paga en todo caso las contribuciones impuestas a la finca sobre la propiedad del predio; si la ley exige su pago al arrendatario, este las paga con cargo a la renta.
+  summary_en: The landlord always pays taxes levied on the property; if the law requires the tenant to pay them, the tenant does so and deducts it from the rent.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1581
+  quote: 'El arrendador en todo caso pagará las contribuciones impuestas a la finca, sobre la propiedad del predio arrendado: cuando la ley imponga las contribuciones al arrendador, exigiendo su pago al arrendatario, las pagará éste con cargo a la renta.'
+  applies_to_contract: true
+- id: MX-YUC-HABITABILIDAD-01
+  jurisdiction: YUC
+  category: habitabilidad
+  kind: ley
+  title_es: Casas habitación con higiene y salubridad
+  title_en: Dwellings must be hygienic and sanitary
+  summary_es: Las casas destinadas a habitación deben reunir las condiciones de higiene y salubridad del código sanitario del Estado, y el arrendador debe cuidar que el predio no carezca de ellas.
+  summary_en: Dwellings must meet the hygiene and sanitation conditions of the State sanitary code, and the landlord must ensure the property does not lack them.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1610
+  quote: Todas las casas destinadas para habitación deben reunir las condiciones de higiene y salubridad prevenidas en el código sanitario del Estado. Por tanto, se impone a los arrendadores la obligación de cuidar que el predio arrendado no carezca de las condiciones aludidas.
+  applies_to_contract: true
+- id: MX-YUC-ARRENDATARIO-01
+  jurisdiction: YUC
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar renta, responder de daños y uso convenido
+  title_en: Pay rent, answer for damage, agreed use
+  summary_es: El arrendatario debe pagar la renta en el tiempo y forma convenidos, responder de los daños por su culpa o negligencia o la de sus familiares y subarrendatarios, y usar la cosa solo para el uso convenido o conforme a su naturaleza.
+  summary_en: The tenant must pay rent at the agreed time and form, answer for damage caused by their fault or negligence or that of family and subtenants, and use the property only for the agreed use or per its nature.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1583
+  quote: 'El arrendatario está obligado: I.- A satisfacer la renta o precio en el tiempo y forma convenidos. II.- A responder de los daños y perjuicios que la cosa arrendada sufra por su culpa o negligencia, o la de sus familiares y subarrendatarios. III.- A servirse de la cosa solamente para el uso convenido o conforme a la naturaleza de ella.'
+  applies_to_contract: true
+- id: MX-YUC-ARRENDATARIO-02
+  jurisdiction: YUC
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Trabajar en casa no viola el contrato
+  title_en: Working from home does not breach the lease
+  summary_es: No se considera violación del contrato que, en una casa tomada para habitación, el inquilino ejerza personalmente el oficio o profesión con que se gana la vida.
+  summary_en: It is not a breach of the lease for the tenant to personally practice their trade or profession in a house rented as a dwelling.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1611
+  quote: No se considera violación del contrato de arrendamiento, el hecho de que en una casa tomada para habitación, el inquilino ejerza personalmente el oficio o profesión con que se gana la vida.
+  applies_to_contract: true
+- id: MX-YUC-PREFERENCIA-01
+  jurisdiction: YUC
+  category: otro
+  kind: ley
+  title_es: Derecho de preferencia (más de cinco años)
+  title_en: Right of first refusal (over five years)
+  summary_es: En arrendamientos que han durado más de cinco años, el arrendatario al corriente en la renta tiene derecho a ser preferido en igualdad de condiciones en el nuevo arrendamiento.
+  summary_en: In leases lasting more than five years, a tenant current on rent has the right to be preferred on equal terms for the new lease.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1609
+  quote: En los arrendamientos que han durado más de cinco años, el arrendatario tiene derecho, si está al corriente en el pago de la renta a que, en igualdad de condiciones, se le prefiera a otro interesado en el nuevo arrendamiento de la finca.
+  applies_to_contract: true
+- id: MX-YUC-TERMINACION-02
+  jurisdiction: YUC
+  category: terminacion
+  kind: ley
+  title_es: 'Terminación: plazo fijo o notificación judicial con dos meses (urbano)'
+  title_en: 'Termination: fixed term or two months'' judicial notice (urban)'
+  summary_es: El arrendamiento por tiempo determinado concluye el día fijado sin declaración judicial, sin perjuicio de los arts. 1613 y 1616; el que no tiene tiempo determinado concluye a voluntad de cualquiera de las partes con notificación judicial de dos meses si el predio es urbano.
+  summary_en: A fixed-term lease ends on the set date without a court ruling, without prejudice to arts. 1613 and 1616; one without a fixed term ends at either party's will with two months' judicial notice for urban property.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1628
+  quote: El arrendamiento de predios urbanos o rústicos que se celebre por tiempo determinado, concluirá el día fijado sin necesidad de declaración judicial, sin perjuicio de lo establecido en los artículos 1613 y 1616 de este código. El que no se haya celebrado por tiempo expresamente determinado, concluirá a voluntad de cualesquiera de las partes contratantes, previa notificación judicial a la otra, hecha con dos meses de anticipación si se trata de predios urbanos y de un año si se trata de predios rústicos.
+  applies_to_contract: true
+- id: MX-YUC-RESCISION-01
+  jurisdiction: YUC
+  category: terminacion
+  kind: ley
+  title_es: 'Rescisión: tres meses sin pago (habitación), mal uso o subarriendo'
+  title_en: 'Rescission: three months unpaid (housing), misuse or subletting'
+  summary_es: El contrato puede rescindirse por falta de pago de tres meses de renta en predios urbanos para habitación, por usar la cosa contra lo convenido o su naturaleza, y por subarriendo salvo pacto o disposición legal en contrario.
+  summary_en: The contract may be rescinded for three months' unpaid rent on urban residential property, for using the property contrary to the agreed use or its nature, and for subletting unless otherwise agreed or provided by law.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1629
+  quote: 'El contrato de arrendamiento puede rescindirse: I.- Por falta de pago de tres meses de renta, si se tratare de predios urbanos destinados para habitación; de dos, si se tratare de cualesquiera otros predios urbanos; y de un semestre, si se tratare de predios rústicos. II.- Por usarse de la cosa en contravención a lo dispuesto en la fracción III del artículo 1583 de este código. III.- Por subarriendo, salvo pacto o disposición expresa de la ley en contrario.'
+  applies_to_contract: true
+- id: MX-YUC-ARRENDADOR-03
+  jurisdiction: YUC
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: 'Reparaciones necesarias: rescisión o vía judicial'
+  title_en: 'Necessary repairs: rescission or court'
+  summary_es: Si el arrendador no hace las reparaciones necesarias y no se pactó que las hiciera el arrendatario, este puede rescindir el contrato u ocurrir al juez para obligarlo a cumplir.
+  summary_en: If the landlord fails to make necessary repairs and it was not agreed that the tenant would make them, the tenant may rescind the contract or go to court to compel compliance.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1630
+  quote: Si el arrendador no cumpliere con hacer las reparaciones necesarias para el uso al que esté destinada la cosa y no se hubiese estipulado que éstas sean hechas por el arrendatario, quedarán a elección de éste rescindir el contrato u ocurrir al juez para que constriña al arrendador al cumplimiento de su obligación,
+  applies_to_contract: true
+- id: MX-YUC-ANTICIPO-01
+  jurisdiction: YUC
+  category: otro
+  kind: ley
+  title_es: Adelanto de renta mayor a dos meses (ejecución judicial)
+  title_en: Advance rent over two months (judicial sale)
+  summary_es: En el caso de transmisión por ejecución judicial, todo adelanto de renta por más de dos meses es nulo y obliga al arrendatario a segunda paga.
+  summary_en: In the case of transfer by judicial sale, any advance rent for more than two months is void and obliges the tenant to pay again.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1643
+  quote: Todo adelanto de renta por más de dos meses, es nulo y obliga al arrendatario a segunda paga.
+  applies_to_contract: false
+- id: MX-YUC-SUBARRIENDO-01
+  jurisdiction: YUC
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario.
+  summary_en: The tenant may not sublet all or part, nor assign their rights, without the landlord's consent; otherwise they are jointly liable with the subtenant.
+  doc_id: D-MX-YUC-01
+  citation: Código Civil del Estado de Yucatán, art. 1645
+  quote: El arrendatario no puede subarrendar el predio arrendado en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador, si lo hiciere, responderá solidariamente con el subarrendatario,
+  applies_to_contract: true

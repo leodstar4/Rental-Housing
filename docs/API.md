@@ -12,7 +12,7 @@ Every response carries `disclaimer` ("Not legal advice …" / "No es asesoría l
   `static/rules.<lang>.json`, `static/changes.json`, `static/changes/<test_id>.json`,
   `static/conflicts.json`, `static/audit.json`, and `static/index.json` (address list + file map).
 * CORS: any `https://*.lovable.app`, `*.lovable.dev`, `*.lovableproject.com`, and localhost;
-  more exact origins via the `ALLOWED_ORIGINS` env var. Methods: GET.
+  more exact origins via the `ALLOWED_ORIGINS` env var. Methods: GET (plus POST/OPTIONS for `/mx/*`).
 * Errors: `422` (bad `as_of` — must be `YYYY-MM-DD` between 2020-01-01 and 2030-12-31 — or bad
   `lang`), `404` (unknown address, rule or test). Body: `{"detail": "<message>"}`.
 
@@ -2318,3 +2318,118 @@ For human review: `module_a_conflicts`, `flagged_rules`, `preemption_pairs`,
 Provenance: extraction snapshot (prompt version, model, effort, date, cost, documents), rule
 counts by status, coverage compiler and plain-language model/prompt, human-review entries
 applied, geocoder settings.
+
+---
+
+## Renta MX (`/mx/*`)
+
+Mexico long-term rental demo (spec: `docs/MX_SPEC.md`, design: `docs/MX_ARCHITECTURE.md`). Router in
+`api/mx.py`, logic in `mx/`. Deterministic: no LLM and no network at runtime.
+
+* **Only verified law is served.** On first use the API runs `mx.verify` in memory over
+  `corpus_mx/manifest_*.json` + `data/mx/requirements/*.yaml`. A requirement is never returned if its `quote` is
+  not found in its document's text (exact → whitespace/typography-normalized → Spanish-PDF fold), if its document
+  fails the sha256/text_sha256 check, or if it breaks an id/kind rule. `python -m mx.verify` writes
+  `out/mx_validation.json` and exits 1 on any failure (it is part of the Render build).
+* `legal_coverage` (`estatal_verificada` | `solo_federal`) is computed: a state is `estatal_verificada` only if it
+  has ≥ 1 verified ley/reglamento/norma requirement. `solo_federal` responses carry `notice`.
+* Zone stats are returned only if their `source` doc_id is in the manifests (`precision_baja: true` when the INEGI
+  sample estimate has `cv ≥ 30`). Coordinates only with a known `coord.source`. Municipios created after 2020 come
+  with `has_stats: false`, `has_coords: false`.
+* No invented listings: the store starts empty; `empty_state: true` when there are none.
+* `lang=es|en` (default `es`) on GETs with text. Every response has `disclaimer`. The legally relevant contract
+  text is always Spanish (`text_lang: "es"`).
+* Data paths: `MX_DATA_DIR` (default `data/mx`), `MX_CORPUS_DIR` (`corpus_mx`), `MX_STORE_DIR`
+  (`out/mx_store`). Listings and contracts are JSON files on an **ephemeral** disk on Render free.
+* Errors: `404` unknown entity/municipio/listing/contract · `422` validation (pydantic list in `detail`, plus
+  `requirement_ids` for legally required fields and `type: "legal_check"` for verified `checks`) · `403` bad sign
+  token · `409` stale `contract_sha256` (`detail.code = "hash_changed"`) or role already signed
+  (`"already_signed"`) · `413` POST body > 256 KB · `429` rate limit (10 POST/min, 120 GET/min per IP, with
+  `Retry-After`) · `503` MX data missing (e.g. no `zones.json`; US routes keep working) · `507` demo caps
+  (1 000 listings, 500 contracts).
+
+| Method | Route | Returns |
+|---|---|---|
+| GET | `/mx/health` | `{status: ok\|degradado, store: "efimero", store_started_at, store_notice, listings, contracts, data:{documents, documents_ok, requirements_verified, requirements_failed, zones_states, zones_error, clauses, clauses_error}}` |
+| GET | `/mx/privacy` | privacy notice: `responsable, finalidades[], datos_recabados[], conservacion, transferencias, legal_basis[]` (verified MX-FED `datos_personales`), `legal_basis_status` |
+| GET | `/mx/states` | `{count, states:[{cve_ent, name, abbr, nom_abrev_inegi, legal_coverage, listings_count, municipios, stats}]}` |
+| GET | `/mx/zones?cve_ent=09&q=&limit=50` | `{cve_ent, state, legal_coverage, count, zones:[{cve_mun, name, stats, has_stats, has_coords, lat?, lon?, coord?, listings_count, empty_state}]}` (accent/case-insensitive `q`) |
+| GET | `/mx/zones/{cve_ent}/{cve_mun}` | `{state, zone, listings[], listings_count, empty_state, requirements_summary:{legal_coverage, notice, count, counts, category_counts}, listing_notice}` |
+| GET | `/mx/requirements?cve_ent=09&lang=&category=` | `{cve_ent, state, abbr, legal_coverage, notice, count, counts:{estatal, federal, practica}, category_counts, categories:{<category>:[item]}}` (state items first) |
+| GET | `/mx/sources` | `{docs:[manifest entry + verification + warnings], verification:{doc_id: ok\|hash_mismatch\|missing_file\|invalid}, requirements:{verified, failed}, states_without_state_source[]}` |
+| GET | `/mx/listings?cve_ent=&cve_mun=&max_rent=&bedrooms=` | `{count, total_unfiltered, empty_state, listings[], listing_notice}` |
+| POST | `/mx/listings` | 201 public listing (never `contact_email`) |
+| GET | `/mx/listings/{id}` | public listing |
+| GET | `/mx/contract-form?cve_ent=&fiador=&deposit=` | what the form needs before creating a contract: `{legal_coverage, notice, requires_acknowledgement, roles, required_fields:{field:[requirement_ids]}, clauses[], omitted_clauses[]}` |
+| POST | `/mx/contracts` | 201 contract + `sign_tokens` (shown once) |
+| GET | `/mx/contracts/{id}` | contract + `parties` + `signatures` + `status` (recomputed on every read) |
+| POST | `/mx/contracts/{id}/sign` | 200 `{status, signatures, evidence}` |
+| GET | `/mx/contracts/{id}/evidence` | self-contained signature record (text, hashes, evidence chain, notes) |
+
+Requirement item (`categories.<cat>[]`, `legal_basis[]`, `privacy.legal_basis[]`):
+
+```json
+{"id": "MX-CDMX-DEPOSITO-01", "level": "estatal", "jurisdiction": "CDMX", "category": "deposito", "kind": "ley",
+ "is_law": true, "title": "Depósito máximo: una mensualidad", "summary": "…", "summary_caveat": "Resumen no oficial; …",
+ "citation": "Código Civil para el Distrito Federal, art. 2448 E, párr. tercero",
+ "quote": "<literal fragment of the source text, whitespace collapsed>", "quote_lang": "es", "match_type": "exact",
+ "applies_to_contract": true, "checks": [], "reviewed_by": null, "doc_id": "D-MX-CDMX-01",
+ "doc_title": "Código Civil para el Distrito Federal", "publisher": "…", "url": "https://…",
+ "retrieved_at": "2026-10-06T02:44:55Z", "last_reform": "G.O. CDMX 20-08-2026"}
+```
+
+`POST /mx/listings` body (unknown fields → 422; one-line fields reject line breaks and control characters):
+`cve_ent ^\d{2}$, cve_mun ^\d{3}$ (must exist), cp ^\d{5}$, colonia ≤120, title ≤120, description ≤2000,
+monthly_rent_mxn > 0, deposit_mxn ≥ 0 (optional), bedrooms 0–20, bathrooms 0–20 (step 0.5), area_m2?, furnished,
+pets_allowed?, available_from, contact_name ≤120, contact_email, truthfulness_consent: true, privacy_consent: true`.
+
+`POST /mx/contracts` body:
+
+```json
+{"listing_id": "<32 hex, optional; must match cve_ent/cve_mun>", "cve_ent": "09", "cve_mun": "015",
+ "inmueble": {"calle": "…", "num_ext": "10", "num_int": null, "colonia": "…", "cp": "06700"},
+ "arrendador": {"full_name": "…", "email": "…"}, "arrendatario": {"full_name": "…", "email": "…"},
+ "fiador": null, "monthly_rent_mxn": 15000, "deposit_mxn": 15000, "start_date": "2026-11-01",
+ "term_months": 12, "payment_day": 5, "lang": "es", "acknowledge_solo_federal": false}
+```
+
+`acknowledge_solo_federal: true` is required (422 otherwise) when the entity is `solo_federal`. Response (201):
+
+```json
+{"contract_id": "35fdece5…", "template_version": "mx-contract-1", "created_at": "2026-10-06T03:13:12Z",
+ "cve_ent": "09", "cve_mun": "015", "estado": "Ciudad de México", "municipio": "Cuauhtémoc", "listing_id": "…",
+ "coverage": "estatal_verificada", "notice": null, "text": "CONTRATO DE ARRENDAMIENTO …", "text_lang": "es",
+ "sha256": "f3c0849d…", "sha256_at_creation": "f3c0849d…",
+ "clauses": [{"n": 8, "ordinal": "OCTAVA", "key": "deposito", "title": "Reglas del depósito", "title_en": "Deposit rules",
+              "basis": "ley", "text": "…", "requirement_ids": ["MX-CDMX-DEPOSITO-01"]}],
+ "omitted_clauses": [{"key": "fiscal", "title": {"es": "…", "en": "…"},
+                      "reason": "sin_requisito_verificado|entidad_solo_federal|sin_fiador|sin_deposito_pactado"}],
+ "legal_basis": ["<requirement item>"], "required_fields": {"deposit_mxn": ["MX-CDMX-DEPOSITO-01"], "payment_day": []},
+ "required_roles": ["arrendador", "arrendatario"], "supersedes": null,
+ "parties": {"arrendador": {"full_name": "…", "email_masked": "a***@example.com", "email_sha256": "…"}},
+ "signatures": [],
+ "status": {"overall": "pendiente", "roles": {"arrendador": "pendiente", "arrendatario": "pendiente"},
+            "per_signature": [], "chain_ok": true, "valid_count": 0, "required_count": 2, "sha256_current": "…",
+            "sha256_at_creation": "…", "text_changed": false},
+ "sign_tokens": {"arrendador": "<token>", "arrendatario": "<token>"}}
+```
+
+Clauses come from `data/mx/contract_clauses.yaml`. `basis: ley` clauses link to the **verified** requirements of
+their `categories` (scope `federal` = FED, `estatal` = the contract's state, `cualquiera` = both) and are omitted
+when there is none. `basis: acuerdo_partes` clauses are neutral pacts with no legal basis. Templates contain no
+amounts, terms or article numbers (rejected at load). `sha256 = sha256(canonicalize(text))`; canonicalize = NFC,
+LF, no trailing spaces, ≤ 2 blank lines, one final LF. `status.overall`: `pendiente` · `parcial` · `firmado` ·
+`invalidado` (some signature's `contract_sha256` ≠ current hash, or the evidence chain is broken).
+
+`POST /mx/contracts/{id}/sign` body: `{role, full_name (must match the party), email, signature_png_base64 |
+typed_signature (exactly one), method?: "trazo"|"tecleada", consent: true, contract_sha256 (the hash the user saw),
+token}`. PNG limits: base64 ≤ 200 000 chars, ≤ 150 KB, real PNG header, ≤ 1200×600 px. Evidence (simple electronic
+signature; server clock; identity not verified):
+
+```json
+{"role": "arrendador", "full_name": "Ana Pérez", "email_sha256": "…", "email_masked": "a***@example.com",
+ "contract_id": "…", "contract_sha256": "f3c0849d…", "signature_sha256": "…", "signature_kind": "trazo",
+ "signed_at": "2026-10-06T03:13:13Z", "user_agent": "…", "ip_hash": "<sha256(ip + MX_IP_SALT)>", "consent": true,
+ "consent_text": "Declaro que leí el contrato … cuya huella SHA-256 es … y consiento firmarlo como arrendador …",
+ "consent_text_sha256": "…", "prev_evidence_sha256": null, "evidence_sha256": "0875013…"}
+```

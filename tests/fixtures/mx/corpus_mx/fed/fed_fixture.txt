@@ -1,0 +1,11 @@
+TEXTO DE PRUEBA (FIXTURE). No es una ley real; solo sirve a las pruebas automáticas de Renta MX.
+
+Artículo 10.- Las partes de un contrato de prueba podrán expresar su consentimiento por medios electrónicos, ópticos o por cualquier otra tecnología en este texto ficticio.
+
+Artículo 11.- Los datos personales del texto de prueba se tratarán solo para la finalidad informada en el aviso de privacidad ficticio de esta fixture.
+
+Artículo 12.- Disposición ficticia con “comillas curvas” y un salto
+de línea en medio de la oración para probar la normalización de la cita.
+
+Artículo 13.- Disposición ficticia con palabra cortada por guion de fin de línea: el arren-
+damiento de prueba se rige por este texto inventado para pruebas automáticas.

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { Lang } from "./api";
+import { getMxCopy, type MxCopy } from "./mx-i18n";
 
 const en = {
   appName: "Rental Housing Law Navigator",
@@ -83,10 +84,10 @@ const es: Dict = {
   corpus: "En las fuentes", handling: "Cómo lo manejamos", reason: "Motivo", reviewer: "Revisor", action: "Decisión",
 };
 
-const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict }>({ lang: "en", setLang: () => {}, t: en });
+const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict; mx: MxCopy }>({ lang: "es", setLang: () => {}, t: es, mx: getMxCopy("es") });
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
-  return <Ctx.Provider value={{ lang, setLang, t: lang === "es" ? es : en }}>{children}</Ctx.Provider>;
+  const [lang, setLang] = useState<Lang>("es");
+  return <Ctx.Provider value={{ lang, setLang, t: lang === "es" ? es : en, mx: getMxCopy(lang) }}>{children}</Ctx.Provider>;
 }
 export const useI18n = () => useContext(Ctx);

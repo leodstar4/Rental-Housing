@@ -1,15 +1,20 @@
-# Render blueprint: read-only API, no ANTHROPIC_API_KEY needed (every model output is versioned).
-# The build regenerates out/ from the frozen snapshot and the change tests (~10 s, no API calls).
+# Render blueprint for the Renta MX API (read-only law + listings/contracts). No ANTHROPIC_API_KEY
+# needed: every Renta MX requirement is a literal quote verified against corpus_mx at build time.
+# The build only installs deps and runs `python -m mx.verify` (a broken quote fails the deploy).
+# The US routes (extractor/resolver, frozen snapshot a-0.4.0) are legacy: they stay mounted but are
+# tolerant of a missing out/ (see docs/US_LEGACY.md). To serve them, regenerate out/ locally with
+# `python -m extractor.cli reproduce && python -m resolver.cli lookup && python -m resolver.cli changes`.
 services:
   - type: web
     name: rental-housing-navigator-api
     runtime: python
+    # Free plan sleeps after inactivity; its disk is EPHEMERAL, so listings/contracts in the JSON
+    # store are lost on every restart. For production use the `starter` plan AND a managed Postgres
+    # (set DATABASE_URL below) so SqlStore keeps the data across restarts.
     plan: free
-    buildCommand: >-
-      pip install -r requirements.txt &&
-      python -m extractor.cli reproduce &&
-      python -m resolver.cli changes
-    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r requirements.txt && python -m mx.verify
+    # --proxy-headers: request.client.host is the real client IP (rate limit of /mx/*)
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
     healthCheckPath: /health
     buildFilter:              # frontend or documentation changes do not redeploy the API
       ignoredPaths:
@@ -20,5 +25,17 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.12.10"
-      - key: ALLOWED_ORIGINS   # extra exact origins, comma-separated (Lovable domains are allowed by default)
+      - key: ALLOWED_ORIGINS   # extra exact origins, comma-separated (Lovable + *.pages.dev are allowed by default)
         value: ""
+      - key: MX_IP_SALT        # salt for the hashed IP in /mx signature evidence
+        generateValue: true
+      # DATABASE_URL (optional): persistent store for listings/contracts (mx/store.py SqlStore).
+      #   - unset        -> JSON files on disk (ephemeral on the free plan; store = "efimero")
+      #   - sqlite:///abs/path.db        -> local SQLite (store = "sqlite"; still on the ephemeral disk)
+      #   - postgres://... / postgresql://...  -> Render managed Postgres (store = "postgres", persistent)
+      # For production, create a Render PostgreSQL instance and wire its Internal Database URL here:
+      # - key: DATABASE_URL
+      #   fromDatabase:
+      #     name: renta-mx-db
+      #     property: connectionString
+      # Renta MX listings/contracts go to out/mx_store (MX_STORE_DIR) when there is no DATABASE_URL.

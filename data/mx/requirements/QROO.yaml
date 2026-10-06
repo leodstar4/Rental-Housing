@@ -1,0 +1,218 @@
+# Requisitos QROO — citas literales verificadas contra corpus_mx/estados/QROO (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-QROO-FORMA-01
+  jurisdiction: QROO
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato por escrito; vigencia desde la entrega
+  title_en: Written contract; term starts on delivery
+  summary_es: El arrendamiento debe otorgarse por escrito y su vigencia inicia, salvo convenio en contrario, con la entrega del bien.
+  summary_en: The lease must be in writing and, unless otherwise agreed, its term starts upon delivery of the property.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2682
+  quote: El arrendamiento debe otorgarse por escrito y su vigencia se inicia, salvo convenio en contrario, con la entrega del bien.
+  applies_to_contract: true
+- id: MX-QROO-DURACION-01
+  jurisdiction: QROO
+  category: duracion
+  kind: ley
+  title_es: 'Plazo máximo: diez años para habitación'
+  title_en: 'Maximum term: ten years for housing'
+  summary_es: El arrendamiento de fincas destinadas a habitación no puede exceder de diez años (cinco para muebles, quince para comercio u oficinas, veinte para industria).
+  summary_en: A lease of property used as housing may not exceed ten years (five for movables, fifteen for commerce or offices, twenty for industry).
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2676, párr. segundo
+  quote: El arrendamiento de bienes muebles no puede exceder de cinco años; de diez el de fincas destinadas a habitación o a fines agrícolas o ganaderos; de quince el de fincas destinadas al comercio o a despachos, oficinas o consultorios de profesionales, y de veinte el de inmuebles destinados al ejercicio de una industria.
+  applies_to_contract: true
+- id: MX-QROO-RENTA-01
+  jurisdiction: QROO
+  category: incremento_renta
+  kind: ley
+  title_es: Libertad para fijar el monto de la renta
+  title_en: Freedom to set the rent amount
+  summary_es: Las partes gozan de la más amplia libertad de contratación para fijar el monto de la renta.
+  summary_en: The parties have the broadest contractual freedom to set the rent amount.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2677
+  quote: Las partes gozan de la más amplia libertad de contratación en cuanto a la fijación del monto de la renta.
+  applies_to_contract: true
+- id: MX-QROO-ARRENDADOR-01
+  jurisdiction: QROO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Mantener en estado de servir y hacer reparaciones
+  title_en: Keep fit for use and make repairs
+  summary_es: Aun sin pacto expreso, el arrendador debe mantener el bien en estado de servir para el uso convenido (o, a falta de convenio, para su uso natural), haciendo todas las reparaciones necesarias.
+  summary_en: Even without express agreement, the landlord must keep the property fit for the agreed use (or, absent agreement, its natural use), making all necessary repairs.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2687, fr. I
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I.- A mantener el bien arrendado en estado de servir para el uso convenido, y a falta de convenio al respecto, para el uso a que aquél, por su misma naturaleza, estuviere destinado, haciendo para ello todas las reparaciones necesarias;'
+  applies_to_contract: true
+- id: MX-QROO-ARRENDADOR-02
+  jurisdiction: QROO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: No estorbar el uso ni el suministro de servicios básicos
+  title_en: No interference with use or basic services
+  summary_es: El arrendador no debe estorbar el uso del bien ni el suministro de los servicios básicos, salvo por reparaciones urgentes e indispensables.
+  summary_en: The landlord must not interfere with the use of the property or the supply of basic services, except for urgent and indispensable repairs.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2687, fr. II
+  quote: II.- A no estorbar ni embarazar de manera alguna el uso del bien arrendado, o del suministro de los servicios básicos, a no ser por causa de reparaciones urgentes e indispensables.
+  applies_to_contract: true
+- id: MX-QROO-ARRENDADOR-03
+  jurisdiction: QROO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: 'Reparaciones: rescisión o vía judicial'
+  title_en: 'Repairs: rescission or court action'
+  summary_es: Si el arrendador no hace las reparaciones necesarias, el arrendatario puede demandar la rescisión u ocurrir al juez para obligarlo a cumplir.
+  summary_en: If the landlord fails to make necessary repairs, the tenant may sue for rescission or go to court to compel compliance.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2688, párr. segundo
+  quote: Si el arrendador no cumpliere con hacer las reparaciones necesarias para el uso a que esté destinado el bien, quedará a elección del arrendatario demandar la rescisión del arrendamiento u ocurrir al juez para que estreche al arrendador al cumplimiento de su obligación,
+  applies_to_contract: true
+- id: MX-QROO-ARRENDADOR-04
+  jurisdiction: QROO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Devolución inmediata del saldo al terminar
+  title_en: Immediate return of balance at end
+  summary_es: Si al terminar el arrendamiento hay saldo a favor del arrendatario, el arrendador debe devolverlo de inmediato, salvo que tenga algún derecho que ejercitar contra él, en cuyo caso lo depositará judicialmente.
+  summary_en: If at the end of the lease there is a balance in the tenant's favor, the landlord must return it immediately, unless the landlord has a claim against the tenant, in which case it is deposited with the court.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2693
+  quote: Si al terminar el arrendamiento hubiere algún saldo a favor del arrendatario, el arrendador deberá devolverlo inmediatamente, a no ser que tenga algún derecho que ejercitar contra aquél en cuyo caso depositará judicialmente el saldo referido.
+  applies_to_contract: true
+- id: MX-QROO-ARRENDATARIO-01
+  jurisdiction: QROO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar la renta y responder de daños
+  title_en: Pay rent and answer for damage
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos y responder de los perjuicios que el bien sufra por su culpa o negligencia o la de sus familiares, visitas, sirvientes o subarrendatarios.
+  summary_en: The tenant must pay rent in the agreed form and time and answer for harm to the property caused by their fault or negligence or that of family, visitors, servants or subtenants.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2695, fr. I y II
+  quote: 'El arrendatario está obligado: I.- A satisfacer la renta en la forma y tiempo convenidos; II.- A responder de los perjuicios que el bien arrendado sufra por su culpa o negligencia, la de sus familiares, visitas, sirvientes o subarrendatarios.'
+  applies_to_contract: true
+- id: MX-QROO-ARRENDATARIO-02
+  jurisdiction: QROO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Uso convenido, pequeñas reparaciones y restitución
+  title_en: Agreed use, minor repairs and return
+  summary_es: El arrendatario debe usar el bien solo para el uso convenido o conforme a su naturaleza, responder por el incendio, hacer las reparaciones de deterioros de poca importancia y restituir el bien al terminar.
+  summary_en: The tenant must use the property only for the agreed use or per its nature, answer for fire, make minor repairs and return the property at the end.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2695, fr. III a VI
+  quote: III.- A servirse del bien solamente para el uso convenido o conforme a la naturaleza y destino de él; IV.- A responder por el incendio del bien arrendado; V.- A hacer las reparaciones de los deterioros de poca importancia que sufra el inmueble o sus accesorios y que regularmente se causan al habitar una casa; VI.- A restituir el bien al terminar el contrato; y
+  applies_to_contract: true
+- id: MX-QROO-ARRENDATARIO-03
+  jurisdiction: QROO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Desde cuándo y hasta cuándo se causa la renta
+  title_en: When rent starts and stops accruing
+  summary_es: Salvo pacto en contrario, la renta se causa desde el día en que el arrendatario recibe el bien (o se da por recibido) y deja de causarse el día de la restitución.
+  summary_en: Unless otherwise agreed, rent accrues from the day the tenant receives the property (or acknowledges receipt) and stops accruing on the day it is returned.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2696
+  quote: Salvo pacto en contrario, la renta comenzará a causarse a partir del día en que el arrendatario reciba el bien o se dé por recibido de él, y dejará de causarse el día de la restitución.
+  applies_to_contract: true
+- id: MX-QROO-HABITABILIDAD-01
+  jurisdiction: QROO
+  category: habitabilidad
+  kind: ley
+  title_es: Condiciones de higiene y salubridad
+  title_en: Hygiene and sanitation conditions
+  summary_es: No puede darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por el Código Sanitario.
+  summary_en: A dwelling that does not meet the hygiene and sanitation conditions required by the Sanitary Code may not be leased.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2709
+  quote: No podrá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas por el Código Sanitario.
+  applies_to_contract: true
+- id: MX-QROO-FIADOR-01
+  jurisdiction: QROO
+  category: garantias_fiador
+  kind: ley
+  title_es: No se puede rechazar a un fiador idóneo
+  title_en: A qualified guarantor cannot be refused
+  summary_es: El propietario no puede rehusar como fiador a una persona que reúna los requisitos legales para serlo.
+  summary_en: The owner may not refuse as guarantor a person who meets the legal requirements to be one.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2710
+  quote: El propietario no puede rehusar como fiador a una persona que reúna los requisitos exigidos por la ley para que sea fiador.
+  applies_to_contract: true
+- id: MX-QROO-TERMINACION-01
+  jurisdiction: QROO
+  category: terminacion
+  kind: ley
+  title_es: 'Sin plazo: aviso de dos meses (urbano)'
+  title_en: 'No fixed term: two months'' notice (urban)'
+  summary_es: En los arrendamientos sin tiempo expresamente determinado (art. 2714), el aviso a la otra parte debe darse en forma indubitable con dos meses de anticipación si el predio es urbano y con un año si es rústico.
+  summary_en: In leases without an expressly fixed term (art. 2714), notice to the other party must be unequivocal and given two months in advance for urban property and one year for rural property.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2714
+  quote: las partes contratantes, previo aviso a la otra parte dado en forma indubitable con dos meses de anticipación si el predio es urbano, y con un año si es rústico.
+  applies_to_contract: true
+- id: MX-QROO-PRORROGA-01
+  jurisdiction: QROO
+  category: duracion
+  kind: ley
+  title_es: Prórroga de hasta un año; aumento de hasta 10%
+  title_en: Extension up to one year; increase up to 10%
+  summary_es: Hasta quince días después de vencido el contrato, el inquilino al corriente en las rentas puede pedir una prórroga de hasta un año; el arrendador puede aumentar hasta un diez por ciento la renta si demuestra alzas de alquileres en la zona que lo justifiquen.
+  summary_en: Up to fifteen days after the contract expires, a tenant current on rent may request an extension of up to one year; the landlord may raise rent by up to ten percent if it shows rent increases in the area that justify it.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2738, párr. primero
+  quote: A más tardar quince días después de vencido un contrato de arrendamiento, tendrá derecho el inquilino, siempre que esté al corriente en el pago de las rentas, a pedir que se le prorrogue hasta por un año ese contrato. Podrá el arrendador aumentar hasta un diez por ciento, la renta anterior, siempre que demuestre que los alquileres en la zona de que se trate, han sufrido alzas que justifiquen el aumento.
+  applies_to_contract: true
+- id: MX-QROO-TERMINACION-02
+  jurisdiction: QROO
+  category: terminacion
+  kind: ley
+  title_es: 'Tácita reconducción (finca urbana: tiempo indefinido)'
+  title_en: 'Tacit renewal (urban: open-ended)'
+  summary_es: Si terminado el arrendamiento y su prórroga el arrendatario continúa sin oposición, el contrato se entiende renovado por tiempo indefinido si la finca es urbana, pagando la renta del tiempo excedente conforme a lo que pagaba.
+  summary_en: If after the lease and any extension end the tenant stays without objection, the contract is deemed renewed indefinitely for urban property, with rent for the extra time at the prior rate.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2739
+  quote: Si después de terminado el arrendamiento y su prórroga, si la hubo, continúa el arrendatario sin oposición en el goce y uso del predio, y éste es rústico, se entenderá renovado el contrato por otro año, y por tiempo indefinido si la finca es urbana. En cualquiera de ambos casos el arrendatario deberá pagar la renta que corresponda al tiempo que exceda al del contrato, con arreglo a lo que pagaba.
+  applies_to_contract: true
+- id: MX-QROO-FIADOR-02
+  jurisdiction: QROO
+  category: garantias_fiador
+  kind: ley
+  title_es: Cese de la fianza en prórroga o tácita reconducción
+  title_en: Guarantee ends on extension or tacit renewal
+  summary_es: Cuando hay prórroga o tácita reconducción, cesan las obligaciones otorgadas por un tercero para la seguridad del arrendamiento, salvo convenio en contrario.
+  summary_en: On extension or tacit renewal, third-party guarantee obligations for the lease end, unless otherwise agreed.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2740
+  quote: Cuando haya prórroga en el contrato de arrendamiento o tácita reconducción a que respectivamente se refieren los dos artículos anteriores, cesan las obligaciones otorgadas por un tercero para la seguridad del arrendamiento, salvo convenio en contrario.
+  applies_to_contract: true
+- id: MX-QROO-SUBARRIENDO-01
+  jurisdiction: QROO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere autorización
+  title_en: Subletting requires authorization
+  summary_es: El arrendatario no puede subarrendar en todo ni en parte, ni ceder sus derechos, sin autorización del arrendador; hacerlo es causa para demandar la rescisión y la nulidad del subarrendamiento y exigir daños y perjuicios solidariamente.
+  summary_en: The tenant may not sublet all or part, nor assign their rights, without the landlord's authorization; doing so is grounds to sue for rescission, nullity of the sublease and joint liability for damages.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2716
+  quote: El arrendatario no puede subarrendar el bien arrendado en todo, ni en parte, ni ceder sus derechos, sin autorización del arrendador. Hacerlo sin esta autorización es causa bastante para demandar la rescisión del arrendamiento y la nulidad de subarrendamiento, así como para exigir solidariamente al arrendatario y al subarrendatario los daños y perjuicios que se llegaren a causar al arrendador.
+  applies_to_contract: true
+- id: MX-QROO-TERMINACION-03
+  jurisdiction: QROO
+  category: terminacion
+  kind: ley
+  title_es: Plazo determinado concluye sin desahucio
+  title_en: Fixed term ends without eviction notice
+  summary_es: Si el arrendamiento es por tiempo determinado, concluye el día prefijado sin necesidad de desahucio.
+  summary_en: A fixed-term lease ends on the set date without need of eviction notice.
+  doc_id: D-MX-QROO-01
+  citation: Código Civil para el Estado de Quintana Roo, art. 2737
+  quote: Si el arrendamiento se ha hecho por tiempo determinado, concluye en el día prefijado sin necesidad de desahucio.
+  applies_to_contract: true

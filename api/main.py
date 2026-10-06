@@ -27,6 +27,8 @@ from extractor import config
 from resolver.results import CATEGORY_LABEL, Engine, rule_status
 
 from . import i18n
+from .mx import MxBodyLimit
+from .mx import router as mx_router
 
 API_VERSION = "1.0.0"
 AS_OF_MIN, AS_OF_MAX = date(2020, 1, 1), date(2030, 12, 31)
@@ -39,8 +41,9 @@ DISCLAIMER = {
 }
 CATEGORY_ES = {"RENT": "RENTA", "JUST CAUSE": "CAUSA JUSTA", "DEPOSIT": "DEPÓSITO",
                "SCREENING FEE": "CUOTA DE EVALUACIÓN", "SCREENING": "EVALUACIÓN", "ALGORITHMIC": "ALGORITMOS"}
-#: Lovable preview/production domains + local development; ALLOWED_ORIGINS adds exact origins.
-ORIGIN_REGEX = r"https://([a-z0-9-]+\.)*(lovable\.app|lovable\.dev|lovableproject\.com)|http://(localhost|127\.0\.0\.1)(:\d+)?"
+#: Lovable preview/production domains, Cloudflare Pages (*.pages.dev) + local development;
+#: ALLOWED_ORIGINS adds exact origins.
+ORIGIN_REGEX = r"https://([a-z0-9-]+\.)*(lovable\.app|lovable\.dev|lovableproject\.com|pages\.dev)|http://(localhost|127\.0\.0\.1)(:\d+)?"
 
 
 def _load(path) -> dict:
@@ -101,6 +104,27 @@ def engine(as_of: date) -> Engine:
     return Engine(as_of)
 
 
+#: US (legacy) answers are served only when the Module A/B/C outputs regenerated into out/ are
+#: present (the Render build no longer runs reproduce/changes, see render.yaml and docs/US_LEGACY.md).
+#: The engine hard-depends on out/rules.json and out/rules_normalized.json.
+US_DATA_FILES = (config.RULES_PATH, config.NORMALIZED_PATH)
+
+
+def us_data_ready() -> bool:
+    return all(p.exists() for p in US_DATA_FILES)
+
+
+def require_us(as_of: date) -> Engine:
+    """The US engine, or a 503 explaining that the legacy US data is not loaded on this instance."""
+    if not us_data_ready():
+        missing = [str(p.relative_to(config.ROOT)) if p.is_absolute() else str(p)
+                   for p in US_DATA_FILES if not p.exists()]
+        raise HTTPException(503, "US (legacy) data is not available on this instance; regenerate it with "
+                                 "`python -m extractor.cli reproduce && python -m resolver.cli lookup && "
+                                 "python -m resolver.cli changes` (missing: " + ", ".join(missing) + ")")
+    return engine(as_of)
+
+
 def parse_as_of(as_of: str | None) -> date:
     if as_of is None:
         return config.DEFAULT_AS_OF
@@ -123,17 +147,21 @@ def lang_of(lang: str) -> str:
 
 @asynccontextmanager
 async def _lifespan(_app):
-    store()  # load everything once
-    engine(config.DEFAULT_AS_OF)
+    store()  # load the versioned data once (tolerant: out/ files are optional, see Store)
+    if us_data_ready():
+        engine(config.DEFAULT_AS_OF)  # warm the US engine only when its out/ data is present
     yield
 
 
 app = FastAPI(title="Rental Housing Law Navigator API", version=API_VERSION, lifespan=_lifespan,
               description="Address-level answers from public housing law, with citations. Not legal advice.")
+app.add_middleware(MxBodyLimit)  # 413 for POST /mx/* bodies > 256 KB (added first: CORS stays outermost)
+# POST/OPTIONS for the Renta MX forms (/mx/*); the US routes are all GET and unchanged.
 app.add_middleware(CORSMiddleware, allow_origin_regex=ORIGIN_REGEX,
                    allow_origins=[o for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o],
-                   allow_methods=["GET"], allow_headers=["*"])
+                   allow_methods=["GET", "POST", "OPTIONS"], allow_headers=["*"])
 app.mount("/audio", AudioFiles(directory=AUDIO_DIR, check_dir=False), name="audio")
+app.include_router(mx_router)  # Renta MX (/mx/*): data loaded lazily, 503 if missing; US routes unaffected
 
 
 # --------------------------------------------------------------------------- #
@@ -187,13 +215,14 @@ def jurisdiction_stack(aid: str) -> dict:
 
 def lookup_payload(aid: str, as_of: date, lang: str) -> dict:
     s = store()
+    eng = require_us(as_of)
     if aid not in s.facts:
         raise HTTPException(404, f"unknown address_id {aid!r}")
     plain = s.plain.get("rules", {})
-    lk = engine(as_of).lookup(aid, plain=plain)
+    lk = eng.lookup(aid, plain=plain)
     groups: dict[str, list] = {}
     for r in lk["results"]:
-        rule = s.by_id.get(r["team_rule_id"]) or next(x for x in engine(as_of).rules
+        rule = s.by_id.get(r["team_rule_id"]) or next(x for x in eng.rules
                                                      if x["team_rule_id"] == r["team_rule_id"])
         label = CATEGORY_LABEL[r["category"]]
         notes = [n for n in [rule.get("conflict_note"), *r["conflict_notes"]] if n]
@@ -222,7 +251,7 @@ def lookup_payload(aid: str, as_of: date, lang: str) -> dict:
 
 
 def rules_payload(as_of: date, lang: str, jurisdiction: str | None = None, category: str | None = None) -> dict:
-    s, eng = store(), engine(as_of)
+    s, eng = store(), require_us(as_of)
     out = []
     for r in s.rules + s.attested:
         if jurisdiction and r["jurisdiction"] != jurisdiction or category and r["category"] != category:
@@ -275,7 +304,7 @@ def health(lang: str = "en") -> dict:
     s = store()
     return {"status": "ok", "version": API_VERSION, "rules": len(s.rules), "attested_rules": len(s.attested),
             "addresses": len(s.facts), "default_as_of": config.DEFAULT_AS_OF.isoformat(),
-            "disclaimer": DISCLAIMER[lang_of(lang)]}
+            "us_data": us_data_ready(), "disclaimer": DISCLAIMER[lang_of(lang)]}
 
 
 @app.get("/addresses")
@@ -304,7 +333,7 @@ def explain_payload(aid: str, rid: str, as_of: date, lang: str) -> dict:
 
     if aid not in store().facts:
         raise HTTPException(404, f"unknown address_id {aid!r}")
-    if rid not in {r["team_rule_id"] for r in engine(config.DEFAULT_AS_OF).rules}:
+    if rid not in {r["team_rule_id"] for r in require_us(as_of).rules}:
         raise HTTPException(404, f"unknown team_rule_id {rid!r}")
     return explain.build(aid, rid, as_of, lang)
 
@@ -312,6 +341,7 @@ def explain_payload(aid: str, rid: str, as_of: date, lang: str) -> dict:
 def timeline_payload(aid: str, frm: date, to: date, lang: str) -> dict:
     from . import timeline
 
+    require_us(frm)
     if aid not in store().facts:
         raise HTTPException(404, f"unknown address_id {aid!r}")
     if frm > to:
@@ -336,11 +366,13 @@ def timeline_route(address_id: str, from_: str | None = Query(None, alias="from"
 
 @app.get("/changes")
 def changes(lang: str = "en") -> dict:
+    require_us(config.DEFAULT_AS_OF)
     return changes_payload(lang_of(lang))
 
 
 @app.get("/changes/{test_id}")
 def change_detail(test_id: str, lang: str = "en") -> dict:
+    require_us(config.DEFAULT_AS_OF)
     s = store()
     if test_id not in s.changes:
         raise HTTPException(404, f"unknown test_id {test_id!r}; known: {sorted(s.changes)}")
@@ -359,7 +391,7 @@ def rules(jurisdiction: str | None = None, category: str | None = None, as_of: s
 
 @app.get("/conflicts")
 def conflicts(lang: str = "en") -> dict:
-    s, eng = store(), engine(config.DEFAULT_AS_OF)
+    s, eng = store(), require_us(config.DEFAULT_AS_OF)
     flagged = [{"team_rule_id": r["team_rule_id"], "jurisdiction": r["jurisdiction"], "conflict_note": r.get("conflict_note")}
                for r in s.rules + s.attested if r.get("conflict_flag")]
     pairs = [sorted(p) for p in eng.pairs]

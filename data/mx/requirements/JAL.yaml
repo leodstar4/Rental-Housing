@@ -1,0 +1,242 @@
+# Requisitos JAL — citas literales verificadas contra corpus_mx/estados/JAL (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-JAL-FORMA-01
+  jurisdiction: JAL
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato por escrito (inmuebles)
+  title_en: Written contract (real estate)
+  summary_es: El arrendamiento de inmuebles debe otorgarse por escrito.
+  summary_en: A lease of real property must be executed in writing.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 1987
+  quote: El arrendamiento debe otorgarse por escrito siempre que se refiera a inmuebles.
+  applies_to_contract: true
+- id: MX-JAL-FORMA-02
+  jurisdiction: JAL
+  category: contrato_forma
+  kind: ley
+  title_es: Contenido mínimo del contrato de arrendamiento de inmuebles
+  title_en: Minimum content of a real-estate lease
+  summary_es: 'El contrato debe contener: nombre del arrendador y del arrendatario, descripción detallada del inmueble, instalaciones y accesorios, estado del inmueble, garantía del arrendatario, destino, término, a quién corresponde el pago de agua potable, alcantarillado y demás servicios públicos estatales o municipales, y las obligaciones adicionales de las partes. La falta de alguno de estos requisitos no invalida el contrato.'
+  summary_en: 'The contract must state: landlord''s and tenant''s names, detailed description of the property, its installations and accessories, its condition, the guarantee the tenant must provide, the use of the property, the term, who pays water, sewerage and other state or municipal public services, and any additional obligations of the parties. Missing any of these does not invalidate the contract.'
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2023
+  quote: 'Los contratos de arrendamiento de inmuebles deben contener: I. El nombre del arrendador; II. El nombre del arrendatario; III. La descripción detallada del inmueble objeto del contrato; IV. Las instalaciones y accesorios con que cuenta para su uso el bien arrendado; V. El estado que guarda el inmueble; VI. La garantía que deberá otorgar el arrendatario; VII. El destino del inmueble; VIII. El término del contrato; IX. El señalamiento de a quien corresponde el pago del servicio de agua potable y alcantarillado y demás servicios públicos estatales o municipales que estén relacionados con el objeto del contrato de arrendamiento; y X. Las obligaciones que el arrendador y el arrendatario contraen adicionalmente a las establecidas en la ley. La falta de alguno de estos requisitos no invalida el contrato.'
+  applies_to_contract: true
+- id: MX-JAL-DURACION-01
+  jurisdiction: JAL
+  category: duracion
+  kind: ley
+  title_es: 'Habitación: plazo máximo de 15 años; registro si excede 5 años'
+  title_en: 'Residential: 15-year maximum; registration if over 5 years'
+  summary_es: El arrendamiento por tiempo determinado de inmuebles destinados a habitación no puede exceder de 15 años; si excede de cinco años debe inscribirse en el Registro Público de la Propiedad.
+  summary_en: A fixed-term lease of residential property may not exceed 15 years; if it exceeds five years it must be recorded in the Public Property Registry.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2039
+  quote: El arrendamiento por tiempo determinado de inmuebles destinados a habitación, no podrá exceder de 15 años. Cuando este tipo de arrendamiento exceda de cinco años, deberá ser inscrito en el Registro Público de la Propiedad.
+  applies_to_contract: true
+- id: MX-JAL-RENTA-01
+  jurisdiction: JAL
+  category: incremento_renta
+  kind: ley
+  title_es: Tope de renta para inmuebles de hasta 10,000 UMA diarias
+  title_en: Rent cap for properties worth up to 10,000 daily UMA
+  summary_es: Cuando el valor comercial del inmueble equivale hasta diez mil veces el valor diario de la UMA, la renta no puede exceder del doce por ciento anual sobre el valor fiscal del inmueble.
+  summary_en: When the property's market value is up to ten thousand times the daily UMA value, the rent may not exceed twelve percent per year of the property's fiscal (tax) value.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2041, fr. I, inciso a)
+  quote: 'Cuando el valor comercial del inmueble sea el equivalente hasta diez mil veces el valor diario de la Unidad de Medida y Actualización se seguirán las siguientes reglas: I. En cuanto al importe de las rentas: a) No podrá exceder del doce por ciento anual sobre el valor fiscal que reporte el inmueble;'
+  applies_to_contract: true
+- id: MX-JAL-DURACION-02
+  jurisdiction: JAL
+  category: duracion
+  kind: ley
+  title_es: Plazo mínimo de un año (supuesto del art. 2041)
+  title_en: One-year minimum term (art. 2041 case)
+  summary_es: En el supuesto del art. 2041, el plazo mínimo de vigencia es de un año, obligatorio solamente para el arrendador; el arrendatario puede dar por concluido el contrato en cualquier tiempo, pagando las rentas hasta que desocupe totalmente el inmueble y lo ponga a disposición del arrendador.
+  summary_en: In the art. 2041 case, the minimum term is one year, binding only on the landlord; the tenant may end the contract at any time, paying rent until fully vacating the property and placing it at the landlord's disposal.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2041, fr. II
+  quote: 'II. En cuanto a su duración: a) Su plazo mínimo de vigencia será de un año; b) El plazo será obligatorio solamente para el arrendador; y c) El arrendatario podrá dar por concluido el contrato en cualquier tiempo, con la obligación respecto del pago de las rentas de cubrirlas hasta la fecha en que desocupe totalmente el inmueble y lo ponga a disposición del arrendador.'
+  applies_to_contract: true
+- id: MX-JAL-ORDEN-PUBLICO-01
+  jurisdiction: JAL
+  category: otro
+  kind: ley
+  title_es: Reglas del art. 2041 irrenunciables
+  title_en: Art. 2041 rules cannot be waived
+  summary_es: Las disposiciones del art. 2041 son de orden público e irrenunciables; cualquier estipulación en contrario se tiene por no puesta.
+  summary_en: The provisions of art. 2041 are of public order and cannot be waived; any contrary clause is deemed not written.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2042
+  quote: Las disposiciones contenidas en el artículo anterior son de orden público. Por lo tanto, son irrenunciables y en consecuencia, cualquiera estipulación en contrario se tendrá por no puesta.
+  applies_to_contract: true
+- id: MX-JAL-ARRENDADOR-01
+  jurisdiction: JAL
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar el inmueble en estado de servir
+  title_en: Deliver the property fit for use
+  summary_es: Aun sin pacto expreso, el arrendador debe transmitir el uso o goce temporal del bien, entregándolo con todas sus pertenencias y en estado de servir para el uso convenido.
+  summary_en: Even without an express agreement, the landlord must grant temporary use of the property, delivering it with all its appurtenances and fit for the agreed use.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 1995, fr. I
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso a: I. Transmitir el uso o goce temporal del bien, entregándolo al arrendatario, con todas sus pertenencias y en estado de servir para el uso convenido'
+  applies_to_contract: true
+- id: MX-JAL-HABITABILIDAD-01
+  jurisdiction: JAL
+  category: habitabilidad
+  kind: ley
+  title_es: Entrega en condiciones de higiene y seguridad
+  title_en: Delivery in hygienic and safe condition
+  summary_es: El bien debe entregarse en condiciones que ofrezcan al arrendatario higiene y seguridad.
+  summary_en: The property must be delivered in conditions that provide the tenant with hygiene and safety.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 1995, fr. I
+  quote: El bien deberá entregarse en condiciones que ofrezcan al arrendatario la higiene y seguridad del mismo;
+  applies_to_contract: true
+- id: MX-JAL-HABITABILIDAD-02
+  jurisdiction: JAL
+  category: habitabilidad
+  kind: ley
+  title_es: Prohibido arrendar fincas urbanas sin higiene y salubridad
+  title_en: No leasing of unsanitary urban property
+  summary_es: No puede darse en arrendamiento una finca urbana que no reúna las condiciones de higiene y salubridad exigidas por la legislación respectiva.
+  summary_en: An urban property that does not meet the hygiene and sanitation conditions required by the applicable legislation may not be leased.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2036
+  quote: No podrá darse en arrendamiento una finca urbana que no reúna las condiciones de higiene y salubridad exigidas por la legislación respectiva.
+  applies_to_contract: true
+- id: MX-JAL-ARRENDADOR-02
+  jurisdiction: JAL
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Reparaciones necesarias
+  title_en: Necessary repairs
+  summary_es: Si el arrendador no hace las reparaciones necesarias para el uso del bien, el arrendatario puede elegir rescindir el arrendamiento o acudir al juez para obligarlo a cumplir.
+  summary_en: If the landlord fails to make the repairs needed for the property's use, the tenant may choose to rescind the lease or go to court to compel compliance.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 1998
+  quote: Si el arrendador no cumpliere con hacer las reparaciones necesarias para el uso a que esté destinado el bien, quedará a elección del arrendatario, rescindir el arrendamiento u ocurrir al juez para que constriña al arrendador al cumplimiento de su obligación.
+  applies_to_contract: true
+- id: MX-JAL-ARRENDADOR-03
+  jurisdiction: JAL
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Devolver saldo y entregar recibos de renta
+  title_en: Return balance and issue rent receipts
+  summary_es: El arrendador debe devolver al arrendatario el saldo a su favor al terminar el contrato y entregarle los documentos que acrediten el pago de la renta.
+  summary_en: The landlord must return to the tenant any balance in the tenant's favor when the contract ends and give the tenant documents proving rent payment.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 1995, fr. VIII y IX
+  quote: VIII. Devolver al arrendatario el saldo que hubiese a su favor al terminar el contrato de arrendamiento; IX. Entregar al arrendatario los documentos que acrediten el pago de la renta; y
+  applies_to_contract: true
+- id: MX-JAL-ARRENDATARIO-01
+  jurisdiction: JAL
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar la renta, responder de daños y usar el bien conforme a lo convenido
+  title_en: Pay rent, answer for damage, use as agreed
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos, responder de los daños que el bien sufra por su culpa o negligencia o la de sus familiares, sirvientes o subarrendatarios, y usar el bien solo para el uso convenido o conforme a su naturaleza y destino.
+  summary_en: The tenant must pay rent in the agreed form and time, answer for damage caused by their fault or negligence or that of their family, servants or subtenants, and use the property only for the agreed use or according to its nature and purpose.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2005, fr. I a III
+  quote: 'El arrendatario está obligado a: I. Satisfacer la renta en la forma y tiempo convenidos; II. Responder de los daños que el bien arrendado sufra, por su culpa o negligencia, la de sus familiares, sirvientes o subarrendatarios; III. Utilizar el bien solamente para el uso convenido o conforme a la naturaleza y destino de él;'
+  applies_to_contract: true
+- id: MX-JAL-ARRENDATARIO-02
+  jurisdiction: JAL
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Periodicidad del pago de renta
+  title_en: Rent payment schedule
+  summary_es: La renta se paga en el tiempo convenido; a falta de convenio, por meses vencidos tratándose de inmuebles.
+  summary_en: Rent is paid at the agreed time; absent agreement, monthly in arrears for real property.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2007
+  quote: La renta deberá pagarse en el tiempo convenido, y a falta de éste por meses vencidos, en tratándose de inmuebles y por quincena vencida, en caso de muebles o intangibles.
+  applies_to_contract: true
+- id: MX-JAL-FIADOR-01
+  jurisdiction: JAL
+  category: garantias_fiador
+  kind: ley
+  title_es: No se puede rechazar a un fiador idóneo
+  title_en: A qualified guarantor cannot be refused
+  summary_es: El arrendador no puede rehusar como fiador a una persona que reúna los requisitos exigidos por la ley.
+  summary_en: The landlord may not refuse as guarantor a person who meets the legal requirements.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 1994
+  quote: El arrendador no puede rehusar como fiador a una persona que reúna los requisitos exigidos por la ley para ello.
+  applies_to_contract: true
+- id: MX-JAL-PREFERENCIA-01
+  jurisdiction: JAL
+  category: otro
+  kind: ley
+  title_es: Derecho de preferencia para nuevo arrendamiento
+  title_en: Right of first refusal for a new lease
+  summary_es: En arrendamientos que hayan durado más de tres años, el arrendatario tiene derecho a ser preferido en igualdad de condiciones para el nuevo arrendamiento si está al corriente en la renta y no se retrasó en los pagos periódicos por dos meses.
+  summary_en: In leases lasting more than three years, the tenant has the right to be preferred on equal terms for the new lease if rent is current and payments were not two months late during the term.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2025
+  quote: 'En los arrendamientos que hayan durado más de tres años, el arrendatario tiene derecho a que, en igualdad de condiciones se le prefiera a otro interesado en el nuevo arrendamiento, siempre que satisfaga los siguientes requisitos: I. Estar al corriente en el pago de la renta; y II. Si durante el término del arrendamiento no se retrasó en los pagos periódicos de la renta por dos meses.'
+  applies_to_contract: true
+- id: MX-JAL-PRORROGA-01
+  jurisdiction: JAL
+  category: duracion
+  kind: ley
+  title_es: Prórroga de un año (habitación)
+  title_en: One-year extension (residential)
+  summary_es: Al término del arrendamiento, el arrendatario que cumplió en tiempo con todas sus obligaciones legales y contractuales tiene derecho a una prórroga de un año.
+  summary_en: At the end of the lease, a tenant who timely met all legal and contractual obligations is entitled to a one-year extension.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2044
+  quote: Al término del arrendamiento, el arrendatario que haya cumplido en tiempo con todas las obligaciones que la ley y el contrato le hayan impuesto, tendrá derecho a una prórroga del mismo por el término de un año.
+  applies_to_contract: true
+- id: MX-JAL-TERMINACION-01
+  jurisdiction: JAL
+  category: terminacion
+  kind: ley
+  title_es: 'Contrato por tiempo indefinido: terminación con aviso'
+  title_en: 'Open-ended lease: termination by notice'
+  summary_es: En contratos por tiempo indefinido, el arrendamiento concluye a voluntad de cualquiera de las partes, previo aviso indubitable a la otra.
+  summary_en: In open-ended leases, either party may end the lease by giving the other unequivocal prior notice.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2035
+  quote: En los casos de contrato por tiempo indefinido, el arrendamiento concluirá a voluntad de cualesquiera de los contratantes, previo aviso dado a la otra parte en forma indubitable.
+  applies_to_contract: true
+- id: MX-JAL-TERMINACION-02
+  jurisdiction: JAL
+  category: terminacion
+  kind: ley
+  title_es: Tácita reconducción y avisos de terminación
+  title_en: Tacit renewal and termination notices
+  summary_es: Operada la tácita reconducción, el arrendamiento concluye a voluntad de cualquiera de las partes con aviso indubitable; tratándose de predio urbano, con tres meses de antelación si avisa el arrendador y un mes si avisa el arrendatario.
+  summary_en: Once tacit renewal has occurred, either party may end the lease with unequivocal notice; for urban property, three months' notice if given by the landlord and one month if given by the tenant.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2143, párr. segundo
+  quote: En caso de haber operado la tácita reconducción en términos de lo establecido en el párrafo anterior del presente artículo, el arrendamiento concluirá a voluntad de cualesquiera de los contratantes, previo aviso dado a la otra parte en forma indubitable. Tratándose de un predio urbano, el aviso deberá darse con tres meses de antelación si lo da el arrendador y un mes si lo da el arrendatario;
+  applies_to_contract: true
+- id: MX-JAL-RESCISION-01
+  jurisdiction: JAL
+  category: terminacion
+  kind: ley
+  title_es: Causas de rescisión a favor del arrendador
+  title_en: Grounds for rescission by the landlord
+  summary_es: El arrendador puede exigir la rescisión por falta de pago de la renta, por usar el bien con un objeto distinto del convenido o de su naturaleza o destino, y por subarriendo o traspaso sin su autorización.
+  summary_en: The landlord may demand rescission for non-payment of rent, for using the property for a purpose other than agreed or than its nature or purpose, and for subletting or transfer without authorization.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2144, fr. I a III
+  quote: 'El arrendador puede exigir la rescisión del contrato de arrendamiento: I. Por la falta de pago de la renta en los términos contractuales o legales; II. Por usarse el bien arrendado con un objeto distinto del convenido o de la naturaleza o destino de dicho bien; III. Por el subarriendo o traspaso de la cosa o bien sin autorización del arrendador;'
+  applies_to_contract: true
+- id: MX-JAL-SUBARRIENDO-01
+  jurisdiction: JAL
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no debe subarrendar el bien en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador.
+  summary_en: The tenant may not sublet all or part of the property, nor assign their rights, without the landlord's consent.
+  doc_id: D-MX-JAL-01
+  citation: Código Civil del Estado de Jalisco, art. 2137
+  quote: El arrendatario no debe subarrendar el bien arrendado en todo, ni en parte, ni ceder sus derechos sin el consentimiento del arrendador;
+  applies_to_contract: true

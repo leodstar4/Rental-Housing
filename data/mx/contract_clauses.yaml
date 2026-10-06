@@ -1,0 +1,197 @@
+# Renta MX — plantillas de cláusulas (mx/contracts.py). No es asesoría legal.
+#
+# Reglas (docs/MX_ARCHITECTURE.md §5):
+# - Ninguna plantilla contiene hechos legales: ni montos, ni plazos, ni porcentajes, ni artículos
+#   (load_clauses rechaza cualquier dígito fuera de las variables ${...}). Todo lo legal viene de los
+#   requisitos verificados de data/mx/requirements/*.yaml y se imprime en el Anexo "Fundamento legal".
+# - basis: ley  -> la cláusula se liga a los requisitos VERIFICADOS con applies_to_contract: true y
+#   kind ley/reglamento/norma cuya `category` esté en `categories` (o cuyo id esté en requirement_ids),
+#   de las jurisdicciones de `scope`: federal = FED; estatal = la entidad del contrato (se omite si la
+#   entidad es solo_federal); cualquiera = FED + entidad. Sin requisito efectivo => la cláusula se omite
+#   y aparece en omitted_clauses.
+# - basis: acuerdo_partes -> pacto neutro de las partes; nunca lleva fundamento.
+# - Sin penas, renuncias de derechos ni intereses moratorios.
+# Variables: arrendador_nombre, arrendatario_nombre, fiador_nombre, domicilio, municipio, estado,
+#   renta, renta_letra, deposito, deposito_letra, fecha_inicio, plazo_meses, dia_pago.
+
+- key: partes_objeto
+  title_es: Partes y objeto
+  title_en: Parties and purpose
+  basis: acuerdo_partes
+  template_es: >-
+    ${arrendador_nombre} (en adelante, el ARRENDADOR) da en arrendamiento a ${arrendatario_nombre} (en adelante,
+    el ARRENDATARIO) el inmueble ubicado en ${domicilio} (en adelante, el INMUEBLE), que el ARRENDATARIO destinará
+    exclusivamente a casa habitación.
+  required_fields: [arrendador.full_name, arrendatario.full_name, inmueble.calle, inmueble.num_ext,
+                    inmueble.colonia, inmueble.cp]
+
+- key: forma_contenido
+  title_es: Forma y contenido del contrato
+  title_en: Form and content of the lease
+  basis: ley
+  scope: estatal
+  categories: [contrato_forma]
+  template_es: >-
+    Las partes otorgan este contrato por escrito. Su forma y contenido se sujetan a las disposiciones citadas
+    en el Anexo para esta cláusula.
+  required_fields: [arrendador.full_name, arrendatario.full_name, inmueble.calle, inmueble.num_ext,
+                    inmueble.colonia, inmueble.cp, monthly_rent_mxn, start_date, term_months]
+
+- key: renta
+  title_es: Renta y forma de pago
+  title_en: Rent and payment
+  basis: acuerdo_partes
+  template_es: >-
+    El ARRENDATARIO pagará al ARRENDADOR una renta mensual de ${renta} (${renta_letra}), a más tardar el día
+    ${dia_pago} de cada mes.
+  required_fields: [monthly_rent_mxn, payment_day]
+
+- key: incremento_renta
+  title_es: Incrementos de la renta
+  title_en: Rent increases
+  basis: ley
+  scope: estatal
+  categories: [incremento_renta]
+  template_es: >-
+    Cualquier incremento de la renta se sujetará a las disposiciones citadas en el Anexo para esta cláusula.
+
+- key: plazo
+  title_es: Plazo pactado
+  title_en: Agreed term
+  basis: acuerdo_partes
+  template_es: >-
+    El arrendamiento inicia el ${fecha_inicio} y las partes pactan una duración de ${plazo_meses} meses.
+  required_fields: [start_date, term_months]
+
+- key: duracion
+  title_es: Reglas de duración y prórroga
+  title_en: Term and renewal rules
+  basis: ley
+  scope: estatal
+  categories: [duracion]
+  template_es: >-
+    La duración pactada se sujeta a las disposiciones sobre duración y prórroga citadas en el Anexo para esta
+    cláusula.
+
+- key: deposito_monto
+  title_es: Depósito en garantía
+  title_en: Security deposit
+  basis: acuerdo_partes
+  omit_if_zero: deposit_mxn
+  template_es: >-
+    El ARRENDATARIO entrega al ARRENDADOR la cantidad de ${deposito} (${deposito_letra}) como depósito en
+    garantía.
+  required_fields: [deposit_mxn]
+
+- key: deposito
+  title_es: Reglas del depósito
+  title_en: Deposit rules
+  basis: ley
+  scope: estatal
+  categories: [deposito]
+  omit_if_zero: deposit_mxn
+  template_es: >-
+    El depósito en garantía se sujeta a las disposiciones citadas en el Anexo para esta cláusula.
+  required_fields: [deposit_mxn]
+
+- key: obligaciones_arrendador
+  title_es: Obligaciones del arrendador
+  title_en: Landlord obligations
+  basis: ley
+  scope: estatal
+  categories: [obligaciones_arrendador]
+  template_es: >-
+    El ARRENDADOR cumplirá las obligaciones que le imponen las disposiciones citadas en el Anexo para esta
+    cláusula.
+
+- key: obligaciones_arrendatario
+  title_es: Obligaciones del arrendatario
+  title_en: Tenant obligations
+  basis: ley
+  scope: estatal
+  categories: [obligaciones_arrendatario]
+  template_es: >-
+    El ARRENDATARIO cumplirá las obligaciones que le imponen las disposiciones citadas en el Anexo para esta
+    cláusula.
+
+- key: habitabilidad
+  title_es: Condiciones de habitabilidad
+  title_en: Habitability
+  basis: ley
+  scope: estatal
+  categories: [habitabilidad]
+  template_es: >-
+    Las condiciones de higiene y habitabilidad del INMUEBLE se sujetan a las disposiciones citadas en el Anexo
+    para esta cláusula.
+
+- key: fiador_pacto
+  title_es: Fiador
+  title_en: Guarantor
+  basis: acuerdo_partes
+  requires_party: fiador
+  template_es: >-
+    ${fiador_nombre} (en adelante, el FIADOR) se constituye como fiador del ARRENDATARIO respecto de las
+    obligaciones que este contrae en el presente contrato.
+  required_fields: [fiador.full_name]
+
+- key: garantias_fiador
+  title_es: Reglas de la fianza
+  title_en: Guarantee rules
+  basis: ley
+  scope: estatal
+  categories: [garantias_fiador]
+  requires_party: fiador
+  template_es: >-
+    La fianza otorgada se sujeta a las disposiciones citadas en el Anexo para esta cláusula.
+  required_fields: [fiador.full_name]
+
+- key: terminacion
+  title_es: Terminación
+  title_en: Termination
+  basis: ley
+  scope: estatal
+  categories: [terminacion]
+  template_es: >-
+    La terminación de este arrendamiento se sujeta a las disposiciones citadas en el Anexo para esta cláusula.
+
+- key: registro
+  title_es: Registro del contrato
+  title_en: Lease registration
+  basis: ley
+  scope: estatal
+  categories: [registro]
+  template_es: >-
+    El registro de este contrato ante la autoridad competente se sujeta a las disposiciones citadas en el Anexo
+    para esta cláusula.
+
+- key: consentimiento_electronico
+  title_es: Consentimiento por medios electrónicos
+  title_en: Consent by electronic means
+  basis: ley
+  scope: cualquiera
+  categories: [firma_electronica]
+  template_es: >-
+    Las partes manifiestan su consentimiento para celebrar este contrato por medios electrónicos, mediante la
+    firma electrónica simple que registra la plataforma Renta MX. Las disposiciones sobre el consentimiento por
+    medios electrónicos son las citadas en el Anexo para esta cláusula.
+
+- key: datos_personales
+  title_es: Datos personales
+  title_en: Personal data
+  basis: ley
+  scope: federal
+  categories: [datos_personales]
+  template_es: >-
+    Los datos personales de las partes se usan solo para generar este contrato y su constancia de firma, según
+    el aviso de privacidad de la plataforma. Las disposiciones aplicables son las citadas en el Anexo para esta
+    cláusula.
+
+- key: fiscal
+  title_es: Obligaciones fiscales
+  title_en: Tax obligations
+  basis: ley
+  scope: federal
+  categories: [fiscal]
+  template_es: >-
+    Las obligaciones fiscales derivadas de este arrendamiento se rigen por las disposiciones citadas en el Anexo
+    para esta cláusula.

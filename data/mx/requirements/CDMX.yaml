@@ -1,0 +1,362 @@
+# Requisitos CDMX — citas literales verificadas contra corpus_mx (ver manifest_fed_cdmx.json).
+# No es asesoría legal.
+- id: MX-CDMX-ORDEN-PUBLICO-01
+  jurisdiction: CDMX
+  category: otro
+  kind: ley
+  title_es: Reglas de vivienda irrenunciables
+  title_en: Residential lease rules cannot be waived
+  summary_es: Las disposiciones del capítulo de arrendamiento de fincas urbanas para habitación son de orden público e interés social, irrenunciables; cualquier estipulación en contrario se tiene por no puesta.
+  summary_en: The provisions of the urban residential lease chapter are of public order and social interest and cannot be waived; any contrary clause is deemed not written.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448
+  quote: Las disposiciones contenidas en este capítulo son de orden público e interés social, por tanto son irrenunciables y en consecuencia cualquier estipulación en contrario se tendrá por no puesta.
+  applies_to_contract: true
+- id: MX-CDMX-DURACION-01
+  jurisdiction: CDMX
+  category: duracion
+  kind: ley
+  title_es: 'Casa habitación: no menos de un año'
+  title_en: 'Residential: no less than one year'
+  summary_es: El arrendamiento de inmuebles destinados a casa habitación no puede ser menor a un año.
+  summary_en: A lease of property used as a dwelling may not be shorter than one year.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2398, párr. segundo
+  quote: El arrendamiento de inmuebles destinados a casa habitación no podrá ser menor a un año.
+  applies_to_contract: true
+- id: MX-CDMX-DURACION-02
+  jurisdiction: CDMX
+  category: duracion
+  kind: ley
+  title_es: Un año forzoso, prorrogable un año más a voluntad del inquilino
+  title_en: One-year binding term, renewable one more year at tenant's option
+  summary_es: La duración mínima es de un año forzoso para ambas partes, prorrogable a voluntad del arrendatario hasta por un año más si está al corriente en las rentas, salvo convenio en contrario.
+  summary_en: The minimum term is one year binding on both parties, extendable at the tenant's option for up to one more year if rent is current, unless otherwise agreed.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 C
+  quote: La duración mínima de todo contrato de arrendamiento de inmuebles destinadas a la habitación será de un año forzoso para arrendador y arrendatario, que será prorrogable a voluntad del arrendatario, hasta por un año más, siempre y cuando se encuentre al corriente en el pago de las rentas, salvo convenio en contrario.
+  applies_to_contract: true
+- id: MX-CDMX-INCREMENTO-01
+  jurisdiction: CDMX
+  category: incremento_renta
+  kind: ley
+  title_es: Renta en pesos y aumento solo anual
+  title_en: Rent in pesos, increased only once a year
+  summary_es: La renta debe estipularse en moneda nacional y solo puede aumentarse anualmente.
+  summary_en: Rent must be set in national currency and may only be increased once a year.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 D, párr. primero
+  quote: Para los efectos de este capítulo la renta deberá estipularse en moneda nacional y solo podrá ser aumentada anualmente.
+  applies_to_contract: true
+- id: MX-CDMX-INCREMENTO-02
+  jurisdiction: CDMX
+  category: incremento_renta
+  kind: ley
+  title_es: 'Tope: el aumento no puede superar la inflación'
+  title_en: 'Cap: increase may not exceed inflation'
+  summary_es: El incremento de la renta nunca será mayor a la inflación reportada por el Banco de México en el año anterior, respecto de la renta mensual pactada.
+  summary_en: The rent increase may never exceed the inflation reported by Banco de México for the previous year, applied to the agreed monthly rent.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 D, párr. segundo
+  quote: El incremento de la renta nunca será mayor a la inflación reportada por el Banco de México en el año anterior, respecto de la cantidad pactada como renta mensual.
+  applies_to_contract: true
+- id: MX-CDMX-PAGO-01
+  jurisdiction: CDMX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pago puntual; a falta de pacto, por meses vencidos
+  title_en: Timely payment; absent agreement, monthly in arrears
+  summary_es: La renta debe pagarse puntualmente en los plazos convenidos y, a falta de convenio, por meses vencidos.
+  summary_en: Rent must be paid on time on the agreed dates and, absent agreement, monthly in arrears.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 E, párr. primero (el texto oficial lo rotula "ARTICULO 2428 (SIC) E")
+  quote: La renta debe pagarse puntualmente, en los plazos convenidos y a falta de convenio por meses vencidos.
+  applies_to_contract: true
+- id: MX-CDMX-RECIBOS-01
+  jurisdiction: CDMX
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Recibo por cada mensualidad
+  title_en: A receipt for every monthly payment
+  summary_es: El arrendador debe entregar un recibo por cada mensualidad pagada; si no entrega recibos por más de tres meses, se entiende que el pago se efectuó, salvo requerimiento oportuno del arrendador.
+  summary_en: The landlord must issue a receipt for each monthly payment; if no receipts are issued for more than three months, payment is presumed made unless the landlord made a timely demand.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 E, párr. segundo
+  quote: El arrendador esta obligado a entregar un recibo por cada mensualidad que el arrendatario pague; a falta de entrega de recibos de pago de renta por más de tres meses, se entenderá que el pago ha sido efectuado, salvo que el arrendador haya hecho el requerimiento correspondiente en tiempo y forma.
+  applies_to_contract: true
+- id: MX-CDMX-DEPOSITO-01
+  jurisdiction: CDMX
+  category: deposito
+  kind: ley
+  title_es: 'Depósito máximo: una mensualidad'
+  title_en: 'Maximum deposit: one month''s rent'
+  summary_es: El arrendador no puede exigir más de una mensualidad de renta como depósito.
+  summary_en: The landlord may not demand more than one month's rent as a deposit.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 E, párr. tercero
+  quote: El arrendador no podrá exigir en su caso, más de una mensualidad de renta a manera de depósito.
+  applies_to_contract: true
+- id: MX-CDMX-CONTRATO-FORMA-01
+  jurisdiction: CDMX
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato por escrito (falta imputable al arrendador)
+  title_en: Written contract (landlord bears the omission)
+  summary_es: El contrato de arrendamiento debe otorgarse por escrito; la falta de esta formalidad se imputa al arrendador y puede dar derecho al arrendatario a demandar por daños o perjuicios que sean consecuencia directa.
+  summary_en: The lease must be in writing; the omission is attributed to the landlord and may entitle the tenant to sue for damages that are a direct consequence.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2406
+  quote: El contrato de arrendamiento debe otorgarse por escrito. La falta de esta formalidad se imputará al arrendador y en su caso, dará derecho al arrendatario a que demande cuando por virtud de tal omisión se cause un daño o perjuicio, siempre que estos sean consecuencia directa de aquella.
+  applies_to_contract: true
+- id: MX-CDMX-CONTENIDO-01
+  jurisdiction: CDMX
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido mínimo: partes, ubicación y descripción'
+  title_en: 'Minimum content: parties, location and description'
+  summary_es: El contrato debe contener al menos nombres de las partes, ubicación del inmueble y descripción detallada del inmueble, instalaciones y accesorios y su estado.
+  summary_en: The contract must contain at least the parties' names, the property location, and a detailed description of the property, its installations and fixtures and their condition.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 F, fracc. I a III
+  quote: 'El contrato deberá contener, cuando menos las siguientes estipulaciones: I. Nombres del arrendador y arrendatario. II. La ubicación del inmueble. III. Descripción detallada del inmueble objeto del contrato y de las instalaciones y accesorios con que cuenta para el uso y goce del mismo, así como el estado que guardan.'
+  applies_to_contract: true
+- id: MX-CDMX-CONTENIDO-02
+  jurisdiction: CDMX
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido mínimo: renta, lugar de pago, garantía, destino, término y obligaciones'
+  title_en: 'Minimum content: rent, place of payment, guarantee, use, term and obligations'
+  summary_es: Debe indicar el monto y lugar de pago de la renta, la garantía en su caso, el destino habitacional expreso, el término y las obligaciones adicionales que pacten las partes.
+  summary_en: It must state the rent amount and place of payment, the guarantee if any, the express residential use, the term, and any additional obligations agreed by the parties.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 F, fracc. IV a VIII
+  quote: IV. El monto y lugar del pago de renta. V. La garantía, en su caso. VI. La mención expresa del destino habitacional del inmueble arrendado. VII. El término del contrato. VIII. Las obligaciones que arrendador y arrendatario contraigan adicionalmente a las establecidas en la Ley.
+  applies_to_contract: true
+- id: MX-CDMX-CONTENIDO-03
+  jurisdiction: CDMX
+  category: garantias_fiador
+  kind: ley
+  title_es: 'Contenido mínimo: depósito o datos del fiador'
+  title_en: 'Minimum content: deposit or guarantor details'
+  summary_es: El contrato debe señalar el monto del depósito o, en su caso, los datos del fiador en garantía.
+  summary_en: The contract must state the deposit amount or, where applicable, the guarantor's details.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 F, fracc. IX
+  quote: IX. El monto del depósito o en su caso los datos del fiador en garantía.
+  applies_to_contract: true
+- id: MX-CDMX-CONTENIDO-04
+  jurisdiction: CDMX
+  category: contrato_forma
+  kind: ley
+  title_es: 'Contenido mínimo: carácter y facultades del arrendador'
+  title_en: 'Minimum content: landlord''s capacity and authority'
+  summary_es: El contrato debe indicar el carácter y las facultades con que el arrendador lo celebra, incluyendo los datos del instrumento que acredite su personalidad.
+  summary_en: The contract must state the capacity and authority under which the landlord signs, including details of the instrument proving that capacity.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 F, fracc. X
+  quote: X. El carácter y las facultades con que el arrendador celebrará el contrato, incluyéndose todos los datos del instrumento con que éste acredite su personalidad.
+  applies_to_contract: true
+- id: MX-CDMX-REGISTRO-01
+  jurisdiction: CDMX
+  category: registro
+  kind: ley
+  title_es: Registro digital del contrato en 30 días
+  title_en: Digital registration of the lease within 30 days
+  summary_es: Se establecerá un registro digital de contratos a cargo del Gobierno de la Ciudad de México; el arrendador debe registrar sus contratos en un plazo no mayor a 30 días de celebrados.
+  summary_en: A digital lease registry run by the Mexico City Government is to be established; the landlord must register leases within 30 days of signing.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 F, párr. penúltimo
+  quote: Se establecerá un registro digital de contratos de arrendamiento, de autorización inmediata, a cargo del Gobierno de la Ciudad de México y para tales efectos el arrendador deberá registrar sus contratos en un plazo no mayor a 30 días de celebrado el contrato.
+  applies_to_contract: true
+- id: MX-CDMX-REGISTRO-02
+  jurisdiction: CDMX
+  category: datos_personales
+  kind: ley
+  title_es: El registro de contratos no es público
+  title_en: The lease registry is not public
+  summary_es: El registro se rige por las leyes de transparencia y de protección de datos personales de la Ciudad y no puede ser público ni darse a conocer, salvo resolución judicial.
+  summary_en: The registry is governed by the City's transparency and personal-data laws and may not be made public or disclosed except by court order.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 F, párr. penúltimo
+  quote: El registro a que se refiere el párrafo anterior se regirá de conformidad con los criterios de la Ley de Transparencia, Acceso a la Información Pública y Rendición de Cuentas de la Ciudad de México, la Ley de Protección de Datos Personales en Posesión de Sujetos Obligados de la Ciudad de México, además de que por ningún motivo, salvo por resolución judicial, podrá ser público o darse a conocer.
+  applies_to_contract: false
+- id: MX-CDMX-HABITABILIDAD-01
+  jurisdiction: CDMX
+  category: habitabilidad
+  kind: ley
+  title_es: Higiene y salubridad para la habitabilidad
+  title_en: Hygiene and sanitation for habitability
+  summary_es: No debe arrendarse una localidad que no reúna las condiciones de higiene y salubridad necesarias para su habitabilidad; si se hace, se aplican al arrendador las sanciones procedentes.
+  summary_en: A dwelling lacking the hygiene and sanitary conditions needed for habitability must not be leased; otherwise the applicable sanctions apply to the landlord.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 A
+  quote: No deberá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad necesarias para la habitabilidad del inmueble. En caso contrario, se aplicarán al arrendador las sanciones procedentes.
+  applies_to_contract: true
+- id: MX-CDMX-ARRENDADOR-01
+  jurisdiction: CDMX
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Conservar en buen estado y dar mantenimiento
+  title_en: Keep in good condition and maintain
+  summary_es: El arrendador debe conservar el inmueble en buen estado (salvo deterioro normal por uso), hacer las reparaciones necesarias y las obras de mantenimiento para su conservación, funcionalidad y seguridad.
+  summary_en: The landlord must keep the property in good condition (except normal wear), make necessary repairs and carry out maintenance for its conservation, functionality and safety.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2412, fracc. II
+  quote: A conservar la cosa arrendada en buen estado, salvo el deterioro normal del uso que sufra el inmueble durante el arrendamiento, haciendo para ello todas las reparaciones necesarias; así como, las obras de mantenimiento para la conservación, funcionalidad y seguridad del inmueble;
+  applies_to_contract: true
+- id: MX-CDMX-ARRENDATARIO-01
+  jurisdiction: CDMX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar la renta en forma y tiempo
+  title_en: Pay rent as and when agreed
+  summary_es: El arrendatario está obligado a pagar la renta en la forma y tiempo convenidos.
+  summary_en: The tenant must pay rent in the agreed manner and time.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2425, fracc. I
+  quote: 'El arrendatario está obligado: I. A satisfacer la renta en la forma y tiempo convenidos;'
+  applies_to_contract: true
+- id: MX-CDMX-ARRENDATARIO-02
+  jurisdiction: CDMX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: La renta corre desde la entrega del inmueble
+  title_en: Rent runs from delivery of the property
+  summary_es: El arrendatario paga la renta desde el día en que recibe el inmueble, aun si el contrato se firmó antes.
+  summary_en: The tenant owes rent from the day the property is received, even if the contract was signed earlier.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2426
+  quote: El arrendatario está obligado a pagar la renta desde el día en que reciba la cosa arrendada, aún cuando el contrato se hubiese celebrado con anterioridad.
+  applies_to_contract: true
+- id: MX-CDMX-SUBARRIENDO-01
+  jurisdiction: CDMX
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarrendar requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar ni ceder sus derechos sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario de los daños y perjuicios.
+  summary_en: The tenant may not sublet or assign their rights without the landlord's consent; otherwise they are jointly liable with the subtenant for damages.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2480
+  quote: El arrendatario no puede subarrendar la cosa arrendada en todo, ni en parte, ni ceder sus derechos sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el subarrendatario, de los daños y perjuicios.
+  applies_to_contract: true
+- id: MX-CDMX-PREFERENCIA-01
+  jurisdiction: CDMX
+  category: otro
+  kind: ley
+  title_es: Derecho de preferencia si se vende
+  title_en: Right of first refusal on sale
+  summary_es: Si el propietario decide vender, los arrendatarios al corriente en el pago de sus rentas tienen derecho a ser preferidos frente a cualquier tercero, en los términos del artículo.
+  summary_en: If the owner decides to sell, tenants who are current on rent have the right to be preferred over any third party, under the terms of the article.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 J
+  quote: 'En caso de que el propietario del inmueble arrendado decida enajenarlo, el o los arrendatarios siempre que estén al corriente en el pago de sus rentas tendrán derecho a ser preferidos a cualquier tercero en los siguientes términos:'
+  applies_to_contract: false
+- id: MX-CDMX-SUBROGACION-01
+  jurisdiction: CDMX
+  category: terminacion
+  kind: ley
+  title_es: No termina por muerte de las partes
+  title_en: Not terminated by death of a party
+  summary_es: El arrendamiento de vivienda no termina por la muerte del arrendador ni del arrendatario, sino solo por los motivos que establecen las leyes.
+  summary_en: A residential lease does not end upon the death of the landlord or tenant, only for the reasons established by law.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2448 H, párr. primero
+  quote: El arrendamiento de fincas urbanas destinadas a la habitación no termina por la muerte del arrendador ni por la del arrendatario, sino sólo por los motivos establecidos en las leyes.
+  applies_to_contract: true
+- id: MX-CDMX-TERMINACION-01
+  jurisdiction: CDMX
+  category: terminacion
+  kind: ley
+  title_es: Continuación tras vencer el plazo
+  title_en: Holding over after the term ends
+  summary_es: Si terminado el plazo el arrendatario sigue sin oposición en el uso del bien, el arrendamiento continúa por tiempo indeterminado, pagando la renta conforme a lo convenido.
+  summary_en: If the tenant stays on without objection after the term ends, the lease continues for an indefinite term, with rent payable as agreed.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2487
+  quote: Si después de terminado el plazo por el que se celebró el arrendamiento, el arrendatario continúa sin oposición en el uso y goce del bien arrendado, continuará el arrendamiento por tiempo indeterminado, estando obligado el arrendatario a pagar la renta que corresponda por el tiempo que exceda conforme a lo convenido en el contrato;
+  applies_to_contract: true
+- id: MX-CDMX-FIADOR-01
+  jurisdiction: CDMX
+  category: garantias_fiador
+  kind: ley
+  title_es: La fianza cesa al terminar el plazo determinado
+  title_en: The guaranty ends when the fixed term ends
+  summary_es: Las obligaciones de un tercero que garantiza el arrendamiento cesan al término del plazo determinado, salvo convenio en contrario.
+  summary_en: Obligations undertaken by a third party to guarantee the lease end when the fixed term ends, unless otherwise agreed.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2487
+  quote: Las obligaciones contraídas por un tercero con objeto de garantizar el cumplimiento del arrendamiento, cesan al término del plazo determinado, salvo convenio en contrario.
+  applies_to_contract: true
+- id: MX-CDMX-FIADOR-02
+  jurisdiction: CDMX
+  category: garantias_fiador
+  kind: ley
+  title_es: Qué es la fianza
+  title_en: What a guaranty (fianza) is
+  summary_es: La fianza es un contrato por el que una persona se compromete con el acreedor a pagar por el deudor si éste no lo hace.
+  summary_en: A guaranty (fianza) is a contract by which a person undertakes to the creditor to pay on the debtor's behalf if the debtor does not.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2794
+  quote: La fianza es un contrato por el cual una persona se compromete con el acreedor a pagar por el deudor, si éste no lo hace.
+  applies_to_contract: true
+- id: MX-CDMX-TERMINACION-02
+  jurisdiction: CDMX
+  category: terminacion
+  kind: ley
+  title_es: Rescisión a petición del arrendatario
+  title_en: Termination requested by the tenant
+  summary_es: El arrendatario puede exigir la rescisión, entre otros casos, cuando el arrendador incumple la obligación de conservar el inmueble (art. 2412, fracc. II).
+  summary_en: The tenant may demand rescission, among other cases, when the landlord breaches the duty to maintain the property (art. 2412, sec. II).
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 2490, fracc. I
+  quote: 'El arrendatario puede exigir la rescisión del contrato: I. Por contravenir el arrendador la obligación a que se refiere la fracción II del artículo 2412 de este ordenamiento;'
+  applies_to_contract: true
+- id: MX-CDMX-FIRMA-01
+  jurisdiction: CDMX
+  category: firma_electronica
+  kind: ley
+  title_es: Consentimiento expreso por medios electrónicos
+  title_en: Express consent by electronic means
+  summary_es: El consentimiento es expreso cuando se manifiesta verbalmente, por escrito, por medios electrónicos, ópticos, cualquier otra tecnología o signos inequívocos.
+  summary_en: Consent is express when given verbally, in writing, by electronic or optical means, any other technology, or unequivocal signs.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 1803
+  quote: Es expreso cuando se manifiesta verbalmente, por escrito, por medios electrónicos, ópticos, por cualquier otra tecnología o por signos inequívocos.
+  applies_to_contract: true
+- id: MX-CDMX-FIRMA-02
+  jurisdiction: CDMX
+  category: firma_electronica
+  kind: ley
+  title_es: Forma escrita y firma por medios electrónicos
+  title_en: Written form and signature by electronic means
+  summary_es: Los requisitos de forma escrita y firma se tienen por cumplidos con medios electrónicos, siempre que la información sea íntegra, atribuible a las personas obligadas y accesible para su consulta posterior.
+  summary_en: Written-form and signature requirements are deemed met by electronic means, provided the information is complete, attributable to the obligated persons and accessible for later consultation.
+  doc_id: D-MX-CDMX-01
+  citation: Código Civil para el Distrito Federal, art. 1834, párr. tercero
+  quote: Los supuestos previstos en este Artículo se tendrán por cumplidos mediante la utilización de medios electrónicos, ópticos o de cualquier otra tecnología, siempre que la información generada o comunicada en forma íntegra, a través de dichos medios, sea atribuible a las personas obligadas y accesible para su ulterior consulta.
+  applies_to_contract: true
+- id: MX-CDMX-FIRMA-03
+  jurisdiction: CDMX
+  category: firma_electronica
+  kind: ley
+  title_es: 'Ley de Ciudadanía Digital: aplica a trámites con el gobierno'
+  title_en: 'Digital Citizenship Law: applies to dealings with government'
+  summary_es: La Ley de Ciudadanía Digital de la CDMX es de orden público y de observancia obligatoria para la Administración Pública y las Alcaldías de la Ciudad de México.
+  summary_en: Mexico City's Digital Citizenship Law is of public order and binding on the City's Public Administration and Alcaldías.
+  doc_id: D-MX-CDMX-02
+  citation: Ley de Ciudadanía Digital de la Ciudad de México, art. 1
+  quote: Las disposiciones de la presente Ley son de orden público, interés general y observancia obligatoria para la Administración Pública y las Alcaldías de la Ciudad de México
+  applies_to_contract: false
+- id: MX-CDMX-FIRMA-04
+  jurisdiction: CDMX
+  category: firma_electronica
+  kind: ley
+  title_es: La Ley de Firma Electrónica del DF fue abrogada
+  title_en: The Federal District E-Signature Law was repealed
+  summary_es: El decreto que expidió la Ley de Ciudadanía Digital abrogó la Ley de Firma Electrónica del Distrito Federal (Gaceta Oficial 04-11-2009).
+  summary_en: The decree issuing the Digital Citizenship Law repealed the Federal District Electronic Signature Law (Official Gazette 2009-11-04).
+  doc_id: D-MX-CDMX-02
+  citation: Decreto de expedición de la Ley de Ciudadanía Digital de la Ciudad de México (G.O. 09-01-2020)
+  quote: SE ABROGAN LA LEY DE FIRMA ELECTRÓNICA DEL DISTRITO FEDERAL, PUBLICADA EN LA GACETA OFICIAL DEL DISTRITO FEDERAL EL 04 DE NOVIEMBRE DE 2009
+  applies_to_contract: false

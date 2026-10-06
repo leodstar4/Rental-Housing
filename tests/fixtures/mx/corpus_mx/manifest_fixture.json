@@ -1,0 +1,41 @@
+{
+ "_note": "FIXTURE de prueba",
+ "docs": [
+  {
+   "doc_id": "D-MX-FED-01",
+   "title": "FIXTURE Ley federal ficticia",
+   "publisher": "FIXTURE (no es un publicador real)",
+   "jurisdiction": "FED",
+   "url": "https://example.invalid/D-MX-FED-01",
+   "retrieved_at": "2026-10-01T00:00:00Z",
+   "sha256": "2da89ec1948d5bdbeb21fa669e3afadc2ab46e1acf310ef9f0499f6051fad107",
+   "file_path": "corpus_mx/fed/fed_fixture.txt",
+   "text_path": "corpus_mx/fed/fed_fixture.txt",
+   "text_sha256": "2da89ec1948d5bdbeb21fa669e3afadc2ab46e1acf310ef9f0499f6051fad107",
+   "last_reform": "FIXTURE 01-01-2026"
+  },
+  {
+   "doc_id": "D-MX-CDMX-01",
+   "title": "FIXTURE Código civil ficticio",
+   "publisher": "FIXTURE (no es un publicador real)",
+   "jurisdiction": "CDMX",
+   "url": "https://example.invalid/D-MX-CDMX-01",
+   "retrieved_at": "2026-10-01T00:00:00Z",
+   "sha256": "7671ef9932c91377c9770f372a559a2e11ff1dbf76ce3b9feb9de3efa37b0aa0",
+   "file_path": "corpus_mx/cdmx/cdmx_fixture.txt",
+   "text_path": "corpus_mx/cdmx/cdmx_fixture.txt",
+   "text_sha256": "7671ef9932c91377c9770f372a559a2e11ff1dbf76ce3b9feb9de3efa37b0aa0"
+  },
+  {
+   "doc_id": "D-MX-INEGI-01",
+   "title": "FIXTURE Datos estadísticos ficticios",
+   "publisher": "FIXTURE (no es un publicador real)",
+   "jurisdiction": "FED",
+   "url": "https://example.invalid/D-MX-INEGI-01",
+   "retrieved_at": "2026-10-01T00:00:00Z",
+   "sha256": "a4890db32334b509465353bfb929e0f982c1d71dd724360d404855fb8b4cd33c",
+   "file_path": "corpus_mx/inegi/inegi_fixture.csv",
+   "text_path": null
+  }
+ ]
+}

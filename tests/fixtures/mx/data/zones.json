@@ -1,0 +1,72 @@
+{
+ "_note": "FIXTURE de prueba: cifras inventadas",
+ "source_docs": [
+  "D-MX-INEGI-01"
+ ],
+ "states": [
+  {
+   "cve_ent": "09",
+   "name": "Ciudad de México",
+   "abbr": "CDMX",
+   "legal_coverage": "solo_federal",
+   "stats": {},
+   "municipios": [
+    {
+     "cve_mun": "015",
+     "name": "Cuauhtémoc",
+     "lat": 19.4,
+     "lon": -99.1,
+     "coord": {
+      "represents": "localidad_mas_poblada",
+      "source": "D-MX-INEGI-01"
+     },
+     "stats": {
+      "poblacion_total": {
+       "value": 1234,
+       "source": "D-MX-INEGI-01",
+       "year": 2020
+      },
+      "pct_viviendas_alquiladas": {
+       "value": 40.5,
+       "source": "D-MX-INEGI-01",
+       "year": 2020,
+       "cv": 35.0,
+       "ci90": [
+        30.0,
+        50.0
+       ]
+      },
+      "sin_fuente": {
+       "value": 99,
+       "year": 2020
+      },
+      "fuente_desconocida": {
+       "value": 98,
+       "source": "D-MX-INEGI-99",
+       "year": 2020
+      }
+     }
+    },
+    {
+     "cve_mun": "002",
+     "name": "Azcapotzalco",
+     "stats": {}
+    }
+   ]
+  },
+  {
+   "cve_ent": "31",
+   "name": "Yucatán",
+   "abbr": "YUC",
+   "legal_coverage": "estatal_verificada",
+   "stats": {},
+   "municipios": [
+    {
+     "cve_mun": "050",
+     "name": "Mérida",
+     "stats": {}
+    }
+   ]
+  }
+ ]
+}

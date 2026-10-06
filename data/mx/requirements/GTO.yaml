@@ -1,0 +1,158 @@
+# Requisitos GTO — citas literales verificadas contra corpus_mx/estados/GTO (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-GTO-FORMA-01
+  jurisdiction: GTO
+  category: contrato_forma
+  kind: ley
+  title_es: Contrato de arrendamiento por escrito
+  title_en: Lease contract in writing
+  summary_es: Los contratos de arrendamiento deben celebrarse por escrito.
+  summary_en: Lease contracts must be executed in writing.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1908
+  quote: Los contratos de arrendamiento deben celebrarse por escrito.
+  applies_to_contract: true
+- id: MX-GTO-DURACION-01
+  jurisdiction: GTO
+  category: duracion
+  kind: ley
+  title_es: 'Plazo máximo: quince años para habitación'
+  title_en: 'Maximum term: fifteen years for housing'
+  summary_es: El arrendamiento por tiempo determinado no puede exceder de quince años para las fincas destinadas a habitación; de veinte para comercio y de veinticinco para industria o agricultura.
+  summary_en: A fixed-term lease may not exceed fifteen years for property used as housing; twenty for commercial use and twenty-five for industry or agriculture.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1900
+  quote: El arrendamiento por tiempo determinado no puede exceder de quince años para las fincas destinadas a habitación; de veinte para las destinadas a comercio, y de veinticinco para las fincas destinadas al ejercicio de una industria o a la agricultura.
+  applies_to_contract: true
+- id: MX-GTO-SUBROGACION-01
+  jurisdiction: GTO
+  category: terminacion
+  kind: ley
+  title_es: No termina por muerte de las partes
+  title_en: Not terminated by death of a party
+  summary_es: El contrato de arrendamiento no termina por la muerte del arrendador ni del arrendatario, salvo convenio en otro sentido.
+  summary_en: The lease does not end upon the death of the landlord or tenant, unless otherwise agreed.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1909, párr. primero
+  quote: El contrato de arrendamiento no termina por la muerte del arrendador ni del arrendatario, salvo convenio en otro sentido.
+  applies_to_contract: true
+- id: MX-GTO-ARRENDADOR-01
+  jurisdiction: GTO
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Entregar en estado de servir y conservar con reparaciones
+  title_en: Deliver fit for use and maintain with repairs
+  summary_es: Aun sin pacto expreso, el arrendador debe entregar la finca con sus pertenencias y en estado de servir para el uso convenido, y conservarla en el mismo estado durante el arrendamiento haciendo todas las reparaciones necesarias.
+  summary_en: Even without an express agreement, the landlord must deliver the property with its appurtenances and fit for the agreed use, and keep it in that condition during the lease making all necessary repairs.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1913, fracc. I y II
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I. A entregar al arrendatario la finca arrendada con todas sus pertenencias y en estado de servir para el uso convenido, y si no hubo convenio expreso, para aquel a que por su misma naturaleza estuviere destinada; II. A conservar la cosa arrendada en el mismo estado, durante el arrendamiento, haciendo para ello todas las reparaciones necesarias;'
+  applies_to_contract: true
+- id: MX-GTO-ARRENDADOR-02
+  jurisdiction: GTO
+  category: terminacion
+  kind: ley
+  title_es: Devolución inmediata del saldo al terminar
+  title_en: Immediate return of balance at end
+  summary_es: Si al terminar el arrendamiento hay saldo a favor del arrendatario, el arrendador debe devolverlo inmediatamente, salvo que tenga algún derecho que ejercitar contra él, en cuyo caso lo deposita judicialmente.
+  summary_en: If at the end of the lease there is a balance in the tenant's favor, the landlord must return it immediately, unless it has a claim against the tenant, in which case it is deposited with the court.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1920
+  quote: Si al terminar el arrendamiento hubiere algún saldo a favor del arrendatario, el arrendador deberá devolverlo inmediatamente, a no ser que tenga algún derecho que ejercitar contra aquél; en este caso depositará judicialmente el saldo referido.
+  applies_to_contract: true
+- id: MX-GTO-ARRENDATARIO-01
+  jurisdiction: GTO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar renta, responder de daños, uso convenido y restituir
+  title_en: Pay rent, answer for damage, agreed use and return
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos, responder de los perjuicios que sufra la cosa por su culpa o negligencia o la de sus familiares, sirvientes o subarrendatarios, usarla solo para el uso convenido o conforme a su naturaleza, y restituirla al terminar el contrato.
+  summary_en: The tenant must pay rent in the agreed form and time, answer for harm to the property caused by their fault or negligence or that of family, servants or subtenants, use it only for the agreed use or according to its nature, and return it when the contract ends.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1923, fracc. I a IV
+  quote: 'El arrendatario está obligado: I. A satisfacer la renta en la forma y tiempo convenidos; II. A responder de los perjuicios que la cosa arrendada sufra por su culpa o negligencia, la de sus familiares, sirvientes o subarrendatarios; III. A servirse de la cosa solamente para el uso convenido, o el que sea conforme a la naturaleza y destino de ella; IV. A restituir la cosa al terminar el contrato;'
+  applies_to_contract: true
+- id: MX-GTO-ARRENDATARIO-02
+  jurisdiction: GTO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: La renta corre desde la entrega del inmueble
+  title_en: Rent runs from delivery of the property
+  summary_es: El arrendatario no está obligado a pagar la renta sino desde el día en que recibe la cosa arrendada, salvo pacto en contrario.
+  summary_en: The tenant is not obliged to pay rent until the day the leased property is received, unless otherwise agreed.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1924
+  quote: El arrendatario no está obligado a pagar la renta sino desde el día en que reciba la cosa arrendada, salvo pacto en contrario.
+  applies_to_contract: true
+- id: MX-GTO-ARRENDATARIO-03
+  jurisdiction: GTO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Avisar la necesidad de reparaciones
+  title_en: Notify the need for repairs
+  summary_es: El arrendatario está obligado a poner en conocimiento del arrendador, a la brevedad posible, la necesidad de las reparaciones, bajo pena de pagar los daños y perjuicios que su omisión cause.
+  summary_en: The tenant must inform the landlord, as soon as possible, of the need for repairs, under penalty of paying the damages caused by their omission.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1940
+  quote: El arrendatario está obligado a poner en conocimiento del arrendador, a la brevedad posible, la necesidad de las reparaciones, bajo pena de pagar los daños y perjuicios que su omisión cause.
+  applies_to_contract: true
+- id: MX-GTO-HABITABILIDAD-01
+  jurisdiction: GTO
+  category: habitabilidad
+  kind: ley
+  title_es: Condiciones de higiene y salubridad
+  title_en: Hygiene and sanitation conditions
+  summary_es: No puede darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas en el Código Sanitario.
+  summary_en: A dwelling that does not meet the hygiene and sanitation conditions required by the Sanitary Code may not be leased.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1950
+  quote: No podrá darse en arrendamiento una localidad que no reúna las condiciones de higiene y salubridad exigidas en el Código Sanitario.
+  applies_to_contract: true
+- id: MX-GTO-PREFERENCIA-01
+  jurisdiction: GTO
+  category: otro
+  kind: ley
+  title_es: Preferencia tras cinco años o mejoras de importancia
+  title_en: Preference after five years or significant improvements
+  summary_es: En arrendamientos que hayan durado más de cinco años, o cuando el arrendatario haya hecho mejoras de importancia, éste tiene derecho, si está al corriente en el pago de la renta, a ser preferido en igualdad de condiciones frente a otro interesado en el nuevo arrendamiento.
+  summary_en: In leases lasting more than five years, or when the tenant has made significant improvements, the tenant has the right, if current on rent, to be preferred on equal terms over another interested party for the new lease.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1949, párr. segundo
+  quote: En los arrendamientos que hayan durado más de cinco años o cuando el arrendatario ha hecho mejoras de importancia en la finca arrendada, tiene este derecho, si está al corriente en el pago de la renta, a que, en igualdad de condiciones, se le prefiera a otro interesado en el nuevo arrendamiento de la finca.
+  applies_to_contract: true
+- id: MX-GTO-SUBARRIENDO-01
+  jurisdiction: GTO
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario de los daños y perjuicios.
+  summary_en: The tenant may not sublet all or part, nor assign their rights, without the landlord's consent; otherwise they are jointly liable with the subtenant for damages.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1984
+  quote: El arrendatario no puede subarrendar la cosa arrendada en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el subarrendatario de los daños y perjuicios.
+  applies_to_contract: true
+- id: MX-GTO-SUBARRIENDO-02
+  jurisdiction: GTO
+  category: contrato_forma
+  kind: ley
+  title_es: El subarriendo se otorga con las mismas formalidades
+  title_en: Subletting requires the same formalities
+  summary_es: El subarrendamiento debe otorgarse con las mismas formalidades requeridas por la ley para el arrendamiento.
+  summary_en: A sublease must be executed with the same formalities the law requires for a lease.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1989
+  quote: El subarrendamiento debe otorgarse con las mismas formalidades requeridas por la ley para el arrendamiento.
+  applies_to_contract: true
+- id: MX-GTO-TERMINACION-01
+  jurisdiction: GTO
+  category: terminacion
+  kind: ley
+  title_es: Modos de terminar el arrendamiento
+  title_en: Ways the lease ends
+  summary_es: El arrendamiento puede terminar, entre otras causas, por haberse cumplido el plazo fijado en el contrato o por la ley, por convenio expreso y por nulidad; el artículo enumera además la rescisión o resolución, la confusión, la pérdida de la cosa y la expropiación.
+  summary_en: The lease may end, among other causes, by expiry of the term set in the contract or by law, by express agreement, and by nullity; the article also lists rescission or resolution, merger, loss of the property and expropriation.
+  doc_id: D-MX-GTO-01
+  citation: Código Civil para el Estado de Guanajuato, art. 1990, fracc. I a III
+  quote: 'El arrendamiento puede terminar: I. Por haberse cumplido el plazo fijado en el contrato o por la ley, o por estar satisfecho el objeto para que la cosa fue arrendada; II. Por convenio expreso; III. Por nulidad;'
+  applies_to_contract: true

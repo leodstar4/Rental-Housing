@@ -9,3 +9,6 @@ static/
 frontend/node_modules/
 frontend/dist/
 .DS_Store
+
+# INEGI raw downloads (large; url+sha256 in corpus_mx/manifest_inegi.json)
+corpus_mx/inegi/raw/

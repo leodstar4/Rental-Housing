@@ -1,0 +1,53 @@
+# FIXTURE de prueba: requisitos inventados (no son ley).
+- id: MX-FED-FIRMA-01
+  jurisdiction: FED
+  category: firma_electronica
+  kind: ley
+  title_es: FIXTURE consentimiento electrónico
+  title_en: FIXTURE electronic consent
+  summary_es: FIXTURE resumen.
+  summary_en: FIXTURE summary.
+  doc_id: D-MX-FED-01
+  citation: FIXTURE Ley federal ficticia, art. 10
+  quote: Las partes de un contrato de prueba podrán expresar su consentimiento por medios electrónicos
+  applies_to_contract: true
+  reviewed_by: FIXTURE
+- id: MX-FED-DATOS-01
+  jurisdiction: FED
+  category: datos_personales
+  kind: ley
+  title_es: FIXTURE datos personales
+  title_en: FIXTURE personal data
+  summary_es: FIXTURE resumen.
+  summary_en: FIXTURE summary.
+  doc_id: D-MX-FED-01
+  citation: FIXTURE Ley federal ficticia, art. 11
+  quote: Los datos personales del texto de prueba se tratarán solo para la finalidad informada
+  applies_to_contract: true
+  reviewed_by: FIXTURE
+- id: MX-FED-COMILLAS-01
+  jurisdiction: FED
+  category: otro
+  kind: ley
+  title_es: FIXTURE comillas y salto de línea
+  title_en: FIXTURE quotes and line break
+  summary_es: FIXTURE resumen.
+  summary_en: FIXTURE summary.
+  doc_id: D-MX-FED-01
+  citation: FIXTURE Ley federal ficticia, art. 12
+  quote: 'Disposición ficticia con "comillas curvas" y un salto de línea en medio de la oración'
+  applies_to_contract: false
+  reviewed_by: FIXTURE
+- id: MX-FED-GUION-01
+  jurisdiction: FED
+  category: otro
+  kind: ley
+  title_es: FIXTURE guion de fin de línea
+  title_en: FIXTURE end-of-line hyphen
+  summary_es: FIXTURE resumen.
+  summary_en: FIXTURE summary.
+  doc_id: D-MX-FED-01
+  citation: FIXTURE Ley federal ficticia, art. 13
+  quote: el arrendamiento de prueba se rige por este texto inventado para pruebas
+  applies_to_contract: false
+  reviewed_by: FIXTURE

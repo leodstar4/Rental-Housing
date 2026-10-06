@@ -1,0 +1,323 @@
+PUBLICADA EN LA GACETA OFICIAL DE LA CIUDAD DE MÉXICO EL 09 DE ENERO DE 2020
+TEXTO VIGENTE
+Última reforma publicada en la G.O.CDMX el 11 de noviembre de 2022
+DECRETO POR EL QUE SE ABROGAN LA LEY DE FIRMA ELECTRÓNICA DEL DISTRITO FEDERAL, PUBLICADA EN LA GACETA OFICIAL DEL DISTRITO FEDERAL EL 04 DE NOVIEMBRE DE 2009 Y LA LEY DE GOBIERNO ELECTRÓNICO DE LA CIUDAD DE MÉXICO, PUBLICADA EN LA GACETA OFICIAL DEL DISTRITO FEDERAL EL 07 DE OCTUBRE DE 2015; SE DEROGA EL ARTÍCULO 33 DE LA LEY DE OPERACIÓN E INNOVACIÓN DIGITAL PARA LA CIUDAD DE MÉXICO. SE REFORMA EL ARTÍCULO 1803 DEL CÓDIGO CIVIL PARA EL DISTRITO FEDERAL. SE EXPIDE LA LEY DE CIUDADANÍA DIGITAL DE LA CIUDAD DE MÉXICO.
+DRA. CLAUDIA SHEINBAUM PARDO, Jefa de Gobierno de la Ciudad de México, a sus habitantes sabed.
+Que el H. Congreso de la Ciudad de México I Legislatura, se ha servido dirigirme el siguiente:
+DECRETO
+CONGRESO DE LA CIUDAD DE MÉXICO
+I LEGISLATURA
+EL CONGRESO DE LA CIUDAD DE MÉXICO, DECRETA:
+SE ABROGAN LA LEY DE FIRMA ELECTRÓNICA DEL DISTRITO FEDERAL, PUBLICADA EN LA GACETA OFICIAL DEL DISTRITO FEDERAL EL 04 DE NOVIEMBRE DE 2009 Y LA LEY DE GOBIERNO ELECTRÓNICO DE LA CIUDAD DE MÉXICO, PUBLICADA EN LA GACETA OFICIAL DEL DISTRITO FEDERAL EL 07 DE OCTUBRE DE 2015; SE DEROGA EL ARTÍCULO 33 DE LA LEY DE OPERACIÓN E INNOVACIÓN DIGITAL PARA LA CIUDAD DE MÉXICO. SE REFORMA EL ARTÍCULO 1803 DEL CÓDIGO CIVIL PARA EL DISTRITO FEDERAL. SE EXPIDE LA LEY DE CIUDADANÍA DIGITAL DE LA CIUDAD DE MÉXICO.
+EL CONGRESO DE LA CIUDAD DE MÉXICO, DECRETA:
+QUINTO. Se expide la Ley de Ciudadanía Digital de la Ciudad de México, para quedar como sigue:
+LEY DE CIUDADANÍA DIGITAL DE LA CIUDAD DE MÉXICO
+TÍTULO PRIMERO DISPOSICIONES GENERALES
+CAPÍTULO I OBJETO, DEFINICIONES Y PRINCIPIOS
+Artículo 1. Las disposiciones de la presente Ley son de orden público, interés general y observancia obligatoria para la Administración Pública y las Alcaldías de la Ciudad de México, y tienen por objeto:
+
+I. Establecer las bases y procedimientos para el desarrollo e implementación del Autenticador Digital Único como herramienta tecnológica con validez jurídica para el ejercicio de la Ciudadanía Digital en la Ciudad de México;
+II. Instaurar el marco de gobernanza para la adecuada gestión del Autenticador Digital Único con la finalidad de garantizar la interoperabilidad y seguridad digital, así como el régimen jurídico aplicable al uso transversal de tecnologías en la digitalización de procesos y prestación de trámites, servicios y demás actos jurídicos y administrativos digitales por parte de la Administración Pública y de las Alcaldías de la Ciudad de México;
+III. Formular los requisitos específicos, directrices y lineamientos para la implementación y uso de firmas electrónicas y otros mecanismos reconocidos de validación digital para la gestión y atención de los trámites, servicios y demás actos jurídicos y administrativos;
+IV. Establecer la coordinación y gestión necesaria para impulsar la disponibilidad de los servicios de certificación electrónica;
+V. Establecer las bases para que las personas morales implementen el uso del Autenticador Digital Único como resultado de los convenios establecidos con la Administración Pública y las Alcaldías para la gestión e implementación de trámites y servicios y demás actos jurídicos y administrativos;
+VI. Establecer los lineamientos para la regulación de la gestión de trámites, servicios, procesos y procedimientos administrativos, a través del uso de las tecnologías de la información y comunicación;
+VII. Establecer los lineamientos para regular e impulsar el desarrollo de canales de digitales que permitan a las Personas interactuar con la Administración Pública y Alcaldías de la Ciudad de México;
+VIII. Normar el Registro Electrónico de Trámites y Servicios, así como los canales de comunicación para la atención y difusión de trámites y servicios que brindan la Administración Pública y las Alcaldías de la Administración Pública de la Ciudad de México;
+IX. Establecer las bases para garantizar el Derecho a la Buena Administración Pública mediante la eficiencia en la gestión pública con el uso intensivo de las tecnologías de la información y comunicaciones; y
+X. Fomentar la transparencia y la participación ciudadana en la gestión pública.
+Artículo 2. Para efectos de la presente Ley se entenderá por:
+I. Administración Pública: conjunto de Dependencia, Órganos y Entidades que componen la Administración Pública Centralizada y Paraestatal de la Ciudad de México;
+II. Agencia: La Agencia Digital de Innovación Pública de la Ciudad de México;
+III. Alcaldía: Los órganos político administrativos de cada una de las demarcaciones territoriales;
+IV. Autenticador: Autenticador Digital Único al que hace referencia el artículo 20 de esta Ley;
+
+V. Canal Digital: Cualquier medio telemático, electrónico o que involucre tecnologías de la información y comunicaciones utilizados por la Administración Pública y las Alcaldías para interactuar con las Personas, en el ejercicio de sus atribuciones;
+VI. Cédula Ciudadana: Relación de archivos que contiene el listado y ubicación de los documentos y/o datos asociados a una Persona que obren en los Expedientes Electrónicos de la Administración Pública y las Alcaldías y se encuentren en formato digital;
+VII. Certificado Electrónico: Documento firmado por un prestador de servicios de certificación, mediante el cual se confirma el vínculo informático existente entre el firmante y la Firma Electrónica;
+VIII. Ciudad: Ciudad de México;
+IX. Ciudadanía Digital: Condición que identifica a una persona a través de medios digitales para realizar trámites, servicios, así como actos jurídicos y administrativos a cargo de la Administración Pública y las Alcaldías de la Ciudad de México;
+X. Credenciales de acceso: Conjunto de datos y archivos electrónicos que permiten a la Persona acceder a cualquiera de los canales digitales o funcionalidades del Autenticador;
+XI. Expediente Electrónico: Conjunto de documentos electrónicos asociados a personas físicas o morales, que pueden ser utilizados por cualquier autoridad competente para resolver trámites, servicios y demás actos jurídicos y administrativos;
+XII. Firma Electrónica: Conjunto de datos electrónicos consignados en un mensaje de datos o adjuntados al mismo, utilizados como medio para identificar a su autor o emisor que permite la identificación del signatario y que ha sido creada por medios que éste mantiene bajo su exclusivo control, de manera que está vinculada al mismo. Es generada con un certificado reconocido legalmente a través de un dispositivo seguro de creación de firma y tiene, en relación con la información firmada, un valor jurídico equivalente al de la firma autógrafa;
+XIII. Inicio de Sesión Único: Protocolo de autenticación digital que utiliza un registro validado previamente por la Agencia, que permite a las Personas acceder a los sistemas de la Administración Pública y las Alcaldías de la Ciudad de México a los que tenga permisos de acceso;
+XIV. Ley: Ley de Ciudadanía Digital de la Ciudad de México;
+XV. Persona: Persona física o moral, nacional o extranjera, que ejerce derechos u obligaciones ante la Administración Pública y las Alcaldías;
+XVI. Riel de Interoperabilidad: Estándares para el intercambio y consulta de información entre la Administración Pública y las Alcaldías, con el propósito de relacionar datos y/o documentos de los componentes del Autenticador;
+XVII. Seguridad: Medidas físicas, administrativas y tecnológicas para la protección contenida en los sistemas digitales que no sea de carácter público, en virtud de ser datos personales o información reservada;
+
+XVIII. Tecnologías de la información y comunicaciones: Conjunto de dispositivos y sistemas utilizados para almacenar, recuperar, procesar, transmitir y recibir paquetes de datos en formato digital.
+XIX. Unidad de Firma Electrónica: Unidad administrativa adscrita a la Agencia, responsable de ejercer las atribuciones establecidas en el Capítulo IV del Título Segundo de esta Ley.
+Artículo 3. Las disposiciones contenidas en la presente Ley, así como su aplicación se rigen por los siguientes principios:
+I. Especialidad.- La presente Ley es aplicable para la gestión y atención de los trámites, servicios y demás actos jurídicos y administrativos prestados por la Administración Pública y las Alcaldías en un entorno digital, sin perjuicio de lo regulado para los procedimientos administrativos u otros que se rigen por su propia normativa.
+II. Equivalencia Funcional.- El ejercicio del Autenticador para el uso y gestión de trámites, servicios y demás actos jurídicos y administrativos digitales, confiere y reconoce a las personas las mismas garantías que otorgan los modos tradicionales de relacionarse entre privados y/o en la relación con la Administración Pública y las Alcaldías.
+III. Privacidad desde el Diseño.- En el diseño y gestión de trámites, servicios y demás actos jurídicos y administrativos digitales se adoptan las medidas preventivas de tipo tecnológico, organizacional, humano y procedimental que garanticen la seguridad de los datos personales.
+IV. Igualdad de Responsabilidades.- la Administración Pública y las Alcaldías responden por los actos realizados a través de canales digitales de la misma manera y con iguales responsabilidades que por los realizados a través de medios presenciales.
+V. Usabilidad.- En el diseño y configuración de la gestión y atención de los trámites, servicios y demás actos jurídicos y administrativos a cargo de la Administración Pública y las Alcaldías, se propenderá a que su uso resulte de fácil manejo para las Personas.
+VI. Digital desde el Diseño.- Los trámites, servicios y demás actos jurídicos y administrativos a cargo de la Administración Pública y las Alcaldías, de manera preferente, progresiva y cuando corresponda, se diseñarán y modelarán para que sean digitales de principio a fin.
+VII. Proporcionalidad.- Los requerimientos de seguridad y autenticación de los trámites, servicios y demás actos jurídicos y administrativos a cargo de la Administración Pública y las Alcaldías deberán ser proporcionales al nivel de riesgo asumido en la prestación del mismo.
+VIII. Datos Abiertos por Defecto.- Los datos se encontrarán en formato de datos abiertos, sin comprometer el derecho a la protección de los datos personales de las personas.
+IX. Transparencia y confidencialidad.- El tratamiento de la información que se genere con motivo del Autenticador deberá realizarse de conformidad con lo establecido en la Ley de Protección de Datos Personales en posesión de Sujetos Obligados de la Ciudad de México y la Ley de Transparencia, Acceso a la Información Pública y Rendición de Cuentas de la Ciudad de México.
+Artículo 4. En todo lo no previsto en la presente Ley se aplicará supletoriamente la Ley de Operación e Innovación Digital para la Ciudad de México, la Ley de Procedimiento Administrativo de la Ciudad de México y demás normatividad aplicable.
+
+TÍTULO SEGUNDO DERECHOS Y OBLIGACIONES
+CAPÍTULO I DERECHOS DE LAS PERSONAS
+Artículo 5. Se reconoce el derecho de las Personas para relacionarse y comunicarse con la Administración Pública y las Alcaldías, mediante el uso de medios electrónicos y tecnologías de la información y comunicación de uso generalizado.
+Artículo 6. Las Personas tienen derecho a:
+I. Elegir, entre aquellos que se encuentren disponibles, el Canal Digital a través del cual se relacionarán con la Administración Pública y las Alcaldías;
+II. Dejar de proporcionar los datos y documentos que obren en poder de la Administración Pública y las Alcaldías en formato digital. La Administración Pública y las Alcaldías, utilizar medios electrónicos para acceder a dicha información a través del Riel de Interoperabilidad;
+III. Ser tratadas en igualdad de condiciones en el acceso electrónico a los trámites, programas sociales, acciones de gobierno, servicios y demás puntos de contacto con la ciudadanía brindados por los Órganos de la Administración Pública;
+IV. Conocer por medios electrónicos el estado de tramitación de los procedimientos en los que sean interesados, salvo en los supuestos en que la normativa aplicable establezca restricciones al acceso a la información sobre aquéllos;
+V. Obtener copias electrónicas de los documentos que estén relacionados a su Expediente Electrónico y/o de los procedimientos en los que tengan la condición de usuario, sin perjuicio del pago de derechos establecido en el Código Fiscal de la Ciudad de México;
+VI. Obtener el usuario y contraseña de acceso para el Inicio de Sesión Único;
+VII. Que la Administración Pública y las Alcaldías garanticen la seguridad y confidencialidad de los datos que figuren en sus sistemas y aplicaciones;
+VIII. Que los servicios públicos puedan ser solicitados a través de medios electrónicos;
+IX. Autenticarse a través del Inicio de Sesión Único y la Firma Electrónica; y
+X. Los demás que les sean reconocidos en las disposiciones legales aplicables.
+Artículo 7. La Administración Pública y las Alcaldías de manera progresiva y cuando corresponda, deben garantizar a las Personas el establecimiento y la prestación de los servicios digitales, comprendidos en el ámbito de aplicación de la presente Ley, debiendo para tal efecto:
+I. Utilizar medios electrónicos para recabar la información de las Personas a través de la infraestructura que integre el Riel de Interoperabilidad;
+
+II. Reconocer y aceptar el uso del Autenticador de todas las Personas según lo regulado en la presente Ley;
+III. Garantizar la disponibilidad e integridad de la información en los servicios digitales;
+IV. Facilitar el acceso a la información requerida por otro ente de la Administración Pública o de las Alcaldías a través del Riel de Interoperabilidad, respecto a los datos y archivos de las Personas que obren en su poder y se encuentren en soporte electrónico;
+V. Implementar servicios digitales haciendo un análisis de los sistemas disponibles y rediseño funcional;
+VI. Implementar la funcionalidad de pago de impuestos, aprovechamientos, autogenerados, servicios, derechos y demás trámites de la Administración Pública y las Alcaldías a través de Canales Digitales; y
+VII. Las demás establecidas en la normatividad aplicable.
+CAPÍTULO II OBLIGACIONES DE LAS PERSONAS
+Artículo 8. Las Personas son responsables del uso y manejo de la información relacionada a su Autenticador y de éste.
+Artículo 9. En caso de pérdida, suplantación, usurpación o robo de credenciales de acceso del Autenticador, la Persona deberá notificar a la Agencia para la cancelación, suspensión y/o renovación de su usuario y contraseña, sin perjuicio de las denuncias correspondientes ante la autoridad competente. El procedimiento de recuperación de usuario y contraseña será determinado en el Reglamento de esta Ley.
+Artículo 10. La veracidad y legalidad de la información, datos y/o documentos que se entreguen a los Órganos de la Administración es responsabilidad de la Persona que los entrega para su integración a su Expediente Electrónico.
+En caso de presentar documentos o información falsa, la Autoridad responsable dará vista ante las autoridades ministeriales o administrativas que correspondan.
+CAPÍTULO III DE LAS AUTORIDADES
+Artículo 11. Corresponde a la Agencia las siguientes atribuciones:
+I. Establecer los procedimientos y emitir los lineamientos y demás normativa que sea necesaria para la implementación del Autenticador;
+II. Diseñar la estrategia de desarrollo del Autenticador para su implementación en la Ciudad de México;
+III. Determinar las tecnologías de la información y comunicaciones que deberán utilizar la Administración Pública y las Alcaldías para la implementación del Autenticador;
+
+IV. Definir el procedimiento para que las Personas puedan tramitar el Inicio de Sesión Único;
+V. Establecer la estrategia para asociar los datos biométricos de una Persona a una Cédula Ciudadana a través de los trámites, programas sociales, acciones de gobierno, servicios y demás puntos de contacto de la ciudadanía con la Administración Pública y las Alcaldías;
+VI. Designar a la unidad administrativa que fungirá como Unidad de Firma Electrónica;
+VII. Determinar la o las firmas electrónicas que tendrán validez jurídica para los trámites, programas sociales, acciones de gobierno, servicios y demás puntos de contacto de la ciudadanía con la Administración Pública y las Alcaldías;
+VIII. Fomentar y difundir el uso de firmas electrónicas y otros mecanismos reconocidos de validación digital en todos los trámites y servicios;
+IX. Formular los requisitos específicos, directrices y lineamientos para la implementación y uso del Autenticador;
+X. Emitir las disposiciones normativas para la incorporación de la Firma Electrónica en los trámites y servicios y demás actos jurídicos y administrativos prestados por la Administración Pública y las Alcaldías;
+XI. Requerir a la Administración Pública y las Alcaldías cualquier información, datos y/o documentación para la implementación del Autenticador;
+XII. Brindar la asesoría técnica y capacitación a la Administración Pública y las Alcaldías para la implementación de Autenticador;
+XIII. Informar al Consejo de Gobernanza Tecnológica sobre el desarrollo y la implementación del Autenticador; y
+XIV. Las demás que le otorguen otros ordenamientos aplicables.
+Artículo 12. La Administración Pública y las Alcaldías tendrán las siguientes obligaciones:
+I. Poner a disposición de los Entes de la Administración Pública y las Alcaldías que lo soliciten conforme a esta Ley, la información y/o datos que les sean requeridos a través del Riel de Interoperabilidad;
+II. Priorizar y fomentar el uso del Autenticador;
+III. Dar cumplimiento a los procedimientos, lineamientos y demás disposiciones que en materia de Autenticador expida la Agencia;
+IV. Incorporar a sus canales digitales las herramientas necesarias para facilitar su utilización a través de los componentes del Autenticador;
+V. Utilizar el Riel de Interoperabilidad, apegándose a los criterios técnicos y de seguridad para el intercambio de información y/o datos que defina la Agencia;
+
+VI. Utilizar tecnologías de la información y comunicaciones que aseguren la disponibilidad, el acceso, la integridad, la autenticidad, la confidencialidad y la conservación de los datos e información que generen, con motivo de la utilización del Autenticador, en términos de la Ley de Protección de Datos Personales en Posesión de los Sujetos Obligados de la Ciudad de México, de la Ley de Transparencia, Acceso a la Información Pública y Rendición de Cuentas de la Ciudad de México y de la Ley de Archivos de la Ciudad de México;
+VII. Cumplir los procedimientos para identificar a las Personas que presenten sus solicitudes mediante canales digitales conforme lo mandata esta Ley;
+VIII. Impulsar el uso de las firmas electrónicas para la recepción y expedición de documentos electrónicos con validez jurídica equivalente a la de documentos firmados en papel para todo tipo de actuaciones oficiales y actos jurídicos; y
+IX. Las demás que les ordene la legislación aplicable.
+Artículo 13. Los Poderes Legislativo y Judicial, Órganos Autónomos, Organismos con jurisdicción contenciosa que no formen parte del Poder Judicial, todos de la Ciudad de México, así como los Entes que conformen la Federación, las Entidades Federativas y los Municipios podrán participar del Autenticador Digital Único, previo convenio de colaboración que suscriban con la Agencia. Para tal efecto, deberán cumplir con los requerimientos, criterios técnicos y de seguridad que se establezcan. También se podrán celebrar convenios con particulares, cumpliendo con al menos las mismas condiciones exigidas para los Entes públicos.
+Artículo 14. Cuando la Persona presente una solicitud por medio de un Canal Digital ante la Administración Pública o Alcaldía, implicará la aceptación implícita de que las notificaciones le sean efectuadas a través del mismo Canal Digital, así como los efectos jurídicos de dichas notificaciones.
+CAPÍTULO IV CONSEJO DE GOBERNANZA TECNOLÓGICA
+Artículo 15. El Consejo de Gobernanza Tecnológica es la instancia responsable de desarrollar, coordinar, evaluar e informar sobre el desarrollo de la política de Gobernanza Tecnológica en la Ciudad de México.
+Artículo 16. El Consejo estará integrado por:
+I. Las personas titulares de la:
+a) Secretaría de Gobierno;
+b) Secretaría de Administración y Finanzas;
+c) Secretaría de la Contraloría General;
+d) Secretaría de Cultura;
+e) Secretaría de Desarrollo Económico;
+f) Secretaría de Desarrollo Urbano y Vivienda;
+
+g) Secretaría de Educación, Ciencia, Tecnología e Innovación;
+h) Secretaría de Gestión Integral de Riesgos y Protección Civil;
+i) Secretaría de Inclusión y Bienestar Social;
+j) Secretaría del Medio Ambiente;
+k) Secretaría de Movilidad;
+l) Secretaría de las Mujeres;
+m) Secretaría de Obras y Servicios;
+n) Secretaría de Pueblos y Barrios Originarios y Comunidades Indígenas Residentes;
+o) Secretaría de Salud;
+p) Secretaría de Seguridad Ciudadana;
+q) Secretaría de Trabajo y Fomento al Empleo;
+r) Secretaría de Turismo;
+s) Consejería Jurídica y de Servicios Legales; y
+t) Agencia, quien lo presidirá.
+II. Un representante del Cabildo, designado por éste, en términos de lo establecido por su Reglamento. El representante durará en su encargo un año, serán designados por el Cabildo de la Ciudad de México y sustituidos en el orden que decida dicho órgano colegiado.
+Los integrantes del Consejo podrán nombrar a un suplente que deberá ser de nivel jerárquico inmediato inferior, con excepción de la persona que presida el Consejo, quien podrá designarlo de manera libre.
+Artículo 17. El Consejo tendrá las facultades siguientes:
+I. Establecer directrices, bases, instrumentos, lineamientos y mecanismos tendientes a la implementación de la política Gobernanza Tecnológica.
+II. Promover la aplicación de principios, objetivos, instrumentos, programas, criterios y herramientas en materia de Gobernanza Tecnológica;
+III. Aprobar su Reglamento de sesiones y demás normativa necesaria para el cumplimiento del objeto de la presente Ley;
+IV. Conocer y opinar sobre los programas y acciones en materia de Gobernanza tecnológica de la Administración Pública y las Alcaldías; y
+V. Las demás que establezca esta Ley u otras disposiciones aplicables.
+
+Artículo 18. La o el presidente del Consejo tendrá las siguientes atribuciones:
+I. Instalar, presidir y conducir las sesiones del Consejo;
+II. Determinar por sí mismo o a propuesta de los integrantes del Consejo, la celebración de sesiones extraordinarias;
+III. Proponer al Consejo, el calendario anual de sesiones ordinarias;
+IV. Someter a consideración de los integrantes del Consejo el orden del día correspondiente;
+V. Suscribir las actas de las sesiones del Consejo, una vez aprobadas; y
+VI. Las demás que resulten necesarias para la correcta operación del Consejo y aquellas que establezca la normativa aplicable.
+Artículo 19. El Consejo sesionará de forma ordinaria cuando menos dos veces al año y de forma extraordinaria cuando, por la naturaleza de los temas a tratar, sea necesario a juicio de la persona que presida el Consejo. La convocatoria se hará llegar a los miembros del Consejo, por conducto de la Presidencia del Consejo, con una anticipación de cinco días en el caso de las ordinarias y de tres días en el caso de las extraordinarias.
+Para sesionar se requerirá la asistencia de por lo menos la mitad más uno de los integrantes del Consejo. Las resoluciones se tomarán por mayoría simple y quien presida la sesión tendrá voto de calidad en caso de empate.
+TÍTULO TERCERO AUTENTICADOR DIGITAL ÚNICO
+CAPÍTULO I AUTENTICADOR DIGITAL ÚNICO
+Artículo 20. El Autenticador Digital Único es el conjunto de herramientas tecnológicas que permite la interacción digital entre las Personas, la Administración Pública y las Alcaldías, a fin de realizar trámites, servicios y demás actos jurídicos y administrativos.
+El Autenticador se compone por las siguientes herramientas:
+I. La Cédula Ciudadana;
+II. Los Expedientes Electrónicos
+III. El Inicio de Sesión Único;
+IV. Las firmas electrónicas de las Personas; y,
+V. El Riel de Interoperabilidad.
+
+CAPÍTULO II CÉDULA CIUDADANA Y EXPEDIENTES ELECTRÓNICOS
+Artículo 21. La Cédula Ciudadana es un catálogo de documentos de una Persona contenidos en los Expedientes Electrónicos de la Administración Pública y las Alcaldías, a los cuales se puede tener acceso mediante el Riel de Interoperabilidad.
+Artículo 22. La Cédula Ciudadana será diseñada, desarrollada y administrada por la Agencia y estará disponible para consulta de las Personas, la Administración Pública y las Alcaldías conforme a lo establecido en la normativa aplicable y en la presente Ley.
+Artículo 23. El Expediente Electrónico es el conjunto de documentos asociados a una Persona que pueden ser consultados y/o utilizados por la Administración Pública y las Alcaldías mediante el Riel de Interoperabilidad, para la gestión de trámites, servicios y demás actos jurídicos y administrativos. El Expediente Electrónico operará de conformidad con los lineamientos que apruebe el Consejo de Mejora Regulatoria, conforme a la Ley de Mejora Regulatoria de la Ciudad de México y demás normativa aplicable.
+Artículo 24. Para incorporar documentos físicos al Expediente Electrónico de una Persona, la Administración Pública o las Alcaldías incorporarán los documentos cuando se cumpla con lo siguiente:
+I. Que la migración a una forma digital haya sido realizada o supervisada por una persona servidora pública autorizada por la Agencia que compulse o valide los mismos. La Agencia establecerá en los lineamientos de la materia los documentos que deberán ser compulsados, así como los que solo deberán ser validados;
+II. Que la información contenida en el documento se mantenga íntegra e inalterada en su versión electrónica a partir del momento en que se generó por primera vez en su forma definitiva y sea accesible para su ulterior consulta;
+Que el documento electrónico permita conservar el formato del documento impreso y reproducirlo con exactitud; y
+III. Que cuente con la Firma Electrónica o equivalente de la persona servidora pública al que se refiere la fracción I de este artículo.
+Artículo 25. Para incorporar documentos de origen electrónico al Expediente Electrónico, la Administración Pública y las Alcaldías deberán:
+I. Habilitar un módulo para la carga de los documentos electrónicos por parte de las Personas interesadas;
+II. Que una persona servidora pública, autorizada por la Agencia, de la Administración Pública o Alcaldía valide el cotejo del documento electrónico proporcionado con la fuente certificadora que lo emitió; y
+III. Que cuente con la Firma Electrónica o equivalente de la persona servidora pública al que se refiere la fracción II de este artículo.
+Artículo 26. La Administración Pública y las Alcaldías deberán generar un Expediente Electrónico por cada Persona que interactúe con ellas, debiendo validar la información que recaben previo a su vinculación con
+
+un Expediente Electrónico. Dicho Expediente deberá vincularse a la Cédula Ciudadana, así como garantizar su seguridad, disponibilidad, integridad, autenticidad, confidencialidad y custodia.
+Artículo 27. La información que se integre a la Cédula Ciudadana, así como la que obre en los Expedientes Electrónicos vinculados a ésta, conforme a lo dispuesto por esta Ley, producirán los mismos efectos que las leyes otorgan a los documentos firmados autógrafamente y, en consecuencia, tendrán el mismo valor probatorio que las disposiciones legales le otorgan a éstos.
+Artículo 28. La información relacionada en la Cédula Ciudadana de una Persona se presume auténtica ante la Administración Pública y las Alcaldías, hasta que exista prueba en contrario. Dicha presunción aplicará para los terceros que suscriban convenios con la Agencia, en términos del artículo 8 de esta Ley.
+Artículo 29. Los documentos y/o datos contenidos en los Expedientes Electrónicos y que se intercambien por medio del Riel de Interoperabilidad obraran en los los archivos de la Administración Pública y las Alcaldías que recaban e integran los documentos.
+La Agencia no tendrá acceso ni incorporará a sus archivos a la información que transite a través del Riel de Interoperabilidad.
+Artículo 30. La Administración Pública y las Alcaldías que substancien procedimientos de carácter administrativo y la Fiscalía General de Justicia de la Ciudad de México, en cumplimiento de sus atribuciones, podrán consultar la Cédula Ciudadana, así como los documentos y/o datos que obren en los Expedientes Electrónicos de los involucrados para fines de substanciación y de investigación, respectivamente.
+La Agencia deberá llevar un registro de las consultas que dichas autoridades realicen a la Cédula Ciudadana y a los Expedientes Electrónicos vinculados a ésta. Dichos registros podrán tener el carácter de reservado, en términos de la Ley de Transparencia, Acceso a la Información Pública y Rendición de Cuentas de la Ciudad de México, en tanto no concluya la investigación para la cual la información y/o datos fueron requeridos.
+En su caso, para efectos de pruebas dentro de un juicio penal se atenderán las exigencias establecidas en el Código Nacional de Procedimientos Penales.
+Artículo 31. Para proteger la seguridad de la información la Agencia deberá proveer a las personas servidoras públicas designadas para operar el Riel de Interoperabilidad las llaves de encriptado y desencriptado de la información. La información que intercambien la Administración Pública y las Alcaldías por conducto del Riel de Interoperabilidad deberá ir cifrada y las llaves sólo las podrán utilizar las personas servidoras públicas autorizadas para ello.
+CAPÍTULO III INICIO DE SESIÓN ÚNICO
+Artículo 32. La Agencia desarrollará una herramienta tecnológica para otorgar las credenciales de acceso que permita a las Personas utilizar el Inicio de Sesión Único en los Canales Digitales de la Administración Pública y las Alcaldías. Dicha herramienta permitirá vincular el perfil relacionado a su Cédula Ciudadana y a sus Expedientes Electrónicos en cualquiera de los sistemas gubernamentales de los que sean usuarios.
+Artículo 33. La Administración Pública y las Alcaldías deberán implementar el Inicio de Sesión Único desarrollado por la Agencia en los Canales Digitales bajo su administración y operación.
+
+Artículo 34. El usuario y contraseña para utilizar el Inicio de Sesión Único deberá contar con al menos los siguientes elementos:
+I. Identificador de usuario;
+II. Contraseña alfanumérica.
+Para el Inicio de Sesión Verificado se requerirá al menos un segundo factor de verificación.
+Artículo 35. El Inicio de Sesión Verificado podrá tener diferentes niveles de seguridad, derivados de la verificación de información, de la incorporación de factores de autenticación y de la incorporación de datos biométricos. La Agencia establecerá en los lineamientos de la materia los niveles de seguridad y requerimientos de cada nivel del Autenticador.
+Artículo 36. Para validar la identidad de la persona vinculada al Inicio de Sesión Verificado, la Agencia se apoyará en fuentes de confianza, entre otras, las siguientes:
+I. El Registro Nacional de Población;
+II. El Registro Federal de Contribuyentes del Servicio de Administración Tributaria;
+III. El Registro Civil de la Ciudad de México;
+IV. El Registro Nacional de Electores;
+V. La información relacionada con pasaportes de la Secretaría de Relaciones Exteriores del Gobierno de la República;
+VI. El Registro Nacional de Profesionistas de la Secretaría de Educación Pública del Gobierno de la República;
+VII. Los registros del Instituto Nacional de Migración; y,
+VIII. Las demás que se especifiquen en el Reglamento.
+Artículo 37. La Agencia será responsable de asociar los datos biométricos de una persona física a su Cédula Ciudadana, para lo cual se auxiliará de la Administración Pública y las Alcaldías en el ámbito de sus competencias; quienes deberán implementar los procedimientos determinados por la Agencia para vincular la información al Autenticador.
+CAPÍTULO IV FIRMA ELECTRÓNICA
+Artículo 38. La Agencia desarrollará de manera gratuita una Firma Electrónica de la Ciudad para las Personas que así lo soliciten. Las firmas electrónicas con que cuente dicho solicitante podrán ser vinculadas a su Cédula Ciudadana. El procedimiento para la aceptación de dicha vinculación será establecido en el Reglamento de la presente Ley.
+
+Artículo 39. La identidad legal de la persona usuaria de la Firma Electrónica quedará establecida por el hecho de que ésta lo relaciona de manera directa y exclusiva con el contenido del documento electrónico y los datos que lo componen originalmente.
+La persona usuaria de la Firma Electrónica tendrá control exclusivo de los medios de generación de dicha firma, por lo que aceptará de manera implícita su uso y efectos jurídicos.
+Artículo 40. La persona usuaria que use una Firma Electrónica asociada a una Cédula Ciudadana reconocerá como propio y auténtico el documento electrónico que se genere.
+Artículo 41. La Firma Electrónica asociada a la Cédula Ciudadana será aceptada por la Administración Pública y las Alcaldías como si se tratase de un documento con Firma autógrafa.
+Artículo 42. Corresponde a la Agencia, en su carácter de Unidad de Firma Electrónica:
+I. Establecer la coordinación y gestión necesaria para impulsar la disponibilidad de los servicios de certificación electrónica;
+II. Habilitar la utilización de la Firma Electrónica con validez jurídica con todas sus características;
+III. Fomentar y difundir el uso de la Firma Electrónica en todos los trámites y servicios;
+IV. Formular los requisitos específicos, directrices y lineamientos para la implementación y uso de la Firma Electrónica; y
+V. Las que establezcan esta ley y demás ordenamientos jurídicos y administrativos aplicables.
+Artículo 43. Los certificados electrónicos serán expedidos por la Unidad de Firma Electrónica previo cumplimiento de todos los requerimientos que se establezcan para tal efecto.
+Artículo 44. Los Certificados, para ser considerados válidos, deberán contener al menos :
+I. La indicación de que se expiden como tales;
+II. El código de identificación único del Certificado;
+III. La Unidad de Firma Electrónica, su dominio de Internet, dirección de correo electrónico;
+IV. Nombre del titular del Certificado;
+V. El identificador de la Cédula Ciudadana;
+VI. Periodo de vigencia del Certificado;
+VII. La fecha y hora de la emisión, suspensión, y renovación del Certificado;
+VIII. La referencia de la tecnología empleada para la creación de la Firma Electrónica.
+
+Artículo 45. Un Certificado dejará de ser válido en los siguientes supuestos:
+I. Expiración del periodo de vigencia, el cual no podrá ser superior a dos años, contados a partir de la fecha en que se hubiere expedido.
+II. Revocación por quien haya expedido el certificado, a solicitud de la persona titular del certificado o por la persona física o moral autorizada por la persona titular del certificado;
+III. Resolución judicial o de autoridad competente que lo ordene;
+IV. Falsedad o inexactitud de los datos proporcionados por la persona titular del certificado al momento de la obtención del certificado electrónico;
+V. Por alteración del mecanismo de soporte del certificado electrónico o violación del secreto de los datos de creación de firma;
+VI. Extravío o robo del certificado;
+VII. Daño o falla irrecuperable del mecanismo de soporte del certificado;
+VIII. Fallecimiento del firmante o interdicción judicialmente declarada;
+Artículo 46. Cuando se actualice alguno de los supuestos establecidos en el artículo anterior, la Unidad de Firma Electrónica actualizará de manera inmediata el servicio de consulta y autenticación de certificados. En su caso, dará aviso inmediato al titular o al representante legal de la invalidez del Certificado, señalando la fecha y hora de dicha circunstancia.
+Artículo 47. Los procesos de cancelación, suspensión y renovación de los certificados serán establecidos en el Reglamento de esta Ley.
+Artículo 48. Los titulares de los certificados electrónicos tendrán los siguientes derechos:
+I. Modificar y actualizar los datos que sobre su identidad se encuentren contenidos en los registros de la Unidad de Firma Electrónica, previa presentación del soporte correspondiente que acredite dichos cambios;
+II. Solicitar constancia de la existencia y registro de sus certificados electrónicos, cuando a sus intereses convenga;
+III. Recibir información sobre los procedimientos de creación de su Firma Electrónica, instrucciones de uso de los certificados electrónicos y certificaciones empleadas;
+Artículo 49. Los titulares de certificados electrónicos tendrán las siguientes obligaciones:
+I. Proporcionar a la Unidad de Firma Electrónica datos verdaderos, completos y exactos al momento de tramitar la emisión de su certificado electrónico;
+II. Resguardar la confidencialidad de su certificado electrónico, así como las contraseñas y/o claves vinculados a éste;
+
+III. Mantener el resguardo físico, personal y exclusivo del dispositivo de almacenamiento de su certificado electrónico;
+IV. Reportar a la Unidad de Firma Electrónica en caso de divulgación de los datos asociados al uso de su certificado electrónico;
+V. En el supuesto de que la Firma Electrónica sea utilizada en el servicio público, en caso de la terminación de su empleo, cargo o comisión, el titular de la firma tendrá la obligación de informar a la Unidad de Firma Electrónica;
+VI. Mantener actualizados los datos contenidos en el certificado electrónico; y
+VII. Dar aviso inmediato a la Unidad de Firma Electrónica ante cualquier circunstancia que ponga en riesgo la privacidad de uso de su certificado de Firma Electrónica.
+Artículo 50. Las firmas electrónicas reconocidas en otros instrumentos normativos podrán ser relacionadas a la Cédula Ciudadana de acuerdo con lo establecido en el Reglamento de esta Ley.
+La Unidad de Firma Electrónica podrá celebrar convenios de colaboración y/o portabilidad con otras autoridades en materia de Firma Electrónica en el ámbito Federal y/o de las entidades federativas.
+TÍTULO CUARTO CASOS ESPECIALES
+CAPÍTULO I CASOS ESPECIALES
+Artículo 51. Las Personas menores de edad o declaradas incapaces por medio de un juicio de interdicción podrán hacer uso del Autenticador a través de su tutor legal. All cumplir 18 años, la Agencia disociará el Autenticador de los tutores y otorgará las credenciales de acceso de manera directa a la Persona titular.
+Artículo 52. Las Personas que no cuenten con nacionalidad mexicana, independientemente de su estatus migratorio así como que no tengan forma de autenticar su identidad de forma certera a través de una validación en las fuentes de confianza que establece el artículo 36 de la presente Ley, se le podrá asignar una cuenta de Inicio de Sesión Único Verificado relacionada con al menos un dato biométrico.
+Artículo 53. Las Personas con nacionalidad mexicana con residencia fuera de la Ciudad, podrán hacer uso del Autenticador.
+Artículo 54. Las Personas privadas de la libertad en los centros penitenciarios podrán relacionarse y comunicarse con la Administración Pública y las Alcaldías mediante el uso de Canales Digitales, así como hacer uso del Autenticador para acceder a los trámites y servicios en los términos que establezca la Agencia.
+TÍTULO QUINTO MECANISMOS DE SEGURIDAD
+CAPÍTULO I SEGURIDAD DE LA INFORMACIÓN
+
+Artículo 55. La Agencia establecerá las medidas de seguridad que generen confianza en el entorno digital mediante la aplicación de medidas preventivas y correctivas así como de la actualización de las herramientas tecnológicas de hardware y software que garanticen la protección y el blindaje de los procedimientos establecidos en la presente Ley.
+Artículo 56. La Administración Pública y las Alcaldías garantizarán que las comunicaciones que se lleven a cabo con las Personas a través de Canales Digitales cuenten con mecanismos y estándares de seguridad, que eviten el acceso de Personas no acreditadas a:
+I. La información transmitida mediante el Riel de Interoperabilidad;
+II. Las credenciales de acceso del Autenticador;
+III. La información relacionada en la Cédula Ciudadana; y
+IV. La información que integra los Expedientes Electrónicos.
+Artículo 57. La Agencia solicitará a la Secretaría de la Contraloría General de la Ciudad de México, o a un tercero acreditado o a un comité de expertos en materia de ciberseguridad e integridad de información auditorías al menos cada dos años. Dichas auditorías deberán cubrir al menos los procedimientos de manejo de información, los permisos y accesos, la transmisión segura de información entre dependencias y las posibles vulnerabilidades.
+CAPÍTULO II PROTECCIÓN DE DATOS PERSONALES
+Y PORTABILIDAD DE DATOS
+Artículo 58. Para la protección de los datos personales generados con motivo del Autenticador, la Administración Pública y las Alcaldías se sujetarán a los términos y condiciones establecidos en las disposiciones legales en materia de protección de datos personales.
+Artículo 59. La Agencia habilitará el Riel de Interoperabilidad como una herramienta para la portabilidad de datos personales en los términos del artículo 54 de la Ley de Protección de Datos Personales en Posesión de Sujetos Obligados de la Ciudad de México y del artículo 57 de la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados.
+Artículo 60. La Administración Pública y las Alcaldías podrán solicitar la portabilidad total de un documento o de información específica contenida en el Expediente Electrónico de una Persona, siempre que sea para el cumplimiento de sus atribuciones y se cuente con el consentimiento expreso de manera digital de la Persona titular de los datos personales, en los términos establecidos por la Ley de Protección de Datos Personales en posesión de Sujetos Obligados de la Ciudad de México.
+Artículo 61. Los Poderes Legislativo y Judicial, Órganos Autónomos, Organismos con jurisdicción contenciosa que no formen parte del Poder Judicial todos del fuero local, así como las Entidades Federativas, Municipios y terceros con carácter de particulares, que hagan uso del Autenticador deberán adoptar las medidas necesarias para mantener exactos, completos, correctos y actualizados los datos Personales en su posesión y garantizar su seguridad.
+Artículo 62. Las Personas otorgarán su consentimiento, en caso de así convenir a sus intereses, para que se lleve a cabo la portabilidad de sus datos personales a través de medios electrónicos. Dicho
+
+consentimiento podrá recabarse por quienes resguardan los datos personales o por quienes necesiten hacer uso de ellos conforme a sus facultades.
+Artículo 63. Todas las solicitudes de portabilidad deberán quedar registradas en la Cédula Ciudadana de la Persona, con al menos los siguientes datos:
+I. Administración Pública o Alcaldía transmisor;
+II. Administración Pública o Alcaldía receptor;
+III. Fecha y hora de solicitud;
+IV. Fecha y hora de transmisión;
+V. Descripción de datos y/o documentos compartidos; y
+VI. Las demás que establezca la Agencia en los lineamientos correspondientes.
+TÍTULO SEXTO SANCIONES
+CAPÍTULO I DE LAS RESPONSABILIDADES
+Artículo 64. El incumplimiento a lo dispuesto en la presente Ley, será́ causa de responsabilidades administrativas, sin perjuicio de las demás que pudieran resultar de la inobservancia o violación de otras disposiciones jurídicas aplicables.
+ARTÍCULOS TRANSITORIOS
+ARTÍCULO PRIMERO. El presente decreto entrará en vigor al día siguiente de su publicación en la Gaceta Oficial de la Ciudad de México.
+ARTÍCULO SEGUNDO. Publíquese el presente decreto en la Gaceta Oficial de la Ciudad de México y para mayor difusión en el Diario Oficial de la Federación.
+ARTÍCULO TERCERO. Se abroga la Ley de Firma Electrónica del Distrito Federal, publicada en la Gaceta Oficial del Distrito Federal el 04 de noviembre de 2009.
+ARTÍCULO CUARTO. Se abroga la Ley de Gobierno Electrónico de la Ciudad de México, publicada en la Gaceta Oficial del Distrito Federal el 07 de octubre de 2015
+ARTÍCULO QUINTO. Se deroga el artículo 33 de la Ley de Operación e Innovación Digital para la Ciudad de México
+ARTÍCULO SEXTO. Se derogan todas aquellas disposiciones que se opongan a lo dispuesto en el presente Decreto.
+
+ARTÍCULO SÉPTIMO. La Persona Titular de la Jefatura de Gobierno de la Ciudad de México expedirá el Reglamento de esta Ley dentro de los 180 días naturales siguientes a su publicación en la Gaceta Oficial de la Ciudad de México.
+ARTÍCULO OCTAVO. La Administración Pública y las Alcaldías deberán adecuar las disposiciones administrativas aplicables al interior de los mismos, conforme a las disposiciones contenidas en la presente Ley, en un plazo que no exceda 180 días naturales a partir de la publicación del reglamento de esta Ley que emita la persona titular de la Jefatura de Gobierno.
+ARTÍCULO NOVENO. Las facultades conferidas en esta Ley a la Fiscalía General de Justicia de la Ciudad de México serán asumidas por la Procuraduría General de Justicia del Distrito Federal, hasta en tanto aquella no entre en funciones de conformidad con el Transitorio Décimo Séptimo de la Constitución Política de la Ciudad de México y la Ley de Transición de la Procuraduría General de Justicia a la Fiscalía General de Justicia de la Ciudad de México.
+ARTÍCULO DÉCIMO. Todas las referencias realizadas en otras disposiciones normativas al Identificador Digital Único se entenderán por el Autenticador Digital Único.
+Palacio Legislativo del Congreso de la Ciudad de México, a los trece días del mes de diciembre del año dos mil diecinueve.- POR LA MESA DIRECTIVA.- DIPUTADA ISABELA ROSALES HERRERA, PRESIDENTA.DIPUTADA MARTHA SOLEDAD ÁVILA VENTURA.- SECRETARIA, DIPUTADA MARGARITA SALDAÑA HERNÁNDEZ, SECRETARIA.- (Firmas)
+Con fundamento en lo dispuesto por los artículos 122, apartado A, fracción III, de la Constitución Política de los Estados Unidos Mexicanos; 32 apartado C, numeral 1, inciso a) de la Constitución Política de la Ciudad de México; 3 fracciones XVII y XVIII, 7 párrafo primero, 10 fracción II, 12 y 21, párrafo primero, de la Ley Orgánica del Poder Ejecutivo y de la Administración Pública de la Ciudad de México; para su debida publicación y observancia, expido el presente Decreto Promulgatorio en la Residencia Oficial de la Jefatura de Gobierno de la Ciudad de México, a los ocho días del mes enero del año dos mil veinte.- LA JEFA DE GOBIERNO DE LA CIUDAD DE MÉXICO, DRA. CLAUDIA SHEINBAUM PARDO.- FIRMA.- LA SECRETARIA DE GOBIERNO, ROSA ICELA RODRÍGUEZ VELÁZQUEZ.- FIRMA.- LA SECRETARIA DE ADMINISTRACIÓN Y FINANZAS, LUZ ELENA GONZÁLEZ ESCOBAR.- FIRMA.- EL SECRETARIO DE LA CONTRALORÍA GENERAL, JUAN JOSÉ SERRANO MENDOZA.- FIRMA.- EL SECRETARIO DE CULTURA, JOSÉ ALFONSO SUÁREZ DEL REAL Y AGUILERA.- FIRMA.- EL SECRETARIO DE DESARROLLO ECONÓMICO, FADLALA AKABANI HNEIDE.- FIRMA.- LA SECRETARIA DE DESARROLLO URBANO Y VIVIENDA, ILEANA AUGUSTA VILLALOBOS ESTRADA.- FIRMA.- LA SECRETARIA DE EDUCACIÓN, CIENCIA, TECNOLOGÍA E INNOVACIÓN, ROSAURA RUIZ GUTIÉRREZ.- FIRMA.- LA SECRETARIA DE GESTIÓN INTEGRAL DE RIESGOS Y PROTECCIÓN CIVIL, MYRIAM VILMA URZÚA VENEGAS.- FIRMA.- LA SECRETARIA DE INCLUSIÓN Y BIENESTAR SOCIAL, ALMUDENA OCEJO ROJO.- FIRMA.- LA SECRETARIA DEL MEDIO AMBIENTE, MARINA ROBLES GARCÍA.- FIRMA.- EL SECRETARIO DE MOVILIDAD, ANDRÉS LAJOUS LOAEZA.- FIRMA.- LA SECRETARIA DE LAS MUJERES, GABRIELA RODRÍGUEZ RAMÍREZ.- FIRMA.- EL SECRETARIO DE OBRAS Y SERVICIOS, JESÚS ANTONIO ESTEVA MEDINA.- FIRMA.- LA SECRETARIA DE PUEBLOS Y BARRIOS ORIGINARIOS Y COMUNIDADES INDÍGENAS RESIDENTES, LARISA ORTÍZ QUINTERO.- FIRMA.- LA SECRETARIA DE SALUD, OLIVA LÓPEZ ARELLANO.- FIRMA.- EL SECRETARIO DE SEGURIDAD CIUDADANA, OMAR HAMID GARCÍA HARFUCH.- FIRMA.- LA SECRETARIA DE TRABAJO Y FOMENTO AL EMPLEO, HAYDEÉ SOLEDAD ARAGÓN MARTÍNEZ.- FIRMA.- EL SECRETARIO DE TURISMO, CARLOS MACKINLAY GROHMANN.- FIRMA.- EL CONSEJERO JURÍDICO Y DE SERVICIOS LEGALES, NÉSTOR VARGAS SOLANO.- FIRMA.
+
+TRANSITORIOS DEL DECRETO POR EL QUE SE REFORMA EL ARTÍCULO 12 DE LA LEY DE CIUDADANÍA DIGITAL DE LA CIUDAD DE MÉXICO, PUBLICADO EN LA GACETA OFICIAL DE LA CIUDAD DE MÉXICO EL DÍA 11 DE NOVIEMBRE DE 2022.
+PRIMERO. Remítase a la persona titular de la Jefatura de Gobierno para su promulgación y publicación en la Gaceta Oficial de la Ciudad de México.
+SEGUNDO. El presente Decreto entrará en vigor al día siguiente de su publicación en la Gaceta Oficial de la Ciudad de México.
+Palacio Legislativo del Congreso de la Ciudad de México, a los tres días del mes de octubre del año dos mil veintidós.- POR LA MESA DIRECTIVA.- DIPUTADO FAUSTO MANUEL ZAMORANO ESPARZA, PRESIDENTE.DIPUTADA MARCELA FUENTE CASTILLO, SECRETARIA.- DIPUTADA MARIA GABRIELA SALIDO MAGOS, SECRETARIA.- (Firmas)
+Con fundamento en lo dispuesto por los artículos 122, apartado A, fracción III de la Constitución Política de los Estados Unidos Mexicanos; 32, apartado C, numeral 1, inciso a) de la Constitución Política de la Ciudad de México; 2 párrafo segundo, 3 fracciones XVII y XVIII, 7 párrafo primero, 10 fracción II, 12 y 21 párrafo primero de la Ley Orgánica del Poder Ejecutivo y de la Administración Pública de la Ciudad de México; para su debida publicación y observancia, expido el presente Decreto Promulgatorio en la Residencia Oficial de la Jefatura de Gobierno de la Ciudad de México, , a los diez días del mes de noviembre del año dos mil veintidós.- LA JEFA DE GOBIERNO DE LA CIUDAD DE MÉXICO, DRA. CLAUDIA SHEINBAUM PARDO.FIRMA.- EL SECRETARIO DE GOBIERNO, MARTÍ BATRES GUADARRAMA.- FIRMA.- LA SECRETARIA DE ADMINISTRACIÓN Y FINANZAS, LUZ ELENA GONZÁLEZ ESCOBAR.- FIRMA.- EL SECRETARIO DE LA CONTRALORÍA GENERAL, JUAN JOSÉ SERRANO MENDOZA.- FIRMA.- LA SECRETARIA DE CULTURA, CLAUDIA STELLA CURIEL DE ICAZA.- FIRMA.- EL SECRETARIO DE DESARROLLO ECONÓMICO, FADLALA AKABANI HNEIDE.- FIRMA.- EL SECRETARIO DE DESARROLLO URBANO Y VIVIENDA, CARLOS ALBERTO ULLOA PÉREZ.- FIRMA.- LA SECRETARIA DE EDUCACIÓN, CIENCIA, TECNOLOGÍA E INNOVACIÓN, ROSAURA RUIZ GUTIÉRREZ.- FIRMA.- LA SECRETARIA DE GESTIÓN INTEGRAL DE RIESGOS Y PROTECCIÓN CIVIL, MYRIAM VILMA URZÚA VENEGAS.- FIRMA.- EL ENCARGADO DE DESPACHO DE LA SECRETARÍA EL SECRETARIO DE INCLUSIÓN Y BIENESTAR SOCIAL, RIGOBERTO SALGADO VÁZQUEZ.FIRMA.- LA SECRETARIA DEL MEDIO AMBIENTE, MARINA ROBLES GARCÍA.- FIRMA.- EL SECRETARIO DE MOVILIDAD, ANDRÉS LAJOUS LOAEZA.- FIRMA.- LA SECRETARIA DE LAS MUJERES, INGRID GÓMEZ SARACÍBAR.- FIRMA.- EL SECRETARIO DE OBRAS Y SERVICIOS, JESÚS ANTONIO ESTEVA MEDINA.FIRMA.- LA SECRETARIA DE PUEBLOS Y BARRIOS ORIGINARIOS Y COMUNIDADES INDÍGENAS RESIDENTES, LAURA ITA ANDEHUI RUIZ MONDRAGÓN.- FIRMA.- LA SECRETARIA DE SALUD, OLIVA LÓPEZ ARELLANO.- FIRMA.- EL SECRETARIO DE SEGURIDAD CIUDADANA, OMAR HAMID GARCÍA HARFUCH.- FIRMA.- EL SECRETARIO DE TRABAJO Y FOMENTO AL EMPLEO, JOSÉ LUIS RODRÍGUEZ DÍAZ DE LEÓN.- FIRMA.- EL ENCARGADO DE DESPACHO DE LA SECRETARÍA DE TURISMO, NATHALIE VERONIQUE DESPLAS PUEL.- FIRMA.- EL CONSEJERO JURÍDICO Y DE SERVICIOS LEGALES, NÉSTOR VARGAS SOLANO.- FIRMA.
+
+

@@ -1,0 +1,122 @@
+# Requisitos CHIH — citas literales verificadas contra corpus_mx/estados/CHIH (ver corpus_mx/manifest_estados.json).
+# No es asesoría legal.
+- id: MX-CHIH-FORMA-01
+  jurisdiction: CHIH
+  category: contrato_forma
+  kind: ley
+  title_es: El contrato de arrendamiento por escrito
+  title_en: Lease contract in writing
+  summary_es: El contrato de arrendamiento deberá otorgarse por escrito.
+  summary_en: The lease contract must be executed in writing.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2305
+  quote: El contrato de arrendamiento deberá otorgarse por escrito.
+  applies_to_contract: true
+- id: MX-CHIH-DURACION-01
+  jurisdiction: CHIH
+  category: duracion
+  kind: ley
+  title_es: 'Plazo máximo: diez años para habitación'
+  title_en: 'Maximum term: ten years for housing'
+  summary_es: Tratándose de fincas destinadas a habitación el arrendamiento no podrá exceder de diez años, y de veinte para las fincas destinadas al comercio o a la industria.
+  summary_en: For property used as housing the lease may not exceed ten years, and twenty for property used for commerce or industry.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2296, párr. tercero
+  quote: Tratándose de fincas destinadas a habitación no podrá exceder de diez años y de veinte para las fincas destinadas al comercio o a la industria.
+  applies_to_contract: true
+- id: MX-CHIH-SUBROGACION-01
+  jurisdiction: CHIH
+  category: terminacion
+  kind: ley
+  title_es: No se rescinde por muerte de las partes
+  title_en: Not rescinded by death of a party
+  summary_es: El contrato de arrendamiento no se rescinde por la muerte del arrendador ni del arrendatario, salvo convenio en otro sentido.
+  summary_en: The lease is not rescinded by the death of the landlord or tenant, unless otherwise agreed.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2307
+  quote: El contrato de arrendamiento no se rescinde por la muerte del arrendador ni del arrendatario, salvo convenio en otro sentido.
+  applies_to_contract: true
+- id: MX-CHIH-ARRENDADOR-01
+  jurisdiction: CHIH
+  category: obligaciones_arrendador
+  kind: ley
+  title_es: Conceder el uso, entregar con higiene y seguridad y conservar
+  title_en: Grant use, deliver hygienic and safe, and maintain
+  summary_es: Aun sin pacto expreso, el arrendador debe conceder el uso o goce temporal del bien, entregar la finca en condiciones de higiene y seguridad y en estado de servir para el uso convenido, y conservarla en el mismo estado durante el arrendamiento haciendo todas las reparaciones necesarias.
+  summary_en: Even without an express agreement, the landlord must grant the temporary use of the property, deliver it in hygienic and safe conditions and fit for the agreed use, and keep it in that condition during the lease making all necessary repairs.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2311, fracc. I a III
+  quote: 'El arrendador está obligado, aunque no haya pacto expreso: I. A conceder el uso o goce temporal del bien arrendado; II. A entregar al arrendatario la finca arrendada, en condiciones de higiene y seguridad, con todas sus pertenencias y en estado de servir para el uso convenido; y si no hubo convenio expreso, para aquel al que por su misma naturaleza estuviere destinada; III. A conservar la cosa arrendada en el mismo estado, durante el arrendamiento, haciendo para ello todas las reparaciones necesarias;'
+  applies_to_contract: true
+- id: MX-CHIH-ARRENDATARIO-01
+  jurisdiction: CHIH
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Pagar renta, responder de daños y uso convenido
+  title_en: Pay rent, answer for damage, agreed use
+  summary_es: El arrendatario debe pagar la renta en la forma y tiempo convenidos, responder de los perjuicios que sufra la cosa por su culpa o negligencia o la de sus familiares, sirvientes o subarrendatarios, y usarla solo para el uso convenido conforme a su naturaleza y destino.
+  summary_en: The tenant must pay rent in the agreed form and time, answer for harm to the property caused by their fault or negligence or that of family, servants or subtenants, and use it only for the agreed use according to its nature and purpose.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2324, fracc. I a III
+  quote: 'El arrendatario está obligado: I. A satisfacer la renta en la forma y tiempo convenidos; II. A responder de los perjuicios que la cosa arrendada sufra por su culpa o negligencia, la de sus familiares, sirvientes o subarrendatarios; III. A servirse de la cosa solamente para el uso convenido conforme a la naturaleza y destino de ella.'
+  applies_to_contract: true
+- id: MX-CHIH-ARRENDATARIO-02
+  jurisdiction: CHIH
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: La renta corre desde la entrega del inmueble
+  title_en: Rent runs from delivery of the property
+  summary_es: El arrendatario no está obligado a pagar la renta sino desde el día en que recibe el inmueble objeto del contrato.
+  summary_en: The tenant is not obliged to pay rent until the day the property under the contract is received.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2325
+  quote: El arrendatario no está obligado a pagar la renta sino desde el día en que reciba el inmueble objeto del contrato.
+  applies_to_contract: true
+- id: MX-CHIH-ARRENDATARIO-03
+  jurisdiction: CHIH
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Avisar la necesidad de reparaciones
+  title_en: Notify the need for repairs
+  summary_es: El arrendatario está obligado a poner en conocimiento del arrendador, a la brevedad posible, la necesidad de las reparaciones, bajo pena de pagar los daños y perjuicios que su omisión cause.
+  summary_en: The tenant must inform the landlord, as soon as possible, of the need for repairs, under penalty of paying the damages caused by their omission.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2314
+  quote: El arrendatario está obligado a poner en conocimiento del arrendador, a la brevedad posible, la necesidad de las reparaciones, bajo pena de pagar los daños y perjuicios que su omisión cause.
+  applies_to_contract: true
+- id: MX-CHIH-SUBARRIENDO-01
+  jurisdiction: CHIH
+  category: obligaciones_arrendatario
+  kind: ley
+  title_es: Subarriendo requiere consentimiento
+  title_en: Subletting requires consent
+  summary_es: El arrendatario no puede subarrendar la cosa en todo ni en parte, ni ceder sus derechos, sin consentimiento del arrendador; si lo hace, responde solidariamente con el subarrendatario de los daños y perjuicios.
+  summary_en: The tenant may not sublet all or part, nor assign their rights, without the landlord's consent; otherwise they are jointly liable with the subtenant for damages.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2377, párr. segundo
+  quote: El arrendatario no puede subarrendar la cosa arrendada en todo ni en parte, ni ceder sus derechos sin consentimiento del arrendador; si lo hiciere, responderá solidariamente con el subarrendatario de los daños y perjuicios.
+  applies_to_contract: true
+- id: MX-CHIH-TERMINACION-01
+  jurisdiction: CHIH
+  category: terminacion
+  kind: ley
+  title_es: Modos de terminar el arrendamiento
+  title_en: Ways the lease ends
+  summary_es: El arrendamiento puede terminar, entre otras causas, por haberse cumplido el plazo fijado en el contrato o por la ley, por convenio expreso, por nulidad y por rescisión.
+  summary_en: The lease may end, among other causes, by expiry of the term set in the contract or by law, by express agreement, by nullity, and by rescission.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2382, fracc. I a IV
+  quote: 'El arrendamiento puede terminar: I. Por haberse cumplido el plazo fijado en el contrato o por la ley, o por estar satisfecho el objeto para que la cosa fue arrendada; II. Por convenio expreso; III. Por nulidad; IV. Por rescisión;'
+  applies_to_contract: true
+- id: MX-CHIH-TERMINACION-02
+  jurisdiction: CHIH
+  category: terminacion
+  kind: ley
+  title_es: 'Plazo determinado: concluye el día prefijado'
+  title_en: 'Fixed term: ends on the set day'
+  summary_es: El arrendamiento por tiempo determinado concluye el día prefijado, salvo lo dispuesto en los artículos siguientes.
+  summary_en: A fixed-term lease ends on the set day, except as provided in the following articles.
+  doc_id: D-MX-CHIH-01
+  citation: Código Civil del Estado de Chihuahua, art. 2383, párr. primero
+  quote: El arrendamiento por tiempo determinado concluye el día prefijado, salvo lo dispuesto en los tres artículos siguientes.
+  applies_to_contract: true

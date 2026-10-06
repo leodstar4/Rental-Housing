@@ -1,0 +1,5 @@
+TEXTO DE PRUEBA (FIXTURE). No es una ley real; solo sirve a las pruebas automáticas de Renta MX.
+
+Artículo 200.- El depósito ficticio de esta fixture no podrá exceder de 2 meses de renta en el contrato de prueba.
+
+Artículo 201.- El contrato ficticio de prueba deberá otorgarse por escrito en esta fixture de Renta MX.

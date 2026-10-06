@@ -1,0 +1,457 @@
+
+
+DOF - Diario Oficial de la Federación
+
+ -->
+
+ -->
+
+Su navagedor no soporta JavaScript!
+
+ Usuario
+
+ Clave
+
+ Entrar
+
+ ¿Olvidó su usuario?
+
+ Inicio | Directorio | -->Contacto | Mapa del Sitio | Ayuda
+
+ .
+
+ www.dof.gob.mx 
+
+ -->
+
+ Busqueda
+
+ Ejemplar de hoy
+ Trámites
+ Servicios
+ Leyes y Reglamentos
+ Preguntas Frecuentes
+
+ Publicación de documentos
+ Distribución de ejemplares -->
+ Adquisición de ejemplares
+
+ Cotizador de publicaciones
+ Distribuidores autorizados -->
+ Consulta de existencias de ejemplares
+
+ Solicitud de publicación de documentos en forma electrónica
+
+DOF: 30/03/2017 
+
+ NORMA Oficial Mexicana NOM-151-SCFI-2016, Requisitos que deben observarse para la conservación de mensajes de datos y digitalización de documentos (cancela la NOM-151-SCFI-2002) NORMA Oficial Mexicana NOM-151-SCFI-2016, Requisitos que deben observarse para la conservación de mensajes de datos y digitalización de documentos (cancela la NOM-151-SCFI-2002). Al margen un sello con el Escudo Nacional, que dice: Estados Unidos Mexicanos.- Secretaría de Economía. NORMA OFICIAL MEXICANA NOM-151-SCFI-2016, REQUISITOS QUE DEBEN OBSERVARSE PARA LA CONSERVACIÓN DE MENSAJES DE DATOS Y DIGITALIZACIÓN DE DOCUMENTOS (CANCELA LA NOM-151-SCFI-2002).
+ ALBERTO ULISES ESTEBAN MARINA, Director General de Normas y Presidente del Comité Consultivo Nacional de Normalización de la Secretaría de Economía (CCONNSE), con fundamento en los artículos 34 fracciones II, XIII y XXXIII de la Ley Orgánica de la Administración Pública Federal; 39 fracción V, 40 fracciones III y XVIII, 46 y 47 fracción IV de la Ley Federal sobre Metrología y Normalización; 34 del Reglamento de la Ley Federal sobre Metrología y Normalización y 22 fracciones I, IV, IX, y XXV del Reglamento Interior de esta Secretaría, y
+ CONSIDERANDO
+
+ Que es responsabilidad del Gobierno Federal establecer los requisitos que deben observarse para la conservación de mensajes de datos y la digitalización de documentos en concordancia con el Código de Comercio;
+ Que el 25 de noviembre de 2015 el CCONNSE, aprobó la publicación del Proyecto de Norma Oficial Mexicana PROY-NOM-151-SCFI-2015 Requisitos que deben observarse para la conservación de mensajes de datos y digitalización de documentos, la cual se realizó en el Diario Oficial de la Federación el 6 de mayo de 2016, con objeto de que los interesados presentaran sus comentarios;
+ Que durante el plazo de 60 días naturales contados a partir de la fecha de publicación de dicho Proyecto de Norma Oficial Mexicana, la Manifestación de Impacto Regulatorio a que se refiere el artículo 45 de la Ley Federal sobre Metrología y Normalización estuvo a disposición del público en general para su consulta; y que dentro del mismo plazo, los interesados presentaron comentarios sobre el contenido del citado Proyecto de Norma Oficial Mexicana, mismos que fueron analizados por el grupo de trabajo, realizándose las modificaciones conducentes al proyecto de Norma Oficial Mexicana, y
+ Que el 18 de agosto de 2016, el CCONNSE, aprobó por unanimidad la Norma Oficial Mexicana NOM-151-SCFI-2016 Requisitos que deben observarse para la conservación de mensajes de datos y digitalización de documentos. Que la Ley Federal sobre Metrología y Normalización establece que las normas oficiales mexicanas se constituyen como el instrumento idóneo para la protección de los intereses del consumidor, expide la siguiente:
+ NOM-151-SCFI-2016, "Requisitos que deben observarse para la conservación de mensajes de datos y digitalización de documentos." SINEC-20161208115589512.
+ Ciudad de México, a 9 de enero de 2017.- El Director General de Normas y Presidente del Comité Consultivo Nacional de Normalización de la Secretaría de Economía, Alberto Ulises Esteban Marina.- Rúbrica.
+ NORMA OFICIAL MEXICANA NOM-151-SCFI-2016 REQUISITOS QUE DEBEN OBSERVARSE PARA LA
+ CONSERVACIÓN DE MENSAJES DE DATOS Y DIGITALIZACIÓN DE DOCUMENTOS. (CANCELA LA
+ NOM-151-SCFI-2002)
+
+ PREFACIO
+
+ En la elaboración de la presente Norma Oficial Mexicana participaron las siguientes instituciones:
+ · Advantage Security, S. de R.L. de C.V.
+ · Archivo General de la Nación
+ · Asociación Mexicana de Estándares Para el Comercio Electrónico, (Gs1 México)
+ · Asociación Mexicana de la Industria Automotriz
+ · Asociación Mexicana de la Industria de Tecnologías de Información, A.C.
+
+ · Asociación Mexicana de Proveedores Autorizados de Certificación
+ · Asociación Nacional de Importadores y Exportadores de la República Mexicana
+ · Asociación Nacional de Normalización y Certificación, A.C.
+ · Asociación Nacional de Tiendas de Autoservicio y Departamentales, A.C.
+ · ATEB Servicios, S.A. de C.V.
+ · Banco de México
+ · BBVA Bancomer
+ · Cámara Nacional de la Industria de Transformación
+ · Cámara Nacional de la Industria Electrónica de Telecomunicaciones y Tecnologías de la Información
+ · Cámara Nacional de la Industria Farmacéutica
+ · Carvajal Tecnología y Servicios
+ · Cecoban, S.A. de C.V.
+ · Cognicase Management Consulting México S.A. de C.V.
+ · Colegio Nacional de Correduría Pública Mexicana, A.C.
+ · Compañía Mexicana de Procesamiento, S.A. de C.V.
+ · Diverza
+ · Edicomunicaciones México, S.A. de C.V.
+ · Grupo CMC
+ · Hubox S. de R.L.
+ · Megapractical, S.A. de C.V.
+ · Normalización y Certificación Electrónica, S.C.
+ · PSC World, S.A. de C.V.
+ · R10S Abogados, S.C.
+ · Seguridata Privada, S.A. de C.V.
+ · Servicio de Administración Tributaria
+ · Sycteam
+ · Tralix S. de R.L. de C.V.
+ ÍNDICE DEL CONTENIDO
+
+ 0. INTRODUCCIÓN
+ 1. OBJETIVO
+ 2. CAMPO DE APLICACIÓN
+ 3. REFERENCIAS
+ 4. DEFINICIONES
+ 5. DISPOSICIONES GENERALES
+ 6. ELEMENTOS QUE INTERVIENEN EN LA CONSERVACIÓN DE MENSAJES DE DATOS Y DIGITALIZACIÓN
+ 7. VIGILANCIA
+ 8. CONCORDANCIA CON NORMAS INTERNACIONALES
+
+ APÉNDICE A (NORMATIVO)
+ CONSTANCIA CONSERVACIÓN DE MENSAJES DE DATOS
+ APÉNDICE B (NORMATIVO)
+ DIGITALIZACIÓN DE DOCUMENTOS EN SOPORTE FÍSICO
+ 9. BIBLIOGRAFÍA
+ TRANSITORIOS
+ 0. Introducción
+ De conformidad con lo dispuesto por el artículo 40 de la Ley Federal sobre Metrología y Normalización y, en relación con los artículos 33, 34, 38, 46 bis, 49 y 93 bis del Código de Comercio, la Secretaría de Economía deberá emitir una Norma Oficial Mexicana que establezca los requisitos que deberán observarse para la digitalización de documentos y conservación de mensajes de datos cuando éstos sean utilizados por los comerciantes en actos de comercio que estén relacionados con sus negocios.
+ 1. Objetivo
+ La presente Norma Oficial Mexicana establece los requisitos que deben observarse para la conservación de mensajes de datos y la digitalización de documentos en términos de lo dispuesto en los artículos 33, 38 y 49 del Código de Comercio.
+ 2. Campo de aplicación
+ La presente Norma Oficial Mexicana es de observancia general para los comerciantes que conforme a lo establecido en los artículos 33, 34, 38, 46 bis, 49 y 89 del Código de Comercio conserven mensajes de datos, así como los requisitos a cumplir en la digitalización de toda o parte de la documentación relacionada con sus negocios en soporte papel a un mensaje de datos, conforme a lo establecido en el Capítulo I BIS De la Digitalización del Código mencionado.
+ 3. Referencias
+ · RFC 3161 Internet X.509 Public Key Infrastructure Time-Stamp Protocol (TSP)
+ · RFC 5816 ESSCertIDv2 Update for RFC 3161
+ 4. Definiciones
+ Para efectos de lo dispuesto en la presente Norma Oficial Mexicana aplicarán las definiciones contenidas en el Título Segundo del Libro Segundo del Código de Comercio. Además de las siguientes:
+ 4.1 ASN.1.
+ A la versión 1 de Abstract Sintax Notation (Notación de Sintaxis Abstracta).
+ 4.2 Constancia del Prestador de servicios de certificación.
+ Mensaje de datos emitido por un prestador de servicios de certificación, conforme a lo establecido en el Apéndice Normativo A de la presente Norma Oficial Mexicana.
+ 4.3 Criptografía.
+ Al conjunto de técnicas matemáticas para cifrar información.
+ 4.4 Digitalización.
+ Proceso que permite la migración de documentos impresos a mensaje de datos, conforme a lo establecido en el Apéndice Normativo B de la presente Norma Oficial Mexicana.
+ 4.5 Formato.
+ A la secuencia claramente definida de caracteres, usada en el intercambio o generación de información.
+ 4.6 Objetos.
+ A las definiciones del lenguaje ASN.1
+
+ 4.7 NOM
+ La presente Norma Oficial Mexicana NOM-151-SCFI-2016 "Requisitos que deben observarse para la conservación de mensajes de datos y digitalización de documentos."
+ 4.8 Secretaría.
+ A la Secretaría de Economía.
+ 5. Disposiciones generales
+ 5.1 Los comerciantes deberán observar los métodos que se describen en los Apéndices Normativos A y B de la presente NOM para conservar los mensajes de datos, así como para la digitalización de toda o parte de la documentación en soporte físico relacionada con sus negocios.
+ 5.2 La información que se desee conservar se podrá almacenar en uno o varios archivos diferentes y/o en una o varias computadoras.
+ 5.3 Sin perjuicio de lo que dispongan otros ordenamientos jurídicos aplicables, cuando se pretenda almacenar en un medio electrónico, óptico o de cualquier otra tecnología, información derivada de un acto de comercio, que se encuentre soportada en un medio físico, los comerciantes podrán optar por migrar dicha información a una forma digital y, observar para su conservación en forma digital, las disposiciones a que se refiere la presente NOM.
+ 5.3.1 Los requisitos mínimos de los mensajes de datos resultantes de las digitalizaciones, procedimiento de migración de soporte físico a un medio electrónico, óptico o de cualquier otra tecnología incluyendo el formato, metadatos, niveles de calidad, condiciones técnicas y estándares aplicables, se determinan en el Apéndice B de la presente NOM.
+ 5.3.2 El proceso de digitalización deberá ser controlado por un tercero legalmente autorizado, que constatará que dicha migración se realice íntegra e inalterablemente tal y como se generó por primera vez en su forma definitiva. El tercero legalmente autorizado deberá ser un Prestador de Servicios de Certificación acreditado para tales efectos.
+ 5.4 Los programas informáticos para la conservación de los mensajes de datos, así como los equipos para digitalización, deberán cumplir con los métodos que se describen en los Apéndices Normativos A y B de la presente NOM.
+ 6. Elementos que intervienen en la conservación de mensajes de datos y digitalización
+ 6.1 Para la emisión de la firma electrónica avanzada, el Prestador de Servicios de Certificación o la Autoridad Certificadora, deberá observar los requisitos que la normatividad aplicable señale para su operación.
+ 6.2 La constancia emitida por el Prestador de Servicios de Certificación, acreditado para tales efectos, deberá observar los términos establecidos en el Apéndice Normativo A de la presente NOM.
+ 6.3 El almacenamiento de las constancias de conservación, así como los documentos digitalizados a los que se refiere la presente NOM, quedarán en control del usuario pudiendo contratar para su administración a terceros.
+ 7. Vigilancia
+ La vigilancia de la presente NOM estará a cargo de la Secretaría conforme a sus atribuciones y la legislación aplicable.
+ 8. Concordancia con normas internacionales
+ La presente Norma Oficial Mexicana no es equivalente (NEQ) con ninguna Norma Internacional, por no existir esta última al momento de su elaboración.
+
+ APÉNDICE A (NORMATIVO)
+
+ CONSTANCIA CONSERVACIÓN DE MENSAJES DE DATOS
+
+ A.1 Introducción
+ A.1.1 En este Apéndice Normativo se presentan los elementos necesarios que describen los procesos involucrados en la conservación de mensajes de datos.
+ A.1.2 La Secretaría mantendrá a disposición del público en general, en su portal en internet, un listado de algoritmos criptográficos a utilizar. Dicho listado incluirá los algoritmos criptográficos permitidos para su uso en esta NOM, así como las fechas de uso de dicho listado. La Secretaría mantendrá actualizada esa información y los Prestadores de Servicios de Certificación sólo podrán emplear en sus procesos de generación de constancia los algoritmos mencionados en el citado listado, así como observar las características mencionadas.
+ A.2 Formación de solicitud de la constancia
+ A.2.1 La formación de la solicitud de la constancia de conservación de mensajes de datos se efectúa conforme a la especificación descrita en el RFC 3161. La solicitud de la constancia sigue el formato ASN.1 con al menos el siguiente contenido:
+ A.2.2 Huella digital electrónica del mensaje de datos, e Identificador de Objeto cuyo contenido corresponderá con la versión del documento de las políticas de emisión de sellos digitales de tiempo del Prestador de Servicios de Certificación.
+ A.2.3 La huella digital electrónica se obtiene mediante el empleo de alguna de las funciones de digestión que la Secretaría haya publicado.
+ A.2.4 En todo momento, el interesado deberá mantener el control sobre el mensaje de datos por lo que el Prestador de Servicios de Certificación únicamente recibirá la huella digital electrónica del mensaje de datos.
+ A.3 Obtención de la constancia de conservación de mensajes de datos del Prestador de Servicios de Certificación
+ A.3.1 La obtención de la constancia de conservación de mensajes de datos se efectuará a través de los mecanismos establecidos entre el interesado y el Prestador de Servicios de Certificación. El interesado enviará la solicitud al Prestador de Servicios de Certificación y este último le devolverá la constancia de conservación de mensajes de datos por el mismo medio.
+ A.3.2 El Prestador de Servicios de Certificación implementará un sistema que permita al comerciante identificar la constancia de conservación de mensajes de datos, pudiendo tomar como referencia el nombre del mensaje de datos o la fecha, entre otros.
+ A.4 Formación de la constancia de conservación de mensajes de datos
+ A.4.1 El Prestador de Servicios de Certificación formará una constancia siguiendo el formato ASN.1 del RFC 3161 que se conformará de uno o más sellos digitales de tiempo.
+ A.4.2 Cada sello digital de tiempo constará de:
+ a) Versión del sello digital de tiempo,
+ b) Identificador de Objeto cuyo contenido corresponderá con la versión del documento de las políticas de emisión de sellos digitales de tiempo,
+ c) Huella digital electrónica que se obtiene de la solicitud,
+ d) Número serial único que identifica al sello digital de tiempo,
+ e) Fecha y hora en que se está generando el sello digital de tiempo, y
+
+ f) Extensiones para aquellos casos en que se trate de refrendos de una constancia.
+ A.5 Método de verificación de autenticidad de la constancia de conservación de mensajes de datos
+ A.5.1 La verificación de la autenticidad de una constancia de conservación de mensajes de datos se realizará por medio de los siguientes pasos, para cada sello digital de tiempo que conforma la constancia:
+ a) Obtención de forma confiable del certificado del Prestador de Servicios de Certificación que firmó el sello digital de tiempo.
+ b) Verificación de la firma electrónica avanzada del Prestador de Servicios de Certificación en el sello digital de tiempo.
+ c) Obtención de la huella digital del mensaje de datos original empleando la función de digestión indicada en el sello digital de tiempo.
+ d) Verificación que el resultado obtenido en el punto anterior, es idéntico al valor asentado en el sello digital de tiempo.
+ A.5.2 La fecha de inicio de vigencia asentada en cada sello digital de tiempo, indica desde cuándo el mensaje de datos se considera existente para efectos de conservación de acuerdo a esta NOM.
+ A.5.3 Definiciones de los objetos ASN.1 involucrados en la constancia.
+ A.6 En la presente sección se detallan los procesos y los formatos asociados a la emisión de sello digital de tiempo.
+ A.6.1 Especificación del sello digital de tiempo:
+ a) Conforme al RFC 3161, el elemento que trae la información del sello digital de tiempo es la estructura TSTInfo, la cual se define de la siguiente forma:
+ b) Definición del elemento TSTInfo
+ TSTInfo ::= SEQUENCE {
+ version INTEGER { v1(1) },
+ policy TSAPolicyId,
+ messageImprint MessageImprint,
+ MUST have the same value as the similar field in
+ TimeStampReq
+ serialNumber INTEGER,
+ Time-Stamping users MUST be ready to accommodate integers
+ up to 160 bits.
+ genTime Generalizedime,
+ accuracy Accuracy OPTIONAL,
+ ordering BOOLEAN DEFAULT FALSE,
+ nonce INTEGER OPTIONAL,
+ MUST be present if the similar field was present
+ in TimeStampReq. In that case it MUST have the same value.
+ tsa [0] GeneralName OPTIONAL,
+ extensions [1] IMPLICIT Extensions OPTIONAL }
+ A.7 Extensiones
+
+ A.7.1 Una de las extensiones a usar en la presente NOM se encuentra especificada en el RFC 5280. Las extensiones no se marcarán como críticas.
+ A.7.2 En la siguiente definición, MAX indica que la cota superior no está especificada. Cada implementación queda con la libertad de escoger la cota superior.
+ Extensions ::= SEQUENCE SIZE (1..MAX) OF Extension
+ Extension ::= SEQUENCE {
+ extnID OBJECT IDENTIFIER,
+ critical BOOLEAN DEFAULT FALSE,
+ extnValue OCTET STRING }
+ id-at OBJECT IDENTIFIER ::= { joint-iso-ccitt(2) ds(5) 4 }
+ Upper Bounds
+ ub-serial-number INTEGER ::= 64
+ Naming attributes of type X520SerialNumber
+ id-at-serialNumber OBJECT IDENTIFIER ::= { id-at 5 }
+ X520SerialNumber ::= PrintableString (SIZE (1..ub-serial-number))
+ A.7.3 En el objeto ASN.1 X520SerialNumber se almacenará la expresión hexadecimal del campo serialNumber del elemento TSTInfo.
+ A.7.4 Con la finalidad de identificar el inicio de vigencia de la constancia, se incorporan los dos siguientes elementos, cuya definición se expresa en la notación ASN.1
+ id-nom-ini-time OBJECT IDENTIFIER ::= {2 16 484 101 10 316 20 37 1117}
+ NOM151IniTime ::= GeneralizedTime
+ A.8 Detalle de los procesos de obtención y verificación
+ A.8.1. A continuación, se describen los procedimientos para la generación y verificación de las constancias de acuerdo a esta NOM.
+ A.8.2 Obtención por primera vez de un sello digital de tiempo como constancia de conservación de mensajes de datos:
+ a) El interesado genera una solicitud de sello digital de tiempo de acuerdo al RFC 3161, empleando alguna función hash avalada por la Secretaría y el Identificador de Objeto referente a la política del Prestador de Servicios de Certificación a la que se apegará la emisión del sello digital de tiempo.
+ b) El interesado envía la solicitud al Prestador de Servicios de Certificación a través del mecanismo previamente establecido entre el Prestador de Servicios de Certificación y el interesado.
+ c) El Prestador de Servicios de Certificación valida que la longitud de la huella corresponda al algoritmo de digestión empleado en su generación y emite el sello digital de tiempo de acuerdo al RFC 3161.
+ d) El Prestador de Servicios de Certificación envía el sello digital de tiempo a través del mismo mecanismo por el cual recibió la solicitud.
+ e) El sello digital de tiempo obtenido es la evidencia de que el documento existe desde la fecha asentada en el sello digital de tiempo.
+ A.8.3 Verificación de la constancia con un sello digital de tiempo contra un mensaje de datos:
+ a) Se obtiene del sello digital de tiempo la huella digital del documento generada con la función hash indicada en el sello digital de tiempo.
+ b) Se obtiene en línea el certificado del Prestador de Servicios de Certificación que firmó el sello digital de tiempo desde una fuente confiable.
+ c) Se verifica la firma digital contenida en el sello digital de tiempo.
+ d) Si la verificación fue exitosa, entonces el mensaje de datos existe, al menos, desde la fecha asentada 
+
+ en el sello digital de tiempo y es íntegro.
+ A.8.4 Extensión de vigencia
+ A.8.4.1 La vigencia de la constancia de conservación de mensajes de datos será de por lo menos diez años a partir de su emisión, y el comerciante podrá decidir si requiere la extensión de dicha vigencia según la naturaleza de la información de acuerdo con los ordenamientos legales aplicables.
+ A.8.4.2. Es necesario realizar un seguimiento de la vigencia de las normas y algoritmos empleados para la generación de las constancias y su validación, así como seguir los procedimientos necesarios para casos de contingencia cuando se descubran debilidades en los algoritmos empleados. Estos procedimientos pueden ser necesarios en cualquier momento, incluso antes de que pasen los diez años mencionados.
+ A.8.5 Obtención de Extensión de Vigencia
+ a) El interesado genera una solicitud de sello digital de tiempo de acuerdo al RFC 3161, empleando la función hash notificada por la Secretaría.
+ b) El interesado envía la solicitud y el sello digital de tiempo vigente del mensaje de datos en cuestión al Prestador de Servicios de Certificación a través de los mecanismos previamente establecidos entre el Prestador de Servicios de Certificación y el interesado.
+ c) El Prestador de Servicios de Certificación valida que la longitud de la huella digital electrónica corresponda con la longitud que se obtiene con la función hash empleada; obtiene, del sello digital de tiempo recibida, la fecha de inicio de vigencia y el número serial de ese sello digital de tiempo, con esta información genera el nuevo sello digital de tiempo de acuerdo al RFC 3161, agregando en la sección de extensiones la información relativa al inicio de vigencia y al número serial del sello digital de tiempo anterior a la que se está generando.
+ d) El Prestador de Servicios de Certificación envía el sello digital de tiempo a través del mismo mecanismo por el cual recibió la solicitud.
+ e) A partir del segundo sello digital de tiempo, ésta contendrá dos fechas: una es la fecha del propio sello digital de tiempo y la otra, dentro de una de sus extensiones, indicará la fecha en que el primer sello digital de tiempo fue creado para el correspondiente mensaje de datos.
+ f) El Prestador de Servicios de Certificación implementará un sistema que permita al comerciante identificar la constancia de conservación de mensajes de datos, así como las extensiones que se generen, pudiendo tomar como referencia el nombre del mensaje de datos o la fecha de la constancia.
+ g) El sello digital de tiempo obtenido junto con los sellos digitales de tiempo anteriores conforman la evidencia de que el documento existe, al menos, desde la fecha asentada en el sello digital de tiempo inicial.
+ A.8.6 Verificación de la constancia conformada por más de un sello digital de tiempo.
+ a) Se realizan las verificaciones del mensaje de datos contra cada uno de los sellos digitales de tiempo que conforman la constancia (proceso similar al caso de un solo sello digital de tiempo).
+ b) Se verifica que la fecha de emisión del sello digital de tiempo inicial es la misma que todas y cada una de las fechas encontradas en los atributos de los sellos digitales de tiempo posteriores.
+ c) Se verifica que el valor en la extensión respectiva para el serial coincida con el del sello digital de tiempo previo.
+ d) Si el certificado del Prestador de Servicios de Certificación que firmó el más reciente sello digital de tiempo es vigente y las verificaciones fueron exitosas, entonces el mensaje de datos existe, al menos, desde la fecha asentada en el primer sello digital de tiempo y es íntegro.
+ APÉNDICE B (NORMATIVO)
+
+ DIGITALIZACIÓN DE DOCUMENTOS EN SOPORTE FÍSICO
+
+ B.1 Introducción
+
+ En este Apéndice Normativo se presentan los elementos necesarios que describen los procesos involucrados en la digitalización de documentos en soporte físico a mensajes de datos con el fin de su conservación.
+ B.2 Requisitos mínimos de los mensajes de datos resultantes de las digitalizaciones
+ B.2.1 Los componentes de un mensaje de datos resultante de la digitalización serán:
+ a) Representación en medios electrónicos de documentos en soporte físico conforme al método de migración contenido en el presente Apéndice Normativo.
+ b) Solicitud de constancia de conservación de mensajes de datos.
+ c) Procedimiento de migración de documentos en soporte físico a un medio electrónico, óptico o de cualquier tecnología.
+ B.3 Formato
+ B.3.1 El formato del mensaje de datos resultante de la migración se definirá por el interesado siempre que se trate de un formato estándar, diseñado para contener el tipo de documento y con posibilidad de visualizar su contenido mediante algún programa de cómputo (software) disponible en el mercado.
+ B.4 Niveles de calidad
+ B.4.1 El mensaje de datos resultante de la migración debe ser fiel al contenido original y garantizar su integridad por medio de la firma electrónica del comerciante y el Prestador de Servicios de Certificación que en su caso corresponda.
+ B.4.2 El nivel de calidad mínimo para los mensajes de datos resultantes será:
+ a) Representaciones gráficas: 200 píxeles por pulgada o superior para representaciones en blanco y negro, color o escala de grises.
+ b) Audio: Frecuencia de muestreo de 44.1kHz y 16 bits o superior.
+ c) Video: Resolución de 352 píxeles de ancho por 288 píxeles de alto o superior de acuerdo al formato CIF definido en la H.261 de la ITU (International Telecommunication Union).
+ La infraestructura con que se realice la migración deberá contar con los esquemas tecnológicos mínimos necesarios para realizar las acciones de digitalización, considerando tamaño, conectividad, seguridad que se establezcan en las reglas a que hace referencia el Titulo Segundo del Código de Comercio artículos de 89 al 114 y, 5 fracción III inciso d) segundo párrafo del Reglamento del Código de Comercio en materia de Prestadores de Servicios de Certificación.
+ B.4.3 Se deberá generar un mensaje de datos que permita asegurar la fidelidad e integridad conforme a los documentos amparados en soportes físicos; el mensaje de datos generado debe ser de alta calidad y debe tratarse con un intenso control de calidad, de manera que, si existe algún error en el proceso de captura, ésta deberá efectuarse una vez más.
+ B.4.4 El mensaje de datos será fiel al documento en soporte físico, para lo cual:
+ a) Respetará la geometría o aspecto del origen en tamaños y proporciones;
+ b) Respetará codificación y cantidad de imágenes por segundo cuando el origen sea video,
+ c) El mensaje de datos generado a partir del proceso de digitalización, deberá permanecer no disponible para su modificación o consulta por parte del solicitante del servicio, mientras se genere la constancia de conservación de mensajes de datos.
+ d) No contendrá caracteres o gráficos que no figurasen en el soporte físico, y
+ e) Respetará la generación de mensajes de datos en el formato que determine el comerciante, previo acuerdo con el Prestador de Servicios de Certificación y demás consideraciones establecidas en esta NOM.
+ B.5 Condiciones técnicas
+ B.5.1 El proceso de migración se realizará a través de un procedimiento en el que, garantizando la integridad de cada uno de los pasos, se efectúen las acciones siguientes:
+ B.5.2 Por un medio de conversión de señales se obtendrá un archivo electrónico en la memoria 
+
+ del sistema asociado al dispositivo.
+ B.5.3 Si procede, la aplicación de un proceso de optimización automática de archivo electrónico para garantizar su legibilidad, de modo que todo contenido del documento origen pueda apreciarse y sea válido para su gestión (valor umbral, reorientación, eliminación de bordes negros, eliminación de ruido, u otros de naturaleza analógica).
+ B.5.4 Generación de una solicitud de constancia a partir del archivo electrónico resultante del proceso, habiéndose aplicado la adecuada revisión por el Prestador de Servicios de Certificación que corresponda con el objetivo de constatar que la digitalización se ha realizado adecuadamente.
+ B.5.5 El mensaje de datos debe ser una representación visual del objeto original lo más exacta posible que sirva para las necesidades de la institución; en este sentido, se debe entender que la solución no es capturar una imagen con la más alta calidad posible, sino evaluar el contenido del documento original y decidir la calidad de la imagen a utilizar al realizar la digitalización.
+ B.5.6 Como un primer paso en este proceso, se analizan los atributos de los documentos originales; éstos pueden diferir en cuanto a dimensiones, rango de colores o la forma en la que fueron producidos: a mano, con una imprenta, por medio de una cámara fotográfica, medios electrónicos, etcétera.
+ B.5.7 El estado de conservación de los documentos puede afectar el proceso de conversión, por eso es importante identificar si existe la necesidad de realizar una estabilización o restauración previa, idealmente con el apoyo de un especialista en conservación de documentos.
+ B.5.8 Control de los documentos, considerando por lo menos los siguientes aspectos:
+ a) Tipo de documento que se someterá al proceso de digitalización.
+ b) Cantidad de documentos.
+ B.6 Estándares aplicables
+ B.6.1 El Prestador de Servicios de Certificación contemplará la aplicación de un conjunto de operaciones de mantenimiento preventivo y comprobaciones rutinarias que permitirán garantizar mediante su cumplimiento que, en todo momento, el estado de la aplicación de digitalización y los dispositivos asociados producirán archivos electrónicos fieles al documento en soporte físico, que deberá reflejar en un Plan de Gestión de Calidad.
+ B.6.2 En el Plan de Gestión de Calidad se describirá el mantenimiento de los procedimientos y dispositivos asociados, en su caso, la aplicación de digitalización, así como otros aspectos que puedan afectar al propio software tales como, el seguimiento de la vigencia de las normas y algoritmos empleados, o aspectos de mantenimiento de los sistemas operativos que pudieran afectar al rendimiento de la aplicación de digitalización, u otros de naturaleza analógica.
+ B.7 Cotejo de la digitalización
+ El Prestador de Servicios de Certificación será el responsable de cotejar la digitalización que haya hecho de los documentos físicos.
+ B.7.1 El cotejo deberá realizarse entre el documento físico fuente que haya sido migrado y el mensaje de datos generado a partir del proceso de digitalización al cual una vez cotejado, deberá incorporarse la Firma Electrónica del Prestador de Servicios de Certificación y la estampilla de tiempo.
+ B.7.2 Para llevar a cabo el proceso de cotejo, éste se llevará de conformidad con las técnicas de muestreo que la Secretaría de Economía disponga en las Reglas Generales a las que deberán sujetarse los Prestadores de Servicios de Certificación.
+ B.8 Constancias de conservación de mensajes de datos
+ B.8.1 El usuario podrá solicitar al Prestador de Servicios de Certificación la emisión de constancias de conservación de mensajes de datos obtenidos del proceso de digitalización contemplado en este Apéndice Normativo.
+
+ B.8.2 Para tales efectos, la constancia de conservación de mensajes de datos deberá cumplir con lo dispuesto en el Apéndice Normativo A de la presente NOM.
+ B.9 Destrucción del documento físico
+ B.9.1 Los documentos en soporte físico podrán ser destruidos según la naturaleza de la información de acuerdo con los ordenamientos legales aplicables. En todo caso, el proceso de digitalización realizado conforme a la presente NOM otorga integridad al mensaje de datos obtenido.
+ B.10 Tercero Legalmente Autorizado
+ Para ser Tercero Legalmente Autorizado, el Prestador de Servicios de Certificación se tendrá que acreditar de acuerdo con las Reglas Generales expedidas por la Secretaría referidas en el Capítulo III del Título Segundo del Libro Segundo del Código de Comercio, a las que deberán sujetarse los Prestadores de Servicios de Certificación.
+ 9. Bibliografía
+ - Código de Comercio, publicado en el Diario Oficial de la Federación el 7 de octubre de 1889, y sus reformas.
+ - Ley Federal sobre Metrología y Normalización, publicada en el Diario Oficial de la Federación el 1 de julio de 1992, y sus reformas.
+ - Reglamento de la Ley Federal sobre Metrología y Normalización, publicado en el Diario Oficial de la Federación el 14 de enero de 1999, y sus reformas.
+ - NMX-Z-013-SCFI-2015, Guía para la estructuración y redacción de normas (Cancela a la NMX-Z-013/1977), publicada en el Diario Oficial de la Federación el 18 de noviembre de 2015 y su Aclaración.
+ - Schneier, Bruce. Applied Cryptography.
+ - Ley Modelo de la CNUDMI sobre las Firmas Electrónicas.
+ - Ley Modelo de la CNUDMI sobre Comercio Electrónico.
+ - ISO/IEC 8859-1:1998 Information technology-8bit single-byte coded graphic character sets-Part 1: Latin alphabet No. 1.
+ TRANSITORIOS
+
+ PRIMERO.- La presente Norma Oficial Mexicana entrará en vigor 180 días naturales siguientes al día de su publicación en el Diario Oficial de la Federación.
+ SEGUNDO.- La presente Norma Oficial Mexicana, una vez que entre en vigor, cancela y sustituye a la Norma Oficial Mexicana NOM-151-SCFI-2002, Prácticas comercialesâRequisitos que deben observarse para la conservación de mensajes de datos, publicada en el Diario Oficial de la Federación el 4 de junio de 2002.
+ Ciudad de México, a 9 de enero de 2017.- El Director General de Normas y Presidente del Comité Consultivo Nacional de Normalización de la Secretaría de Economía, Alberto Ulises Esteban Marina.- Rúbrica.
+
+ En el documento que usted está visualizando puede haber texto, caracteres u objetos que no se muestren correctamente debido a la conversión a formato HTML, por lo que le recomendamos tomar siempre como referencia la imagen digitalizada del DOF o el archivo PDF de la edición.
+
+ El contenido, forma y alcance de los documentos publicados, son estricta responsabilidad de su emisor.
+
+ CONSULTA POR FECHA 
+
+ Do
+ Lu
+ Ma
+ Mi
+ Ju
+ Vi
+ Sá
+
+ Crear Usuario
+
+ Búsqueda Avanzada
+
+ Novedades
+
+--> 
+
+ Top Notas
+
+ Normas Oficiales
+
+ Suscripción
+
+ -->
+
+ Quejas y Sugerencias
+
+ Obtener Copia del DOF
+
+ Publicaciones Relevantes
+
+ -->
+
+ Verificar Copia del DOF
+
+ Enlaces Relevantes
+
+ Contáctenos
+
+ Filtros RSS
+
+-->
+
+ Historia del Diario Oficial
+
+ Estadísticas
+
+--> 
+
+ Vacantes en Gobierno
+
+ Ex-trabajadores Migratorios
+
+ INDICADORES 
+
+ Tipo de Cambio y Tasas al 05/10/2026
+
+ DOLAR 
+ 18.1903
+UDIS 
+ 8.843775
+TIIE 28 DIAS 
+ 6.7559%
+TIIE 91 DIAS 
+ 6.7931%
+TIIE 182 DIAS 
+ 6.8474%
+TIIE DE FONDEO 
+ 6.50%
+
+ -->
+
+ Ver más
+
+ -->
+
+ ENCUESTAS
+
+ ¿Le gustó la nueva imagen de la página web del Diario Oficial de la Federación?
+
+ No
+
+ Sí
+
+ Votar
+
+ -->
+
+ NORMAS OFICIALES
+
+ NOM-EM-009-ASEA-
+2026
+
+ NOM-EM-008-ASEA-
+2026
+
+ PROY-NOM-027-SSA
+-2026
+
+ Ver más
+
+ -->
+
+ ﻿ 
+
+ Diario Oficial de la Federación
+
+ Río Amazonas No. 62, Col. Cuauhtémoc, 
+ C.P. 06500,
+ Ciudad de México
+Tel. (55) 5093-3200, donde podrá acceder a nuestro menú de servicios 
+ dof@segob.gob.mx-->
+
+Dirección electrónica: dof.gob.mx
+
+ 113
+
+ AVISO LEGAL | ALGUNOS DERECHOS RESERVADOS © 2026 
+
