@@ -1,15 +1,17 @@
-> ## 🇲🇽 Upgrade en esta rama: **Renta MX**
+> ## 🇲🇽 Producto activo: **Renta MX**
 >
-> Esta rama (`feature/mx-renta-zonas`) lleva el proyecto más allá de "consultar la ley de EE. UU.":
-> es una plataforma para **rentar y vivir en México**, buscar por **zona** (estado → municipio),
-> ver las **viviendas publicadas**, consultar los **requisitos legales** con cita literal verificada
-> y **generar y firmar** un contrato de arrendamiento. El runtime no usa LLM.
+> El proyecto evolucionó de "consultar la ley de EE. UU." a una plataforma para **rentar y vivir en
+> México**: buscar por **zona** (estado → municipio) en un buscador o en un **mapa**, ver las
+> **viviendas publicadas** con un **resumen honesto de precios**, consultar los **requisitos legales**
+> con cita literal verificada (**229/229 citas, 11 de 32 entidades**) y **generar y firmar** un
+> contrato de arrendamiento. El runtime no usa LLM.
 >
-> 📖 **Documentación completa del upgrade:** [`README_RENTA_MX.md`](README_RENTA_MX.md)
-> (qué cambió, arquitectura, cómo correrlo, seguridad, costos y roadmap).
+> 📖 **Documentación completa:** [`README_RENTA_MX.md`](README_RENTA_MX.md) (estado, arquitectura,
+> funcionalidades por fase, API, despliegue Render + Cloudflare, pruebas, costos y roadmap) ·
+> traspaso: [`docs/HANDOFF.md`](docs/HANDOFF.md).
 >
-> El proyecto original (EE. UU.) descrito abajo sigue intacto y accesible en la ruta `/us` del
-> frontend.
+> El proyecto original (EE. UU.) descrito abajo está **congelado** ([`docs/US_LEGACY.md`](docs/US_LEGACY.md))
+> y sigue accesible en la ruta `/us` del frontend.
 
 ---
 
